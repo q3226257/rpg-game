@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Party System
 // YEP_PartySystem.js
 //=============================================================================
@@ -8,63 +8,41 @@ Imported.YEP_PartySystem = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.Party = Yanfly.Party || {};
-Yanfly.Party.version = 1.13;
+Yanfly.Party.version = 1.10;
 
 //=============================================================================
  /*:
- * @plugindesc v1.13 Replaces the default 'Formation' command with a new
- * menu for players to easily change party formations.
+ * @plugindesc v1.10 队伍系统
  * @author Yanfly Engine Plugins
  *
  * @param ---General---
  * @default
  *
  * @param Max Battle Members
- * @parent ---General---
- * @type number
- * @min 1
  * @desc Maximum amount of actors that can participate in battle.
  * Default: 4
  * @default 4
  *
  * @param Show Battle Command
- * @parent ---General---
- * @type boolean
- * @on Show
- * @off Hide
  * @desc Show the 'Formation' command in the Party Command Window?
  * NO - false     YES - true
  * @default true
  *
  * @param Enable Battle Command
- * @parent ---General---
- * @type boolean
- * @on Enable
- * @off Disable
  * @desc Enable the 'Formation' command in the Party Command Window?
  * NO - false     YES - true
  * @default true
  *
  * @param Battle Cooldown
- * @parent ---General---
- * @type number
- * @min 0
  * @desc How many turns must the player wait after changing party?
  * @default 1
  *
  * @param Maximum Followers
- * @parent ---General---
- * @type number
- * @min 0
  * @desc Maximum number of followers on the map.
  * Default: 4
  * @default 4
  *
  * @param EXP Distribution
- * @parent ---General---
- * @type boolean
- * @on Distribute EXP
- * @off Full EXP
  * @desc Divide battle EXP gained across live members?
  * NO - false     YES - true
  * @default false
@@ -73,44 +51,31 @@ Yanfly.Party.version = 1.13;
  * @default
  *
  * @param Help Window
- * @parent ---Menu---
- * @type boolean
- * @on Show
- * @off Hide
  * @desc Show the Help Window in the party menu?
  * NO - false     YES - true
  * @default false
  *
  * @param Text Alignment
- * @parent ---Menu---
- * @type combo
- * @option left
- * @option center
- * @option right
  * @desc The text alignment for the command window.
  * left     center     right
  * @default center
  *
  * @param Change Command
- * @parent ---Menu---
  * @desc How the 'Change' command appears in the command menu.
  * Leave this blank to remove it.
  * @default Change
  *
  * @param Remove Command
- * @parent ---Menu---
  * @desc How the 'Remove' command appears in the command menu.
  * Leave this blank to remove it.
  * @default Remove
  *
  * @param Revert Command
- * @parent ---Menu---
  * @desc How the 'Revert' command appears in the command menu.
  * Leave this blank to remove it.
  * @default Revert
  *
  * @param Finish Command
- * @parent ---Menu---
  * @desc How the 'Finish' command appears in the command menu.
  * Leave this blank to remove it.
  * @default Finish
@@ -119,24 +84,15 @@ Yanfly.Party.version = 1.13;
  * @default
  *
  * @param Empty Text
- * @parent ---Selection---
  * @desc What text to display in an empty party slot.
  * @default - Empty -
  *
  * @param Actor Face
- * @parent ---Selection---
- * @type boolean
- * @on Show Face
- * @off No Face
  * @desc Show the actor's face?
  * NO - false     YES - true
  * @default true
  *
  * @param Actor Sprite
- * @parent ---Selection---
- * @type boolean
- * @on Show Sprite
- * @off No Sprite
  * @desc Show the actor's sprite?
  * NO - false     YES - true
  * @default true
@@ -144,34 +100,21 @@ Yanfly.Party.version = 1.13;
  * @param ---List---
  * @default
  *
+ * @param Remove Text
+ * @desc The text used to display the "Remove" command in the party
+ * member list.
+ * @default Remove
+ *
  * @param Remove Icon
- * @parent ---List---
- * @type number
- * @min 0
  * @desc The icon used to display next to the "Remove" command in the
  * party member list.
  * @default 16
  *
- * @param Show Sprite
- * @parent ---List---
- * @type boolean
- * @on Show Sprite
- * @off No Sprite
- * @desc Show the actor sprite on the list?
- * YES - true     NO - false
- * @default true
- *
  * @param Sprite Y Buffer
- * @parent ---List---
- * @type number
  * @desc This is the amount to adjust the actor graphic by.
  * @default 16
  *
  * @param In Party Text Color
- * @parent ---List---
- * @type number
- * @min 0
- * @max 31
  * @desc This is the text color to be used if the actor is currently
  * in the party.
  * @default 6
@@ -180,25 +123,15 @@ Yanfly.Party.version = 1.13;
  * @default
  *
  * @param Lock First Actor
- * @parent ---Locking---
- * @type boolean
- * @on Lock First Actor
- * @off No Change
  * @desc Allows you to lock the first actor in the game by default.
  * OFF - false     ON - true
  * @default false
  *
  * @param Locked Icon
- * @parent ---Locking---
- * @type number
- * @min 0
  * @desc This sets what icon to be used when an actor is locked.
  * @default 195
  *
  * @param Required Icon
- * @parent ---Locking---
- * @type number
- * @min 0
  * @desc This sets what icon to be used when an actor is required.
  * @default 205
  *
@@ -206,30 +139,21 @@ Yanfly.Party.version = 1.13;
  * @default
  *
  * @param Enable Detail Window
- * @parent ---Detail Window---
- * @type boolean
- * @on Enable
- * @off Disable
  * @desc Make use of the detailed party window next to the list.
  * NO - false     YES - true
  * @default true
  *
  * @param List Width
- * @parent ---Detail Window---
- * @type number
- * @min 1
  * @desc If detail window is enabled, what is the width of the
  * party list window?
  * @default 300
  *
  * @param Actor Parameters
- * @parent ---Detail Window---
  * @desc If there is enough room, this is the text shown to list
  * the actor's parameters.
  * @default Parameters
  *
  * @param Actor Equipment
- * @parent ---Detail Window---
  * @desc If there is enough room, this is the text shown to list
  * the actor's equipment.
  * @default Equipment
@@ -239,71 +163,50 @@ Yanfly.Party.version = 1.13;
  * Introduction
  * ============================================================================
  *
- * This plugin replaces the "Formation" command found in the in-game menu with
- * a new scene where the player can adjust the party he or she wants in a more
- * comfortable way.
+ * 这个插件替代了编队命令，并用一个新的窗口代替，在这里你可以更加方便的调整
+ * 队伍
  *
- * If you are using YEP_BattleEngineCore.js and would like to enable party
- * switching mid-battle, place this plugin under YEP_BattleEngineCore.js in
- * the plugin's list.
+ * 如果你使用了YEP_BattleEngineCore，并且想在战斗中开启队伍切换，请把它放在
+ * YEP_BattleEngineCore下面
  *
- * This plugin is plug and play. All you have to do is just turn it on and
- * change the parameters to your liking.
+ * 这个插件是即插即用。你只需要打开它并且更改你想要的参数
  *
  * ============================================================================
  * Plugin Commands
  * ============================================================================
  *
- * Here are some plugin commands you can use!
+ * 这里是你需要的一些插件命令
  *
  * Plugin Command:
- *   OpenPartyMenu     Opens up the Party Menu from the field.
+ *   OpenPartyMenu     打开队伍菜单
  *
- * Actors can also be required, meaning the player must have that actor(s) in
- * the party before the player is able to leave the party menu. Required actors
- * can be moved around, unlike locked actors. Keep in mind if you do make some
- * actors required, do not make the game require more actors than the possible
- * maximum battle members or else the player will be stuck in the party menu.
+ * 在你离开队伍菜单时，你必须拥有至少一名角色。和锁定角色不同，必需的角色可
+ * 以移动。记住如果你设置了必需的角色，则不要让必需角色数超过战斗队伍最大上
+ * 限，否则玩家将会卡死在队伍菜单
  *
  * Plugin Command:
- *   ShowBattleFormation    - Shows 'Formation' command in battle.
- *   HideBattleFormation    - Hides 'Formation' command in battle.
- *   EnableBattleFormation  - Enables 'Formation' command in battle.
- *   DisableBattleFormation - Disables 'Formation' command in battle.
+ *   ShowBattleFormation    - 在战斗中显示编队命令
+ *   HideBattleFormation    - 在战斗中隐藏编队命令
+ *   EnableBattleFormation  - 在战斗中开启编队命令
+ *   DisableBattleFormation - 在战斗中关闭编队命令
  *
- *   LockActor 3          - Locks actor 3.
- *   LockActor 4 5 6      - Locks actors 4, 5, and 6.
- *   UnlockActor 3        - Unlocks actor 3.
- *   UnlockActor 4 5 6    - Unlocks actors 4, 5, and 6.
- *                        * Locked Actors cannot be moved out of their current
- *                          position and must be in the party.
+ *   LockActor 3          - 锁定角色3
+ *   LockActor 4 5 6      - 锁定角色4，5，6
+ *   UnlockActor 3        - 解锁角色3
+ *   UnlockActor 4 5 6    - 解锁角色4，5，6
+ *                        * 锁定的角色不可以被从初始位置移开并且必需在队伍里
  *
- *   RequireActor 3       - Player must have actor 3 in party.
- *   RequireActor 4 5 6   - Player must have actors 4, 5, and 6 in party.
- *   UnrequireActor 3     - Player no longer needs actor 3 in party.
- *   UnrequireActor 4 5 6 - Player no longer needs actors 4, 5, and 6 in party.
- *                        * Required Actors must be in the party in order for
- *                          the player to be able to exit the party menu.
+ *   RequireActor 3       - 必需角色3
+ *   RequireActor 4 5 6   - 必需角色4，5，6
+ *   UnrequireActor 3     - 不在必需角色3
+ *   UnrequireActor 4 5 6 - 不在必需角色4，5，6
+ *                        * 必需角色必需在队伍里才可以退出队伍菜单
  *
  *   ChangePartyMax 5     - Changes max party size to 5.
  *
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.13:
- * - Updated for RPG Maker MV version 1.5.0.
- *
- * Version 1.12:
- * - Functions updated to maintain compatibility.
- *
- * Version 1.11:
- * - 'Show Sprite' plugin parameter added for those who would wish to show/hide
- * the sprites in the list on the left side of the menu.
- * - Change for 'Remove Icon' plugin parameter: if the icon ID used here is 0,
- * an icon will not be drawn at all and the text will be realigned to the left.
- * - Game now refreshes all battlers upon reentry into the battle after
- * entering and leaving the Party change menu mid-battle.
  *
  * Version 1.10:
  * - Optimization update.
@@ -373,29 +276,23 @@ Yanfly.Param.ParamExpDis = eval(String(Yanfly.Parameters['EXP Distribution']));
 
 Yanfly.Param.PartyHelpWindow = String(Yanfly.Parameters['Help Window']);
 Yanfly.Param.PartyHelpWindow = eval(Yanfly.Param.PartyHelpWindow);
+Yanfly.Param.PartyLockFirst = String(Yanfly.Parameters['Lock First Actor']);
+Yanfly.Param.PartyLockFirst = eval(Yanfly.Param.PartyLockFirst);
 Yanfly.Param.PartyTextAlign = String(Yanfly.Parameters['Text Alignment']);
 Yanfly.Param.PartyCommand1 = String(Yanfly.Parameters['Change Command']);
 Yanfly.Param.PartyCommand2 = String(Yanfly.Parameters['Remove Command']);
 Yanfly.Param.PartyCommand3 = String(Yanfly.Parameters['Revert Command']);
 Yanfly.Param.PartyCommand4 = String(Yanfly.Parameters['Finish Command']);
-
 Yanfly.Param.PartyEmptyText = String(Yanfly.Parameters['Empty Text']);
 Yanfly.Param.PartyShowFace = String(Yanfly.Parameters['Actor Face']);
 Yanfly.Param.PartyShowFace = eval(Yanfly.Param.PartyShowFace);
 Yanfly.Param.PartyShowCharacter = String(Yanfly.Parameters['Actor Sprite']);
 Yanfly.Param.PartyShowCharacter = eval(Yanfly.Param.PartyShowCharacter);
-
-Yanfly.Icon.PartyRemove = Number(Yanfly.Parameters['Remove Icon']);
-Yanfly.Param.PartyShowListSprite = String(Yanfly.Parameters['Show Sprite']);
-Yanfly.Param.PartyShowListSprite = eval(Yanfly.Param.PartyShowListSprite);
-Yanfly.Param.PartySpriteBufferY = Number(Yanfly.Parameters['Sprite Y Buffer']);
-Yanfly.Param.ColorInParty = Number(Yanfly.Parameters['In Party Text Color']);
-
-Yanfly.Param.PartyLockFirst = String(Yanfly.Parameters['Lock First Actor']);
-Yanfly.Param.PartyLockFirst = eval(Yanfly.Param.PartyLockFirst);
 Yanfly.Icon.PartyLocked = Number(Yanfly.Parameters['Locked Icon']);
 Yanfly.Icon.PartyRequired = Number(Yanfly.Parameters['Required Icon']);
-
+Yanfly.Icon.PartyRemove = Number(Yanfly.Parameters['Remove Icon']);
+Yanfly.Param.PartySpriteBufferY = Number(Yanfly.Parameters['Sprite Y Buffer']);
+Yanfly.Param.ColorInParty = Number(Yanfly.Parameters['In Party Text Color']);
 Yanfly.Param.PartyDetailWin = String(Yanfly.Parameters['Enable Detail Window']);
 Yanfly.Param.PartyDetailWin = eval(Yanfly.Param.PartyDetailWin);
 Yanfly.Param.PartyListWidth = Number(Yanfly.Parameters['List Width']);
@@ -416,26 +313,6 @@ BattleManager.gainExp = function() {
 };
 
 }; // Yanfly.Param.ParamExpDis
-
-//=============================================================================
-// Game_Temp
-//=============================================================================
-
-Game_Temp.prototype.hasStoredBattleSpriteset = function() {
-  return this._battleSpriteset;
-};
-
-Game_Temp.prototype.storeBattleSpriteset = function() {
-  this._battleSpriteset = SceneManager._scene._spriteset;
-};
-
-Game_Temp.prototype.restoreBattleSpriteset = function() {
-  if (this._battleSpriteset) {
-    SceneManager._scene._spriteset = this._battleSpriteset;
-    SceneManager._scene.addChild(SceneManager._scene._spriteset);
-    this._battleSpriteset = undefined;
-  }
-};
 
 //=============================================================================
 // Game_System
@@ -777,7 +654,7 @@ Game_Interpreter.prototype.requireActor = function(args, value) {
 // Window_PartyMenuCommand
 //=============================================================================
 
-function Window_PartyMenuCommand() {
+Window_PartyMenuCommand = function() {
     this.initialize.apply(this, arguments);
 }
 
@@ -858,7 +735,7 @@ Window_PartyMenuCommand.prototype.refuseCancel = function(actorId) {
 // Window_PartySelect
 //=============================================================================
 
-function Window_PartySelect() {
+Window_PartySelect = function() {
     this.initialize.apply(this, arguments);
 }
 
@@ -1041,7 +918,7 @@ Window_PartySelect.prototype.item = function() {
 // Window_PartyList
 //=============================================================================
 
-function Window_PartyList() {
+Window_PartyList = function() {
     this.initialize.apply(this, arguments);
 }
 
@@ -1120,7 +997,6 @@ Window_PartyList.prototype.drawItem = function(index) {
 
 Window_PartyList.prototype.drawRemove = function(rect) {
     var ibw = Window_Base._iconWidth + 4;
-    if (Yanfly.Icon.PartyRemove <= 0) ibw = this.textPadding();
     rect.width -= this.textPadding();
     this.drawIcon(Yanfly.Icon.PartyRemove, rect.x + 2, rect.y + 2);
     this.drawText(Yanfly.Param.PartyCommand2, rect.x + ibw, rect.y,
@@ -1136,13 +1012,10 @@ Window_PartyList.prototype.drawActor = function(actor, rect) {
 Window_PartyList.prototype.drawBasic = function(actor, rect) {
     var wx = Window_Base._iconWidth / 2 + this.textPadding() / 2;
     var wy = rect.y + rect.height + Yanfly.Param.PartySpriteBufferY
-    if (Yanfly.Param.PartyShowListSprite) {
-      this.drawActorCharacter(actor, wx, wy);
-    }
+    this.drawActorCharacter(actor, wx, wy);
     this.changeTextColor(this.listColor(actor));
     this.changePaintOpacity(this.actorIsEnabled(actor));
     var ibw = Window_Base._iconWidth + 4;
-    if (!Yanfly.Param.PartyShowListSprite) ibw = this.textPadding();
     this.drawText(actor.name(), rect.x + ibw, rect.y, rect.width - ibw);
     this.changePaintOpacity(true);
     this.drawRestrictions(actor, rect);
@@ -1463,16 +1336,6 @@ BattleManager.startBattle = function() {
     }
     $gameTemp._partyBattle = false;
     this._bypassMoveToStartLocation = false;
-    BattleManager.refreshAllBattlers();
-};
-
-BattleManager.refreshAllBattlers = function() {
-  var members = $gameParty.members().concat($gameTroop.members());
-  var length = members.length;
-  for (var i = 0; i < length; ++i) {
-    var member = members[i];
-    if (member) member.refresh();
-  }
 };
 
 Yanfly.Party.BattleManager_playBattleBgm = BattleManager.playBattleBgm;
@@ -1585,16 +1448,6 @@ Scene_Battle.prototype.createDisplayObjects = function() {
     $gameParty.loadActorImages();
 };
 
-Yanfly.Party.Scene_Battle_createSpriteset =
-    Scene_Battle.prototype.createSpriteset;
-Scene_Battle.prototype.createSpriteset = function() {
-  if ($gameTemp.hasStoredBattleSpriteset()) {
-    $gameTemp.restoreBattleSpriteset();
-  } else {
-    Yanfly.Party.Scene_Battle_createSpriteset.call(this);
-  }
-};
-
 Yanfly.Party.Scene_Battle_createPartyCommandWindow =
     Scene_Battle.prototype.createPartyCommandWindow;
 Scene_Battle.prototype.createPartyCommandWindow = function() {
@@ -1611,7 +1464,6 @@ Scene_Battle.prototype.partyCommandFormation = function() {
     $gameSystem.setBattleFormationCooldown();
     Yanfly.Party.SavedBattleBgm = AudioManager.saveBgm();
     Yanfly.Party.SavedBattleBgs = AudioManager.saveBgs();
-    $gameTemp.storeBattleSpriteset();
     SceneManager.push(Scene_Party);
     BattleManager._phase = 'input';
     $gameTemp._partyBattle = true;
@@ -1640,7 +1492,7 @@ Scene_Menu.prototype.commandFormation = function() {
 // Scene_Party
 //=============================================================================
 
-function Scene_Party() {
+Scene_Party = function() {
     this.initialize.apply(this, arguments);
 }
 

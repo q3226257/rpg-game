@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Passive Aura Effects
 // YEP_X_PassiveAuras.js
 //=============================================================================
@@ -8,12 +8,11 @@ Imported.YEP_X_PassiveAuras = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.Aura = Yanfly.Aura || {};
-Yanfly.Aura.version = 1.08;
+Yanfly.Aura.version = 1.03;
 
 //=============================================================================
  /*:
- * @plugindesc v1.08 (Requires YEP_AutoPassiveStates.js) Add aura effects
- * to various database objects.
+ * @plugindesc v1.03 被动群体状态
  * @author Yanfly Engine Plugins
  *
  * @help
@@ -21,20 +20,16 @@ Yanfly.Aura.version = 1.08;
  * Introduction
  * ============================================================================
  *
- * This plugin requires YEP_AutoPassiveStates. Make sure this plugin is located
- * under YEP_AutoPassiveStates in the plugin list.
+ * 这个插件需要YEP_AutoPassiveStates。确保这个插件在YEP_AutoPassiveStates下面。
  *
- * Passive Aura Effects are commonly found in many online multiplayer games
- * with RPG elements. When a battler can give out an aura, it will affect other
- * nearby battlers, too, either ally and/or foe. This plugin will allow states
- * to generate aura effects for other party members, opponents, or specifically
- * for actor and/or enemy parties.
+ * 被动群体效果经常在许多大型在线游戏中出现。当一个战斗者发动效果，周围的
+ * 战斗者也会受到影响，包括队友或者敌群。这个插件可以让状态产生群体效果。
  *
  * ============================================================================
  * Notetags
  * ============================================================================
  *
- * Use the following notetags to make a state generate auras.
+ * 使用下面的备注来制作群体状态
  *
  * *NOTE* The notetags that affect alive members will affect members that have
  * at least 1 HP and not affected by the dead state. Even if they are immortal,
@@ -51,8 +46,7 @@ Yanfly.Aura.version = 1.08;
  *   <Ally Aura: x>
  *   <Ally Aura: x, x, x>
  *   <Ally Aura: x through y>
- *   - This will cause the battler's allies to gain state(s) x (to y)
- *   while the battler is affected by the current state.
+ *   当战斗者处于某状态时，这会让队友获得状态x
  *   *Note: A state cannot use itself in an aura effect.
  *
  *   <Alive Ally Aura: x>
@@ -72,8 +66,7 @@ Yanfly.Aura.version = 1.08;
  *   <Foe Aura: x>
  *   <Foe Aura: x, x, x>
  *   <Foe Aura: x through y>
- *   - This will cause the battler's foes to gain state(s) x (to y)
- *   while the battler is affected by the current state.
+ *   当战斗者处于某状态时，这会让敌群获得状态x
  *   *Note: A state cannot use itself in an aura effect.
  *
  *   <Alive Foe Aura: x>
@@ -93,8 +86,8 @@ Yanfly.Aura.version = 1.08;
  *   <Party Aura: x>
  *   <Party Aura: x, x, x>
  *   <Party Aura: x through y>
- *   - This will cause the Actor Party to gain state(s) x (to y)
- *   while the battler is affected by the current state.
+ *   当战斗者处于某状态时，这会让队伍获得状态x(此处暂时无法
+ *   却别ally和party的区别）
  *   *Note: A state cannot use itself in an aura effect.
  *
  *   <Alive Party Aura: x>
@@ -114,8 +107,8 @@ Yanfly.Aura.version = 1.08;
  *   <Troop Aura: x>
  *   <Troop Aura: x, x, x>
  *   <Troop Aura: x through y>
- *   - This will cause the Enemy Troop to gain state(s) x (to y)
- *   while the battler is affected by the current state.
+ *   当战斗者处于某状态时，这会让敌群获得状态x(此处暂时无法却别
+ *   foe和troop的区别）
  *   *Note: A state cannot use itself in an aura effect.
  *
  *   <Alive Troop Aura: x>
@@ -160,7 +153,7 @@ Yanfly.Aura.version = 1.08;
  * For those with JavaScript experience and would like to make conditional aura
  * effects, you can use these notetags. Keep in mind, this conditional effect
  * is for the target delivered state and not the origin aura itself.
- *
+ * 下面是自定义模式
  * State Notetags:
  *
  *   <Custom Aura Condition>
@@ -170,33 +163,12 @@ Yanfly.Aura.version = 1.08;
  *      condition = false;
  *    }
  *   </Custom Aura Condition>
- *   - The 'condition' variable will determine whether or not the target aura
- *   state will appear. If the 'condition' variable is 'true', then it will
- *   appear. If the 'condition' variable is 'false', then it will not appear.
- *   Remember, this notetag has to be placed in the target delivered state and
- *   not the origin aura itself.
+ *   condition用来决定这个状态是否出现，请记住，这个备注需要放在目标状态
+ *   上，而不是初始状态上
  *
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.08:
- * - Optimization update. There should be less lag spikes if there are more
- * passive conditions present on a battler.
- *
- * Version 1.07:
- * - Bypass the isDevToolsOpen() error when bad code is inserted into a script
- * call or custom Lunatic Mode code segment due to updating to MV 1.6.1.
- *
- * Version 1.06:
- * - Updated for RPG Maker MV version 1.6.1.
- *
- * Version 1.05:
- * - Updated for RPG Maker MV version 1.5.0.
- *
- * Version 1.04:
- * - Bug fixed where if an aura is applied as the last action of a turn, it
- * wouldn't take effect until the following turn.
  *
  * Version 1.03:
  * - Lunatic Mode fail safes added.
@@ -277,9 +249,6 @@ DataManager.processAuraNotetags1 = function(group) {
         obj.auraConditionEval = obj.auraConditionEval + line + '\n';
       }
     }
-
-    obj.auraConditionEval = new Function('condition','a','user','subject','b',
-      'target','s','v', obj.auraConditionEval + '\nreturn condition;');
   }
 };
 
@@ -392,19 +361,6 @@ DataManager.isAuraState = function(state) {
 };
 
 //=============================================================================
-// BattleManager
-//=============================================================================
-
-BattleManager.refreshAllBattlers = function() {
-  var members = $gameParty.members().concat($gameTroop.members());
-  var length = members.length;
-  for (var i = 0; i < length; ++i) {
-    var member = members[i];
-    if (member) member.refresh();
-  }
-};
-
-//=============================================================================
 // Game_BattlerBase
 //=============================================================================
 
@@ -497,8 +453,7 @@ Game_BattlerBase.prototype.auraStateConditionEval = function(state) {
   var v = $gameVariables._data;
   var code = state.auraConditionEval;
   try {
-      condition = state.auraConditionEval.call(this, condition, a, user,
-        subject, b, target, s, v);
+      eval(code);
     } catch (e) {
       Yanfly.Util.displayError(e, code, 'PASSIVE AURA CUSTOM CONDITION ERROR');
     }
@@ -531,16 +486,6 @@ Game_BattlerBase.prototype.updateAuras = function(stateId) {
   if ((aura.all.length + aura.opponents.length > 0) || aura.troop.length > 0) {
     $gameTroop.refreshMembers();
   }
-};
-
-//=============================================================================
-// Game_Battler
-//=============================================================================
-
-Yanfly.Aura.Game_Battler_onTurnEnd = Game_Battler.prototype.onTurnEnd;
-Game_Battler.prototype.onTurnEnd = function() {
-  if ($gameParty.inBattle()) this.refresh();
-  Yanfly.Aura.Game_Battler_onTurnEnd.call(this);
 };
 
 //=============================================================================
@@ -622,7 +567,6 @@ Yanfly.Util.displayError = function(e, code, message) {
   console.log(message);
   console.log(code || 'NON-EXISTENT');
   console.error(e);
-  if (Utils.RPGMAKER_VERSION && Utils.RPGMAKER_VERSION >= "1.6.0") return;
   if (Utils.isNwjs() && Utils.isOptionValid('test')) {
     if (!require('nw.gui').Window.get().isDevToolsOpen()) {
       require('nw.gui').Window.get().showDevTools();

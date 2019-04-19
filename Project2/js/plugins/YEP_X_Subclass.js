@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Class Change Core Extension - Subclass
 // YEP_X_Subclass.js
 //=============================================================================
@@ -8,51 +8,35 @@ Imported.YEP_X_Subclass = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.Subclass = Yanfly.Subclass || {};
-Yanfly.Subclass.version = 1.11
 
 //=============================================================================
  /*:
- * @plugindesc v1.11 (Requires YEP_ClassChangeCore.js) Allow your actors
- * to subclass into a secondary class!
+ * @plugindesc v1.10 副职业
  * @author Yanfly Engine Plugins
  *
  * @param ---Class Menu---
  * @default
  *
  * @param Subclass Command
- * @parent ---Class Menu---
  * @desc The text used for 'Subclass' command.
  * @default Subclass
  *
  * @param Show Command
- * @parent ---Class Menu---
- * @type boolean
- * @on Show
- * @off Hide
  * @desc Show the Subclass command by default?
  * NO - false     YES - true
  * @default true
  *
  * @param Enable Command
- * @parent ---Class Menu---
- * @type boolean
- * @on Enable
- * @off Disable
  * @desc Enable the Subclass command by default?
  * NO - false     YES - true
  * @default true
  *
  * @param Name Format
- * @parent ---Class Menu---
  * @desc How do you wish to display the class/subclass text?
  * %1 - Current Class     %2 - Subclass
  * @default %1/%2
  *
  * @param Subclass Color
- * @parent ---Class Menu---
- * @type number
- * @min 0
- * @max 31
  * @desc This is the text color used for the actor's subclass.
  * @default 5
  *
@@ -60,82 +44,42 @@ Yanfly.Subclass.version = 1.11
  * @default
  *
  * @param MaxHP
- * @parent ---Parameters---
- * @type number
- * @decimals 2
- * @min 0
  * @desc What rate of the Subclass MaxHP should be added?
  * @default 0.10
  *
  * @param MaxMP
- * @parent ---Parameters---
- * @type number
- * @decimals 2
- * @min 0
  * @desc What rate of the Subclass MaxMP should be added?
  * @default 0.10
  *
  * @param ATK
- * @parent ---Parameters---
- * @type number
- * @decimals 2
- * @min 0
  * @desc What rate of the Subclass ATK should be added?
  * @default 0.20
  *
  * @param DEF
- * @parent ---Parameters---
- * @type number
- * @decimals 2
- * @min 0
  * @desc What rate of the Subclass DEF should be added?
  * @default 0.20
  *
  * @param MAT
- * @parent ---Parameters---
- * @type number
- * @decimals 2
- * @min 0
  * @desc What rate of the Subclass MAT should be added?
  * @default 0.20
  *
  * @param MDF
- * @parent ---Parameters---
- * @type number
- * @decimals 2
- * @min 0
  * @desc What rate of the Subclass MDF should be added?
  * @default 0.20
  *
  * @param AGI
- * @parent ---Parameters---
- * @type number
- * @decimals 2
- * @min 0
  * @desc What rate of the Subclass AGI should be added?
  * @default 0.20
  *
  * @param LUK
- * @parent ---Parameters---
- * @type number
- * @decimals 2
- * @min 0
  * @desc What rate of the Subclass LUK should be added?
  * @default 0.20
  *
  * @param EXP
- * @parent ---Parameters---
- * @type number
- * @decimals 2
- * @min 0
  * @desc When gaining EXP, how much should subclasses earn?
  * @default 0.25
  *
  * @param JP
- * @parent ---Parameters---
- * @type number
- * @decimals 2
- * @min 0
  * @desc When gaining JP, how much should subclasses earn?
  * @default 0.25
  *
@@ -143,118 +87,66 @@ Yanfly.Subclass.version = 1.11
  * @default
  *
  * @param Skill Types
- * @parent ---Traits---
- * @type boolean
- * @on YES
- * @off NO
  * @desc User can use skill types owned by the subclass?
  * NO - false     YES - true
  * @default true
  *
  * @param Added Skills
- * @parent ---Traits---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Carry over added skills from subclass?
  * NO - false     YES - true
  * @default true
  *
  * @param Param Rates
- * @parent ---Traits---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Carry over parameter rates from subclass?
  * NO - false     YES - true
  * @default false
  *
  * @param X-Param Values
- * @parent ---Traits---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Carry over x-parameter values from subclass?
  * NO - false     YES - true
  * @default false
  *
  * @param S-Param Rates
- * @parent ---Traits---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Carry over s-parameter rates from subclass?
  * NO - false     YES - true
  * @default false
  *
  * @param Element Rates
- * @parent ---Traits---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Carry over element rates from subclass?
  * NO - false     YES - true
  * @default false
  *
  * @param Debuff Rates
- * @parent ---Traits---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Carry over debuff rates from subclass?
  * NO - false     YES - true
  * @default false
  *
  * @param State Rates
- * @parent ---Traits---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Carry over parameter rates from subclass?
  * NO - false     YES - true
  * @default false
  *
  * @param State Resist
- * @parent ---Traits---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Carry over state resistances from subclass?
  * NO - false     YES - true
  * @default false
  *
  * @param Attack Element
- * @parent ---Traits---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Carry over attack elements from subclass?
  * NO - false     YES - true
  * @default false
  *
  * @param Attack State
- * @parent ---Traits---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Carry over attack states from subclass?
  * NO - false     YES - true
  * @default false
  *
  * @param Weapons
- * @parent ---Traits---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Carry over equippable weapons from subclass?
  * NO - false     YES - true
  * @default false
  *
  * @param Armors
- * @parent ---Traits---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Carry over equippable armors from subclass?
  * NO - false     YES - true
  * @default false
@@ -264,95 +156,89 @@ Yanfly.Subclass.version = 1.11
  * Introduction
  * ============================================================================
  *
- * This plugin requires YEP_ClassChangeCore. Make sure this plugin is located
- * under YEP_ClassChangeCore in the plugin list.
- *
- * This class enables subclassing for your actors. Actors, when subclassing,
- * can gain the benefits of the subclass, usually either by having access to
- * the subclass skill set, weapons, and armor options. Also with this plugin,
- * you can enable what kind of stat bonuses you can get by having a particular
- * subclass enabled for the actor.
+ * 这个插件需要Class Change Core的插件。这个插件可以让你的游戏角色拥有
+ * 第二个职业作为副职业！副职业可以涵盖所有技能，技能类型，特性和状
+ * 态等等！它们涵盖的方式将由你来决定！
+ * 这个插件需要YEP_ClassChangeCore。请确保这个插件安装在YEP_ClassChangeCore
+ * 的下面。
+ * 
+ * 这个插件可以为你的角色开启副职业。当游戏角色获得副职业的时候，就可以
+ * 获得相应的收益，可以开启例如副职业技能，武器，装备等等的选项。通过
+ * 这个插件，你还可以为游戏角色获得额外的状态福利。
  *
  * ============================================================================
  * Notetags
  * ============================================================================
  *
- * You can use the following notetags to modify subclassing aspects.
+ * 你可以使用下面的标签来改变副职业属性。
  *
- * Actor Notetag:
+ * 角色注释:
  *   <Subclass: x>
- *   Sets the actor's default subclass to x.
+ *   设置游戏角色默认的副职业为x Sets the actor's default subclass to x.
  *
  *   <Cannot Change Subclass>
  *   This prevents this actor from being able to change subclasses. This could
- *   be reversed from plugin commands, however.
+ *   be reversed from plugin commands, however.这个禁止角色拥有副职业
  *
  *   <Restrict Class: x>
  *   <Restrict Class: x, x, x>
  *   <Restrict Class: x to y>
- *   This particular actor cannot switch his or her primary class to class(es)
- *   x (to y). This does not apply to the subclass. The actor can still change
- *   to this class via event.
+ *   特殊的角色不能切换他们的主职业类型。这个不会应用到副职业。
+ *   但是游戏角色依然可以通过事件来改变职业
  *
  *   <Restrict Subclass: x>
  *   <Restrict Subclass: x, x, x>
  *   <Restrict Subclass: x to y>
- *   This particular actor cannot switch his or her subclass to class(es)
- *   x (to y). This does not apply to the primary class.  The actor can still
- *   change to this subclass via event.
+ *   特殊的角色不能切换他们的副职业类型。这个不会应用到主职业。
+ *   但是游戏角色依然可以通过事件来改变职业
  *
- * Class Notetags:
+ * 职业注释:
  *   <Primary Only>
- *   This class can only be class changed to a primary class and nothing more.
- *   Actors can still change to this class via event.
+ *   这个职业只可以作为主职业。
  *
  *   <Subclass Only>
- *   This class can only be class changed to a subclass and nothing more.
- *   Actors can still change to this subclass via event.
+ *   这个职业只可以作为副职业。
  *
  *   <Subclass x Combo Name: text>
- *   If this class is the primary and the subclass is class ID x, then the
- *   class name displayed will be 'text'. For example, if the class combination
- *   is Warrior/Wizard, the name can appear as Spellblade.
+ *   如果当前职业是主职业，并且副职业的ID是x,则主职业的名字将会显示
+ *   为t所输入文本。例如如果职业组合是武士/魔法师，则可以显示为魔剑士。
  *
  *   <Hero Combo Name: text>
  *   <Warrior Combo Name: text>
- *   If you choose to use the class's name instead, you can write out the name
- *   of the class in place of Subclass x. If you have multiple classes with the
- *   same name, priority will be given to the class with the highest ID.
+ *   如果你想使用职业名字来替代ID，你可以在之前x的地方写下名字。如果
+ *   有多个职业具有相同的名字，则优先赋予给ID值最高的职业。
  *
- * Skill and Item Notetags:
+ * 技能和物品注释:
  *   <Require Class: x>
  *   <Require Class: x, x, x>
  *   <Require Class: x to y>
- *   Replace x with the class's ID. This skill/item can only be used by the
- *   listed class(es) x. This does not apply to enemies.
+ *   使用职业ID替代x。这个技能或者物品只可以被职业x使用。这个并不能应用
+ *   于敌方。
  *
  *   <Require Subclass: x>
  *   <Require Subclass: x, x, x>
  *   <Require Subclass: x to y>
- *   Replace x with the class's ID. This skill/item can only be used by the
- *   listed subclass(es) x. This does not apply to enemies.
+ *   使用职业ID替代x。这个技能或者物品只可以被副职业x使用。这个并
+ *   不能应用于敌方。
  *
  * ============================================================================
  * Plugin Commands
  * ============================================================================
  *
- * You can use these following plugin commands to change subclassing throughout
- * the game!
+ * 你可以使用下面的插件命令来改变副职业选项
  *
- * Plugin Command:
+ * 插件命令:
  * 
  *   ShowSubclass
  *   HideSubclass
- *   - Shows/Hides the Subclass command in the Class Change Menu.
+ *   在职业菜单显示/隐藏副职业选项
  *
  *   EnableSubclass
  *   DisableSubclass
- *   - Enables/Disables the Subclass command in the Class Change Menu.
+ *   打开/关闭主职业菜单的副职业选项
  *
  *   ChangeSubclass x y
- *   - Changes actor x's subclass to y. Replace y with 0 to remove a subclass.
+ *   改变游戏角色x的副职业为y。你可以用0替代y来移除一个副职业。
  *
  *   EnableSubclassChange 5
  *   DisableSubclassChange 5
@@ -361,9 +247,6 @@ Yanfly.Subclass.version = 1.11
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.11:
- * - Updated for RPG Maker MV version 1.5.0.
  *
  * Version 1.10:
  * - Compatibility update with Class Change Core's <Use Nickname> notetag.
@@ -918,7 +801,7 @@ Game_Actor.prototype.setCanChangeSubclass = function(value) {
 Yanfly.Subclass.Game_Interpreter_pluginCommand =
     Game_Interpreter.prototype.pluginCommand;
 Game_Interpreter.prototype.pluginCommand = function(command, args) {
-    Yanfly.Subclass.Game_Interpreter_pluginCommand.call(this, command, args);
+    Yanfly.Subclass.Game_Interpreter_pluginCommand.call(this, command, args)
     if (command === 'ShowSubclass') {
       $gameSystem._showSubclass = true;
     } else if (command === 'HideSubclass') {

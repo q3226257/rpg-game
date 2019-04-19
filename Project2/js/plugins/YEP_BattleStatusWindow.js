@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Battle Status Window
 // YEP_BattleStatusWindow.js
 //=============================================================================
@@ -8,71 +8,46 @@ Imported.YEP_BattleStatusWindow = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.BSW = Yanfly.BSW || {};
-Yanfly.BSW.version = 1.09;
+Yanfly.BSW.version = 1.08;
 
 //=============================================================================
  /*:
- * @plugindesc v1.09 A simple battle status window that shows the
- * faces of your party members in horizontal format.
+ * @plugindesc v1.08 战斗信息窗口
  * @author Yanfly Engine Plugins
  *
  * @param ---Visual---
  * @default
  *
  * @param No Action Icon
- * @parent ---Visual---
- * @type number
- * @min 0
  * @desc This is the icon used when no action is selected.
  * @default 16
  *
  * @param Name Font Size
- * @parent ---Visual---
- * @type number
- * @min 1
  * @desc This is the font size used to draw the actor's name.
  * Default: 28
  * @default 20
  *
  * @param Param Font Size
- * @parent ---Visual---
- * @type number
- * @min 1
  * @desc This is the font size used to draw the actor's params.
  * Default: 28
  * @default 20
  *
  * @param Param Y Buffer
- * @parent ---Visual---
- * @type number
- * @min 0
  * @desc This is how much further the text drawn for params is
  * lowered by.
  * @default 7
  *
  * @param Param Current Max
- * @parent ---Visual---
- * @type boolean
- * @on Current/Max
- * @off Current Only
  * @desc Draw current / max format?
  * NO - false     YES - true
  * @default false
  *
  * @param Adjust Columns
- * @parent ---Visual---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Adjust column amount to party size?
  * NO - false     YES - true
  * @default false
  *
  * @param State Icons Row
- * @parent ---Visual---
- * @type number
- * @min 0
- * @max 3
  * @desc Which row do you wish to display the state icons?
  * Default: 1
  * @default 1
@@ -81,28 +56,16 @@ Yanfly.BSW.version = 1.09;
  * @default
  *
  * @param Left / Right
- * @parent ---Actor Switching---
- * @type boolean
- * @on Enable
- * @off Disable
  * @desc Use 'left' and 'right' for switching actors?
  * NO - false     YES - true
  * @default true
  *
  * @param PageUp / PageDown
- * @parent ---Actor Switching---
- * @type boolean
- * @on Enable
- * @off Disable
  * @desc Use 'page up' and 'page down' for switching actors?
  * NO - false     YES - true
  * @default true
  *
  * @param Allow Turn Skip
- * @parent ---Actor Switching---
- * @type boolean
- * @on Enable
- * @off Disable
  * @desc Allow turn skipping for Tick-Based battle systems?
  * NO - false     YES - true
  * @default true
@@ -111,41 +74,25 @@ Yanfly.BSW.version = 1.09;
  * @default
  *
  * @param Show Animations
- * @parent ---Front View---
- * @type boolean
- * @on Show
- * @off Hide
  * @desc Reveal actors and show their animations in front view?
  * NO - false     YES - true
  * @default true
  *
  * @param Show Sprites
- * @parent ---Front View---
- * @type boolean
- * @on Show
- * @off Hide
  * @desc Show the sprites of the actors in front view?
  * NO - false     YES - true
  * @default false
  *
  * @param Align Animations
- * @parent ---Front View---
- * @type boolean
- * @on Align
- * @off Don't Align
  * @desc If using front view, align battle animations to window?
  * NO - false     YES - true
  * @default true
  *
  * @param X Offset
- * @parent ---Front View---
- * @type number
  * @desc How much do you wish to offset the actor X position by?
  * @default 24
  *
  * @param Y Offset
- * @parent ---Front View---
- * @type number
  * @desc How much do you wish to offset the actor Y position by?
  * @default -16
  *
@@ -154,19 +101,13 @@ Yanfly.BSW.version = 1.09;
  * Introduction
  * ============================================================================
  *
- * This plugin replaces the default battle status window, which was shown in a
- * row format, to a column-based format that also displays the party's faces.
+ * 这个插件代替了默认战斗状态窗口，可以基于队伍行列展示队伍的头像
  *
- * For frontview users, this plugin also allows you to enable battle animations
- * to be played on top of the actor's portraits (and showing any damage popups)
- * to give the player a better view of what's going on in battle.
+ * 对于前视战斗模式，这个插件允许你战斗的时候得到更好的效果
  *
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.09:
- * - Updated for RPG Maker MV version 1.5.0.
  *
  * Version 1.08:
  * - Added 'State Icons Row' plugin parameter. This plugin parameter allows you

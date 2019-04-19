@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Battle Engine Extension - Action Sequence Pack 1
 // YEP_X_ActSeqPack1.js
 //=============================================================================
@@ -8,32 +8,22 @@ Imported.YEP_X_ActSeqPack1 = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.ASP1 = Yanfly.ASP1 || {};
-Yanfly.ASP1.version = 1.13;
+Yanfly.ASP1.version = 1.11;
 
 //=============================================================================
  /*:
- * @plugindesc v1.13 (Requires YEP_BattleEngineCore.js) Basic functions are
- * added to the Battle Engine Core's action sequences.
+ * @plugindesc v1.11 动作序列拓展1
  * @author Yanfly Engine Plugins
  *
  * @param Default Volume
  * @desc This will be the volume of the BGM played.
- * @type number
- * @min 0
- * @max 100
  * @default 90
  *
  * @param Default Pitch
- * @type number
- * @min 0
- * @max 100
  * @desc This will be the pitch of the BGM played.
  * @default 100
  *
  * @param Default Pan
- * @type number
- * @min 0
- * @max 100
  * @desc This will be the pan of the BGM played.
  * @default 0
  *
@@ -45,7 +35,7 @@ Yanfly.ASP1.version = 1.13;
  * The Action Sequence Pack 1 plugin is an extension plugin for Yanfly Engine
  * Plugins' Battle Engine Core. This extension plugin will not work without the
  * main plugin.
- *
+ * 这个拓展包可以设置动作很多相关能力
  * This extension plugin contains the more basic functions used for customized
  * action sequences on a technical scale. Here, you are able to change switches,
  * operate variables, add states, change damage rates, and more.
@@ -717,13 +707,6 @@ Yanfly.ASP1.version = 1.13;
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.13:
- * - Bypass the isDevToolsOpen() error when bad code is inserted into a script
- * call or custom Lunatic Mode code segment due to updating to MV 1.6.1.
- *
- * Version 1.12:
- * - Updated for RPG Maker MV version 1.5.0.
  *
  * Version 1.11:
  * - Lunatic Mode fail safes added.
@@ -1539,7 +1522,6 @@ Yanfly.Util.displayError = function(e, code, message) {
   console.log(message);
   console.log(code || 'NON-EXISTENT');
   console.error(e);
-  if (Utils.RPGMAKER_VERSION && Utils.RPGMAKER_VERSION >= "1.6.0") return;
   if (Utils.isNwjs() && Utils.isOptionValid('test')) {
     if (!require('nw.gui').Window.get().isDevToolsOpen()) {
       require('nw.gui').Window.get().showDevTools();

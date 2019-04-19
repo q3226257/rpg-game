@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Event Chase Player Extension - Event Chase Stealth
 // YEP_X_EventChaseStealth.js
 //=============================================================================
@@ -8,35 +8,25 @@ Imported.YEP_X_EventChaseStealth = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.ECS = Yanfly.ECS || {};
-Yanfly.ECS.version = 1.03;
 
 //=============================================================================
  /*:
- * @plugindesc v1.03 (Requires YEP_EventChasePlayer.js) Enables a stealth
- * mechanic for the Event Chase Player plugin.
+ * @plugindesc v1.02 隐身模式
  * @author Yanfly Engine Plugins
  *
  * @param ---General---
  * @default
  *
  * @param Player Transparency
- * @parent ---General---
  * @desc This is the transparency rate of the player while
  * in stealth mode.
  * @default 0.5
  *
  * @param Disable Dash
- * @parent ---General---
- * @type boolean
- * @on Enable
- * @off Disable
  * @desc Disable dashing while in Stealth Mode?
  * @default true
  *
  * @param Move Speed
- * @parent ---General---
- * @type number
- * @min 1
  * @desc The move speed while in Stealth Mode.
  * @default 3
  *
@@ -44,7 +34,6 @@ Yanfly.ECS.version = 1.03;
  * @default
  *
  * @param Stealth Regions
- * @parent ---Stealth Regions---
  * @desc These are the Region ID's that make the player unable
  * to be seen by events. Separate ID's with a space.
  * @default 0
@@ -53,73 +42,48 @@ Yanfly.ECS.version = 1.03;
  * @default
  *
  * @param Show Gauge
- * @parent ---Stealth Regions---
- * @type boolean
- * @on Show
- * @off Hide
  * @desc Show the stealth gauge?
  * NO - false     YES - true
  * @default true
  *
  * @param Gauge Opacity
- * @parent ---Stealth Regions---
- * @type number
- * @min 0
- * @max 255
  * @desc This is the opacity of the gauge.
  * @default 100
  *
  * @param Show Timer
- * @parent ---Stealth Regions---
- * @type boolean
- * @on Show
- * @off Hide
  * @desc Display Timer while in stealth mode?
  * NO - false     YES - true
  * @default true
  *
  * @param Unlimited Text
- * @parent ---Stealth Regions---
  * @desc The text to display while in unlimited Stealth Mode.
  * @default ∞
  *
  * @param Gauge X
- * @parent ---Stealth Regions---
  * @desc The x location of the stealth gauge.
  * This is a formula
  * @default 96
  *
  * @param Gauge Y
- * @parent ---Stealth Regions---
  * @desc The y location of the stealth gauge.
  * This is a formula
  * @default Graphics.boxHeight - 84
  *
  * @param Gauge Width
- * @parent ---Stealth Regions---
  * @desc The width of the stealth gauge.
  * This is a formula.
  * @default Graphics.boxWidth - 192
  *
  * @param Gauge Height
- * @parent ---Stealth Regions---
  * @desc The height of the stealth gauge.
  * This is a formula.
  * @default 36
  *
  * @param Gauge Color 1
- * @parent ---Stealth Regions---
- * @type number
- * @min 0
- * @max 31
  * @desc This is the text color 1 of the gauge.
  * @default 9
  *
  * @param Gauge Color 2
- * @parent ---Stealth Regions---
- * @type number
- * @min 0
- * @max 31
  * @desc This is the text color 2 of the gauge.
  * @default 13
  *
@@ -128,86 +92,68 @@ Yanfly.ECS.version = 1.03;
  * Introduction
  * ============================================================================
  *
- * This plugin requires YEP_EventChasePlayer. Make sure this plugin is located
- * under YEP_EventChasePlayer in the plugin list. Make sure it is the most
- * updated version of Event Chase Player.
+ * 这个插件需要YEP_EventChasePlayer，确保它放在YEP_EventChasePlayer下面，
+ * 并且确保YEP_EventChasePlayer是最新版本
  *
- * Grants your player the ability to go Stealth Mode for either a limited set
- * amount of time or an unlimited amount of time. While in Stealth Mode, the
- * player will not alert any events set by the Event Chase Player plugin. This
- * plugin also includes region areas that are considered stealth regions.
+ * 让你的玩家可以去进入隐身模式。你可以设置隐身区域
  *
  * ============================================================================
  * Instructions - Stealth Regions
  * ============================================================================
  *
- * Stealth Regions are places on the map that you can mark using RPG Maker MV's
- * region ID's. You can decide which of the regions will be considered Stealth
- * Regions within the Plugin Parameters or by using the following notetags
- * inside of a map's notebox:
+ * 隐身区域用区域ID设置。你可以用插件参数设置
  *
  * <Stealth Regions: x>
  * <Stealth Regions: x, x, x>
  * <Stealth Regions: x to y>
- * This will set regions x (or x to y) as Stealth Regions.
+ * This will set regions x (or x to y) as Stealth Regions.隐身区域ID
  *
- * While the player is inside of the Stealth Region, any event that is outside
- * of the Stealth Region cannot detect the player. However, if the player is
- * inside of the Stealth Region and the enemy is also inside the very same
- * Stealth Region with the matching Region ID, the enemy can detect the player.
+ * 当玩家在隐身区域，而事件不在时，不能发现玩家。但若事件也在隐身区域，
+ * 则会发现
  *
- * However, if the player is inside of a Stealth Region with a different ID
- * than the Stealth Region the enemy is in, the enemy will not detect the
- * the player.
+ * 如果，玩家所在隐身区域与事件不在一个ID，则不会发现
  *
- * Once the player is detected, Stealth Regions stop applying and the alerted
- * event will chase the player (or flee from) even if the player runs into
- * another Stealth Region. The Stealth Regions remain disabled until the event
- * is no longer chasing (or fleeing from) the player.
+ * 一旦玩家被发现，事件将会追逐玩家或者逃离，直到事件不再追逐，隐身区域
+ * 才会重新开启
  *
  * ============================================================================
  * Instructions - Stealth Mode
  * ============================================================================
  * 
- * To enter Stealth Mode, you'll have to utilize the plugin commands found in
- * the plugin commands section a bit lower. While in Stealth Mode, if enabled,
- * the Stealth Gauge will appear to alert the player how much longer the player
- * will remain in Stealth Mode before it automatically disappears.
+ * 你可以用插件命令来更改隐身模式。一旦进入隐身模式，将会显示隐身时间槽
  *
  * ============================================================================
  * Plugin Commands
  * ============================================================================
  *
- * You can use the following Plugin Commands to adjust Stealth Mode in your
- * game mid-game!
+ * 你可以使用下面来更改
  *
  * Plugin Command:
  *
  *   StealthTime x
- *   - Puts the player character into Stealth Mode for x frames. Once the
+ *   - 隐身时间x frames. Once the
  *   timer is up, the player exits Stealth Mode.
  *
  *   StealthMode On
- *   - Puts the player character into Stealth Mode. There is no timer for this.
+ *   - 隐身模式开启
  *
  *   StealthMode Off
- *   - Puts the player character out of Stealth Mode. This also resets the
- *   Stealth Timer to 0.
+ *   - 隐身模式关闭
  *
  *   EnableStealthDash
- *   - Enables the player to be able to dash while in Stealth Mode.
+ *   - 开启隐身冲刺
  *
  *   DisableStealthDash
- *   - Disables the player from being able to dash while in Stealth Mode.
+ *   - 关闭隐身冲刺
  *
  *   SetStealthMoveSpeed x
- *   - Sets the move speed while in Stealth Mode to x.
+ *   - 隐身速度x.
  *
  *   HideStealthGauge
- *   - This prevents the Stealth Gauge from being shown at all.
+ *   - 隐藏隐身槽.
  *
  *   ShowStealthGauge
- *   - This will show the Stealth Gauge whenever the player is in Stealth Mode.
+ *   - 显示隐身槽
  *
  *   EnableDifferentStealthSpeed
  *   - Sets the player to have a different move speed when in Stealth Mode.
@@ -243,9 +189,6 @@ Yanfly.ECS.version = 1.03;
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.03:
- * - Updated for RPG Maker MV version 1.5.0.
  *
  * Version 1.02:
  * - Fixed a bug where changing the stealth movement speed would affect all

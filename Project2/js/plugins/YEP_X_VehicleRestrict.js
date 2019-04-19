@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Region Restrictions Extension - Vehicle Restrictions
 // YEP_X_VehicleRestrict.js
 //=============================================================================
@@ -8,31 +8,26 @@ Imported.YEP_X_VehicleRestrict = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.VR = Yanfly.VR || {};
-Yanfly.VR.version = 1.01;
 
 //=============================================================================
  /*:
- * @plugindesc v1.01 (Req YEP_RegionRestrictions.js) This plugin allows you
- * to control where vehicles can move and can land.
+ * @plugindesc v1.00 交通工具限制区域
  * @author Yanfly Engine Plugins
  *
  * @param ---Boat---
  * @default
  *
  * @param Boat Restrict
- * @parent ---Boat---
  * @desc This region ID will restrict boats from entering.
  * To use multiple regions, separate them by spaces.
  * @default 0
  *
  * @param Boat Allow
- * @parent ---Boat---
  * @desc This region ID will always allow boats to pass.
  * To use multiple regions, separate them by spaces.
  * @default 0
  *
  * @param Boat Land
- * @parent ---Boat---
  * @desc This region ID is a place a boat can land. If this is
  * left as only 0, then all regions can be landed on.
  * @default 0
@@ -41,19 +36,16 @@ Yanfly.VR.version = 1.01;
  * @default
  *
  * @param Ship Restrict
- * @parent ---Ship---
  * @desc This region ID will restrict ships from entering.
  * To use multiple regions, separate them by spaces.
  * @default 0
  *
  * @param Ship Allow
- * @parent ---Ship---
  * @desc This region ID will always allow ships to pass.
  * To use multiple regions, separate them by spaces.
  * @default 0
  *
  * @param Ship Land
- * @parent ---Ship---
  * @desc This region ID is a place a ship can land. If this is
  * left as only 0, then all regions can be landed on.
  * @default 0
@@ -62,19 +54,16 @@ Yanfly.VR.version = 1.01;
  * @default
  *
  * @param Airship Restrict
- * @parent ---Airship---
  * @desc This region ID will restrict airships from entering.
  * To use multiple regions, separate them by spaces.
  * @default 0
  *
  * @param Airship Allow
- * @parent ---Airship---
  * @desc This region ID will always allow airships to pass.
  * To use multiple regions, separate them by spaces.
  * @default 0
  *
  * @param Airship Land
- * @parent ---Airship---
  * @desc This region ID is a place an airship can land. If this is
  * left as only 0, then all regions can be landed on.
  * @default 0
@@ -84,21 +73,16 @@ Yanfly.VR.version = 1.01;
  * Introduction
  * ============================================================================
  *
- * This plugin requires YEP_RegionRestrictions. Make sure this plugin is
- * located under YEP_RegionRestrictions in the plugin list.
+ * 这个插件需要YEP_RegionRestrictions，确保这个插件在YEP_RegionRestrictions下面
  *
- * This plugin expands region restrictions (and allowed regions) to vehicles.
- * On top of that, you can designate specific regions for vehicles to land in.
- * This way, you can make it so that small boats cannot traverse certain bodies
- * of water, land in only certain spots, etc. that ships can or vice versa!
- * Add a bit more variety to the way vehicles are handled for your game!
+ * 这个插件拓展了对交通工具的限制。你可以为交通工具设置特定的起落点，
+ * 这样你就可以确保船只等可以穿过特定的水域并且停在特定码头。
  *
  * ============================================================================
  * Notetags
  * ============================================================================
  *
- * Insert these notetags into the map noteboxes to allow for custom settings
- * for vehicles on that map only.
+ * 把这些备注放进地图备注栏来自定义专属此地图的交通工具方式
  *
  * Map Noteboxes:
  *
@@ -111,6 +95,7 @@ Yanfly.VR.version = 1.01;
  *   <Airship Restrict Region: x>
  *   <Airship Restrict Region: x, x, x>
  *   <Airship Restrict Region: x to y>
+ *   这些备注设置交通工具不能通行的区域
  *   - These notetags will caused the vehicles to be unable to move past
  *   region(s) marked with x (to y) unless the player character is given the
  *   Through ON movement flag. These regions will be combined with the regions
@@ -125,6 +110,7 @@ Yanfly.VR.version = 1.01;
  *   <Airship Allow Region: x>
  *   <Airship Allow Region: x, x, x>
  *   <Airship Allow Region: x to y>
+ *   这些备注设置交通工具可以通行的区域
  *   - These notetags will cause the vehicles to be able to move through these
  *   region(s) marked with x (to y). These regions will be combined with the
  *   regions flagged by the plugin parameters.
@@ -138,19 +124,10 @@ Yanfly.VR.version = 1.01;
  *   <Airship Land Region: x>
  *   <Airship Land Region: x, x, x>
  *   <Airship Land Region: x to y>
+ *   这些备注设置交通工具起落的区域
  *   - These notetags will enforce vehicles to only able to land on region(s)
  *   marked by x (to y). They cannot land anywhere else. These regions will be
  *   combined with the regions flagged by the plugin parameters.
- *
- * ============================================================================
- * Changelog
- * ============================================================================
- *
- * Version 1.01:
- * - Updated for RPG Maker MV version 1.5.0.
- *
- * Version 1.00:
- * - Finished Plugin!
  */
 //=============================================================================
 

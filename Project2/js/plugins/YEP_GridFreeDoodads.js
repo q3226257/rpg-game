@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Grid-Free Doodads
 // YEP_GridFreeDoodads.js
 //=============================================================================
@@ -8,36 +8,26 @@ Imported.YEP_GridFreeDoodads = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.GFD = Yanfly.GFD || {};
-Yanfly.GFD.version = 1.10;
+Yanfly.GFD.version = 1.03;
 
 //=============================================================================
  /*:
- * @plugindesc v1.10 Place Grid-Free Doodads into your game using an
- * in-game editor. Static and animated doodads can be used!
+ * @plugindesc v1.03 自由放置摆件
  * @author Yanfly Engine Plugins
  *
  * @param ---General---
  * @default
  *
  * @param Doodads Folder
- * @parent ---General---
  * @desc This is the path to your doodads folder.
  * @default img/doodads/
  *
  * @param Doodads Smoothing
- * @parent ---General---
- * @type boolean
- * @on Smooth
- * @off Hard
  * @desc Default smooth out doodad edges or give them hard edges?
  * SMOOTH - true     HARD - false
  * @default false
  *
  * @param Alphabetical Settings
- * @parent ---General---
- * @type boolean
- * @on Alphabetical
- * @off By ID
  * @desc List doodad settings in alphabetical order?
  * YES - true     NO - false
  * @default false
@@ -46,25 +36,15 @@ Yanfly.GFD.version = 1.10;
  * @default
  *
  * @param Default Grid Snap
- * @parent ---Grid Snap---
- * @type boolean
- * @on Enable
- * @off Disable
  * @desc Do you want Grid Snap enabled by default?
  * YES - true     NO - false
  * @default false
  *
  * @param Grid Snap Width
- * @parent ---Grid Snap---
- * @type number
- * @min 1
  * @desc The default grid snap width.
  * @default 48
  *
  * @param Grid Snap Height
- * @parent ---Grid Snap---
- * @type number
- * @min 1
  * @desc The default grid snap height.
  * @default 48
  *
@@ -73,204 +53,201 @@ Yanfly.GFD.version = 1.10;
  * Introduction
  * ============================================================================
  *
- * In RPG Maker MV, tilesets are used for mapping purposes. Tileset A is used
- * for drawing land while Tilesets B through E are used to add doodads. But in
- * RPG Maker MV, doodads added by Tilesets B through E are locked to the grid
- * and add a rather unnatural feel to it. This plugin will allow you to break
- * free of the grid and add doodads unbound by the grid. Doodads can come in
- * all forms, from large to small, static and animated, you name it!
+ * 这个插件需要MV1.3.0以上的版本，请检查你的rpg_core.js文件内部，是否符合
+ * 要求，如果不符合，请提前升级
+ * 在RPG Maker MV里面，图块被用来做地图。一般图块A型被用来画地面，图块B型
+ * 到E型负责添加摆设物件。但是在MV里面，摆件被限定在网格上并且感觉不自然
+ * 。这个插件允许你打破网格限制，添加摆件。摆件的大小，动态都可以定制。
  *
  * ============================================================================
  * Instructions - Requirements
  * ============================================================================
  *
- * There's a couple of things you must do in order to get this plugin working.
+ * 这个里有一系列你需要去完成的来使插件生效
  *
  * 1. You must have the Doodads.json inside your project's 'data' folder.
+ * 1.你需要把Doodads.json放入游戏data文件夹里面
  * 2. You must have a 'doodads' folder inside of your project's 'img' folder
  *    (unless you named it something else in the plugin parameters).
+ * 2.你需要把img文件夹里面的doodads文件夹放入游戏目录img下面
  * 3. You must have your doodads within this folder.
+ * 3.你需要把你自己的摆件放入这个文件夹
  *
  * You can find the above resources from Yanfly.moe!
+ * 你可以在本页找到你需要的资源
  *
  * ============================================================================
  * Instructions - Placing Doodads
  * ============================================================================
  *
- * To place doodads into your game, first, load up your game in Test Play mode.
- * You can do this by opening up your game in RPG Maker MV, go to 'Game', then
- * select 'PlayTest' (shortcut Ctrl+R).
+ * 为了把摆件放入你的游戏，需要现在测试模式载入你的游戏。你可以在MV里面来
+ * 进入，或者用快捷键Ctrl+R
  *
- * Once you've loaded onto a map that you want to place doodads on, press the
- * F10 key to access the doodad editor. From there, you can select the option:
- * 'Place Doodads' to start placing doodads.
+ * 一旦你载入了地图，你可以按F10键来开启编辑器，在这里你可以选择‘Place
+ * Doodads来开始放置
  *
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
  *
  * ---Main Menu---
- * The main menu is the first menu you see when you press the F10 key on a map.
+ * 按住F10是会进入主菜单
  *
- *   Place Doodads
+ *   Place Doodads   放置摆件
  *   - This will take you do your doodads folder, where you can select a doodad
  *   to place on the map.
  *
- *   Edit Doodads
+ *   Edit Doodads     编辑摆件
  *   - This will allow you to edit the doodads that you have already placed on
  *   the map. Here, you can select which doodads based on the layer they're on
  *   or from all doodads at once. Doodads are ordered based on their position
  *   from top to bottom, left to right.
  *
- *   Clear Doodads
+ *   Clear Doodads   清除摆件
  *   - This will clear all doodads on the map.
  *
- *   Toggle Region Overlay
+ *   Toggle Region Overlay     显示区域ID
  *   - This will cause an overlay of the regions to appear on your screen to
  *   show you what tiles are affected by which regions. Use it again to hide
  *   the regions.
- *   * WARNING: Using this on large maps for the first time will cause a bit of
- *   lag as the regions have to load. The larger the map, the longer the amount
- *   of time is required for it to load.
+ *   注意：如果你在一个较大的地图选择这个功能，可以需要一定的延迟来加载。
  *
- *   Cancel and Close
+ *   Cancel and Close   取消并且关闭
  *   - This will remove any changes made to the doodad settings on the map and
  *   close out of the Doodad Menu.
  *
- *   Save and Close
+ *   Save and Close   保存并且关闭
  *   - This will save any changes made to the doodad settings on the map and
  *   close out of the Doodad Menu.
  * 
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
  *
- * ---Doodad List---
+ * ---Doodad List---摆件列表
  * The doodad list will show a list of all the doodads you can use for your map
  * based on the current folder it's in. There are three types of options you
  * can select from here:
  *
- *   IconSet
+ *   IconSet   图标
  *   - This will let you make a doodad out of an icon from the iconset.
  *   Take note that doodads made from icons are a bit more restrictive and
  *   cannot make use of hue changes. This will take you to a menu where you can
  *   select which icon you wish to use then go to the Doodad Placing Mode.
  *
- *   Folders
+ *   Folders   文件夹
  *   - Folders will be marked with a / at the end of the name and will have an
  *   icon shared by all other folders. Selecting a folder will go into that
  *   folder's contents (and further).
  *
- *   Images
+ *   Images   图片
  *   - Images will show a small preview of themselves to the left of the name.
  *   These images can be used as doodads without any restrictions. Selecting an
  *   image will take you to the Doodad Placing Mode.
  *
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
  *
- * ---Doodad Placing Mode---
+ * ---Doodad Placing Mode---摆件放置模式
  * When you're in Doodad Placing Mode, you'll notice a small section of the
  * screen below with some instructional text.
  *
- *   Q E - Layer -/+
+ *   Q E - Layer -/+   提高图层和降低图层
  *   - This allows you to decrease or increase the doodad's current layer.
  *
- *   T - Tweak Settings
+ *   T - Tweak Settings   微调
  *   - Pressing this will open up the Doodad Settings menu.
  *
- *   W A S D - Move Screen
+ *   W A S D - Move Screen  移动屏幕
  *   - This will move the screen around so you can have a clear view of the map
  *   without needing to reposition the player character.
  *
- *   ↑←↓→ - Precision Move
+ *   ↑←↓→ - Precision Move   移动摆件
  *   - Pressing the directional keys will allow you to move the doodad using
  *   the keyboard instead of the mouse. If you wish to move using the mouse,
  *   just click on the map somewhere to return control back to the mouse.
  *
- *   Z X - Place or Cancel
+ *   Z X - Place or Cancel   放置和取消
  *   - Pressing Z will place the doodad in its current state on the map.
  *   - Pressing X will return you back to the Doodad List (or the Icon Picker
  *   if you were placing a doodad made from an icon).
  *
- * There are some hidden keyboard commands that you can use. These are rewarded
- * to the users who read these instructions carefully. Hooray for you!
+ * 这里还有一些隐藏按键你可以使用
  *
- *   H - Hide/Show the Instruction Window
+ *   H - Hide/Show the Instruction Window  隐藏提示窗口
  *   - Pressing H will hide the instructional window so you can get a clear
  *   view of where you're placing the doodad. Pressing it again will make it
  *   show back up.123
  *
- *   1 2 3 4 5 6 7 8 9 0 - Quick Opacity Change
+ *   1 2 3 4 5 6 7 8 9 0 - Quick Opacity Change   设置透明度
  *   - The 1 through 0 keys (not NumPad) will allow you to quickly adjust the
  *   opacity level of the doodad. 1 will set 10%, 2 sets 20%, 3 sets 30%, etc.
  *   However, 0 will set 100%.
  *
- *   G - Grid Snap Menu
+ *   G - Grid Snap Menu   网格设置
  *   - This opens up the Grid Snap Menu where you can activate or deactivate
  *   Grid Snapping and the grid snapping parameters.
  *
- *   R - Region Overlay
+ *   R - Region Overlay   显示区域ID
  *   - This will cause an overlay of the regions to appear on your screen to
  *   show you what tiles are affected by which regions. Press R again to hide
  *   the regions.
- *   * WARNING: Using this on large maps for the first time will cause a bit of
- *   lag as the regions have to load. The larger the map, the longer the amount
- *   of time is required for it to load.
+ *   注意：如果你在一个较大的地图选择这个功能，可以需要一定的延迟来加载。
  *
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
  *
- * ---Doodad Settings---
+ * ---Doodad Settings---摆件设置
  * When pressing 'T' during the Doodad Placing Mode or accessing individual
  * doodads, you will come across the Doodad Settings.
  *
- *   Change Position
+ *   Change Position  设置位置
  *   - Only selectable if accessed from individual doodad management. This will
  *   allow you to reposition the doodad.
  *
- *   Layer
+ *   Layer   设置图层
  *   - This allows you to change the layer of the doodad. Higher layers will
  *   make the doodad appear above others (and characters) and lower layers will
  *   cause doodads to appear below.
  *
- *   Hue
+ *   Hue 设置外表色彩，这需要占用大量资源，如果你需要输出为移动端，建议不要使
+ *   用不同的色彩外表
  *   - Changing to hue will change the doodad's current color shift. Be warned
  *   as this process takes up a lot of processing power, and I highly advise
  *   against using doodads of different hues if you plan to export to mobile.
  *
- *   Opacity
+ *   Opacity   透明度
  *   - Changes the opacity of the doodad. When the opacity value is higher, the
  *   doodad will be less transparent. When the opacity value is lower, it will
  *   be more transparent.
  *
- *   Scale X, Scale Y
+ *   Scale X, Scale Y  设置拉伸度，如果为负值，则会反向
  *   - This changes the amount of stretch on a doodad. X will cause a doodad to
  *   stretch horizontally while Y will cause the doodad to stretch vertically.
  *   If you decide to use a negative value, it will cause the doodad to mirror.
  *
- *   Anchor X, Anchor Y
+ *   Anchor X, Anchor Y   设置放置锚点
  *   - This sets the base coordinates of the doodad to be located. How other
  *   doodads/objects of the same layer interact with this doodad will be based
  *   on its coordinates.
  *
- *   Frame Speed
+ *   Frame Speed   设置动画速度
  *   - If the doodad is animated, you can adjust the frame speed of the doodad
  *   here. The number represents the number of frames that must pass before the
  *   doodad updates to the next animation cell. This means lower numbers have
  *   faster animations while higher numbers have slower animations.
  *
- *   Blend
+ *   Blend   设置混合模式
  *   - Allows you to change the blend modes of the doodads. Blend modes will
  *   cause color differences based on the blend mode type to fit in with the
  *   visual effects behind it.
  *
- *   Smooth
+ *   Smooth   设置平滑模式
  *   - Let's you choose whether or not you want to load the doodad with either
  *   smooth or hard edges.
  *
- *   Delete Doodad
+ *   Delete Doodad   删除指定摆件
  *   - Only selectable if accessed from individual doodad management. This will
  *   let you delete the doodad and then return to the doodad management list.
  *
- *   Revert Settings
+ *   Revert Settings  重置设置
  *   - Cancels all of the settings made and returns back to your previous mode.
  *
- *   Accept Settings
+ *   Accept Settings   应用设置
  *   - Accepts all of the settings made and returns back to your previous mode.
  *
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -279,67 +256,43 @@ Yanfly.GFD.version = 1.10;
  * Instructions - Making Your Own Doodads
  * ============================================================================
  *
- * Doodads only have two requirements.
+ * 摆件制作需要下面2个要求.
  *
- *   1. They must be PNG's.
+ *   1. They must be PNG's.  他们必须是PNG格式
  *   2. They must exist within the 'doodads' folder (or specified folder from
  *      the plugin parameters) or within a folder inside the 'doodads' folder.
- *
- * If a folder is placed inside of the 'doodads' folder, it will be listed as
- * on the doodads list as a directory tree to navigate through.
+ *      他们必须在doodads文件夹内
+ * 
+ * 如果某个文件夹位于doodads内部，则会在列表中显示
  *
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
  * Making Animated Doodads
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
  *
- * Doodads can be made into animated doodads. An animated doodad is one that
- * will animate whenever the game's graphics update. Follow these steps to make
- * an animated doodad:
+ * 如果需要制作动态摆件，需要按照下面方法:
  *
  *   1. Create a doodad with a cell layout similar to a sprite.
+ *   1.制作摆件各个单元体
  *   2. Each cell must be the same width and height as the other.
+ *   2.每个单元图尺寸必须一致
  *   3. When naming the doodad, add [AxB] in its name. Replace A and B with
  *      numbers representing the number of cells horizontally (A) and the
  *      number of cells vertically (B). A doodad with 3 horizontal cells and
  *      2 vertical cells would be named something like 'Torch [3x2].png'.
+ *   3.当命名的时候，需要采用[AxB]的模式，A为横向数量，B为竖向数量。一个摆件
+ *   拥有3个横向单元2个竖向单元，例如Torch [3×2].png
  *   4. The doodads cells will animate left to right. Once they reach all the
  *      way right, they will move down a row and update left to right again.
  *      The doodad named 'Torch [3x2].png' will update like such:
- *
+ *   
  *      0   1   2
  *      3   4   5
  *
- * And that's how you would go about the creation of an animated doodad. If
- * this is confusing, look at some of the examples provided from Yanfly.moe.
+ * 这就是制作的步骤，如果你还是不太清楚，可以参考网站上的例子
  *
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.10:
- * - Fixed loading issues for people using version 1.5.0+ and not using the
- * YEP_X_CoreUpdatesOpt and desktop optimization setting.
- *
- * Version 1.09:
- * - Fixed a bug for the Toggle Region Overlay that made certain dimensions not
- * work properly.
- *
- * Version 1.08:
- * - Updated for RPG Maker MV version 1.6.0 again. There was an issue with
- * newly added doodads not saving properly due to the changed file structure.
- *
- * Version 1.07:
- * - Updated for RPG Maker MV version 1.6.0.
- *
- * Version 1.06:
- * - Added 'Import from Another Map' command to the main doodad menu.
- *
- * Version 1.05:
- * - Updated for RPG Maker MV version 1.5.0.
- *
- * Version 1.04:
- * - Calculations made for previous version are now rounded upward instead of
- * rounding down to accomodate for smoother screen scrolling.
  *
  * Version 1.03:
  * - Adjusted calculations for grid-snapping when graphic resolutions aren't
@@ -429,33 +382,7 @@ ImageManager.loadDoodadBitmap = function(folder, filename, hue, smooth) {
   }
 };
 
-if (Utils.RPGMAKER_VERSION && Utils.RPGMAKER_VERSION >= '1.5.0') {
-
-// Use base ImageManager.isReady
-
-ImageCache.prototype.isReady = function(){
-    var items = this._items;
-    return !Object.keys(items).some(function(key){
-        return !items[key].bitmap.isRequestOnly() && !items[key].bitmap.isReady();
-    });
-};
-
-ImageCache.prototype.getErrorBitmap = function(){
-    var items = this._items;
-    var bitmap = null;
-    if(Object.keys(items).some(function(key){
-            if(items[key].bitmap.isError()){
-                bitmap = items[key].bitmap;
-                return true;
-            }
-            return false;
-        })) {
-        return bitmap;
-    }
-    return null;
-};
-
-} else if (Utils.RPGMAKER_VERSION && Utils.RPGMAKER_VERSION >= '1.3.0') {
+if (Utils.RPGMAKER_VERSION && Utils.RPGMAKER_VERSION >= '1.3.0') {
 
 ImageManager.isReady = function() {
     for (var key in this.cache._inner) {
@@ -594,7 +521,7 @@ Sprite_Doodad.prototype.screenX = function() {
   if (value + this.width < 0 && $gameMap.isLoopHorizontal()) {
     value += this._mapWidth;
   }
-  return Math.ceil(value);
+  return Math.floor(value);
 };
 
 Sprite_Doodad.prototype.screenY = function() {
@@ -604,7 +531,7 @@ Sprite_Doodad.prototype.screenY = function() {
   if (value + this.height < 0 && $gameMap.isLoopVertical()) {
     value += this._mapHeight;
   }
-  return Math.ceil(value);
+  return Math.floor(value);
 };
 
 Sprite_Doodad.prototype.clear = function() {
@@ -712,24 +639,14 @@ TouchInput._onMouseMove = function(event) {
 StorageManager.saveDoodadSettings = function() {
   var data = JSON.stringify($dataDoodads, null, 2);
   var fs = require('fs');
-  if (Utils.RPGMAKER_VERSION >= "1.6.0") {
-    var path = require('path');
-    var base = path.dirname(process.mainModule.filename);
-    path = path.join(base, 'data/');
-    if (!fs.existsSync(path)) fs.mkdirSync(path);
-    var filePath = path + 'Doodads.json';
-    console.log(filePath)
-    fs.writeFileSync(filePath, data);
-  } else {
-    var path = window.location.pathname.replace(/(\/www|)\/[^\/]*$/, '/data/');
-    if (path.match(/^\/([A-Z]\:)/)) {
-      path = path.slice(1);
-    }
-    var dirPath = decodeURIComponent(path);
-    if (!fs.existsSync(dirPath)) fs.mkdirSync(dirPath);
-    var filePath = dirPath + 'Doodads.json';
-    fs.writeFileSync(filePath, data);
+  var path = window.location.pathname.replace(/(\/www|)\/[^\/]*$/, '/data/');
+  if (path.match(/^\/([A-Z]\:)/)) {
+    path = path.slice(1);
   }
+  var dirPath = decodeURIComponent(path);
+  var filePath = dirPath + 'Doodads.json';
+  if (!fs.existsSync(dirPath)) fs.mkdirSync(dirPath);
+  fs.writeFileSync(filePath, data);
 };
 
 //=============================================================================
@@ -1234,7 +1151,6 @@ Window_GFD_Menu.prototype.makeCommandList = function() {
   this.addCommand('Place Doodads', 'place');
   this.addCommand('Edit Doodads', 'edit');
   this.addCommand('Clear Doodads', 'clear');
-  this.addCommand('Import from Another Map', 'import');
   this.addCommand('', 'none', false);
   this.addCommand('Toggle Region Overlay', 'regionOverlay');
   this.addCommand('', 'none', false);
@@ -1299,61 +1215,6 @@ Window_GFD_List.prototype.makeCommandList = function() {
   this.addFileList();
 };
 
-if (Utils.RPGMAKER_VERSION >= "1.6.0") {
-
-Window_GFD_List.prototype.getLocalPath = function() {
-  var path = require('path');
-  var base = path.dirname(process.mainModule.filename);
-  return path.join(base, Yanfly.Param.GFDFolder);
-};
-
-Window_GFD_List.prototype.addFolderList = function() {
-  var fs = require('fs');
-  var results = [];
-  var path = this.getLocalPath() + this.folderPath();
-  fs.readdirSync(path).forEach(function(file) {
-    name = file;
-    file = path + '/' + name;
-    var stat = fs.statSync(file);
-    if (stat && stat.isDirectory()) {
-      results.push(name);
-    }
-  });
-  var length = results.length;
-  for (var i = 0; i < length; ++i) {
-    var folder = results[i];
-    if (folder) {
-      this.addCommand(folder + '/', 'folder', true, folder);
-    }
-  }
-};
-
-Window_GFD_List.prototype.addFileList = function() {
-  var fs = require('fs');
-  var results = [];
-  var path = this.getLocalPath() + this.folderPath();
-  fs.readdirSync(path).forEach(function(file) {
-    name = file;
-    file = path + '/' + name;
-    var stat = fs.statSync(file);
-    if (stat && stat.isDirectory()) {
-      // Do nothing
-    } else if (name.match(/.png/g)) {
-      name = name.replace(/.png/g, '');
-      results.push(name);
-    }
-  });
-  var length = results.length;
-  for (var i = 0; i < length; ++i) {
-    var file = results[i];
-    if (file) {
-      this.addCommand(file, 'file', true, file);
-    }
-  }
-};
-
-} else {
-
 Window_GFD_List.prototype.getLocalPath = function() {
   var path = window.location.pathname.replace(/(\/www|)\/[^\/]*$/,
     '/' + Yanfly.Param.GFDFolder + this.folderPath() + '/');
@@ -1408,8 +1269,6 @@ Window_GFD_List.prototype.addFileList = function() {
     }
   }
 };
-
-}; // Utils.RPGMAKER_VERSION >= "1.6.0"
 
 Window_GFD_List.prototype.drawItem = function(index) {
   var rect = this.itemRectForText(index);
@@ -1633,7 +1492,7 @@ Window_GFD_Canvas.prototype.rawDoodadX = function() {
     value = Math.floor(value / w) * w;
     value += Math.floor(this._tileWidth * DoodadManager.current().anchorX);
     var offset = Math.round(this._tileWidth * ($gameMap._displayX -
-      Math.ceil($gameMap._displayX)));
+      Math.floor($gameMap._displayX)));
     value -= offset;
   }
   return Math.floor(value);
@@ -1659,7 +1518,7 @@ Window_GFD_Canvas.prototype.rawDoodadY = function() {
     value = Math.floor(value / h) * h;
     value += Math.floor(this._tileHeight * DoodadManager.current().anchorY);
     var offset = Math.round(this._tileHeight * ($gameMap._displayY -
-      Math.ceil($gameMap._displayY)));
+      Math.floor($gameMap._displayY)));
     value -= offset;
   }
   return Math.floor(value);
@@ -2271,7 +2130,7 @@ Window_GFD_SettingsLayers.prototype.windowWidth = function() {
 
 Window_GFD_SettingsLayers.prototype.makeCommandList = function() {
   this.addCommand('10. Highest Layer', 'layer', true, 8);
-  this.addCommand(' 9. Higher Layer', 'layer', true, 7);
+  this.addCommand(' 9. Hgher Layer', 'layer', true, 7);
   this.addCommand(' 8. High Layer', 'layer', true, 6);
   this.addCommand(' 7. Above Characters', 'layer', true, 5);
   this.addCommand(' 6. Upper Layer', 'layer', true, 4);
@@ -2694,7 +2553,7 @@ Window_GFD_PickDoodadLayer.prototype.makeCommandList = function() {
   this.addCommand('All Doodads', 'edit', true, 100);
   this.addCommand('', 'none', false);
   this.addCommand('10. Highest Layer', 'edit', this._doodadsTotal[8], 8);
-  this.addCommand(' 9. Higher Layer', 'edit', this._doodadsTotal[7], 7);
+  this.addCommand(' 9. Hgher Layer', 'edit', this._doodadsTotal[7], 7);
   this.addCommand(' 8. High Layer', 'edit', this._doodadsTotal[6], 6);
   this.addCommand(' 7. Above Char', 'edit', this._doodadsTotal[5], 5);
   this.addCommand(' 6. Upper Layer', 'edit', this._doodadsTotal[4], 4);
@@ -2869,7 +2728,7 @@ Window_GFD_RegionOverlay.prototype.initialize = function() {
   var width = $gameMap.width() * $gameMap.tileWidth();
   var height = $gameMap.height() * $gameMap.tileHeight();
   this._mapWidth = $gameMap.width();
-  this._mapHeight = $gameMap.height();
+  this._mapHeight = $gameMap.width();
   this._tileWidth = $gameMap.tileWidth();
   this._tileHeight = $gameMap.tileHeight();
   this._pX = 0;
@@ -2981,45 +2840,6 @@ Window_GFD_RegionOverlay.prototype.screenY = function() {
 };
 
 //=============================================================================
-// Window_GFD_Import
-//=============================================================================
-
-function Window_GFD_Import() {
-  this.initialize.apply(this, arguments);
-}
-
-Window_GFD_Import.prototype = Object.create(Window_Command.prototype);
-Window_GFD_Import.prototype.constructor = Window_GFD_Import;
-
-Window_GFD_Import.prototype.initialize = function() {
-  this._doodads = $gameMap.doodads() || [];
-  Window_Command.prototype.initialize.call(this, 400, 0);
-  this.setGFD();
-};
-
-Window_GFD_Import.prototype.windowWidth = function() {
-  return Graphics.boxWidth - 400;
-};
-
-Window_GFD_Import.prototype.windowHeight = function() {
-  return Graphics.boxHeight;
-};
-
-Window_GFD_Import.prototype.makeCommandList = function() {
-  var group = $dataMapInfos;
-  var length = group.length;
-  for (var i = 1; i < length; ++i) {
-    var mapInfo = group[i];
-    if (!mapInfo) continue;
-    var mapId = mapInfo.id.padZero(3);
-    var mapName = mapInfo.name;
-    var fmt = 'M%1: %2';
-    var name = fmt.format(mapId, mapName);
-    this.addCommand(name, 'map', true, mapId);
-  }
-};
-
-//=============================================================================
 // Scene_Base
 //=============================================================================
 
@@ -3078,7 +2898,6 @@ Scene_Map.prototype.createGFDWindows = function() {
   this.createGFDGridMenuWindow();
   this.createGFDPickDoodadLayerWindow();
   this.createGFDPickDoodadListWindow();
-  this.createGFDImportWindow();
 };
 
 Scene_Map.prototype.createGFDMenuWindow = function() {
@@ -3093,7 +2912,6 @@ Scene_Map.prototype.createGFDMenuWindow = function() {
   win.setHandler('revert', this.cmdGFDMenuRevert.bind(this));
   win.setHandler('clear', this.cmdGFDMenuClear.bind(this));
   win.setHandler('regionOverlay', this.cmdGFDMenuRegionOverlay.bind(this));
-  win.setHandler('import', this.cmdGFDMenuImport.bind(this));
 };
 
 Scene_Map.prototype.createGFDListWindow = function() {
@@ -3264,15 +3082,6 @@ Scene_Map.prototype.createGFDPickDoodadListWindow = function() {
   win.setHandler('doodad', this.cmdGFDDoodadListSelect.bind(this));
 };
 
-Scene_Map.prototype.createGFDImportWindow = function() {
-  this._gfdImportWindow = new Window_GFD_Import();
-  this.addChild(this._gfdImportWindow);
-  this._gfdWindows.push(this._gfdImportWindow);
-  var win = this._gfdImportWindow;
-  win.setHandler('cancel', this.cancelGFDImport.bind(this));
-  win.setHandler('map', this.cmdCFDImportMap.bind(this));
-};
-
 Scene_Map.prototype.openGFDWindows = function() {
   $gameTemp._prevDoodadSettings = JsonEx.makeDeepCopy($dataDoodads);
   this._gfdMenuWindow.activate();
@@ -3338,11 +3147,6 @@ Scene_Map.prototype.cmdGFDMenuClear = function() {
 Scene_Map.prototype.cmdGFDMenuRegionOverlay = function() {
   this._gfdMenuWindow.activate();
   this._spriteset.toggleRegionOverlayWindow();
-};
-
-Scene_Map.prototype.cmdGFDMenuImport = function() {
-  this._gfdImportWindow.activate();
-  this._gfdImportWindow.open();
 };
 
 Scene_Map.prototype.cancelGFDList = function() {
@@ -3750,21 +3554,6 @@ Scene_Map.prototype.cmdGFDDoodadListSelect = function() {
   this._gfdPickDoodadListWindow.close();
   var doodad = this._gfdPickDoodadListWindow.currentExt();
   this.openGFDDoodadSettings(doodad);
-};
-
-Scene_Map.prototype.cancelGFDImport = function() {
-  this._gfdImportWindow.close();
-  this._gfdMenuWindow.activate();
-};
-
-Scene_Map.prototype.cmdCFDImportMap = function() {
-  this._gfdImportWindow.close();
-  this._gfdMenuWindow.activate();
-  var mapId = parseInt(this._gfdImportWindow.currentExt());
-  $dataDoodads[mapId] = $dataDoodads[mapId] || [];
-  var data = JsonEx.makeDeepCopy($dataDoodads[mapId]);
-  $dataDoodads[$gameMap.mapId()] = data;
-  DoodadManager.refresh();
 };
 
 Scene_Map.prototype.cmdGFDSettingsDelete = function() {

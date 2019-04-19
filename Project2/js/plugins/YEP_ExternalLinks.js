@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - External Links
 // YEP_ExternalLinks.js
 //=============================================================================
@@ -8,12 +8,10 @@ Imported.YEP_ExternalLinks = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.LINK = Yanfly.LINK || {};
-Yanfly.LINK.version = 1.00
 
 //=============================================================================
  /*:
- * @plugindesc v1.01 Link back to your home page through the title screen
- * and also be able to link your players from within the game.
+ * @plugindesc v1.00 额外链接
  * @author Yanfly Engine Plugins
  *
  * @param Home Page URL
@@ -34,32 +32,20 @@ Yanfly.LINK.version = 1.00
  * ============================================================================
  * Introduction                                                     .
  * ============================================================================
- * This plugin allows you to place a "link" to your home page at the title
- * screen's command window towards the bottom. To adjust where the link goes,
- * change the Home Page URL in the plugin's parameters.
+ * 使用这个插件可以为你的游戏添加超链接。如果链接对象是空，这个插件会发出通知
+ * 这个插件可以让你在游戏页面放置外链入口。你可以在插件参数里调整
  *
  * ============================================================================
  * Plugin Commands
  * ============================================================================
  *
- * If you wish to send players to other links, you can use the following
- * plugin commands.
+ * 如果你想把玩家带到其他链接，可以使用下面的插件命令
  *
  * Plugin Command
- *   OpenNewTab http://www.google.com/     Opens link in a new tab.
- *   OpenNewWindow http://www.google.com/  Opens link in a new window.
+ *   OpenNewTab http://www.google.com/     前往新标签页打开
+ *   OpenNewWindow http://www.google.com/  前往新窗口打开
  *
- * Some web browsers may not differentiate these commands too much.
- *
- * ============================================================================
- * Changelog
- * ============================================================================
- *
- * Version 1.01:
- * - Updated for RPG Maker MV version 1.5.0.
- *
- * Version 1.00:
- * - Finished Plugin!
+ * 有些浏览器不能区分这2个命令
  */
 //=============================================================================
 
@@ -182,7 +168,6 @@ Scene_Base.prototype.createWindowLayer = function() {
 };
 
 Scene_Base.prototype.createPopupBlockerMessage = function() {
-    if (this._popupBlockerWindow) return;
 		this._popupBlockerWindow = new Window_PopupBlocker();
 		this.addWindow(this._popupBlockerWindow);
 		this._popupCounter = 0;

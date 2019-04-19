@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Swap Enemies
 // YEP_SwapEnemies.js
 //=============================================================================
@@ -8,42 +8,30 @@ Imported.YEP_SwapEnemies = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.SwE = Yanfly.SwE || {};
-Yanfly.SwE.version = 1.03
 
 //=============================================================================
  /*:
- * @plugindesc v1.03 This is utility plugin made to help randomize sets of
- * enemies for battle.
+ * @plugindesc v1.02 敌人变换
  * @author Yanfly Engine Plugins
- *
- * @param Filter Unnamed Enemies
- * @type boolean
- * @on Filter
- * @off Don't Filter
- * @desc Remove unnamed enemies from a range of enemies?
- * @default true
  *
  * @help
  * ============================================================================
  * Introduction
  * ============================================================================
  *
- * This plugin allows you to have an enemy be a basic randomizing swap dummy
- * for other enemies. Insert enemy ID's of other enemies inside of the swap
- * notetag and those enemies will take place of the swap monster at the start
- * of a battle.
+ * 这个插件可以让你的敌人变换外形。插件其他敌人ID在标签栏，这个敌人就会在战
+ * 斗开始变换
  *
  * ============================================================================
  * Notetags
  * ============================================================================
  *
- * The purpose of swap enemies is to make it easier to swap out enemies for a
- * random enemy inside of a particular pool of enemies. Use the following
- * notetags to utilize this plugin:
+ * 敌人变换的目的是为了更好地在敌人池里面变出随机敌方。你可以使用下面的标签
+ * 来设置:
  *
  * Enemy Notetag:
  *   <Swap: x, x, x>
- *   <Swap: x to y>
+ *   <Swap: x to y>  设置变换为x
  *   Changes this enemy into a swap dummy. Replace x with the ID's of the other
  *   enemies you would like to randomly spawn in its place. Insert multiples of
  *   this tag if you wish to add more randomized enemies to the pool.
@@ -53,7 +41,7 @@ Yanfly.SwE.version = 1.03
  *   Hornet
  *   Bat
  *   Wisp>
- *   </Swap>
+ *   </Swap> 用名字设置的变换对象。如果你有重名对象，则优先ID最高的
  *   If you wish to use names instead, you can construct your notetags in the
  *   above format. Enemies with matching names will be added to the random swap
  *   pool for the swap dummy. If you have multiple enemies in the database with
@@ -62,10 +50,6 @@ Yanfly.SwE.version = 1.03
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.03:
- * - Updated for RPG Maker MV version 1.5.0.
- * - Added new 'Filter Unnamed Enemies' plugin parameter.
  *
  * Version 1.02:
  * - Feature update. If a swap enemy swaps into another swap enemy, it will
@@ -78,11 +62,6 @@ Yanfly.SwE.version = 1.03
  * - Finished Plugin!
  */
 //=============================================================================
-
-Yanfly.Parameters = PluginManager.parameters('YEP_SwapEnemies');
-Yanfly.Param = Yanfly.Param || {};
-
-Yanfly.Param.SwEFilter = eval(Yanfly.Parameters['Filter Unnamed Enemies']);
 
 //=============================================================================
 // DataManager
@@ -123,12 +102,10 @@ DataManager.processSwENotetags1 = function(group) {
       var line = notedata[i];
       if (line.match(note1)) {
         var array = JSON.parse('[' + RegExp.$1.match(/\d+/g) + ']');
-        array = this.SwEfilter(array);
         obj.swapEnemies = obj.swapEnemies.concat(array);
       } else if (line.match(note2)) {
         var range = Yanfly.Util.getRange(parseInt(RegExp.$1),
           parseInt(RegExp.$2));
-        range = this.SwEfilter(range);
         obj.swapEnemies = obj.swapEnemies.concat(range);
       } else if (line.match(/<(?:SWAP)>/i)) {
         var mode = 'swap';
@@ -145,17 +122,6 @@ DataManager.processSwENotetags1 = function(group) {
       obj.battlerHue = 0;
     }
   }
-};
-
-DataManager.SwEfilter = function(array) {
-  if (!Yanfly.Param.SwEFilter) return array;
-  var result = [];
-  var length = array.length;
-  for (var i = 0; i < length; ++i) {
-    var enemy = $dataEnemies[array[i]];
-    if (enemy && enemy.name !== '') result.push(array[i]);
-  }
-  return result;
 };
 
 //=============================================================================

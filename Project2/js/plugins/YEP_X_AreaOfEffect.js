@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Target Core Extension - Area of Effect
 // YEP_X_AreaOfEffect.js
 //=============================================================================
@@ -8,32 +8,24 @@ Imported.YEP_X_AreaOfEffect = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.AOE = Yanfly.AOE || {};
-Yanfly.AOE.version = 1.02
 
 //=============================================================================
  /*:
- * @plugindesc v1.02 (Requires YEP_BattleEngineCore & YEP_TargetCore)
- * Adds Area of Effect scopes for targeting allies or enemies.
+ * @plugindesc v1.00 效果范围
  * @author Yanfly Engine Plugins
  *
  * @param ---Buffer---
  * @default
  *
  * @param Buffer X
- * @parent ---Buffer---
  * @desc The default offset coordinate buffer for battlers.
  * @default 0
  *
  * @param Buffer Y
- * @parent ---Buffer---
  * @desc The default offset coordinate buffer for battlers.
  * @default 0
  *
  * @param Center Animation
- * @parent ---Buffer---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Plays battle animation only on central target?
  * NO - false     YES - true
  * @default true
@@ -42,34 +34,16 @@ Yanfly.AOE.version = 1.02
  * @default
  *
  * @param Circle Graphic
- * @parent ---Circle---
- * @type file
- * @dir img/pictures/
- * @require 1
  * @desc Default graphic used for AoE Circles.
  * Place this image inside img/pictures/
  * @default AoE_Circle
  *
  * @param Circle Blend
- * @parent ---Circle---
- * @type select
- * @option Normal
- * @value 0
- * @option Additive
- * @value 1
- * @option Multiply
- * @value 2
- * @option Screen
- * @value 3
  * @desc Blend mode used for AoE Circles.
  * 0: Normal, 1: Additive, 2: Multiply, 3: Screen
  * @default 3
  *
  * @param Circle Height Rate
- * @parent ---Circle---
- * @type number
- * @decimals 2
- * @min 0
  * @desc Default height rate of AoE Circle.
  * @default 0.33
  *
@@ -77,25 +51,11 @@ Yanfly.AOE.version = 1.02
  * @default
  *
  * @param Rect Graphic
- * @parent ---Rectangle---
- * @type file
- * @dir img/pictures/
- * @require 1
  * @desc Default graphic used for AoE Rectangles.
  * Place this image inside img/pictures/
  * @default AoE_Rect
  *
  * @param Rect Blend
- * @parent ---Rectangle---
- * @type select
- * @option Normal
- * @value 0
- * @option Additive
- * @value 1
- * @option Multiply
- * @value 2
- * @option Screen
- * @value 3
  * @desc Blend mode used for AoE Rectangles.
  * 0: Normal, 1: Additive, 2: Multiply, 3: Screen
  * @default 3
@@ -105,15 +65,10 @@ Yanfly.AOE.version = 1.02
  * Introduction
  * ============================================================================
  *
- * This plugin requires YEP_BattleEngineCore and YEP_TargetCore. Make sure this
- * plugin is located under YEP_BattleEngineCore and YEP_TargetCore in the
- * plugin list.
+ * 这个插件需要YEP_BattleEngineCore和YEP_TargetCore，请放置于它们下面
  *
- * Sometimes, targeting one foe isn't enough and targeting all foes is too
- * many. The right mix in between would be area of effects to target only a
- * certain area of foes. This plugins enables area of effect targeting to come
- * in the forms of circular areas, column areas, row areas, and even the whole
- * screen.
+ * 有时，命中一个目标太大，命中全部又太多。最好能够命中指定区域的人。这个插
+ * 件可以设置圆形区域，横排，竖排等
  *
  * ============================================================================
  * Instructions - Understanding Area of Effect
@@ -122,89 +77,83 @@ Yanfly.AOE.version = 1.02
  * Area of effect scopes don't necessarily select just one target but instead,
  * a group of targets that are close together. Any targets outside of range
  * from the area of effect zone will be added to the scope of targets for the
- * skill or item being used.
+ * skill or item being used.范围攻击不需要指定某个目标，而是指定范围。
  *
  * Whether or not the targets will be struck is relative to the target's hitbox
  * settings. Normally, this is dependent on the target's graphic, but you can
  * set individual hitbox settings for the target using notetags as well.
- *
+ * 这个范围取决于敌方图像，当然你也可以额外单独设置它们
+ * 
  * ============================================================================
  * Notetags
  * ============================================================================
  *
- * You can use the following notetags to apply area of effect scopes for your
- * skills and items!
+ * 你可以使用下面标签
  *
  * Skill and Item Notetags:
  *
  *   --- AOE Circle Scope ---
  *
- *   <AOE Radius: x>
+ *   <AOE Radius: x> 圆形半径
  *   Turns the skill into having a target scope with a circular AOE. x is the
  *   amount of pixels of the radius for the AOE Circle.
  *
- *   <AOE Height Rate: x%>
+ *   <AOE Height Rate: x%>  圆形半径高度改变率
  *   Changes the height to be x% of the diameter of the AOE Circle.
  *
- *   <AOE Graphic: filename>
+ *   <AOE Graphic: filename>  范围攻击使用的图片
  *   If you wish to use a different image for the AOE circle for this skill or
  *   item, replace 'filename' with the filename of the graphic found within the
  *   img/pictures/ folder. Do not include the file extension. For example, the
  *   graphic 'aoeblue.png' will result in notetag <AOE Graphic: aoeblue>.
  *
- *   <AOE Hue: x>
+ *   <AOE Hue: x>  范围色调
  *   This will change the hue of the AOE circle to x. By default, the hue value
  *   is 0. This will alter the color of it.
  *
- *   <AOE Blend: x>
+ *   <AOE Blend: x>  混合模式
  *   This is the blend mode used for the AOE graphic. 0 is normal with no blend
  *   modes applied. 1 is additive. 2 is multiply. 3 is screen.
  *
- *   *NOTE: This does not work with the unique selection types found with the
- *   YEP_X_SelectionControl plugin.
- *
  *   --- AOE Rectangle Scope ---
  *
- *   <Rect Column: x>
+ *   <Rect Column: x>  矩形竖排
  *   This will make a rectangular area of effect scope that is x pixels wide.
  *   The area of effect zone is vertical and all targets within this zone will
  *   become targets for the action.
  *
- *   <Rect Row: x>
+ *   <Rect Row: x>  矩形横排
  *   This will make a rectangular area of effect scope that is x pixels tall.
  *   The area of effect zone is horizontal and all targets within this zone
  *   will become targets for the action.
  *
- *   <Rect Screen>
+ *   <Rect Screen>  矩形全屏
  *   This will target all units within the entirity of the screen. While it is
  *   the same as an all enemies/all allies scope, this can be used to give a
  *   visual representation of which units are selected as a target.
  *
- *   <Rect Graphic: filename>
+ *   <Rect Graphic: filename>  矩形图片
  *   If you wish to use a different image for the AOE rectangle for this skill
  *   or item, replace 'filename' with the filename of the graphic found within
  *   the img/pictures/ folder. Do not include the file extension. For example,
  *   the graphic 'rectblue.png' will result in notetag <AOE Graphic: rectblue>.
  *
- *   <Rect Hue: x>
+ *   <Rect Hue: x>  矩形色调
  *   This will change the hue of the AOE rectangle to x. By default, the hue
  *   value is 0. This will alter the color of it.
  *
- *   <Rect Blend: x>
+ *   <Rect Blend: x>  矩形混合模式
  *   This is the blend mode used for the AOE graphic. 0 is normal with no blend
  *   modes applied. 1 is additive. 2 is multiply. 3 is screen.
  *
- *   *NOTE: This does not work with the unique selection types found with the
- *   YEP_X_SelectionControl plugin.
- *
  *   --- Animation Settings ---
  *
- *   <AOE Center Animation>
+ *   <AOE Center Animation>  范围攻击中心动画
  *   This will cause the animation for an AOE skill to be played to center on
  *   the first target of the AOE group, which is usually the center of the
  *   AOE targets.
  *
- *   <AOE Group Animation>
+ *   <AOE Group Animation>  范围群组动画
  *   This will cause the animation for an AOE skill to be played on all of the
  *   targets within the AOE group as if normally done.
  *
@@ -216,32 +165,16 @@ Yanfly.AOE.version = 1.02
  *   <AOE Buffer X: -x>
  *
  *   <AOE Buffer Y: +x>
- *   <AOE Buffer Y: -x>
+ *   <AOE Buffer Y: -x>  改变缓存区范围
  *   Changes the buffer x/y of the battler when an AOE image is placed on the
  *   battler. This is also the offset from the center location at which the
  *   AOE targets will be calculated, too. If this notetag isn't used, the
  *   buffer value used will be from the plugin parameters.
  *
  *   <AOE Hitbox Width: x>
- *   <AOE Hitbox Height: x>
+ *   <AOE Hitbox Height: x>  改变命中区范围
  *   This will adjust the hitbox of the battler to have an AOE hitbox width of
- *   x or an AOE hitbox height of x.
- *
- * ============================================================================
- * Changelog
- * ============================================================================
- *
- * Version 1.02:
- * - Updated for RPG Maker MV version 1.5.0.
- *
- * Version 1.01:
- * - Plugin update to provide checks against certain selection condition types
- * used with YEP_X_SelectionControl. Unique conditions will disable AoE types
- * to prevent clashing which include enemy/actor switching, certain rows, and
- * toggling between single/multiple.
- *
- * Version 1.00:
- * - Finished Plugin!
+ *   x or an AOE hitbox height of x.对于需要图片的人，可以使用下面的图片
  */
 //=============================================================================
 
@@ -406,35 +339,6 @@ DataManager.setAoeActions = function(obj) {
     obj.finishActions = Yanfly.BEC.DefaultActionFinish.slice();
 };
 
-DataManager.isAoeForbidden = function(obj) {
-  if (!obj) return true;
-  if (obj.isAoeForbidden !== undefined) return obj.isAoeForbidden;
-  obj.isAoeForbidden = false;
-  if (Imported.YEP_X_SelectionControl) {
-    var arr = obj.selectConditions;
-    var length = arr.length;
-    for (var i = 0; i < length; ++i) {
-      var line = arr[i];
-      if (line) {
-        if (line.match(/ENEMY OR ACTOR SELECT/i)) {
-          obj.isAoeForbidden = true;
-          break;
-        } else if (line.match(/ACTOR OR ENEMY SELECT/i)) {
-          obj.isAoeForbidden = true;
-          break;
-        } else if (line.match(/SINGLE OR MULTIPLE SELECT/i)) {
-          obj.isAoeForbidden = true;
-          break;
-        } else if (line.match(/ROW[ ](\d+)/i)) {
-          obj.isAoeForbidden = true;
-          break;
-        }
-      }
-    }
-  }
-  return obj.isAoeForbidden;
-};
-
 //=============================================================================
 // BattleManager
 //=============================================================================
@@ -529,22 +433,15 @@ Game_Enemy.prototype.aoeHeight = function() {
 // Game_Action
 //=============================================================================
 
-Game_Action.prototype.isAoeForbidden = function() {
-    return DataManager.isAoeForbidden(this.item());
-};
-
 Game_Action.prototype.isAoe = function() {
-    if (this.isAoeForbidden()) return false;
     return this.isAoeCircle() || this.isAoeRect();
 };
 
 Game_Action.prototype.isAoeCircle = function() {
-    if (this.isAoeForbidden()) return false;
     return this.item().aoeCircleRadius > 0;
 };
 
 Game_Action.prototype.isAoeRect = function() {
-    if (this.isAoeForbidden()) return false;
     if (this.item().aoeRectColumn > 0) return true;
     if (this.item().aoeRectRow > 0) return true;
     return this.item().aoeRectAll;
@@ -683,7 +580,6 @@ Sprite_AoeCircle.prototype.initMembers = function() {
 
 Sprite_AoeCircle.prototype.setup = function(skill) {
     this._skill = skill;
-    if (DataManager.isAoeForbidden(skill)) return;
     if (this._skill.aoeCircleRadius <= 0) return;
     this._targetIndex = -1;
     this._radius = this._skill.aoeCircleRadius;
@@ -768,7 +664,6 @@ Sprite_AoeRect.prototype.initMembers = function() {
 
 Sprite_AoeRect.prototype.setup = function(skill) {
     this._skill = skill;
-    if (DataManager.isAoeForbidden(skill)) return;
     if (this._skill.aoeRectColumn > 0) {
       this._widthPixels = this._skill.aoeRectColumn;
       this._heightPixels = Graphics.boxWidth;

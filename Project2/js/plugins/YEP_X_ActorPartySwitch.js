@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Party System Extension - Actor Party Switch
 // YEP_X_ActorPartySwitch.js
 //=============================================================================
@@ -8,43 +8,30 @@ Imported.YEP_X_ActorPartySwitch = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.PartySwitch = Yanfly.PartySwitch || {};
-Yanfly.PartySwitch.version = 1.05;
 
 //=============================================================================
  /*:
- * @plugindesc v1.05 (Req YEP_PartySystem.js and YEP_BattleEngineCore.js)
- * Allow actors to switch with other party members mid-battle.
+ * @plugindesc v1.04 队伍角色切换
  * @author Yanfly Engine Plugins
  *
  * @param ---General---
  * @default
  *
  * @param Switch Command
- * @parent ---General---
  * @desc The text that appears in the actor command window to switch allies.
  * @default Switch
  *
  * @param Switch Cooldown
- * @parent ---General---
- * @type number
  * @desc When an actor switches out, how many turns must the actor wait before
  * the actor can switch back in? Use 0 to disable this.
  * @default 1
  *
  * @param Show Command
- * @parent ---General---
- * @type boolean
- * @on Show
- * @off Hide
  * @desc Show party switching by default?
  * NO - false     YES - true
  * @default true
  *
  * @param Enable Command
- * @parent ---General---
- * @type boolean
- * @on Enable
- * @off Disable
  * @desc Enable party switching by default?
  * NO - false     YES - true
  * @default true
@@ -53,56 +40,36 @@ Yanfly.PartySwitch.version = 1.05;
  * @default
  *
  * @param Window X
- * @parent ---Window---
  * @desc The x position of the party switch window.
  * This is a formula.
  * @default 0
  *
  * @param Window Y
- * @parent ---Window---
  * @desc The y position of the party switch window.
  * This is a formula.
  * @default 0
  *
  * @param Window Width
- * @parent ---Window---
  * @desc The width of the party switch window.
  * This is a formula.
  * @default Graphics.boxWidth / 2
  *
  * @param Window Height
- * @parent ---Window---
  * @desc The height of the party switch window.
  * This is a formula.
  * @default Graphics.boxHeight - this.fittingHeight(4)
  *
  * @param Actor Graphic
- * @parent ---Window---
- * @type select
- * @option None
- * @value 0
- * @option Character
- * @value 1
- * @option Face
- * @value 2
- * @option Sideview Battler
- * @value 3
  * @desc What kind of graphic do you wish to associate with actors?
  * 0: None; 1: Character; 2: Face; 3: SV Battler
  * @default 2
  *
  * @param Font Size
- * @parent ---Window---
- * @type number
- * @min 1
  * @desc The font size used for the Actor Party Switch window.
  * Default: 28
  * @default 20
  *
  * @param Rect Height
- * @parent ---Window---
- * @type number
- * @min 0
  * @desc The height for each actor entry's height in pixels.
  * Use 0 for automatic detection.
  * @default 0
@@ -112,43 +79,36 @@ Yanfly.PartySwitch.version = 1.05;
  * Introduction
  * ============================================================================
  *
- * This plugin requires YEP_PartySystem and YEP_BattleEngineCore. Make sure
- * this plugin is located under both plugins in the plugin list.
+ * 这个插件需要YEP_PartySystem和YEP_BattleEngineCore支持，确保放在它们下面。
  *
- * For games that benefit more from individual party switching, this plugin
- * grants players the ability to switch party members on an individual basis
- * rather than entire parties at a time mid-battle. However, actors that have
- * just switched in and are on cooldown, required for battle, or locked in the
- * party position cannot switch out.
+ * 对于那些依赖队伍成员切换的游戏，这个插件可以让玩家直接切换队员而不是进行
+ * 整个队列的调整。并且，我们设置了切换冷却和锁定队员的功能
  *
  * ============================================================================
  * Plugin Commands
  * ============================================================================
  *
  * For those who'd like to be able to change the settings of Actor Part Switch
- * midway through the game, use the following plugin commands:
+ * midway through the game, use the following plugin commands:下面是插件命令
  *
  * Plugin Commands:
  *
  *   ShowActorPartySwitch
- *   HideActorPartySwitch
+ *   HideActorPartySwitch 显示成员切换命令菜单
  *   - Shows/hides the 'Switch' command from the actor command window from
  *   being visible.
  *
  *   EnableActorPartySwitch
- *   DisableActorPartySwitch
+ *   DisableActorPartySwitch  开启成员切换命令功能
  *   - Enables/disables the 'Switch' command from the actor command window
  *   from being able to selected.
  *
- *   ResetActorPartySwitchCooldowns
+ *   ResetActorPartySwitchCooldowns  重置冷却
  *   - Resets all cooldowns for actor party switching.
  *
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.05:
- * - Updated for RPG Maker MV version 1.5.0.
  *
  * Version 1.04:
  * - Fixed a bug that caused the on-map party layout to not update if switching

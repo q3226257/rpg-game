@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Icon Balloons
 // YEP_IconBalloons.js
 //=============================================================================
@@ -8,18 +8,13 @@ Imported.YEP_IconBalloons = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.IBalloon = Yanfly.IBalloon || {};
-Yanfly.IBalloon.version = 1.02;
 
 //=============================================================================
  /*:
- * @plugindesc v1.02 Allows you to use icons for your on-map balloons
- * over your characters and events!
+ * @plugindesc v1.00 图标气泡
  * @author Yanfly Engine Plugins
  *
  * @param Empty Filename
- * @type file
- * @dir img/system/
- * @require 1
  * @desc This is the filename of your empty balloon. Do not include
  * file extension here.
  * @default EmptyBalloon
@@ -29,16 +24,14 @@ Yanfly.IBalloon.version = 1.02;
  * Introduction
  * ============================================================================
  *
- * RPG Maker MV provides us with 15 Balloon Animations to use to allow our
- * events to show emotions with. Sometimes, this just isn't enough. However,
- * this plugin allows you to use icons from your IconSet to extend the number
- * of balloon types you can use.
+ * MV提供了我们15个气泡动画来使用，但其实是不够的。现在这个插件可
+ * 以让你拓展气泡数量
  *
  * ============================================================================
  * Plugin Commands
  * ============================================================================
  *
- * Use these plugin commands to get icon balloons playing on the player/events.
+ * 使用下面的插件命令来调整
  *
  * Plugin Commands
  *
@@ -52,12 +45,8 @@ Yanfly.IBalloon.version = 1.02;
  *
  *   ShowIconBalloon x on Follower y
  *   ShowIconBalloon x on Follower y, Wait
- *
- *   ShowIconBalloon x on This Event
- *   ShowIconBalloon x on This Event, wait
- *   - This will cause the Icon Balloon using icon index x to appear on the
- *   player, event y, or follower y. If 'wait' is used, then the event will
- *   wait until the balloon has finished playing.
+ *   - 可以使用第x位置的图标作为气泡显示在玩家或者事件甚至跟随者身上。如果使用
+ *   了等待命令，这个事件将会等待气泡播放完毕
  *
  *   ---
  *
@@ -69,27 +58,11 @@ Yanfly.IBalloon.version = 1.02;
  *
  *   ShowIconBalloon x to y on Follower z
  *   ShowIconBalloon x to y on Follower z, Wait
- *
- *   ShowIconBalloon x to y on This Event
- *   ShowIconBalloon x to y on This Event, Wait
  *   - This will cause the Icon Balloon start on icon index x and move through
  *   to y, the next icon upward each few frames up to icon index y. This icon
  *   balloon will be played on the player, event z, or follower z. If 'wait' is
  *   used, then the event will wait until the balloon has finished playing.
- *   When using this command, x cannot be greater than y.
- *
- * ============================================================================
- * Changelog
- * ============================================================================
- *
- * Version 1.02:
- * - Added 'This Event' option to Show Icon balloons thanks to Eldaym!
- *
- * Version 1.01:
- * - Updated for RPG Maker MV version 1.5.0.
- *
- * Version 1.00:
- * - Finished Plugin!
+ *   让图标气泡从x变化成y，如果使用这个命令,x的值不能大于y
  */
 //=============================================================================
 
@@ -163,9 +136,7 @@ Game_Interpreter.prototype.canShowIconBalloons = function() {
 };
 
 Game_Interpreter.prototype.processIconBalloons = function(str) {
-  // Addition made by Eldaym
-  str = str.replace('This Event', 'Event ' + this.eventId());
-  // Original
+
   if (str.match(/(\d+)[ ]TO[ ](\d+)[ ](.*)/i)) {
     var iconIndex1 = parseInt(RegExp.$1);
     var iconIndex2 = parseInt(RegExp.$2);

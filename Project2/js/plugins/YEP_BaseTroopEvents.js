@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Base Troop Events
 // YEP_BaseTroopEvents.js
 //=============================================================================
@@ -8,16 +8,13 @@ Imported.YEP_BaseTroopEvents = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.BTE = Yanfly.BTE || {};
-Yanfly.BTE.version = 1.01
 
 //=============================================================================
 /*:
- * @plugindesc v1.01 Enabling this plugin will cause all troops to have
- * events occur in every fight.
+ * @plugindesc v1.00 基础循环事件
  * @author Yanfly Engine Plugins
  *
  * @param Base Troop ID
- * @type troop
  * @desc Change this value to the Troop ID you want all of the recurring
  * troop events to draw from.
  * @default 1
@@ -27,20 +24,10 @@ Yanfly.BTE.version = 1.01
  * Introduction
  * ============================================================================
  *
- * For all the eventers out there who love to customize their battles through
- * custom event pages, you can now save yourself some time by drawing all the
- * event pages from a base troop event to occur in every fight. All of the
- * events will be present in every single battle.
- *
- * ============================================================================
- * Changelog
- * ============================================================================
- *
- * Version 1.01:
- * - Updated for RPG Maker MV version 1.5.0.
- *
- * Version 1.00:
- * - Finished Plugin!
+ * 想要放置一个事件在每个战斗中，但是复制粘贴太麻烦？现在可以使用基础敌群
+ * 事件系统，每一个单独敌群事件都可以设置一个你想要事件
+ * 对于那些事件党酷爱制作战斗自定义事件的，你可以存储自己的事件，让其发生
+ * 在每个战斗。
  */
 //=============================================================================
 

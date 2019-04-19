@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Auto Passive States
 // YEP_AutoPassiveStates.js
 //=============================================================================
@@ -8,67 +8,41 @@ Imported.YEP_AutoPassiveStates = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.APS = Yanfly.APS || {};
-Yanfly.APS.version = 1.17;
+Yanfly.APS.version = 1.13;
 
 //=============================================================================
  /*:
- * @plugindesc v1.17 This plugin allows for some states to function as
- * passives for actors, enemies, skills, and equips.
+ * @plugindesc v1.13 自动被动状态
  * @author Yanfly Engine Plugins
  *
- * @param ---Basic---
- * @default
- *
  * @param Actor Passives
- * @parent ---Basic---
  * @desc These states will always appear on actors as passives.
  * Place a space in between each state ID.
  * @default 0
  *
  * @param Enemy Passives
- * @parent ---Basic---
  * @desc These states will always appear on enemies as passives.
  * Place a space in between each state ID.
  * @default 0
  *
  * @param Global Passives
- * @parent ---Basic---
  * @desc These states will always appear on all battlers as passives.
  * Place a space in between each state ID.
  * @default 0
- *
- * @param ---List---
- * @default ...Requires RPG Maker MV 1.5.0+...
- *
- * @param Actor Passives List
- * @parent ---List---
- * @type state[]
- * @desc These states will always appear on actors as passives.
- * Use with RPG Maker MV 1.5.0+.
- * @default []
- *
- * @param Enemy Passives List
- * @parent ---List---
- * @type state[]
- * @desc These states will always appear on enemies as passives.
- * Use with RPG Maker MV 1.5.0+.
- * @default []
- *
- * @param Global Passives List
- * @parent ---List---
- * @type state[]
- * @desc These states will always appear on all battlers as passives.
- * Use with RPG Maker MV 1.5.0+.
- * @default []
  *
  * @help
  * ============================================================================
  * Introduction
  * ============================================================================
  *
- * Passive states are states that are automatically active. You can think of
- * them as an extension of traits but with more flexibility. They will always
- * be there as long as the actor or enemy has auto passive state notetags.
+ * 为你的游戏添加被动状态。当角色装备武器或者学习技能时，可以获得一个永久
+ * 的状态。为你的游戏添加被动状态提高游戏可玩性吧！
+ * 被动状态是自动添加的。你可以认为他们是更加灵活的拓展特性。只要角色有状
+ * 态标签，那么就会一直存在状态。
+ * 注意：对于有被动状态的技能，只有学习的时候会被应用。通过特性获得的技能
+ * 不会造成被动状态。为什么呢？因为如果没有这个限制，被动技能执行被动状态
+ * 将会让你的游戏进入一个无限循环而造成崩溃。所以如果你希望你的技能提高被
+ * 动状态，让你的角色去主动学习这个技能而不是通过特性获得。
  *
  * ============================================================================
  * Notetags
@@ -80,14 +54,10 @@ Yanfly.APS.version = 1.17;
  * Actor, Class, Skills, Weapon, Armor, Enemy Notetags:
  *   <Passive State: x>
  *   <Passive State: x, x, x>
- *   This will allow the actor or enemy to have state x as a passive state.
- *   If placed inside a weapon or armor notebox, the user will have that
- *   passive state.
+ *   允许你的角色获得被动状态x。你可以放在角色、敌方、武器、装备等标签栏
  *
  *   <Passive State: x to y>
- *   This will add the states x through y (in a sequence) for the actor or
- *   enemy to have as a passive state. If placed inside a weapon or armor
- *   notebox, the user will have that passive state.
+ *   让你的角色获得状态x到y。你可以放在角色、敌方、武器、装备等标签栏
  *
  * For those who don't want their passive states to always be on, you can use
  * the following notetags to introduce conditions for your passive states. All
@@ -98,32 +68,26 @@ Yanfly.APS.version = 1.17;
  *   <Passive Condition: HP Below x%>
  *   <Passive Condition: MP Above x%>
  *   <Passive Condition: MP Below x%>
- *   If the user's HP or MP is above/below x% of the MaxHP or MaxMP, this
- *   condition will be met for the passive state to appear.
+ *   当血量或者魔法量低于或者高于最大值时，被动状态触发。
  *
  *   <Passive Condition: Stat Above x>
  *   <Passive Condition: Stat Below x>
  *   Replace 'stat' with 'HP', 'MP', 'TP', 'MAXHP', 'MAXMP', 'ATK', 'DEF',
- *   'MAT', 'MDF', 'AGI', 'LUK'. If the above stat is above/below x, then the
- *   condition is met for the passive state to appear.
+ *   'MAT', 'MDF', 'AGI', 'LUK'. 当其他状态低于或者高于x时，被动状态触发
  *
  *   <Passive Condition: Switch x ON>
  *   <Passive Condition: Switch x OFF>
- *   If switch x is either ON/OFF, then the condition is met for the passive
- *   state to appear.
+ *   当开关是开启或者关闭时，被动状态触发
  *
  *   <Passive Condition: Variable x Above y>
  *   <Passive Condition: Variable x Below y>
- *   Replace x with the variable you wish to check to see if it's above/below
- *   y, then the condition is met for the passive state to appear.
+ *   当变量x高于或者低于y时，被动状态触发
  *
  * ============================================================================
  * Lunatic Mode - Conditional Passives
  * ============================================================================
  *
- * For those who understand a bit of JavaScript and would like for their
- * passive states to appear under specific conditions, you can use this notetag
- * to accomplish conditional factors.
+ * 对于掌握JS语言并且想把被动状态用于特殊情况时，你可以使用下面的标签来完成。
  *
  * State Notetags:
  *   <Custom Passive Condition>
@@ -133,35 +97,16 @@ Yanfly.APS.version = 1.17;
  *     condition = false;
  *   }
  *   </Custom Passive Condition>
- *   This enables you to input conditions to be met in order for the passive
- *   state to appear. If the 'condition' variable returns true, the passive
- *   state will appear. If the 'condition' returns false, it won't appear. If
- *   condition is not defined, it will return true and the passive state will
- *   appear on the battler.
- *   * Note: All non-custom passive conditions must be met before this one can
- *   be fulfilled and allow the custom condition to appear.
+ *   这可以使你选择特定情况来让被动状态出现。如果condition返回为true，这个
+ *   被动状态就会出现。如果condition返回为false，这个被动状态就不会出现。如
+ *   果condition没有定义，这个被动状态会出现。
+ *   注意：所有非自定义情况会在这个完成之前运行，并且允许自定义情况出现
  *   * Note: If you decide to use a condition that requires the actor to have a
  *   particular state, it cannot be a passive state to prevent infinite loops.
  *
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.17:
- * - Optimization update. There should be less lag spikes if there are more
- * passive conditions present on a battler.
- *
- * Version 1.16:
- * - Bypass the isDevToolsOpen() error when bad code is inserted into a script
- * call or custom Lunatic Mode code segment due to updating to MV 1.6.1.
- *
- * Version 1.15:
- * - Bug fixed that made global passives not apply to actors.
- *
- * Version 1.14:
- * - Updated for RPG Maker MV version 1.5.0.
- * - Added parameters: Actor Passives List, Enemy Passives List, and
- *   Global Passives List
  *
  * Version 1.13:
  * - Lunatic Mode fail safes added.
@@ -230,25 +175,11 @@ Yanfly.SetupParameters = function() {
     Yanfly.Param.APSActorPas[i] = parseInt(Yanfly.Param.APSActorPas[i]);
     Yanfly.Param.APSActorPas[i] = Yanfly.Param.APSActorPas[i] || 0;
   }
-  var data = JSON.parse(Yanfly.Parameters['Actor Passives List']);
-  for (var i = 0; i < data.length; ++i) {
-    var stateId = parseInt(data[i]);
-    if (stateId <= 0) continue;
-    if (Yanfly.Param.APSActorPas.contains(stateId)) continue;
-    Yanfly.Param.APSActorPas.push(stateId);
-  }
   Yanfly.Param.APSEnemyPas = String(Yanfly.Parameters['Enemy Passives']);
   Yanfly.Param.APSEnemyPas = Yanfly.Param.APSEnemyPas.split(' ');
   for (var i = 0; i < Yanfly.Param.APSEnemyPas.length; ++i) {
     Yanfly.Param.APSEnemyPas[i] = parseInt(Yanfly.Param.APSEnemyPas[i]);
     Yanfly.Param.APSEnemyPas[i] = Yanfly.Param.APSEnemyPas[i] || 0;
-  }
-  var data = JSON.parse(Yanfly.Parameters['Enemy Passives List']);
-  for (var i = 0; i < data.length; ++i) {
-    var stateId = parseInt(data[i]);
-    if (stateId <= 0) continue;
-    if (Yanfly.Param.APSEnemyPas.contains(stateId)) continue;
-    Yanfly.Param.APSEnemyPas.push(stateId);
   }
   Yanfly.Param.APSGlobalPas = String(Yanfly.Parameters['Global Passives']);
   Yanfly.Param.APSGlobalPas = Yanfly.Param.APSGlobalPas.split(' ');
@@ -256,17 +187,6 @@ Yanfly.SetupParameters = function() {
     id = parseInt(Yanfly.Param.APSGlobalPas[i]);
     Yanfly.Param.APSActorPas.push(id);
     Yanfly.Param.APSEnemyPas.push(id);
-  }
-  var data = JSON.parse(Yanfly.Parameters['Global Passives List']);
-  for (var i = 0; i < data.length; ++i) {
-    var stateId = parseInt(data[i]);
-    if (stateId <= 0) continue;
-    if (!Yanfly.Param.APSActorPas.contains(stateId)) {
-      Yanfly.Param.APSActorPas.push(stateId);
-    }
-    if (!Yanfly.Param.APSEnemyPas.contains(stateId)) {
-      Yanfly.Param.APSEnemyPas.push(stateId);
-    }
   }
 };
 Yanfly.SetupParameters();
@@ -375,11 +295,6 @@ DataManager.processAPSNotetags2 = function(group) {
         obj.passiveConditionEval = obj.passiveConditionEval + line + '\n';
       }
     }
-
-    obj.passiveCondition = new Function('condition','a','user','subject','b',
-      'target','s','v', obj.passiveCondition + '\nreturn condition;');
-    obj.passiveConditionEval = new Function('condition','a','user','subject',
-      'b','target','s','v', obj.passiveConditionEval + '\nreturn condition;');
   }
 };
 
@@ -504,8 +419,7 @@ Game_BattlerBase.prototype.passiveStateConditions = function(state) {
   var v = $gameVariables._data;
   var code = state.passiveCondition;
   try {
-    condition = state.passiveCondition.call(this, condition, a, user, subject,
-      b, target, s, v);
+    eval(code);
   } catch (e) {
     Yanfly.Util.displayError(e, code, 'PASSIVE STATE CUSTOM CONDITION ERROR');
   }
@@ -527,8 +441,7 @@ Game_BattlerBase.prototype.passiveStateConditionEval = function(state) {
   var v = $gameVariables._data;
   var code = state.passiveConditionEval;
   try {
-    condition = state.passiveConditionEval.call(this, condition, a, user,
-      subject, b, target, s, v);
+    eval(code);
   } catch (e) {
     Yanfly.Util.displayError(e, code, 'PASSIVE STATE CUSTOM CONDITION ERROR');
   }
@@ -663,7 +576,6 @@ Yanfly.Util.displayError = function(e, code, message) {
   console.log(message);
   console.log(code || 'NON-EXISTENT');
   console.error(e);
-  if (Utils.RPGMAKER_VERSION && Utils.RPGMAKER_VERSION >= "1.6.0") return;
   if (Utils.isNwjs() && Utils.isOptionValid('test')) {
     if (!require('nw.gui').Window.get().isDevToolsOpen()) {
       require('nw.gui').Window.get().showDevTools();

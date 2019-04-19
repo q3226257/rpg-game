@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Message Core
 // YEP_MessageCore.js
 //=============================================================================
@@ -8,83 +8,55 @@ Imported.YEP_MessageCore = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.Message = Yanfly.Message || {};
-Yanfly.Message.version = 1.19;
 
 //=============================================================================
  /*:
- * @plugindesc v1.19 Adds more features to the Message Window to customized
- * the way your messages appear and functions.
+ * @plugindesc v1.17 信息核心
  * @author Yanfly Engine Plugins
  *
  * @param ---General---
  * @default
  *
  * @param Default Rows
- * @parent ---General---
- * @type number
- * @min 0
  * @desc This is default amount of rows the message box will have.
  * Default: 4
  * @default 4
  *
  * @param Default Width
- * @parent ---General---
  * @desc This is default width for the message box in pixels.
  * Default: Graphics.boxWidth
  * @default Graphics.boxWidth
  *
  * @param Face Indent
- * @parent ---General---
  * @desc If using a face graphic, this is how much text indents by.
  * Default: Window_Base._faceWidth + 24
  * @default Window_Base._faceWidth + 24
  *
  * @param Fast Forward Key
- * @parent ---General---
  * @desc This is the key used for fast forwarding.
  * @default pagedown
  *
  * @param Enable Fast Forward
- * @parent ---General---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Enable fast forward button for your messages by default?
  * NO - false     YES - true
  * @default true
  *
  * @param Word Wrapping
- * @parent ---General---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Use this to enable or disable word wrapping by default.
  * OFF - false     ON - true
  * @default false
  *
  * @param Description Wrap
- * @parent ---General---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Enable or disable word wrapping for descriptions.
  * OFF - false     ON - true
  * @default false
  *
  * @param Word Wrap Space
- * @parent ---General---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Insert a space with manual line breaks?
  * NO - false     YES - true
  * @default false
  *
  * @param Tight Wrap
- * @parent ---General---
- * @type boolean
- * @on YES
- * @off NO
  * @desc If true and using a face for the message, the message will
  * wrap tighter. NO - false     YES - true
  * @default false
@@ -93,68 +65,36 @@ Yanfly.Message.version = 1.19;
  * @default
  *
  * @param Font Name
- * @parent ---Font---
  * @desc This is the default font used for the Message Window.
  * Default: GameFont
  * @default GameFont
  *
- * @param Font Name CH
- * @parent ---Font---
- * @desc This is the default font used for the Message Window for Chinese.
- * Default: SimHei, Heiti TC, sans-serif
- * @default SimHei, Heiti TC, sans-serif
- *
- * @param Font Name KR
- * @parent ---Font---
- * @desc This is the default font used for the Message Window for Korean.
- * Default: Dotum, AppleGothic, sans-serif
- * @default Dotum, AppleGothic, sans-serif
- *
  * @param Font Size
- * @parent ---Font---
- * @type number
- * @min 1
  * @desc This is the default font size used for the Message Window.
  * Default: 28
  * @default 28
  *
  * @param Font Size Change
- * @parent ---Font---
- * @type number
- * @min 1
  * @desc Whenever \{ and \} are used, they adjust by this value.
  * Default: 12
  * @default 12
  *
  * @param Font Changed Max
- * @parent ---Font---
- * @type number
- * @min 1
  * @desc This is the maximum size achieved by \{.
  * Default: 96
  * @default 96
  *
  * @param Font Changed Min
- * @parent ---Font---
- * @type number
- * @min 1
  * @desc This is the minimum size achieved by \{.
  * Default: 12
  * @default 12
  *
  * @param Font Outline
- * @parent ---Font---
- * @type number
- * @min 0
  * @desc This is the default font outline width for messages.
  * Default: 4
  * @default 4
  *
  * @param Maintain Font
- * @parent ---Font---
- * @type boolean
- * @on YES
- * @off NO
  * @desc When changing the font name or size, maintain for following
  * messages. NO - false     YES - true
  * @default false
@@ -163,50 +103,32 @@ Yanfly.Message.version = 1.19;
  * @default
  *
  * @param Name Box Buffer X
- * @parent ---Name Box---
- * @type number
  * @desc This is the buffer for the x location of the Name Box.
  * @default -28
  *
  * @param Name Box Buffer Y
- * @parent ---Name Box---
- * @type number
  * @desc This is the buffer for the y location of the Name Box.
  * @default 0
  *
  * @param Name Box Padding
- * @parent ---Name Box---
  * @desc This is the value for the padding of the Name Box.
  * @default this.standardPadding() * 4
  *
  * @param Name Box Color
- * @parent ---Name Box---
- * @type number
- * @min 0
- * @max 31
  * @desc This is the text color used for the Name Box.
  * @default 0
  *
  * @param Name Box Clear
- * @parent ---Name Box---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Do you wish for the Name Box window to be clear?
  * NO - false     YES - true
  * @default false
  *
  * @param Name Box Added Text
- * @parent ---Name Box---
  * @desc This text is always added whenever the name box is used.
  * This can be used to automatically set up colors.
  * @default \c[6]
  *
  * @param Name Box Auto Close
- * @parent ---Name Box---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Close the message window each time the namebox displays a
  * different name? YES - true     NO - false
  * @default false
@@ -216,25 +138,23 @@ Yanfly.Message.version = 1.19;
  * Introduction
  * ============================================================================
  *
- * While RPG Maker MV Ace certainly improved the message system a whole lot, it
- * wouldn't hurt to add in a few more features, such as name windows,
- * converting textcodes to write out the icons and/or names of items, weapons,
- * armours, and* more in quicker fashion. This script also gives the developer
- * the ability to adjust the size of the message window during the game, give
- * it a separate font, and to give the player a text fast-forward feature.
+ * 这个信息核心插件为RPG Maker MV的默认信息系统添加了很多功能，可以使用更多
+ * 的文本代码，名字框，甚至可以调整文本框大小
+ * 当RPG Maker MV Ace改善了信息系统以后，我们很伤心的发现只有很少的特点，例
+ * 如名字框，文本代码转换为图标或者物品、武器、装备的名字，以及更多流行的地
+ * 方。这个脚本可以让开发者自行调整消息框的大小，调整字体或者文本快进的特点
  *
  * ============================================================================
  * Word Wrapping
  * ============================================================================
  *
- * Word wrapping is now possible through the message system. You can enable and
- * disable Word wrap using Plugin Commands. While using word wrap, if the word
- * is to extend past the message window's area, it will automatically go to the
- * following line. That said, word wrap will disable the editor's line breaks
- * and will require you to use the ones provided by the plugin:
+ * 文本换行功能现在可以通过信息系统来调整。你也可以使用插件命令来开启和关闭
+ * 这个换行功能。当开启文本换行的时候，当你的问题超过了文本框的大小，它将会
+ * 自动转入下一行。也就是说，文本换行将会关闭编辑器的文本换行功能，并且要求
+ * 你用下面的代码来实现。
  *
- * <br> or <line break> is text code to apply a line break. Use this before or
- * after a part in which you wish to start a new line.
+ * <br> or <line break> 
+ * 这段代码可以实现换行，当你打算换行的时候，请在的一段之前或者之后添加。
  *
  * Keep in mind word wrapping is mostly for message windows. However, in other
  * places that you'd like to see word wrapping, such as item descriptions,
@@ -250,123 +170,119 @@ Yanfly.Message.version = 1.19;
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  *
  * Text Code   Function
- *   \V[n]       Replaced by the value of the nth variable.
- *   \N[n]       Replaced by the name of the nth actor.
- *   \P[n]       Replaced by the name of the nth party member.
- *   \G          Replaced by the currency unit.
- *   \C[n]       Draw the subsequent text in the nth color.
- *   \I[n]       Draw the nth icon.
- *   \{          Increases the text size by one step.
- *   \}          Decreases the text size by one step.
- *   \\          Replaced with the backslash character.
- *   \$          Opens the gold window.
- *   \.          Waits 1/4th seconds.
- *   \|          Waits 1 second.
- *   \!          Waits for button input.
- *   \>          Display remaining text on same line all at once.
- *   \<          Cancel the effect that displays text all at once.
- *   \^          Do not wait for input after displaying text.
+ *   \V[n]       显示变量的值
+ *   \N[n]       显示角色的名字
+ *   \P[n]       显示队伍成员的名字
+ *   \G          显示货币
+ *   \C[n]       随后文本的颜色
+ *   \I[n]       显示图标
+ *   \{          增大一号文本大小
+ *   \}          减少一号文本大小
+ *   \\          反斜线的文字
+ *   \$          打开金币框
+ *   \.          等待0.25秒
+ *   \|          等待1秒
+ *   \!          等待按钮按下
+ *   \>          在同一行显示文字
+ *   \<          取消显示所有文字
+ *   \^          显示文本后不需要等待
  *
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  *
  *  Wait:       Effect:
- *    \w[x]     - Waits x frames (60 frames = 1 second). Message window only.
+ *    \w[x]     - 等待x时间。只对信息框有效。
  *
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  *
  *  NameWindow: Effect:
- *    \n<x>     - Creates a name box with x string. Left side. *Note
- *    \nc<x>    - Creates a name box with x string. Centered. *Note
- *    \nr<x>    - Creates a name box with x string. Right side. *Note
+ *    \n<x>     - 建立靠左的名字框
+ *    \nc<x>    -建立居中的名字框
+ *    \nr<x>    -建立靠右的名字框
  *
- *              *Note: Works for message window only.
+ *              *Note: 只对信息框有效
  *
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  *
  *  Line Break  Effect:
- *    <br>      - If using word wrap mode, this will cause a line break.
+ *    <br>      -如果你使用了换行模式，这将导致换行
  *
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  *
  *  Position:   Effect:
- *    \px[x]    - Sets x position of text to x.
- *    \py[x]    - Sets y position of text to y.
+ *    \px[x]    - 设置文本位置为x
+ *    \py[x]    - 设置文本位置为y
  *
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  *
  *  Outline:    Effect:
- *   \oc[x]    - Sets outline colour to x.
- *   \ow[x]    - Sets outline width to x.
+ *   \oc[x]    - 设置轮廓颜色
+ *   \ow[x]    - 设置轮廓宽度
  *
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  *
  *  Font:       Effect:
- *    \fr       - Resets all font changes.
- *    \fs[x]    - Changes font size to x.
- *    \fn<x>    - Changes font name to x.
- *    \fb       - Toggles font boldness.
- *    \fi       - Toggles font italic.
+ *    \fr       - 重置文本的改变
+ *    \fs[x]    - 改变文本大小
+ *    \fn<x>    - 改变文本字体.
+ *    \fb       - 加粗
+ *    \fi       - 倾斜
  *
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  *
  *  Actor:      Effect:
- *    \af[x]    - Shows face of actor x. *Note
- *    \ac[x]    - Writes out actor's class name.
- *    \an[x]    - Writes out actor's nickname.
+ *    \af[x]    - 显示角色脸图
+ *    \ac[x]    - 显示角色职业
+ *    \an[x]    - 显示角色昵称
  *
- *              *Note: Works for message window only.
+ *              *Note: 只对信息框有效
  *
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  *
  *  Party:      Effect:
- *    \pf[x]    - Shows face of party member x. *Note
- *    \pc[x]    - Writes out party member x's class name.
- *    \pn[x]    - Writes out party member x's nickname.
+ *    \pf[x]    - 显示队伍成员脸图
+ *    \pc[x]    - 显示队伍成员昵称
+ *    \pn[x]    - 显示队伍成员的昵称
  *
- *              *Note: Works for message window only.
+ *              *Note: 只对信息框有效
  *
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  *
  *  Names:      Effect:
- *    \nc[x]    - Writes out class x's name.
- *    \ni[x]    - Writes out item x's name.
- *    \nw[x]    - Writes out weapon x's name.
- *    \na[x]    - Writes out armour x's name.
- *    \ns[x]    - Writes out skill x's name.
- *    \nt[x]    - Writes out state x's name.
+ *    \nc[x]    - 显示职业名
+ *    \ni[x]    - 显示物品名
+ *    \nw[x]    - 显示武器名
+ *    \na[x]    - 显示装备名
+ *    \ns[x]    - 显示技能名
+ *    \nt[x]    - 显示状态名
  *
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  *
  *  Icon Names: Effect:
- *    \ii[x]    - Writes out item x's name including icon.
- *    \iw[x]    - Writes out weapon x's name including icon.
- *    \ia[x]    - Writes out armour x's name including icon.
- *    \is[x]    - Writes out skill x's name including icon.
- *    \it[x]    - Writes out state x's name including icon.
+ *    \ii[x]    - 显示包括图标的物品名
+ *    \iw[x]    - 显示包括图标的武器名
+ *    \ia[x]    - 显示包括图标的装备名
+ *    \is[x]    - 显示包括图标的技能名
+ *    \it[x]    - 显示包括图标的状态名
  *
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  *
- * And those are the text codes added with this script. Keep in mind that some
- * of these text codes only work for the Message Window. Otherwise, they'll
- * work for help descriptions, actor biographies, and others.
+ * 这些文本代码已经添加进了脚本。请注意这里面有一部分文本代码只能用于消息框
+ * 。而另外一些，可以对于描述文字，角色描述或者其他起作用。
  *
  * ============================================================================
  * Plugin Commands
  * ============================================================================
  *
- * The following are some plugin commands you can use through the Event Editor
- * to change various aspects about the Message system.
+ * 你可以通过事件编辑器使用下面这些插件命令来改变信息系统很多方面
  *
  * Plugin Comand
  *   MessageRows 6
- *   - Changes the Message Rows displayed to 6. If you are using continuous
- *   Show Text events, this will continue displaying the following lines's
- *   texts until it hits the row limit. Anything after that is cut off until
- *   the next message starts to avoid accidental overlap.
+ *   将信息可显示行数改为6行。如果你连续使用显示文本的事件，这将导致文本会一直
+ *   显示在框内直到达到设定上限。在这之后的文字将会显示在下一个文本框开始的时
+ *   候，以免造成不必要的重叠。
  *
  *   MessageWidth 400
- *   - Changes the Message Window Width to 400 pixels. This will cut off any
- *   words that are shown too far to the right so adjust accordingly!
+ *   - 将文本框宽度改为400像素。这将把任何超过这个像素的文字删掉
  *
  *   EnableWordWrap
  *   - Enables wordwrapping. If a word extends past the window size, it will
@@ -386,12 +302,6 @@ Yanfly.Message.version = 1.19;
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.19:
- * - Updated for RPG Maker MV version 1.5.0.
- *
- * Version 1.18:
- * - Added new plugin parameters: 'Font Name CH' and 'Font Name KR'.
  *
  * Version 1.17:
  * - Compatibility update with Message Macros for 'Name Box Auto Close' option.
@@ -485,14 +395,11 @@ Yanfly.Param.MSGFaceIndent = String(Yanfly.Parameters['Face Indent']);
 Yanfly.Param.MSGFastForwardKey = String(Yanfly.Parameters['Fast Forward Key']);
 Yanfly.Param.MSGFFOn = eval(String(Yanfly.Parameters['Enable Fast Forward']));
 Yanfly.Param.MSGWordWrap = String(Yanfly.Parameters['Word Wrapping']);
-Yanfly.Param.MSGWordWrap = eval(Yanfly.Param.MSGWordWrap);
 Yanfly.Param.MSGDescWrap = String(Yanfly.Parameters['Description Wrap']);
 Yanfly.Param.MSGWrapSpace = eval(String(Yanfly.Parameters['Word Wrap Space']));
 Yanfly.Param.MSGTightWrap = eval(String(Yanfly.Parameters['Tight Wrap']));
 
 Yanfly.Param.MSGFontName = String(Yanfly.Parameters['Font Name']);
-Yanfly.Param.MSGCNFontName = String(Yanfly.Parameters['Font Name CH']);
-Yanfly.Param.MSGKRFontName = String(Yanfly.Parameters['Font Name KR']);
 Yanfly.Param.MSGFontSize = Number(Yanfly.Parameters['Font Size']);
 Yanfly.Param.MSGFontSizeChange = String(Yanfly.Parameters['Font Size Change']);
 Yanfly.Param.MSGFontChangeMax = String(Yanfly.Parameters['Font Changed Max']);
@@ -537,18 +444,12 @@ Game_System.prototype.initialize = function() {
 };
 
 Game_System.prototype.initMessageSystem = function() {
-    this._wordWrap = Yanfly.Param.MSGWordWrap;
+    this._wordWrap = eval(Yanfly.Param.MSGWordWrap);
     this._fastForward = Yanfly.Param.MSGFFOn;
 };
 
 Game_System.prototype.initMessageFontSettings = function() {
-    if ($dataSystem.locale.match(/^zh/)) {
-      this._msgFontName = Yanfly.Param.MSGCNFontName;
-    } else if ($dataSystem.locale.match(/^ko/)) {
-      this._msgFontName = Yanfly.Param.MSGKRFontName;
-    } else {
-      this._msgFontName = Yanfly.Param.MSGFontName;
-    }
+    this._msgFontName = Yanfly.Param.MSGFontName;
     this._msgFontSize = Yanfly.Param.MSGFontSize;
     this._msgFontOutline = Yanfly.Param.MSGFontOutline;
 };
@@ -714,11 +615,7 @@ Window_Base.prototype.setWordWrap = function(text) {
       var replace = Yanfly.Param.MSGWrapSpace ? ' ' : '';
       text = text.replace(/[\n\r]+/g, replace);
     }
-    if (this._wordWrap) {
-      text = text.replace(/<(?:BR|line break)>/gi, '\n');
-    } else {
-      text = text.replace(/<(?:BR|line break)>/gi, '');
-    }
+    text = text.replace(/<(?:BR|line break)>/gi, '\n');
     return text;
 };
 

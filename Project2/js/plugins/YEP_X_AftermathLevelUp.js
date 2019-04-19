@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Victory Aftermath Extension - Aftermath Level Up
 // YEP_X_AftermathLevelUp.js
 //=============================================================================
@@ -8,36 +8,26 @@ Imported.YEP_X_AftermathLevelUp = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.ALU = Yanfly.ALU || {};
-Yanfly.ALU.version = 1.01
 
 //=============================================================================
  /*:
- * @plugindesc v1.01 (Requires YEP_VictoryAftermath.js) Adds a level up
- * portion to the Victory Aftermath sequences.
+ * @plugindesc v1.00 升级效果
  * @author Yanfly Engine Plugins
  *
  * @param ---General---
  * @default
  *
  * @param Level Up Title
- * @parent ---General---
  * @desc This is the text that appears in the title for level up.
  * %1 - Actor's Name    %2 - Level
  * @default %1 has reached Level %2!
  *
  * @param Enable Aftermath
- * @parent ---General---
- * @type boolean
- * @on Enable
- * @off Disable
  * @desc Enables/disables the level up portion by default.
  * NO - false     YES - true
  * @default true
  *
  * @param Font Size
- * @parent ---General---
- * @type number
- * @min 1
  * @desc This is the font size used to display stat comparisons.
  * Default: 28
  * @default 28
@@ -46,19 +36,14 @@ Yanfly.ALU.version = 1.01
  * @default
  *
  * @param Skill Text Singular
- * @parent ---Skill Learn---
  * @desc Text used to display learned skills singular.
  * @default Acquired Skill
  *
  * @param Skill Text Plural
- * @parent ---Skill Learn---
  * @desc Text used to display learned skills plural.
  * @default Acquired Skills
  *
  * @param Skill List Width
- * @parent ---Skill Learn---
- * @type number
- * @min 1
  * @desc The pixel width of the skill list if it appears.
  * @default 200
  *
@@ -67,52 +52,35 @@ Yanfly.ALU.version = 1.01
  * Introduction
  * ============================================================================
  *
- * This plugin requires YEP_VictoryAftermath.
- * Make sure this plugin is located under YEP_VictoryAftermath in the plugin
- * list.
+ * 这是胜利窗口插件的拓展插件。这个可以增加胜利后升级的选项，来让玩家可以获
+ * 得额外的技能。如果没有玩家升级或者关闭设置，这个效果会被忽略。当多名玩家
+ * 升级，插件会循环执行每个角色。
  *
- * This adds a level up section to the Victory Aftermath sequence to show the
- * individual parameter changes the actor has acquired in addition to skills
- * that the actor may have learned. This segment will be omitted if there are
- * no actors to level up or if the game has the segment disabled. When there
- * are multiple actors leveling up, the Victory Aftermath will cycle through
- * each of the actors.
+ * 这个插件需要“胜利窗口”插件。请确保他放在YEP_VictoryAftermath的下面。
+ * 
  *
  * ============================================================================
  * Instructions
  * ============================================================================
  *
- * While this plugin is plug and play (and doesn't require much change), if you
- * wish to change the order of when the level up process occurs, insert 'level'
- * in the 'Victory Order' parameter within the Victory Aftermath plugin's
- * parameters at the location to appear.
+ * 当这个插件插入并且执行时，你可以改变升级后事件顺序，插入“等级”在
+ * “胜利顺序”参数里。
  *
  * ============================================================================
  * Plugin Commands
  * ============================================================================
  *
- * You can use these plugin commands to adjust whether or not the Level Up
- * portion of the Victory Aftermath will occur.
+ * 你可以用下面的命令调整胜利窗口是否有升级效果
  *
  * Plugin Command:
  * 
- *   ShowVictoryLevelUp
+ *   ShowVictoryLevelUp  开启胜利后升级效果
  *   This will cause the level up segment of the Victory Aftermath to appear if
  *   there is an actor that leveled up in the current battle.
  *
- *   HideVictoryLevelUp
+ *   HideVictoryLevelUp  关闭胜利后升级效果
  *   This will cause the level up segment of the Victory Aftermath to not
  *   appear at all regardless of any actors leveling up in that battle.
- *
- * ============================================================================
- * Changelog
- * ============================================================================
- *
- * Version 1.01:
- * - Updated for RPG Maker MV version 1.5.0.
- *
- * Version 1.00:
- * - Finished Plugin!
  */
 //=============================================================================
 

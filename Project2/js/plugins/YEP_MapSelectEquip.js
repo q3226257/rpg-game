@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Map Select Equip
 // YEP_MapSelectEquip.js
 //=============================================================================
@@ -8,63 +8,41 @@ Imported.YEP_MapSelectEquip = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.MSE = Yanfly.MSE || {};
-Yanfly.MSE.version = 1.01;
 
 //=============================================================================
  /*:
- * @plugindesc v1.01 Open up a window similar to the Select Item Window,
- * but instead, returns weapon/armor ID's to a variable.
+ * @plugindesc v1.00 地图上物品选择
  * @author Yanfly Engine Plugins
  *
  * @param Default Columns
- * @type number
- * @min 1
  * @desc Default number of columns for the window.
  * @default 2
  *
  * @param Default Rows
- * @type number
- * @min 1
  * @desc Default number of rows for the window.
  * @default 4
  *
  * @param Default X Position
- * @type combo
- * @option left
- * @option center
- * @option right
  * @desc Default X Position of the window.
  * left     center     right
  * @default center
  *
  * @param Default Y Position
- * @type combo
- * @option top
- * @option middle
- * @option bottom
  * @desc Default Y Position of the window.
  * top     middle     bottom
  * @default bottom
  *
  * @param Default Width
- * @type number
- * @min 0
  * @desc Default width of the window.
  * If set to 0, window width will be the screen width.
  * @default 0
  *
  * @param Default Enable
- * @type boolean
- * @on Enable
- * @off Disable
  * @desc Enable all equips by default?
  * NO - false     YES - true
  * @default true
  *
  * @param Default Quantity
- * @type boolean
- * @on YES
- * @off NO
  * @desc Show the quantity of the equips by default?
  * NO - false     YES - true
  * @default true
@@ -74,62 +52,45 @@ Yanfly.MSE.version = 1.01;
  * Introduction
  * ============================================================================
  *
- * The Select Item event in RPG Maker MV does what it's supposed to: selects an
- * item and then binds the value to a variable. However, it lacks the ability
- * to allow the player to select weapons, armors, or both. This plugin gives
- * you the functionality of selecting an equip and binding the ID of the equip
- * to a variable.
+ * 物品选择事件在MV中确实执行了它应该做的：选择一个物品并且赋予数值给变量。
+ * 可是，它不能选择武器、护甲等。这个插件可以让你选择装备物品并且绑定它们的
+ * ID给变量。
  *
  * ============================================================================
  * Plugin Commands
  * ============================================================================
  *
- * Use the following plugin commands to utilize the Map Select Equip plugin.
+ * 使用下面的变量来调整装备选择插件
  *
  * --- Plugin Commands ---
  *
  * MapSelectEquip var type
- * - This will open up the Map Select Equip window. Replace 'var' with the ID
- * of the variable you wish to set the selected item to. Replace 'type' with
- * 'weapon', 'armor', or 'both'. The 'type' will decide the list type.
+ * -这件会打开选择窗口，替代var为某个变量ID，替代type为物品属性
  *
  * MapSelectEquipColumns x
- * - Sets the number of columns for the Map Select Equip Window to x.
+ * -设置选择窗口可显示的的列数
  *
  * MapSelectEquipRows x
- * - Sets the number of rows for the Map Select Equip Window to x.
+ * -设置选择窗口可显示的行数
  *
  * MapSelectEquipWidth x
- * - Sets the width for the Map Select Equip Window to x. If 0 is used, then
- * the window width will be the screen width.
+ * -设置选择窗口的宽度
  *
  * MapSelectEquipX left
  * MapSelectEquipX center
  * MapSelectEquipX right
- * - Sets the Map Select Equip Window to be aligned to the left side of the
- * screen, center of the screen, or right side of the screen.
+ * -设置选择窗口的水平位置
  *
  * MapSelectEquipY top
  * MapSelectEquipY middle
  * MapSelectEquipY bottom
- * - Sets the Map Select Equip Window to be aligned to the top of the screen,
- * middle of the screen, or bottom of the screen.
+ * -设置选择窗口的竖直位置
  *
  * ShowMapSelectEquipQuantity
- * - Show the quantity of the Equips in the Map Select Equip Window.
+ * -显示物品数量
  *
  * HideMapSelectEquipQuantity
- * - Hide the quantity of the Equips in the Map Select Equip Window.
- *
- * ============================================================================
- * Changelog
- * ============================================================================
- *
- * Version 1.01:
- * - Updated for RPG Maker MV version 1.5.0.
- *
- * Version 1.00:
- * - Finished Plugin!
+ * -隐藏物品数量
  */
 //=============================================================================
 

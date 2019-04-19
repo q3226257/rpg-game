@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Battle Engine Extension - Counter Control
 // YEP_X_CounterControl.js
 //=============================================================================
@@ -8,21 +8,17 @@ Imported.YEP_X_CounterControl = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.Counter = Yanfly.Counter || {};
-Yanfly.Counter.version = 1.10;
+Yanfly.Counter.version = 1.07;
 
 //=============================================================================
  /*:
- * @plugindesc v1.10 (Requires YEP_BattleEngineCore.js) Gives you more
- * control over how counters work in RPG Maker MV!
+ * @plugindesc v1.07 反击控制
  * @author Yanfly Engine Plugins
  *
  * @param ---General---
  * @default
  *
  * @param Queue Max
- * @parent ---General---
- * @type number
- * @min 1
  * @desc What's the maximum size for the counter queue?
  * @default 20
  *
@@ -30,76 +26,48 @@ Yanfly.Counter.version = 1.10;
  * @default
  *
  * @param Counter Skill
- * @parent ---Default Traits---
- * @type number
- * @min 1
  * @desc This is the default skill used for counterattacks.
  * Insert the skill ID here. Use 0 for the MV default.
  * @default 1
  *
  * @param Evade Counter
- * @parent ---Default Traits---
- * @type boolean
- * @on YES
- * @off NO
- * @desc Counter skills to evade, then counter by default?
+ * @desc Counter skills to evade,then counter by default?
  * NO - false     YES - true
  * @default false
  *
  * @param Counter Name
- * @parent ---Default Traits---
  * @desc The default counter skill name used per skill.
  * %1 - Skill Name
  * @default Counter-%1
  *
  * @param Counter Icon
- * @parent ---Default Traits---
- * @type number
- * @min 0
  * @desc The icon ID used for counter attacks. Leave at 0
  * to use the default skill's icon.
  * @default 78
  *
  * @param Counter Total
- * @parent ---Default Traits---
  * @desc Default amount of counters per actor and enemy.
  * @default 1
  *
  * @param Ally Counter
- * @parent ---Default Traits---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Allow allies to counter the actions of other allies?
  * NO - false     YES - true
  * @default false
  *
- * @param ---Default Conditions---
+ * @param --Default Conditions-
  * @default
  *
  * @param Physical
- * @parent ---Default Conditions---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Require the countered action to be physical?
  * NO - false     YES - true
  * @default true
  *
  * @param Single Target
- * @parent ---Default Conditions---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Require the countered action scope to be single target?
  * NO - false     YES - true
  * @default true
  *
  * @param Not Counter
- * @parent ---Default Conditions---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Require the countered action to not be a counter?
  * NO - false     YES - true
  * @default false
@@ -109,18 +77,12 @@ Yanfly.Counter.version = 1.10;
  * Introduction
  * ============================================================================
  *
- * This plugin requires YEP_BattleEngineCore. Make sure this plugin is located
- * under YEP_BattleEngineCore in the plugin list.
+ * 这个插件需要 YEP_BattleEngineCore。确保他放在 YEP_BattleEngineCore下面
  *
- * If you are using Imported.YEP_X_BattleSysATB or Imported.YEP_X_BattleSysCTB,
- * place this plugin under those plugins in the plugin list.
+ * 如果你使用了YEP_X_BattleSysATB或者YEP_X_BattleSysCTB，请放在他们下面
  *
- * The default counterattack trait in RPG Maker MV doesn't give many options
- * for the developer. It's a skill that flatout cancels out the physical skill
- * of the attacker by evading it and then producing a normal attack from the
- * counterattacker. This plugin will give you more control over how counters
- * work in the sense that you can choose to have the counter connect first
- * before allowing the counter skill to proc.
+ * 默认的反击特性没有太多开发设置。这是一个可以躲避敌方攻击并且反击的技能。
+ * 这个插件可以让你更好的控制反击方式。
  *
  * ============================================================================
  * Instructions - How Advanced Counters Work
@@ -128,13 +90,13 @@ Yanfly.Counter.version = 1.10;
  *
  * A counterattack is an action that serves as a reaction to an action used by
  * an opposing battler unless the action is marked as able of being countered
- * by allied members.
+ * by allied members.反击是作为对一项行动的反馈行动。
  *
  * Now begins a clash between the attacker's anti-counter stat (newly added)
  * against the target's counter stat plus any of the action's modifiers. Once
  * the finalized counter rate is decided, a random number check is made to see
  * if the counter will pass. If it doesn't, no counter will occur. If it does,
- * the next step occurs.
+ * the next step occurs.当判断反击成功时，才会行动
  *
  * The target will then generate a pool of skills it can use as counters. It
  * will go in a priority list mentioned in the next section below. The battle
@@ -142,32 +104,32 @@ Yanfly.Counter.version = 1.10;
  * counter skill that meets all of the conditions required. If no skill is
  * selected, no skill will be used as a counter. All skills have a mandatory
  * requirement of being able to pay the skill's cost and can use it.
- *
+ * 将会从反击技能池选择技能进行反击
+ * 
  * Once the skill is selected, the counter skill is placed in the counter queue
  * and waits for the current attacker's turn to be over. Once over, the actions
  * in the counter queue will begin. The counterattacker will perform counter
  * actions without conflicting with their own turns. This process will repeat
- * itself until the counter queue is emptied.
+ * itself until the counter queue is emptied.技能选择会，将会进入反击队列。
  *
  * During the counter queue process, counter skills can trigger counter skills,
  * too. For that reason, there is a maximum queue size determined by the plugin
  * parameters. Once the queue count reaches this size, no more counter skills
- * will be added to the counter queue.
+ * will be added to the counter queue.反击也可以诱发反击，你可以设置最大值
  *
  * ============================================================================
  * Instructions - Counter Skill Priority List
  * ============================================================================
  *
- * When the pool of counter skills is being generated, they will be generated
- * in the following order:
+ * 技能池产生后，执行顺序如下： 
  *
- * 1. States - Highest Priority Notebox
- * 2. States - Lowest Priority Notebox
- * 3. Equipment - Weapons Notebox
- * 4. Equipment - Armors Notebox
- * 5. Actor - Current Class Notebox
- * 6. Actor - Actor Notebox
- * 7. Enemy - Enemy Notebox
+ * 1. States - 从高优先度的状态到低优先度状态 
+ * 2. States - 从高优先度的状态到低优先度状态 
+ * 3. Equipment - 武器标签
+ * 4. Equipment - 装备标签
+ * 5. Actor - 职业标签
+ * 6. Actor - 角色标签
+ * 7. Enemy - 敌人标签
  *
  * The order of the pool of counter skills matter in that when going through
  * the conditions of the counter skill to be used, the first counter skill
@@ -177,13 +139,12 @@ Yanfly.Counter.version = 1.10;
  * Notetags
  * ============================================================================
  *
- * You can use the following notetags to alter counters in your game. Each of
- * these notetags will alter counters in a particular way.
+ * 使用下面标签设置
  *
  * Actor and Enemy Notetags:
  *
  *   <Default Counter: x>
- *   <Default Counter: name>
+ *   <Default Counter: name> 默认反击技能
  *   Sets the default counter skill to x. If it is left as 0, then the counter
  *   skill will be RPG Maker MV's default counter skill. If you are using the
  *   name of the skill, and there are multiple skills in the database with the
@@ -194,7 +155,7 @@ Yanfly.Counter.version = 1.10;
  *
  *   <Counter Skills: x>
  *   <Counter Skills: x, x, x>
- *   <Counter Skills: x to y>
+ *   <Counter Skills: x to y> 反击技能表
  *   This will add to the list of possible counter skills for the battler.
  *   If multiple skill ID's are listed, then they're all added. Priority will
  *   be given to the counter skills listed earlier.
@@ -202,7 +163,7 @@ Yanfly.Counter.version = 1.10;
  *   *Note2: See the Counter List priority to see which skills will be given
  *   priority on the counter skill list.
  *
- *   <Counter Skill: name>
+ *   <Counter Skill: name> 反击技能表
  *   This will add the named skill to the list of possible counter skills for
  *   the battler. If there are multiple skills in the database with the same
  *   name, then priority will be given to the skill with the highest ID.
@@ -210,71 +171,71 @@ Yanfly.Counter.version = 1.10;
  *   priority on the counter skill list.
  *
  *   <Counter Total: +x>
- *   <Counter Total: -x>
+ *   <Counter Total: -x> 反击次数
  *   Alters the number of times the battler can counter by x. This is the
  *   amount of times the battler can counter until the battler's turn comes up
  *   at which, the number of times is reset.
  *
- *   <Target Counter: x%>
+ *   <Target Counter: x%> 目标反击率
  *   When this battler attacks an opponent target, this will cause the target
  *   counter rate to be altered by x% rate. If a target has 10% CNT, then a
  *   notetag of 50% will cause the counter rate to become 5%.
  *
  *   <Target Counter: +x%>
- *   <Target Counter: -x%>
+ *   <Target Counter: -x%> 目标反击率
  *   When this battler attacks an opponent target, this will cause the target
  *   counter rate to increase or decrease by x%. If a target has 10% CNT, then
  *   a notetag of +50% will cause the counter rate to become +60%.
  *
- *   <Evade Counter>
+ *   <Evade Counter> 躲避反击
  *   This will change all counter skills used by the related battler to become
  *   evade counters regardless of their default nature. However, if the battler
  *   is affected by a trait that is <Hit Counter>, then priority will be given
  *   to the <Hit Counter> trait instead.
  *
- *   <Hit Counter>
+ *   <Hit Counter> 伤害反击
  *   This will change all counter skills used by the related battler to become
  *   hit counters regardless of their default nature. If the battler is also
  *   affected by <Evade Counter>, this effect will take priority.
  *
  * Skill and Item Notetags:
  *
- *   <Ally Counter>
+ *   <Ally Counter> 可以被队员用来反击
  *   Makes this action able to proc counter skills by allied members.
  *
- *   <Ally Cannot Counter>
+ *   <Ally Cannot Counter> 不可以被队员用来反击
  *   Makes this action unable to proc counter skills by allied members.
  *
- *   <Cannot Counter>
+ *   <Cannot Counter> 不能反击
  *   Causes this action to be un-counterable. This means that it will always
  *   return a 0% counterattack possibility.
  *
- *   <Counter Rate: x%>
+ *   <Counter Rate: x%> 反击概率
  *   This will cause this action to proc a counter from the target by x% rate.
  *   This means if the target has a 10% chance to counter and this notetag is
  *   50%, then the target will have a 5% chance to counter.
  *
  *   <Counter Rate: +x%>
- *   <Counter Rate: -x%>
+ *   <Counter Rate: -x%> 反击概率
  *   This will cause this action to proc a counter from the target by an
  *   additive x%. This means if the target has a 10% chance to counter and this
  *   notetag is +50%, then the target has a 60% chance to counter.
  *
  * Skill Notetags:
  *
- *   <Evade Counter>
+ *   <Evade Counter> 躲避后反击
  *   If this skill is being used as the counter skill, the battler will evade
  *   the current action and then counter.
  *
- *   <Hit Counter>
+ *   <Hit Counter> 伤害后反击
  *   If this skill is being used as the counter skill, the battler will take
  *   the hit against the current action and then counter.
  *
- *   <Counter Name: text>
+ *   <Counter Name: text> 反击技能名
  *   This changes the displayed name of the skill when used as a counter skill
  *   to 'text'.
  *
- *   <Counter Icon: x>
+ *   <Counter Icon: x> 反击技能图标
  *   This changes the displayed icon of the skill when used as a counter skill
  *   to x icon.
  *
@@ -286,7 +247,7 @@ Yanfly.Counter.version = 1.10;
  * only to specific conditions. If all conditions are met, the counter skill
  * will occur. If a single condition isn't met, that counter skill will then be
  * skipped and the next one will be checked. To add counter conditions, use the
- * following notetags:
+ * following notetags:设置反击条件
  *
  * Skill Notetags:
  *
@@ -302,7 +263,7 @@ Yanfly.Counter.version = 1.10;
  *   <Counter Condition>
  *    physical hit
  *    single target
- *   </Counter Condition>
+ *   </Counter Condition> 单一目标物理伤害后反击
  *   This skill will only be used as a counter skill if the current action is
  *   a physical hit that's single target.
  *
@@ -701,19 +662,8 @@ Yanfly.Counter.version = 1.10;
  * Changelog
  * ============================================================================
  *
- * Version 1.10:
- * - Fixed a bug that caused "Counter Hit" to not work properly.
- *
- * Version 1.09:
- * - Bypass the isDevToolsOpen() error when bad code is inserted into a script
- * call or custom Lunatic Mode code segment due to updating to MV 1.6.1.
- *
- * Version 1.08:
- * - Updated for RPG Maker MV version 1.5.0.
- *
- * Version 1.07a:
+ * Version 1.07:
  * - Lunatic Mode fail safes added.
- * - Optimization update
  * 
  * Version 1.06:
  * - Updated for RPG Maker MV version 1.3.2.
@@ -1169,7 +1119,7 @@ BattleManager.checkCounterLine = function(line, skill, subject, target) {
       return !this.checkCounterSingleTarget();
     // COUNTER HIT
     } else if (line.toUpperCase() === 'COUNTER HIT') {
-      return this.checkCounterCounterHit();
+      return !this.checkCounterCounterHit();
     // NOT COUNTER HIT
     } else if (line.toUpperCase() === 'NOT COUNTER HIT') {
       return !this.checkCounterCounterHit();
@@ -1249,7 +1199,7 @@ BattleManager.checkCounterEval = function(code, skill, subject, target) {
     var item = skill;
     var s = $gameSwitches._data;
     var v = $gameVariables._data;
-    var code = code;
+    var code = line;
     try {
       return eval(code);
     } catch (e) {
@@ -1980,7 +1930,6 @@ Yanfly.Util.displayError = function(e, code, message) {
   console.log(message);
   console.log(code || 'NON-EXISTENT');
   console.error(e);
-  if (Utils.RPGMAKER_VERSION && Utils.RPGMAKER_VERSION >= "1.6.0") return;
   if (Utils.isNwjs() && Utils.isOptionValid('test')) {
     if (!require('nw.gui').Window.get().isDevToolsOpen()) {
       require('nw.gui').Window.get().showDevTools();

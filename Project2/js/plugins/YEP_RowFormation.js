@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Row Formation
 // YEP_RowFormation.js
 //=============================================================================
@@ -8,78 +8,51 @@ Imported.YEP_RowFormation = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.Row = Yanfly.Row || {};
-Yanfly.Row.version = 1.16;
+Yanfly.Row.version = 1.12;
 
 //=============================================================================
  /*:
- * @plugindesc v1.16 Places party members into row formations to give
- * them distinct advantages based on row location.
+ * @plugindesc v1.12 编队阵列
  * @author Yanfly Engine Plugins
  *
  * @param ---General---
  * @default
  *
  * @param Maximum Rows
- * @parent ---General---
- * @type number
- * @min 1
- * @max 10
  * @desc Maximum amount of rows used in your game. This value cannot
  * be changed mid-game. Minimum: 1. Maximum: 10.
  * @default 3
  *
  * @param Command Name
- * @parent ---General---
  * @desc The command name used for Row formation command.
  * @default Row
  *
  * @param Auto Add Menu
- * @parent ---General---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Automatically add the 'Row' command to the main menu?
  * NO - false     YES - true
  * @default true
  *
  * @param Show Menu Command
- * @parent ---General---
- * @type boolean
- * @on Show
- * @off Hide
  * @desc Show the command in the main menu?
  * NO - false     YES - true
  * @default true
  *
  * @param Enable Menu Command
- * @parent ---General---
- * @type boolean
- * @on Enable
- * @off Disable
  * @desc Enable the command in the main menu?
  * NO - false     YES - true
  * @default true
  *
  * @param Show Battle Command
- * @parent ---General---
- * @type boolean
- * @on Show
- * @off Hide
  * @desc Show the command in the battle menu?
  * NO - false     YES - true
  * @default true
  *
  * @param Enable Battle Command
- * @parent ---General---
  * @desc Enable the command in the battle menu?
  * NO - false     YES - true
  * @default true
  *
  * @param Battle Cooldown
- * @parent ---General---
- * @type boolean
- * @on Enable
- * @off Disable
  * @desc How many turns must the player wait after changing rows?
  * @default 1
  *
@@ -87,19 +60,11 @@ Yanfly.Row.version = 1.16;
  * @default
  *
  * @param Default Row
- * @parent ---Defaults---
- * @type number
- * @min 1
- * @max 10
  * @desc The default row used by all battlers unless modified by a
  * notetag. Minimum: 1. Maximum: 10.
  * @default 1
  *
  * @param Enemy Row Lock
- * @parent ---Defaults---
- * @type boolean
- * @on Row Lock
- * @off No Lock
  * @desc Row lock the enemies to prevent them from changing rows?
  * NO - false     YES - true
  * @default false
@@ -108,53 +73,34 @@ Yanfly.Row.version = 1.16;
  * @default
  *
  * @param Use Map Sprite
- * @parent ---Menu Settings---
- * @type boolean
- * @on Map Sprite
- * @off Sideview Sprite
  * @desc Use map sprite instead of sideview sprite for menu?
  * NO - false     YES - true
  * @default false
  *
  * @param Front Buffer Y
- * @parent ---Menu Settings---
  * @desc The sprite buffer Y formula if you're using front view.
  * @default (rect.height - 48) / 2;
  *
  * @param Side Buffer Y
- * @parent ---Menu Settings---
  * @desc The sprite buffer Y formula if you're using sideview.
  * @default (rect.height - 64) / 2;
  *
  * @param ---Position Settings---
  * @default
  *
- * @param Alive Row Index
- * @parent ---Position Settings---
- * @type boolean
- * @on Alive members
- * @off All Members
- * @desc When calculating a unit's row index, base it off of
- * all alive members (true) or all members (false).
- * @default false
- *
  * @param Maximum Row X
- * @parent ---Position Settings---
  * @desc The maximum X position value for the row X value.
  * @default screenWidth - partySize * 32 - 16
  *
  * @param Maximum Row Y
- * @parent ---Position Settings---
  * @desc The maximum Y position value for the row Y value.
  * @default screenHeight - statusHeight - 16
  *
  * @param Minimum Row Y
- * @parent ---Position Settings---
  * @desc The maximum Y position value for the row Y value.
  * @default screenHeight - statusHeight - 16 - (maxSize * 64)
  *
  * @param Center Row Y
- * @parent ---Position Settings---
  * @desc The center Y position value for the row Y value.
  * @default (maxRowY + minRowY) / 2 + 16
  *
@@ -162,41 +108,28 @@ Yanfly.Row.version = 1.16;
  * @default
  *
  * @param Row 1 Name
- * @parent ---Row 1 Settings---
  * @desc The name used to refer to this row.
  * @default Front Row
  *
  * @param Row 1 Help Line 1
- * @parent ---Row 1 Settings---
  * @desc The help description used for this row.
  * @default This is the front row.
  *
  * @param Row 1 Help Line 2
- * @parent ---Row 1 Settings---
  * @desc The help description used for this row.
  * @default Place your melee allies here.
  *
  * @param Row 1 States
- * @parent ---Row 1 Settings---
  * @desc When a battler is in this row, apply these states.
  * Separate the states allocated with a space.
  * @default
  *
- * @param Row 1 States 1.5.0
- * @parent ---Row 1 Settings---
- * @type state[]
- * @desc When a battler is in this row, apply these states.
- * Use this with MV 1.5.0+
- * @default []
- *
  * @param Row 1 Home X
- * @parent ---Row 1 Settings---
  * @desc This is the formula used to determine the Home X location
  * for this row.
  * @default maxRowX - (maxRows - rowId) * 112 + rowIndex * 32
  *
  * @param Row 1 Home Y
- * @parent ---Row 1 Settings---
  * @desc This is the formula used to determine the Home Y location
  * for this row.
  * @default centerY + ((rowSize / -2 + 0.5) + rowIndex) * 32
@@ -205,41 +138,28 @@ Yanfly.Row.version = 1.16;
  * @default
  *
  * @param Row 2 Name
- * @parent ---Row 2 Settings---
  * @desc The name used to refer to this row.
  * @default Middle Row
  *
  * @param Row 2 Help Line 1
- * @parent ---Row 2 Settings---
  * @desc The help description used for this row.
  * @default This is the middle row.
  *
  * @param Row 2 Help Line 2
- * @parent ---Row 2 Settings---
  * @desc The help description used for this row.
  * @default Place allies here who can fight from the middle.
  *
  * @param Row 2 States
- * @parent ---Row 2 Settings---
  * @desc When a battler is in this row, apply these states.
  * Separate the states allocated with a space.
  * @default
  *
- * @param Row 2 States 1.5.0
- * @parent ---Row 2 Settings---
- * @type state[]
- * @desc When a battler is in this row, apply these states.
- * Use this with MV 1.5.0+
- * @default []
- *
  * @param Row 2 Home X
- * @parent ---Row 2 Settings---
  * @desc This is the formula used to determine the Home X location
  * for this row.
  * @default maxRowX - (maxRows - rowId) * 112 + rowIndex * 32
  *
  * @param Row 2 Home Y
- * @parent ---Row 2 Settings---
  * @desc This is the formula used to determine the Home Y location
  * for this row.
  * @default centerY + ((rowSize / -2 + 0.5) + rowIndex) * 32
@@ -248,41 +168,28 @@ Yanfly.Row.version = 1.16;
  * @default
  *
  * @param Row 3 Name
- * @parent ---Row 3 Settings---
  * @desc The name used to refer to this row.
  * @default Back Row
  *
  * @param Row 3 Help Line 1
- * @parent ---Row 3 Settings---
  * @desc The help description used for this row.
  * @default This is the back row.
  *
  * @param Row 3 Help Line 2
- * @parent ---Row 3 Settings---
  * @desc The help description used for this row.
  * @default Place allies here to take less melee damage.
  *
  * @param Row 3 States
- * @parent ---Row 3 Settings---
  * @desc When a battler is in this row, apply these states.
  * Separate the states allocated with a space.
  * @default
  *
- * @param Row 3 States 1.5.0
- * @parent ---Row 3 Settings---
- * @type state[]
- * @desc When a battler is in this row, apply these states.
- * Use this with MV 1.5.0+
- * @default []
- *
  * @param Row 3 Home X
- * @parent ---Row 3 Settings---
  * @desc This is the formula used to determine the Home X location
  * for this row.
  * @default maxRowX - (maxRows - rowId) * 112 + rowIndex * 32
  *
  * @param Row 3 Home Y
- * @parent ---Row 3 Settings---
  * @desc This is the formula used to determine the Home Y location
  * for this row.
  * @default centerY + ((rowSize / -2 + 0.5) + rowIndex) * 32
@@ -291,41 +198,28 @@ Yanfly.Row.version = 1.16;
  * @default
  *
  * @param Row 4 Name
- * @parent ---Row 4 Settings---
  * @desc The name used to refer to this row.
  * @default Row 4
  *
  * @param Row 4 Help Line 1
- * @parent ---Row 4 Settings---
  * @desc The help description used for this row.
  * @default Help Description
  *
  * @param Row 4 Help Line 2
- * @parent ---Row 4 Settings---
  * @desc The help description used for this row.
  * @default Help Description
  *
  * @param Row 4 States
- * @parent ---Row 4 Settings---
  * @desc When a battler is in this row, apply these states.
  * Separate the states allocated with a space.
  * @default
  *
- * @param Row 4 States 1.5.0
- * @parent ---Row 4 Settings---
- * @type state[]
- * @desc When a battler is in this row, apply these states.
- * Use this with MV 1.5.0+
- * @default []
- *
  * @param Row 4 Home X
- * @parent ---Row 4 Settings---
  * @desc This is the formula used to determine the Home X location
  * for this row.
  * @default maxRowX - (maxRows - rowId) * 112 + rowIndex * 32
  *
  * @param Row 4 Home Y
- * @parent ---Row 4 Settings---
  * @desc This is the formula used to determine the Home Y location
  * for this row.
  * @default centerY + ((rowSize / -2 + 0.5) + rowIndex) * 32
@@ -334,41 +228,28 @@ Yanfly.Row.version = 1.16;
  * @default
  *
  * @param Row 5 Name
- * @parent ---Row 5 Settings---
  * @desc The name used to refer to this row.
  * @default Row 5
  *
  * @param Row 5 Help Line 1
- * @parent ---Row 5 Settings---
  * @desc The help description used for this row.
  * @default Help Description
  *
  * @param Row 5 Help Line 2
- * @parent ---Row 5 Settings---
  * @desc The help description used for this row.
  * @default Help Description
  *
  * @param Row 5 States
- * @parent ---Row 5 Settings---
  * @desc When a battler is in this row, apply these states.
  * Separate the states allocated with a space.
  * @default
  *
- * @param Row 5 States 1.5.0
- * @parent ---Row 5 Settings---
- * @type state[]
- * @desc When a battler is in this row, apply these states.
- * Use this with MV 1.5.0+
- * @default []
- *
  * @param Row 5 Home X
- * @parent ---Row 5 Settings---
  * @desc This is the formula used to determine the Home X location
  * for this row.
  * @default maxRowX - (maxRows - rowId) * 112 + rowIndex * 32
  *
  * @param Row 5 Home Y
- * @parent ---Row 5 Settings---
  * @desc This is the formula used to determine the Home Y location
  * for this row.
  * @default centerY + ((rowSize / -2 + 0.5) + rowIndex) * 32
@@ -377,41 +258,28 @@ Yanfly.Row.version = 1.16;
  * @default
  *
  * @param Row 6 Name
- * @parent ---Row 6 Settings---
  * @desc The name used to refer to this row.
  * @default Row 6
  *
  * @param Row 6 Help Line 1
- * @parent ---Row 6 Settings---
  * @desc The help description used for this row.
  * @default Help Description
  *
  * @param Row 6 Help Line 2
- * @parent ---Row 6 Settings---
  * @desc The help description used for this row.
  * @default Help Description
  *
  * @param Row 6 States
- * @parent ---Row 6 Settings---
  * @desc When a battler is in this row, apply these states.
  * Separate the states allocated with a space.
  * @default
  *
- * @param Row 6 States 1.5.0
- * @parent ---Row 6 Settings---
- * @type state[]
- * @desc When a battler is in this row, apply these states.
- * Use this with MV 1.5.0+
- * @default []
- *
  * @param Row 6 Home X
- * @parent ---Row 6 Settings---
  * @desc This is the formula used to determine the Home X location
  * for this row.
  * @default maxRowX - (maxRows - rowId) * 112 + rowIndex * 32
  *
  * @param Row 6 Home Y
- * @parent ---Row 6 Settings---
  * @desc This is the formula used to determine the Home Y location
  * for this row.
  * @default centerY + ((rowSize / -2 + 0.5) + rowIndex) * 32
@@ -420,41 +288,28 @@ Yanfly.Row.version = 1.16;
  * @default
  *
  * @param Row 7 Name
- * @parent ---Row 7 Settings---
  * @desc The name used to refer to this row.
  * @default Row 7
  *
  * @param Row 7 Help Line 1
- * @parent ---Row 7 Settings---
  * @desc The help description used for this row.
  * @default Help Description
  *
  * @param Row 7 Help Line 2
- * @parent ---Row 7 Settings---
  * @desc The help description used for this row.
  * @default Help Description
  *
  * @param Row 7 States
- * @parent ---Row 7 Settings---
  * @desc When a battler is in this row, apply these states.
  * Separate the states allocated with a space.
  * @default
  *
- * @param Row 7 States 1.5.0
- * @parent ---Row 7 Settings---
- * @type state[]
- * @desc When a battler is in this row, apply these states.
- * Use this with MV 1.5.0+
- * @default []
- *
  * @param Row 7 Home X
- * @parent ---Row 7 Settings---
  * @desc This is the formula used to determine the Home X location
  * for this row.
  * @default maxRowX - (maxRows - rowId) * 112 + rowIndex * 32
  *
  * @param Row 7 Home Y
- * @parent ---Row 7 Settings---
  * @desc This is the formula used to determine the Home Y location
  * for this row.
  * @default centerY + ((rowSize / -2 + 0.5) + rowIndex) * 32
@@ -463,41 +318,28 @@ Yanfly.Row.version = 1.16;
  * @default
  *
  * @param Row 8 Name
- * @parent ---Row 8 Settings---
  * @desc The name used to refer to this row.
  * @default Row 8
  *
  * @param Row 8 Help Line 1
- * @parent ---Row 8 Settings---
  * @desc The help description used for this row.
  * @default Help Description
  *
  * @param Row 8 Help Line 2
- * @parent ---Row 8 Settings---
  * @desc The help description used for this row.
  * @default Help Description
  *
  * @param Row 8 States
- * @parent ---Row 8 Settings---
  * @desc When a battler is in this row, apply these states.
  * Separate the states allocated with a space.
  * @default
  *
- * @param Row 8 States 1.5.0
- * @parent ---Row 8 Settings---
- * @type state[]
- * @desc When a battler is in this row, apply these states.
- * Use this with MV 1.5.0+
- * @default []
- *
  * @param Row 8 Home X
- * @parent ---Row 8 Settings---
  * @desc This is the formula used to determine the Home X location
  * for this row.
  * @default maxRowX - (maxRows - rowId) * 112 + rowIndex * 32
  *
  * @param Row 8 Home Y
- * @parent ---Row 8 Settings---
  * @desc This is the formula used to determine the Home Y location
  * for this row.
  * @default centerY + ((rowSize / -2 + 0.5) + rowIndex) * 32
@@ -506,41 +348,28 @@ Yanfly.Row.version = 1.16;
  * @default
  *
  * @param Row 9 Name
- * @parent ---Row 9 Settings---
  * @desc The name used to refer to this row.
  * @default Row 9
  *
  * @param Row 9 Help Line 1
- * @parent ---Row 9 Settings---
  * @desc The help description used for this row.
  * @default Help Description
  *
  * @param Row 9 Help Line 2
- * @parent ---Row 9 Settings---
  * @desc The help description used for this row.
  * @default Help Description
  *
  * @param Row 9 States
- * @parent ---Row 9 Settings---
  * @desc When a battler is in this row, apply these states.
  * Separate the states allocated with a space.
  * @default
  *
- * @param Row 9 States 1.5.0
- * @parent ---Row 9 Settings---
- * @type state[]
- * @desc When a battler is in this row, apply these states.
- * Use this with MV 1.5.0+
- * @default []
- *
  * @param Row 9 Home X
- * @parent ---Row 9 Settings---
  * @desc This is the formula used to determine the Home X location
  * for this row.
  * @default maxRowX - (maxRows - rowId) * 112 + rowIndex * 32
  *
  * @param Row 9 Home Y
- * @parent ---Row 9 Settings---
  * @desc This is the formula used to determine the Home Y location
  * for this row.
  * @default centerY + ((rowSize / -2 + 0.5) + rowIndex) * 32
@@ -549,41 +378,28 @@ Yanfly.Row.version = 1.16;
  * @default
  *
  * @param Row 10 Name
- * @parent ---Row 10 Settings---
  * @desc The name used to refer to this row.
  * @default Row 10
  *
  * @param Row 10 Help Line 1
- * @parent ---Row 10 Settings---
  * @desc The help description used for this row.
  * @default Help Description
  *
  * @param Row 10 Help Line 2
- * @parent ---Row 10 Settings---
  * @desc The help description used for this row.
  * @default Help Description
  *
  * @param Row 10 States
- * @parent ---Row 10 Settings---
  * @desc When a battler is in this row, apply these states.
  * Separate the states allocated with a space.
  * @default
  *
- * @param Row 10 States 1.5.0
- * @parent ---Row 10 Settings---
- * @type state[]
- * @desc When a battler is in this row, apply these states.
- * Use this with MV 1.5.0+
- * @default []
- *
  * @param Row 10 Home X
- * @parent ---Row 10 Settings---
  * @desc This is the formula used to determine the Home X location
  * for this row.
  * @default maxRowX - (maxRows - rowId) * 112 + rowIndex * 32
  *
  * @param Row 10 Home Y
- * @parent ---Row 10 Settings---
  * @desc This is the formula used to determine the Home Y location
  * for this row.
  * @default centerY + ((rowSize / -2 + 0.5) + rowIndex) * 32
@@ -592,19 +408,16 @@ Yanfly.Row.version = 1.16;
  * @default
  *
  * @param Adjust Relative
- * @parent ---Enemy Rows---
  * @desc Adjusts enemy rows at the start of battle or as is.
  * false - As Is     true - Adjust Relative
  * @default false
  *
  * @param Enemy Row X
- * @parent ---Enemy Rows---
  * @desc Whenever an enemy changes rows, adjust X to this location.
  * This is a formula.
  * @default screenX - (rowId - 1) * 64
  *
  * @param Enemy Row Y
- * @parent ---Enemy Rows---
  * @desc Whenever an enemy changes rows, adjust Y to this location.
  * This is a formula.
  * @default screenY
@@ -614,56 +427,47 @@ Yanfly.Row.version = 1.16;
  * Introduction
  * ============================================================================
  *
- * This plugin places party members into row formations to give them distinct
- * advantages based on row location in the form of states for maximum control.
- * Skills and items are capable of moving targets to different row locations.
+ * 这个插件把队员编队并且让他们根据状态有不同的位置。技能和物品可以用来移动
+ * 目标
  * 
- * If you are using YEP_BattleEngineCore.js, place this plugin under the
- * YEP_BattleEngineCore.js plugin in the Plugin Manager list to receive extra
- * features such as being able to change Rows mid-battle.
+ * 如果你使用了YEP_BattleEngineCore，把这个插件放在YEP_BattleEngineCore下面
+ * ，这样你就可以在战斗中改变队列
  *
  * ============================================================================
  * What are Rows?
  * ============================================================================
  * 
- * Rows are positions your party members are placed in. Depending on how you
- * set up the rows for your project (and how many), rows can provide different
- * advantages to the party members for just simply being in that row.
+ * 队列就是你队伍成员所在位置。你可以设置你队伍的排列，然后就可以调整队伍成
+ * 员的位置
  *
- * These advantages are granted through the states that are given to the party
- * members from the plugin parameter settings. How you set up these advantages
- * is entirely up to you.
+ * 这些位置将可以通过插件参数提供给角色相应状态来获得。怎么设置将取决于你
  *
  * ---
  *
- * An example of some setups:
+ * 关于设置的例子:
  *
  * Front Row:
- * Members in the front row will receive full damage from the Melee element.
+ * 前排将会承受混战的全部伤害
  *
  * Middle Row:
- * Members in the middle row will receive slightly less damage from the Melee
- * element, but the Attack command is sealed unless they have a ranged weapon.
+ * 中间排将会受到少量伤害，但是他们必须有范围武器才可以攻击
  *
  * Back Row:
- * Members in the back row will receive a lot less damage fom the Melee element
- * and also cannot use the Attack command unless equipped with a ranged weapon.
+ * 后排会受到极少伤害，但是他们必须有范围武器才可以攻击
  *
  * ---
  *
- * How you choose to set up your rows is dependent on how you can set up your
- * states that affect those rows. These states cannot be removed by skills and
- * are considered a passive effective.
+ * 你如果设置队取决于你设置的状态。这些状态不可以被技能移除并且是主动效果
  *
  * ============================================================================
  * Notetags
  * ============================================================================
  *
- * You can use these notetags to modify the various aspects of row formations.
+ * 你可以使用下面的标签来调整队列
  *
  * Actor and Enemy Notetags:
  *   <Default Row: x>
- *   <Default Row: x, x, x>
+ *   <Default Row: x, x, x>  默认队列为x
  *   This is the default row assigned to the battler by default. This will
  *   override the default parameter settings. If multiple x values are assigned
  *   then the battler can start in any of those rows. If multiple rows are
@@ -671,11 +475,11 @@ Yanfly.Row.version = 1.16;
  *   (for enemies), the battler will start in a random row included.
  *
  * Actor, Class, Enemy, Weapon, Armor, and State Notetags:
- *   <Row Lock>
+ *   <Row Lock>   锁定队列
  *   This causes the affected battler to be row locked and unable to switch
  *   rows. For enemies, this will override the default parameters.
  *
- *   <Not Row Lock>
+ *   <Not Row Lock>  解锁队列
  *   This causes the affected battler to be not be row locked and able to
  *   switch rows. This is primarily for enemies since all non-enemies are not
  *   row locked by default. This will override the default parameters.
@@ -683,33 +487,33 @@ Yanfly.Row.version = 1.16;
  * Skill and Item Notetags:
  *   <Row Only: x>
  *   <Row Only: x, x, x>
- *   <Row Only: x to y>
+ *   <Row Only: x to y>   只有位于队列x才能使用技能或者物品
  *   This makes it so that this skill/item can only be used by the battler if
  *   the battler is in row x. If multiple rows are used, the battler can be in
  *   any of those rows. If you use the x to y notetag, this will account for
  *   all the rows from x to y.
  *
- *   <Change Target Row: x>
+ *   <Change Target Row: x>   改变目标队列为x
  *   Changes target's current row to x. This cannot go under 1 nor can it go
  *   past the designated maximum row set in the parameters.
  *
- *   <Push Back Target Row: x>
+ *   <Push Back Target Row: x>   目标队列后退x排
  *   This will push the target back x rows. This cannot exceed the maximum row
  *   set in the parameters.
  *
- *   <Pull Forward Target Row: x>
+ *   <Pull Forward Target Row: x>   目标队列前进x排
  *   This will pull the target forward x rows. This cannot exceed the maximum
  *   rows set in the parameters.
  *
- *   <Change User Row: x>
+ *   <Change User Row: x>    改变使用者队列为x
  *   Changes user's current row to x. This cannot go under 1 nor can it go
  *   past the designated maximum row set in the parameters.
  *
- *   <Push Back User Row: x>
+ *   <Push Back User Row: x>  使用者队列后退x排
  *   This will push the user back x rows. This cannot exceed the maximum row
  *   set in the parameters.
  *
- *   <Pull Forward User Row: x>
+ *   <Pull Forward User Row: x>   目标队列前进x排
  *   This will pull the user forward x rows. This cannot exceed the maximum
  *   rows set in the parameters.
  *
@@ -848,69 +652,48 @@ Yanfly.Row.version = 1.16;
  * Plugin Commands
  * ============================================================================
  *
- * The following are some plugin commands you can use to adjust rows mid-game.
+ * 下面的插件命令可以用来调整队列
  *
  * Plugin Command:
  *
  *   ShowMenuRow
- *   HideMenuRow
+ *   HideMenuRow   显示或隐藏主菜单队列命令菜单
  *   This will either show or hide the Row command from the main menu.
  *
  *   EnableMenuRow
- *   DisableMenuRow
+ *   DisableMenuRow  开启或关闭主菜单队列命令菜单
  *   This will either enable or disable the Row command from the main menu.
  *
  *   ShowBattleRow
- *   HideBattleRow
+ *   HideBattleRow  显示或隐藏战斗菜单队列命令菜单
  *   This will either show or hide the Row command from the battle party menu.
  *   This requires the YEP_BattleEngineCore plugin to take effect.
  *
  *   EnableBattleRow
- *   DisableBattleRow
+ *   DisableBattleRow  开启或关闭战斗菜单队列命令菜单
  *   This will either enable or disable the Row command from the battle party
  *   menu. This requires the YEP_BattleEngineCore plugin to take effect.
  *
- *   SetActorRow actorId x
+ *   SetActorRow actorId x   设置角色队列为x排
  *   This will set the actor represented by actorId to move to row x. If you
  *   want to move actor 3 to the 2nd row, the plugin command would look like:
  *   SetActorRow 3 2
  *
- *   SetPartyRow slotId x
+ *   SetPartyRow slotId x  设置队伍成员队列为x排
  *   This will set the party member in slotId to move to row x. If you want to
  *   move the 3rd party member to the 2nd row, the plugin command would look
  *   like: SetPartyRow 3 2
  *
- *   SetEnemyRow slotId x
+ *   SetEnemyRow slotId x  设置敌方成员队列为x排
  *   This will set the enemy member in slotId to move to row x. If you want to
  *   move the 3rd enemy member to the 2nd row, the plugin command would look
  *   like: SetEnemyRow 3 2
- *   * Note: If you use this plugin command during turn 0 and the parameter
- *   'Adjust Relative' is set to false, the enemies will not move and
- *   automatically assume the position they are in will be the row they'll be
- *   in. On the other hand, using this plugin on anything after turn 0 will
- *   move the enemy visually to a different position on the screen. If the
- *   parameter 'Adjust Relative' is true, the enemies will move.
+ *   注意：如果你在回合0时使用插件命令，敌方不会移动，并且自动认为现在的位置就
+ *   是将要去的位置。另一方面，在回合0之后使用将会移动敌人到不同的位置
  *
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.16:
- * - Bypass the isDevToolsOpen() error when bad code is inserted into a script
- * call or custom Lunatic Mode code segment due to updating to MV 1.6.1.
- *
- * Version 1.15:
- * - Updated for RPG Maker MV version 1.5.0.
- * - Added new 'Row x States 1.5.0' plugin parameters.
- * - Added new 'Alive Row Index' plugin parameter.
- *
- * Version 1.14:
- * - Game now refreshes all battlers upon reentry into the battle after
- * entering and leaving the Row formation menu mid-battle.
- *
- * Version 1.13:
- * - Bug fixed where setting an actor's home position didn't mark their
- * original index value.
  *
  * Version 1.12:
  * - Lunatic Mode fail safes added.
@@ -1006,8 +789,6 @@ Yanfly.Param.RowMapSprite = eval(String(Yanfly.Parameters['Use Map Sprite']));
 Yanfly.Param.RowFrontBufferY = String(Yanfly.Parameters['Front Buffer Y']);
 Yanfly.Param.RowSideBufferY = String(Yanfly.Parameters['Side Buffer Y']);
 
-Yanfly.Param.RowAliveRowIndex = String(Yanfly.Parameters['Alive Row Index']);
-Yanfly.Param.RowAliveRowIndex = eval(Yanfly.Param.RowAliveRowIndex);
 Yanfly.Param.RowMaxRowX = String(Yanfly.Parameters['Maximum Row X']);
 Yanfly.Param.RowMaxRowY = String(Yanfly.Parameters['Maximum Row Y']);
 Yanfly.Param.RowMinRowY = String(Yanfly.Parameters['Minimum Row Y']);
@@ -1018,37 +799,24 @@ Yanfly.Row.Help = {};
 Yanfly.Row.States = {};
 Yanfly.Row.HomeX = {};
 Yanfly.Row.HomeY = {};
-Yanfly.SetupParameters = function() {
-  for (var i = 1; i < 11; ++i) {
-    var text = 'Row ' + i + ' Name';
-    Yanfly.Row.Name[i] = String(Yanfly.Parameters[text]);
-    text = 'Row ' + i + ' Help Line 1';
-    Yanfly.Row.Help[i] = String(Yanfly.Parameters[text]) + '\n';
-    text = 'Row ' + i + ' Help Line 2';
-    Yanfly.Row.Help[i] += String(Yanfly.Parameters[text]);
-    text = 'Row ' + i + ' States';
-    var array = String(Yanfly.Parameters[text]).split(' ');
-    Yanfly.Row.States[i] = [];
-    for (var j = 0; j < array.length; ++j) {
-      Yanfly.Row.States[i].push(parseInt(array[j]));
-    }
-    if (Utils.RPGMAKER_VERSION && Utils.RPGMAKER_VERSION >= '1.5.0') {
-      text = 'Row ' + i + ' States 1.5.0';
-      Yanfly.Parameters[text] = Yanfly.Parameters[text] || '[]';
-      var array = JSON.parse(Yanfly.Parameters[text]);
-      Yanfly.Row.States[i] = [];
-      for (var j = 0; j < array.length; ++j) {
-        if (Yanfly.Row.States[i].contains(array[j])) continue;
-        Yanfly.Row.States[i].push(parseInt(array[j]));
-      }
-    }
-    text = 'Row ' + i + ' Home X';
-    Yanfly.Row.HomeX[i] = String(Yanfly.Parameters[text]);
-    text = 'Row ' + i + ' Home Y';
-    Yanfly.Row.HomeY[i] = String(Yanfly.Parameters[text]);
-  };
+for (Yanfly.i = 1; Yanfly.i < 11; ++Yanfly.i) {
+  Yanfly.text = 'Row ' + Yanfly.i + ' Name';
+  Yanfly.Row.Name[Yanfly.i] = String(Yanfly.Parameters[Yanfly.text]);
+  Yanfly.text = 'Row ' + Yanfly.i + ' Help Line 1';
+  Yanfly.Row.Help[Yanfly.i] = String(Yanfly.Parameters[Yanfly.text]) + '\n';
+  Yanfly.text = 'Row ' + Yanfly.i + ' Help Line 2';
+  Yanfly.Row.Help[Yanfly.i] += String(Yanfly.Parameters[Yanfly.text]);
+  Yanfly.text = 'Row ' + Yanfly.i + ' States';
+  Yanfly.array = String(Yanfly.Parameters[Yanfly.text]).split(' ');
+  Yanfly.Row.States[Yanfly.i] = [];
+  for (Yanfly.j = 0; Yanfly.j < Yanfly.array.length; ++Yanfly.j) {
+    Yanfly.Row.States[Yanfly.i].push(parseInt(Yanfly.array[Yanfly.j]));
+  }
+  Yanfly.text = 'Row ' + Yanfly.i + ' Home X';
+  Yanfly.Row.HomeX[Yanfly.i] = String(Yanfly.Parameters[Yanfly.text]);
+  Yanfly.text = 'Row ' + Yanfly.i + ' Home Y';
+  Yanfly.Row.HomeY[Yanfly.i] = String(Yanfly.Parameters[Yanfly.text]);
 };
-Yanfly.SetupParameters();
 
 Yanfly.Param.RowEnemyAdj = eval(String(Yanfly.Parameters['Adjust Relative']));
 Yanfly.Param.RowEnemyX = String(Yanfly.Parameters['Enemy Row X']);
@@ -1208,26 +976,6 @@ BattleManager.requestRefreshRows = function() {
 
 BattleManager.isRowRefreshRequested = function() {
     return this._refreshRows;
-};
-
-//=============================================================================
-// Game_Temp
-//=============================================================================
-
-Game_Temp.prototype.hasStoredBattleSpriteset = function() {
-  return this._battleSpriteset;
-};
-
-Game_Temp.prototype.storeBattleSpriteset = function() {
-  this._battleSpriteset = SceneManager._scene._spriteset;
-};
-
-Game_Temp.prototype.restoreBattleSpriteset = function() {
-  if (this._battleSpriteset) {
-    SceneManager._scene._spriteset = this._battleSpriteset;
-    SceneManager._scene.addChild(SceneManager._scene._spriteset);
-    this._battleSpriteset = undefined;
-  }
 };
 
 //=============================================================================
@@ -1452,12 +1200,8 @@ Game_Battler.prototype.row = function() {
 };
 
 Game_Battler.prototype.rowIndex = function() {
-    var group = this.friendsUnit();
-    if (Yanfly.Param.RowAliveRowIndex && group === $gameTroop) {
-      var index = group.rowAliveMembers(this.row()).indexOf(this);
-    } else {
-      var index = group.rowMembers(this.row()).indexOf(this);
-    }
+    var group = (this.isActor()) ? $gameParty : $gameTroop;
+    var index = group.rowMembers(this.row()).indexOf(this);
     return index;
 };
 
@@ -1827,7 +1571,7 @@ Sprite_Battler.prototype.setHome = function(x, y) {
 Yanfly.Row.Sprite_Actor_setActorHome = Sprite_Actor.prototype.setActorHome;
 Sprite_Actor.prototype.setActorHome = function(index) {
     if (!$gameSystem.isSideView()) {
-      return Yanfly.Row.Sprite_Actor_setActorHome.call(this, index);
+      return Yanfly.Row.Sprite_Actor_setActorHome.call(this);
     }
     this.alterActorHome(index);
     this.setHome(this._homeX, this._homeY);
@@ -2100,7 +1844,7 @@ Yanfly.Row.Spriteset_Battle_createLowerLayer =
     Spriteset_Battle.prototype.createLowerLayer;
 Spriteset_Battle.prototype.createLowerLayer = function() {
     Yanfly.Row.Spriteset_Battle_createLowerLayer.call(this);
-    this.refreshRowPositions();
+    //this.refreshRowPositions();
 };
 
 Spriteset_Battle.prototype.refreshRowPositions = function() {
@@ -2472,16 +2216,6 @@ BattleManager.startBattle = function() {
     $gameTemp._rowBattle = false;
     this._bypassMoveToStartLocation = false;
     //this._spriteset.refreshRowPositions();
-    BattleManager.refreshAllBattlers();
-};
-
-BattleManager.refreshAllBattlers = function() {
-  var members = $gameParty.members().concat($gameTroop.members());
-  var length = members.length;
-  for (var i = 0; i < length; ++i) {
-    var member = members[i];
-    if (member) member.refresh();
-  }
 };
 
 Yanfly.Row.BattleManager_playBattleBgm = BattleManager.playBattleBgm;
@@ -2602,16 +2336,6 @@ Scene_Battle.prototype.createPartyCommandWindow = function() {
     win.setHandler('row', this.partyCommandRow.bind(this));
 };
 
-Yanfly.Row.Scene_Battle_createSpriteset =
-    Scene_Battle.prototype.createSpriteset;
-Scene_Battle.prototype.createSpriteset = function() {
-  if ($gameTemp.hasStoredBattleSpriteset()) {
-    $gameTemp.restoreBattleSpriteset();
-  } else {
-    Yanfly.Row.Scene_Battle_createSpriteset.call(this);
-  }
-};
-
 Scene_Battle.prototype.partyCommandRow = function() {
     BattleManager._bypassMoveToStartLocation = true;
     $gameParty.loadActorImages();
@@ -2620,7 +2344,6 @@ Scene_Battle.prototype.partyCommandRow = function() {
     $gameSystem.setBattleRowCooldown();
     Yanfly.Row.SavedBattleBgm = AudioManager.saveBgm();
     Yanfly.Row.SavedBattleBgs = AudioManager.saveBgs();
-    $gameTemp.storeBattleSpriteset();
     SceneManager.push(Scene_Row);
     BattleManager._phase = 'input';
     $gameTemp._rowBattle = true;
@@ -2650,7 +2373,6 @@ Yanfly.Util.displayError = function(e, code, message) {
   console.log(message);
   console.log(code || 'NON-EXISTENT');
   console.error(e);
-  if (Utils.RPGMAKER_VERSION && Utils.RPGMAKER_VERSION >= "1.6.0") return;
   if (Utils.isNwjs() && Utils.isOptionValid('test')) {
     if (!require('nw.gui').Window.get().isDevToolsOpen()) {
       require('nw.gui').Window.get().showDevTools();

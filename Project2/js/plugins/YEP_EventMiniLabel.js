@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Event Mini Label
 // YEP_EventMiniLabel.js
 //=============================================================================
@@ -8,49 +8,35 @@ Imported.YEP_EventMiniLabel = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.EML = Yanfly.EML || {};
-Yanfly.EML.version = 1.12
 
 //=============================================================================
  /*:
- * @plugindesc v1.12 Creates miniature-sized labels over events to allow
- * you to insert whatever text you'd like in them.
+ * @plugindesc v1.11 事件迷你标签
  * @author Yanfly Engine Plugins
  *
  * @param Default Show
  * @desc Show mini labels by default?
- * @type boolean
- * @on YES
- * @off NO
  * NO - false     YES - true
  * @default true
  *
  * @param Minimum Width
- * @type number
- * @min 1
  * @desc What is the minimum width in pixels for mini labels?
  * @default 136
  *
  * @param Font Size
- * @type number
- * @min 1
  * @desc What is the font size used for text inside a mini label?
  * Default: 28
  * @default 20
  *
  * @param X Buffer
- * @type number
  * @desc Alter the X position of the label by this much.
  * @default 0
  *
  * @param Y Buffer
- * @type number
  * @desc Alter the Y position of the label by this much.
  * @default 36
  *
  * @param Battle Transition
- * @type boolean
- * @on YES
- * @off NO
  * @desc Show Event Mini label during battle transition?
  * NO - false     YES - true
  * @default false
@@ -60,39 +46,39 @@ Yanfly.EML.version = 1.12
  * Introduction
  * ============================================================================
  *
- * This plugin lets you place text above the heads of various events using a
- * miniature label through a comment tag.
+ * 这个插件可以让你在事件头顶上使用标签。文字可以使用文本代码，所以文本，
+ * 图标，颜色都是可以使用的
+ * 
+ * 这个插件可以让你在事件头顶上使用标签。
  *
  * ============================================================================
  * Comment Tags
  * ============================================================================
  *
- * Comment tags are 'notetags' used within the lines of an event's comments.
- * The reason I'm using the comment tags instead of the notetags is because
- * each page of an event can yield a different potential name.
+ * 注解标签是使用事件注解功能做的标签。我用注解标签而不是标签栏是因为每一
+ * 页事件都可以有一个不同的名字
  *
- * To use this, make a comment within the event you wish to make the mini
- * label for and insert the following:
+ * 为了使用这个功能，你需要在事件注解功能里面插入下面语句:
  *
- *   <Mini Label: text>
+ *   <Mini Label: text>  显示文本
  *   This will display the 'text' above the event. You can use text codes for
  *   this comment tag and it will create dynamic messages.
  *
- *   <Mini Label Font Size: x>
+ *   <Mini Label Font Size: x>   文本大小
  *   This will change the font size used for the mini label to x. If this tag
  *   isn't used, the font size will be the default value in the parameters.
  *
  *   <Mini Label X Buffer: +x>
- *   <Mini Label X Buffer: -x>
+ *   <Mini Label X Buffer: -x>   文本位置
  *   This will adjust the X buffer for the mini label by x value. If this tag
  *   isn't used, the X buffer will be the default value in the parameters.
  *
  *   <Mini Label Y Buffer: +x>
- *   <Mini Label Y Buffer: -x>
+ *   <Mini Label Y Buffer: -x>  文本位置
  *   This will adjust the Y buffer for the mini label by x value. If this tag
  *   isn't used, the Y buffer will be the default value in the parameters.
  *
- *   <Always Show Mini Label>
+ *   <Always Show Mini Label>   总是显示迷你标签
  *   This will make the mini label to always be shown, even when the plugin
  *   command to hide mini labels is used.
  *
@@ -108,16 +94,15 @@ Yanfly.EML.version = 1.12
  * Plugin Commands
  * ============================================================================
  *
- * If you would like to shut off the Event Mini Label mid-game or turn it on,
- * you can use the following plugin commands:
+ * 如果你想关闭或者开启事件迷你标签，你可以使用下面插件命令:
  *
  * Plugin Command:
  *
  *   HideMiniLabel
- *   Hides all Event Mini Label.
+ *   隐藏所以事件迷你标签.
  *
  *   ShowMiniLabel
- *   Shows all Event Mini Label.
+ *   显示所以事件迷你标签.
  *
  *   RefreshMiniLabel
  *   Refreshes all Event Mini Labels on the map.
@@ -125,9 +110,6 @@ Yanfly.EML.version = 1.12
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.12:
- * - Updated for RPG Maker MV version 1.5.0.
  *
  * Version 1.11:
  * - Added 'Battle Transition' plugin parameter. Enabling this will allow you

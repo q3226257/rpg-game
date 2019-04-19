@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Extension Plugin - Tick Based Regeneration
 // YEP_X_TickBasedRegen.js
 //=============================================================================
@@ -8,12 +8,10 @@ Imported.YEP_X_TickBasedRegen = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.TBR = Yanfly.TBR || {};
-Yanfly.TBR.version = 1.04;
 
 //=============================================================================
  /*:
- * @plugindesc v1.04 (Req YEP_BattleEngineCore & YEP_BuffsStatesCore)
- * Tick-Based Battle system regeneration.
+ * @plugindesc v1.03 时间刻度
  * @author Yanfly Engine Plugins
  *
  * @help
@@ -58,9 +56,6 @@ Yanfly.TBR.version = 1.04;
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.04:
- * - Updated for RPG Maker MV version 1.5.0.
  *
  * Version 1.03:
  * - Added anti-crash method for actors that are joining mid-party.

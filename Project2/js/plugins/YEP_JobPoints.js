@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Job Points
 // YEP_JobPoints.js
 //=============================================================================
@@ -8,74 +8,54 @@ Imported.YEP_JobPoints = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.JP = Yanfly.JP || {};
-Yanfly.JP.version = 1.10;
+Yanfly.JP.version = 1.08;
 
 //=============================================================================
  /*:
- * @plugindesc v1.10 This plugin by itself doesn't do much, but it enables
- * actors to acquire JP (job points) used for other plugins.
+ * @plugindesc v1.08 职业点
  * @author Yanfly Engine Plugins
  *
  * @param ---General---
  * @default
  *
  * @param JP Text
- * @parent ---General---
  * @desc This changes how you want JP to appear in the game.
  * @default JP
  *
  * @param JP Icon
- * @parent ---General---
- * @type number
- * @min 0
  * @desc This is the icon used for JP.
  * Use 0 if you wish to use no icon.
  * @default 188
  *
  * @param Max JP
- * @parent ---General---
- * @type number
- * @min 0
  * @desc This is the maximum JP an actor can have per class.
  * Use 0 if you wish to have no limit.
  * @default 0
  *
  * @param JP Per Action
- * @parent ---General---
  * @desc This is the amount of JP an actor gains for his/her
  * current class whenever he/she performs an action.
  * @default 10 + Math.randomInt(10)
  *
  * @param JP Per Level
- * @parent ---General---
  * @desc This is the amount of JP an actor gains per level up.
  * @default 100 + Math.randomInt(100)
  *
  * @param JP Per Enemy
- * @parent ---General---
  * @desc This is the amount of JP given per defeated enemy.
  * @default 50 + Math.randomInt(10)
  *
  * @param Show Results
- * @parent ---General---
- * @type boolean
- * @on Show
- * @off Hide
  * @desc Upon winning, show how much JP is earned for default?
  * NO - false     YES - true
  * @default true
  *
  * @param JP Gained in Battle
- * @parent ---General---
  * @desc Adjusts how the gained JP text is shown after battle.
  * %1 - Actor     %2 Value     %3 JP
  * @default %1 gains %2%3!
  *
  * @param Alive Actors
- * @parent ---General---
- * @type boolean
- * @on Alive Requirement
- * @off No Requirement
  * @desc Actors must be alive to receive JP earned from enemies.
  * NO - false     YES - true
  * @default true
@@ -84,16 +64,11 @@ Yanfly.JP.version = 1.10;
  * @default
  *
  * @param Show In Menu
- * @parent ---Menu---
- * @type boolean
- * @on Show
- * @off Hide
  * @desc Display JP in the main menu?
  * NO - false     YES - true
  * @default true
  *
  * @param Menu Format
- * @parent ---Menu---
  * @desc How the JP text format in the menu appears.
  * %1 - Value     %2 - Amount     %3 - Icon
  * @default %1\c[4]%2\c[0]%3
@@ -102,27 +77,20 @@ Yanfly.JP.version = 1.10;
  * @default
  *
  * @param Enable Aftermath
- * @parent ---Victory Aftermath---
- * @type boolean
- * @on Enable
- * @off Disable
  * @desc Enables Victory Aftermath windows.
  * NO - false     YES - true
  * @default true
  *
  * @param Aftermath Text
- * @parent ---Victory Aftermath---
  * @desc Text used to describe how much JP is earned.
  * @default JP Earned
  *
  * @param Aftermath Format
- * @parent ---Victory Aftermath---
  * @desc How the JP text format in the aftermath appears.
  * %1 - Value     %2 - Amount     %3 - Icon
  * @default +%1\c[4]%2\c[0]%3
  *
  * @param Aftermath JP Earned
- * @parent ---Victory Aftermath---
  * @desc Describes how much JP is earned per actor.
  * @default JP Earned in Battle
  *
@@ -131,89 +99,85 @@ Yanfly.JP.version = 1.10;
  * Introduction
  * ============================================================================
  *
- * This plugin by itself will not change any major game functions, but instead,
- * it works in combination with other plugins that make use of this plugin's
- * functions should you decide to incorporate Job Points into your game.
- *
- * When Job Points are earned, they are given to the actor's current class. If
- * the actor were to switch classes, then the Job Points will be changed to
- * that class's Job Points until reverted back.
+ * 这个插件不会改变游戏的主要功能，但是相反，你可以结合其他插件来结合职业点
+ * 放入游戏
+ * 这个插件为为职业点系统添加了等级，就像最终幻想那种。允许为利用技能学习系
+ * 统购买的技能添加限制，为职业改变系统改变的职业添加限制。职业将通过获得职
+ * 业点自动升级
+ * 这个插件拓展了职业点功能，允许其缓慢增加并且可以设置主职业获得点数同时副
+ * 职业的获得数
+ * 如果你学习了某个职业所有的技能，你就成为大师，如果你使用了Fox插件，你可
+ * 以让它显示在菜单上
+ * 当获得职业点时，他们赋予给玩家的职业。如果玩家切换职业，职业点将会变成这
+ * 个职业的，除非他们被还原。
  *
  * ============================================================================
  * Victory Aftermath Compatibility
  * ============================================================================
  *
- * If you have the YEP_VictoryAftermath plugin installed and wish to make use
- * of the JP windows, position this plugin lower than YEP_VictoryAftermath in
- * the Plugin Manager.
+ * 如果你有YEP_VictoryAftermath这个插件并且希望使用JP窗口，你可以把这个放在
+ * YEP_VictoryAftermath下面
  *
- * After that, if you wish to define the timing of the JP window to appear at
- * a certain point instead of the plugin doing it automatically, insert "JP" in
- * the "Victory Order" parameter within Victory Aftermath where you want the
- * JP window to appear.
+ * 在这之后，如果你希望决定JP窗口出现的时间，可以插入“JP”在“Victory 
+ * Order” 参数里
  *
  * ============================================================================
  * Notetags
  * ============================================================================
  *
- * Here are some notetags related to Job Points.
+ * 这里有一些标签
  *
  * Actor Notetags
  *   <Starting JP: x>
- *   Sets the actor's starting JP value to be x for the actor's initial class.
+ *   设置职业初始职业点
  *
  *   <Class x Starting JP: y>
- *   Sets the actor's starting JP value for class x to be y.
+ *   设置职业x的初始职业点y
  *
  *   <JP Rate: x%>
- *   This changes the rate of JP gained by x%. By default, all objects have a
- *   default rate of 100%. Increasing this to 200% will increase JP gained by
- *   twice as much while 50% will halve the amount of JP gained.
+ *   设置职业点增加率。默认是100%。如果设置200%则会获得2倍职业点，50%则获得一
+ *   半。
  *
  * Skill and Item Notetags
  *   <JP Gain: x>
- *   This makes it so that the actor using this skill or item will gain x
- *   amount of JP instead of the default amount of JP found in the parameters.
+ *   使用技能或者物品可以获得x个职业点
  *
  *   <Target JP Gain: x>
- *   This makes it so that the target actor affected by this skill or item will
- *   gain x amount of JP.
+ *   目标角色可以获得x个职业点
  *
  * Class, Weapon, Armor, and State Notetag
  *   <JP Rate: x%>
- *   This changes the rate of JP gained by x%. By default, all objects have a
- *   default rate of 100%. Increasing this to 200% will increase JP gained by
- *   twice as much while 50% will halve the amount of JP gained.
+ *   设置职业点增加率。默认是100%。如果设置200%则会获得2倍职业点，50%则获得一
+ *   半。
  *
  * Enemy Notetag
  *   <JP: x>
- *   When the enemy is defeated, the party members present will gain x JP each.
+ *   敌方被击败时，每个队伍成员获得x职业点
  *
  * ============================================================================
  * Plugin Commands
  * ============================================================================
  *
- * For those wondering how to manually give, remove, or set JP for an actor,
- * you can use the following Plugin Commands.
+ * 如果你手动赋予，移除或者设置职业点给玩家，你可以用下面的插件命令
  *
  * Plugin Commands:
  *
  *   gainJp actorId jp
- *   gainJp actorId jp classId
+ *   gainJp actorId jp classId  指定ID的角色甚至指定职业获得职业点
  *   Replace 'actorId' with the ID of the actor you wish to change the JP of.
  *   Replace 'jp' with the amount of JP you wish to alter. If you are using
  *   'classId', replace it with the ID of the actor's class you wish to alter.
  *   This command will let the actor gain JP.
  *
  *   loseJp actorId jp
- *   loseJp actorId jp classId
+ *   loseJp actorId jp classId  指定ID的角色甚至指定职业失去职业点
  *   Replace 'actorId' with the ID of the actor you wish to change the JP of.
  *   Replace 'jp' with the amount of JP you wish to alter. If you are using
  *   'classId', replace it with the ID of the actor's class you wish to alter.
  *   This command will cause the actor to lose JP.
  *
  *   setJp actorId jp
- *   setJp actorId jp classId
+ *   setJp actorId jp classId  指定ID的角色甚至指定职业的职业点
  *   Replace 'actorId' with the ID of the actor you wish to change the JP of.
  *   Replace 'jp' with the amount of JP you wish to alter. If you are using
  *   'classId', replace it with the ID of the actor's class you wish to alter.
@@ -222,13 +186,6 @@ Yanfly.JP.version = 1.10;
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.10:
- * - Bypass the isDevToolsOpen() error when bad code is inserted into a script
- * call or custom Lunatic Mode code segment due to updating to MV 1.6.1.
- *
- * Version 1.09:
- * - Updated for RPG Maker MV version 1.5.0.
  *
  * Version 1.08:
  * - Lunatic Mode fail safes added.
@@ -273,7 +230,7 @@ Yanfly.Icon = Yanfly.Icon || {};
 
 Yanfly.Param.Jp = String(Yanfly.Parameters['JP Text']);
 Yanfly.Icon.Jp = Number(Yanfly.Parameters['JP Icon']);
-Yanfly.Param.JpMax = Number(Yanfly.Parameters['Max JP']);
+Yanfly.Param.JpMax = String(Yanfly.Parameters['Max JP']);
 Yanfly.Param.JpPerAction = String(Yanfly.Parameters['JP Per Action']);
 Yanfly.Param.JpPerEnemy = String(Yanfly.Parameters['JP Per Enemy']);
 Yanfly.Param.JpShowResults = eval(String(Yanfly.Parameters['Show Results']));
@@ -796,7 +753,6 @@ Yanfly.Util.displayError = function(e, code, message) {
   console.log(message);
   console.log(code || 'NON-EXISTENT');
   console.error(e);
-  if (Utils.RPGMAKER_VERSION && Utils.RPGMAKER_VERSION >= "1.6.0") return;
   if (Utils.isNwjs() && Utils.isOptionValid('test')) {
     if (!require('nw.gui').Window.get().isDevToolsOpen()) {
       require('nw.gui').Window.get().showDevTools();

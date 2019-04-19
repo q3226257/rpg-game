@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Equip Extension - Equip Customize Command
 // YEP_X_EquipCustomize.js
 //=============================================================================
@@ -8,12 +8,10 @@ Imported.YEP_X_EquipCustomize = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.ECC = Yanfly.ECC || {};
-Yanfly.ECC.version = 1.02;
 
 //=============================================================================
  /*:
- * @plugindesc v1.02 (Requires YEP_ItemCore && YEP_EquipCore.js)
- * Adds a 'Customize' command to the Equip menu.
+ * @plugindesc v1.00 装备自定义命令
  * @author Yanfly Engine Plugins
  *
  * @param Command Name
@@ -21,9 +19,6 @@ Yanfly.ECC.version = 1.02;
  * @default Customize
  *
  * @param Default Enable
- * @type boolean
- * @on Enable
- * @off Disable
  * @desc Show the Customize command in the Equip menu by default?
  * NO - false     YES - true
  * @default true
@@ -33,41 +28,26 @@ Yanfly.ECC.version = 1.02;
  * Introduction
  * ============================================================================
  *
- * This plugin requires YEP_ItemCore && YEP_EquipCore.js. Make sure this plugin
- * is located under both of those plugins in the plugin list.
+ * 这个插件需要YEP_ItemCore和YEP_EquipCore.js，确保放在它们下面
  *
- * Games that use the YEP_X_ItemUpgradeSlots, YEP_X_ItemDurability, and
- * YEP_X_AttachAugment plugins may notice that it's not too intuitive to
- * modify items from the item menu when they're equipped to the actors in the
- * equip menu. This plugin will add a "Customize" option to the Equip menu that
- * will function as a shortcut to the Item menu for quick customization access.
+ * 如果你在游戏中使用了YEP_X_ItemUpgradeSlots, YEP_X_ItemDurability或者
+ * YEP_X_AttachAugment插件，你会注意到，当玩家在装备界面调整装备时，不
+ * 是很方便的来调整物品。这个插件在装备界面加入了自定义选项，好比是物
+ * 品菜单入口的捷径。
  *
  * ============================================================================
  * Plugin Commands
  * ============================================================================
  *
- * There's a couple of plugin commands you can use with this plugin.
+ * There's a couple of 插件命令 you can use with this plugin.
  *
  * Plugin Command:
  *
  *   ShowEquipCustomize
- *   - This will show the 'Customize' command in the equip menu.
+ *   - 显示自定义选项
  *
  *   HideEquipCustomize
- *   - This will hide the 'Customize' command in the equip menu.
- *
- * ============================================================================
- * Changelog
- * ============================================================================
- *
- * Version 1.02:
- * - Updated for RPG Maker MV version 1.5.0.
- *
- * Version 1.01:
- * - Optimization Update
- *
- * Version 1.00:
- * - Finished Plugin!
+ *   - 隐藏自定义选项
  */
 //=============================================================================
 
@@ -225,7 +205,7 @@ function Scene_EquipCustomize() {
 }
 
 Scene_EquipCustomize.prototype = Object.create(Scene_Item.prototype);
-Scene_EquipCustomize.prototype.constructor = Scene_EquipCustomize;
+Scene_EquipCustomize.prototype.constructor = Scene_Item;
 
 Scene_EquipCustomize.prototype.initialize = function() {
     Scene_Item.prototype.initialize.call(this);
@@ -264,9 +244,6 @@ Scene_EquipCustomize.prototype.setCustomizedItem = function() {
     this._statusWindow.setItem(this.item());
     this._infoWindow.setItem(this.item());
     this._itemActionWindow.setItem(this.item());
-    if ($gameTemp._itemActionIndex) {
-      this._itemActionWindow.select($gameTemp._itemActionIndex);
-    }
 };
 
 Scene_EquipCustomize.prototype.onActionCancel = function() {

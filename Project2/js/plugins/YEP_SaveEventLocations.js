@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Save Event Locations
 // YEP_SaveEventLocations.js
 //=============================================================================
@@ -8,12 +8,10 @@ Imported.YEP_SaveEventLocations = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.SEL = Yanfly.SEL || {};
-Yanfly.SEL.version = 1.06;
 
 //=============================================================================
  /*:
- * @plugindesc v1.06 Enable specified maps to memorize the locations of
- * events when leaving and loading them upon reentering map.
+ * @plugindesc v1.04 事件位置存储
  * @author Yanfly Engine Plugins
  *
  * @help
@@ -21,9 +19,10 @@ Yanfly.SEL.version = 1.06;
  * Introduction
  * ============================================================================
  *
- * Normally in RPG Maker MV, leaving a map and returning to it will reset the
- * map positions of all the events. For certain types of maps, such as puzzles,
- * you would want the map to retain their locations.
+ * 当玩家重新载入一个地图时，NPC经常重置位置。现在你可以用这个插件来存储事件
+ * 的位置
+ * 通常在MV里，离开地图并重新进入，将会重置所以事件的位置。对于某些类型的地
+ * 图，例如迷宫类，你希望可以存储他们的位置
  *
  * ============================================================================
  * Notetags
@@ -33,37 +32,26 @@ Yanfly.SEL.version = 1.06;
  *   <Save Event Locations>
  *   This will cause the map to save every event's location on that map. After
  *   leaving and returning to that map, the events will be reloaded onto their
- *   last saved positions in addition to the direction they were facing.
+ *   这可以存储事件位置。在重新载入地图后，事件将会进入他之前存储的位置
  *
  * Event Notetag:
  *   <Save Event Location>
  *   This will enable this specific event to save its location on this map.
  *   After leaving and returning to the map, the event will be reloaded onto
- *   its last saved position in addition to the direction it was facing.
+ *   这可以存储特定事件的位置。在重新载入地图后，事件将会进入他之前存储的位置。
  *
- * If you wish to reset the position of the Event, simply use the Event Editor
- * and use "Set Event Location" to anchor the event's location to the desired
- * point as if you would normally.
+ * 如果你想重置事件位置，你可以用事件编辑器设置事件位置到指定即可。
  *
  * ============================================================================
  * Plugin Commands
  * ============================================================================
  *
  * Plugin Command
- *   ResetAllEventLocations
- *   - This resets all the event locations on the map.
+ *   重置地图上所有事件位置
  *
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.06:
- * - Fixed an issue where using an event to instantly move an event would not
- * save the event's location.
- *
- * Version 1.05:
- * - Fixed a bug where if an event whose location is to be saved starts with a
- * direction other than down, the direction would be overwritten when loaded.
  *
  * Version 1.04:
  * - Updated the <Save Event Location> to save an event's direction even if it
@@ -203,7 +191,6 @@ Game_Event.prototype.locate = function(x, y) {
     DataManager.processSELNotetags2(this.event());
     Yanfly.SEL.Game_Event_locate.call(this, x, y);
     if (!$gameTemp._bypassLoadLocation) this.loadLocation();
-    this.saveLocation();
 };
 
 Yanfly.SEL.Game_Event_updateMove = Game_Event.prototype.updateMove;
@@ -236,17 +223,7 @@ Game_Event.prototype.loadLocation = function() {
     var y = $gameSystem.getSavedEventY($gameMap.mapId(), this.eventId());
     this.setPosition(x, y);
     var dir = $gameSystem.getSavedEventDir($gameMap.mapId(), this.eventId());
-    $gameTemp._loadLocationDirection = dir;
-};
-
-Yanfly.SEL.Game_Event_setupPageSettings =
-  Game_Event.prototype.setupPageSettings;
-Game_Event.prototype.setupPageSettings = function() {
-  Yanfly.SEL.Game_Event_setupPageSettings.call(this);
-  if ($gameTemp._loadLocationDirection) {
-    this.setDirection($gameTemp._loadLocationDirection);
-    $gameTemp._loadLocationDirection = undefined;
-  }
+    this.setDirection(dir);
 };
 
 Game_Event.prototype.resetLocation = function() {

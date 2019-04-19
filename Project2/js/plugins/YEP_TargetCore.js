@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Target Core
 // YEP_TargetCore.js
 //=============================================================================
@@ -8,30 +8,26 @@ Imported.YEP_TargetCore = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.Target = Yanfly.Target || {};
-Yanfly.Target.version = 1.05;
+Yanfly.Target.version = 1.03;
 
 //=============================================================================
  /*:
- * @plugindesc v1.05 Expand the target scope from RPG Maker's default
- * limitations for better target control.
+ * @plugindesc v1.03 目标核心
  * @author Yanfly Engine Plugins
  *
  * @param ---Battle Engine---
  * @default
  *
  * @param Everybody Text
- * @parent ---Battle Engine---
  * @desc The help text for Everybody scope.
  * @default All Allies and Enemies
  *
  * @param All But User Text
- * @parent ---Battle Engine---
  * @desc The help text for all All But User scope.
  * %1 - Allies     %2 - User
  * @default All %1 But %2
  *
  * @param Random Any Text
- * @parent ---Battle Engine---
  * @desc The help text used for the Random Any scope.
  * %1 - Number
  * @default %1 Random
@@ -40,23 +36,19 @@ Yanfly.Target.version = 1.05;
  * @default
  *
  * @param Multiple Text
- * @parent ---Multiple Of---
  * @desc The help text used for Multiple of x scope.
  * %1 - Targets   %2 - Parameters   %3 - Number
  * @default %1 with %2 as a Multiple of %3
  *
  * @param Multiple Everybody
- * @parent ---Multiple Of---
  * @desc The text to use for Everybody in this format.
  * @default Anyone
  *
  * @param Multiple Allies
- * @parent ---Multiple Of---
  * @desc The text to use for Allies in this format.
  * @default Any Ally
  *
  * @param Multiple Foes
- * @parent ---Multiple Of---
  * @desc The text to use for Foes in this format.
  * @default Any Foe
  *
@@ -64,36 +56,30 @@ Yanfly.Target.version = 1.05;
  * @default
  *
  * @param Target Row Text
- * @parent ---Row Formation---
  * @desc The help text used to target the target's row.
  * %1 - Target Name
  * @default %1's Row
  *
  * @param Front Row Text
- * @parent ---Row Formation---
  * @desc The help text used to target the front row.
  * %1 - Target Type
  * @default %1 Front Row
  *
  * @param Back Row Text
- * @parent ---Row Formation---
  * @desc The help text used to target the back row.
  * %1 - Target Type
  * @default %1 Back Row
  *
  * @param Specific Row Text
- * @parent ---Row Formation---
  * @desc The help text used to target specific rows.
  * %1 - Target Type
  * @default Specific %1 Row
  *
  * @param Row Enemies
- * @parent ---Row Formation---
  * @desc The help text used for enemies for Row Targets.
  * @default Enemy
  *
  * @param Row Allies
- * @parent ---Row Formation---
  * @desc The help text used for enemies for Row Targets.
  * @default Allied
  *
@@ -102,72 +88,68 @@ Yanfly.Target.version = 1.05;
  * Introduction
  * ============================================================================
  *
- * While this plugin works independent of YEP_BattleEngineCore.js, if you want
- * to utilize extra effects, place this plugin beneath YEP_BattleEngineCore.js
- * in the Plugin Manager list.
+ * 这个插件独立于YEP_BattleEngineCore.js，如果你想使用额外的效果，请放于
+ * YEP_BattleEngineCore.js下面
  *
- * The Target Core plugin is made to expand upon the existing target scopes
- * provided by RPG Maker MV. This plugin enables you to use more target scopes,
- * with a larger variety of ways to target actors and enemies with bonus ways
- * to choose targets combined with the Row Formation plugin.
+ * 目标核心插件是用来拓展目标范围的。这个插件可以让你使用目标范围，可以结合
+ * 编队插件一起使用
  *
  * ============================================================================
  * Notetags
  * ============================================================================
  *
- * If you would like to utilize custom target scopes for your skills and items,
- * you can use these notetags:
+ * 如果你想定义你技能或者物品的攻击范围，可以使用这些标签:
  *
  * Skill and Item Notetags:
  *
- *   <Repeat: x>
+ *   <Repeat: x>  重复x次
  *   This determines the number of times an action is repeatedly used on each
  *   target. This can go beyond the default editor's limit of 9.
  *
- *   <Target: Everybody>
+ *   <Target: Everybody>  目标所有人
  *   This targets all alive opponent and friendly members with the user being
  *   the very last target.
  *
- *   <Target: x Random Any>
+ *   <Target: x Random Any>  随机目标
  *   This adds x random alive opponents and/or allies.
  *
- *   <Target: Target All Foes>
+ *   <Target: Target All Foes> 所有敌方
  *   This targets a single foe and then adds all alive opponent members.
  *
- *   <Target: Target x Random Foes>
+ *   <Target: Target x Random Foes> 随机敌方
  *   This targets a single foe and then adds x random alive opponent members.
  *
- *   <Target: x Random Foes>
+ *   <Target: x Random Foes>  随机敌方
  *   This adds x random alive opponent members. This can go beyond the editor's
  *   default limit of 4 randomf oes.
  *
- *   <Target: All Allies But User>
+ *   <Target: All Allies But User> 除了使用者的其余队友
  *   This will target all friendly alive members except for the user.
  *
- *   <Target: Target All Allies>
+ *   <Target: Target All Allies> 所有队友
  *   This will target a single ally and then adds all alive friendly members.
  *
- *   <Target: Target x Random Allies>
+ *   <Target: Target x Random Allies> 随机队友
  *   This will target a single ally and then adds x random alive allies.
  *
- *   <Target: x Random Allies>
+ *   <Target: x Random Allies> 随机角色
  *   This adds x random alive allied members.
  *
- *   <Target: Everybody param Multiple Of x>
+ *   <Target: Everybody param Multiple Of x> 符合特定状态的角色
  *   Replace 'param' with 'level', 'maxhp', 'maxmp', 'atk', 'def', 'mat',
  *   'mdf', 'agi', 'luk', 'hp', 'mp', or 'tp'. This will make the skill or item
  *   indiscriminately target any living battler on the battlefield whose
  *   parameter value is a multiple of x.
  *   *NOTE: If you are using 'level', make sure you have YEP_EnemyLevels.js.
  *
- *   <Target: Allies param Multiple Of x>
+ *   <Target: Allies param Multiple Of x> 符合特定状态的队友
  *   Replace 'param' with 'level', 'maxhp', 'maxmp', 'atk', 'def', 'mat',
  *   'mdf', 'agi', 'luk', 'hp', 'mp', or 'tp'. This will make the skill or item
  *   target any living allied party member on the battlefield whose parameter
  *   value is a multiple of x.
  *   *NOTE: If you are using 'level', make sure you have YEP_EnemyLevels.js.
  *
- *   <Target: Foes param Multiple Of x>
+ *   <Target: Foes param Multiple Of x> 符合特定状态的敌方
  *   Replace 'param' with 'level', 'maxhp', 'maxmp', 'atk', 'def', 'mat',
  *   'mdf', 'agi', 'luk', 'hp', 'mp', or 'tp'. This will make the skill or item
  *   target any living enemy battler on the battlefield whose parameter value
@@ -176,38 +158,38 @@ Yanfly.Target.version = 1.05;
  *
  *   --- YEP_RowFormation.js and YEP_BattleEngineCore.js Required ---
  *
- *   <Target: Enemy Row>
+ *   <Target: Enemy Row> 目标敌人排
  *   This will target the enemy row equal to that of the currently selected
  *   target enemy. The entire row will be selected as a whole.
  *
- *   <Target: Enemy Row x>
+ *   <Target: Enemy Row x> 目标敌人x排
  *   This will target specifically the enemy row x for the enemy unit. The
  *   entire row will be selected as a whole.
  *
- *   <Target: Front Enemy Row>
+ *   <Target: Front Enemy Row>  目标敌人前
  *   This will target the front-most enemy row with alive members. If there is
  *   a row without any alive members, this will target the next row with an
  *   alive member.
  *
- *   <Target: Back Enemy Row>
+ *   <Target: Back Enemy Row> 目标敌人后排
  *   This will target the back-most enemy row with alive members. If there is
  *   a row without any alive members, this will target the next row with an
  *   alive member.
  *
- *   <Target: Ally Row>
+ *   <Target: Ally Row> 队友排列
  *   This will target the enemy row equal to that of the currently selected
  *   target enemy. The entire row will be selected as a whole.
  *
- *   <Target: Ally Row x>
+ *   <Target: Ally Row x> 队友x排
  *   This will target specifically the allied row x for the allied unit. The
  *   entire row will be selected as a whole.
- *
- *   <Target: Front Ally Row>
+ * 
+ *   <Target: Front Ally Row> 队友前排
  *   This will target the front-most ally row with alive members. If there is
  *   a row without any alive members, this will target the next row with an
  *   alive member.
  *
- *   <Target: Back Ally Row>
+ *   <Target: Back Ally Row> 队友后排
  *   This will target the back-most ally row with alive members. If there is
  *   a row without any alive members, this will target the next row with an
  *   alive member.
@@ -251,13 +233,6 @@ Yanfly.Target.version = 1.05;
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.05:
- * - Bypass the isDevToolsOpen() error when bad code is inserted into a script
- * call or custom Lunatic Mode code segment due to updating to MV 1.6.1.
- *
- * Version 1.04:
- * - Updated for RPG Maker MV version 1.5.0.
  *
  * Version 1.03:
  * - Lunatic Mode fail safes added.
@@ -1058,7 +1033,6 @@ Yanfly.Util.displayError = function(e, code, message) {
   console.log(message);
   console.log(code || 'NON-EXISTENT');
   console.error(e);
-  if (Utils.RPGMAKER_VERSION && Utils.RPGMAKER_VERSION >= "1.6.0") return;
   if (Utils.isNwjs() && Utils.isOptionValid('test')) {
     if (!require('nw.gui').Window.get().isDevToolsOpen()) {
       require('nw.gui').Window.get().showDevTools();

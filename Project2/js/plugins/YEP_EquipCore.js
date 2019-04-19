@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Equip Core
 // YEP_EquipCore.js
 //=============================================================================
@@ -8,56 +8,41 @@ Imported.YEP_EquipCore = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.Equip = Yanfly.Equip || {};
-Yanfly.Equip.version = 1.18;
+Yanfly.Equip.version = 1.16;
 
 //=============================================================================
  /*:
- * @plugindesc v1.18 Allows for the equipment system to be more flexible to
- * allow for unique equipment slots per class.
+ * @plugindesc v1.16 装备核心
  * @author Yanfly Engine Plugins
  *
  * @param ---General---
  * @default
  *
  * @param Text Align
- * @parent ---General---
- * @type combo
- * @option left
- * @option center
- * @option right
  * @desc How to align the text for the command window.
  * left     center     right
  * @default center
  *
  * @param Finish Command
- * @parent ---General---
  * @desc The command text used for exiting the equip scene.
  * Leave empty to not include this command.
  * @default Finish
  *
  * @param Remove Text
- * @parent ---General---
  * @desc The text used to display the "Remove" command in the equip
  * item list.
  * @default Remove
  *
  * @param Remove Icon
- * @parent ---General---
- * @type number
- * @min 0
  * @desc The icon used to display next to the "Remove" command in
  * the equip item list.
  * @default 16
  *
  * @param Empty Text
- * @parent ---General---
  * @desc The text used to display an "Empty" piece of equipment.
  * @default <Empty>
  *
  * @param Empty Icon
- * @parent ---General---
- * @type number
- * @min 0
  * @desc The icon used to display next to the "Empty" piece of
  * equipment in the equipment list.
  * @default 16
@@ -66,19 +51,11 @@ Yanfly.Equip.version = 1.18;
  * @default
  *
  * @param Non-Removable Types
- * @parent ---Rules---
- * @type number
- * @min 1
- * @max 100
  * @desc These types must always have an item equipped and cannot
  * be empty. Separate the type ID's by a space.
  * @default 1
  *
  * @param Non-Optimized Types
- * @parent ---Rules---
- * @type number
- * @min 1
- * @max 100
  * @desc These types will be ignored when the actor optimizes
  * equips. Separate the type ID's by a space.
  * @default 5
@@ -88,36 +65,29 @@ Yanfly.Equip.version = 1.18;
  * Introduction
  * ============================================================================
  *
- * This plugin alters various aspects regarding equipment handling. The changes
- * are as listed:
+ * 装备核心插件改变了游戏很多选项。将会影响装备菜单，装备类型索引，装备规
+ * 则等等。
+ * 
+ * 插件改变包括如下：
  *
  * 1. Scene_Equip
- * Scene_Equip has been modified to look differently. This is primarily done to
- * make the main menu scenes look uniform and keep everything familiar for
- * players. Furthermore, the command window has been adjusted to be better fit
- * for extension plugins in the future that may add commands to the command
- * window and/or the scene.
+ * 装备界面：装备界面调整了一下，会略微不同。主要是制作了主菜单让人看起来
+ * 统一并且对于玩家更加熟悉。更长远来说，命令菜单可以更好的适应未来的拓展
+ * 插件，以便添加命令
  *
  * 2. Equipment Type Handling
- * Characters will no longer have one universal equipment slot setting. Now,
- * different classes can use different setups by simply adding a few notetags
- * to the class notebox. Furthermore, equipment types in the past with matching
- * names would be treated as separate types. Now, equipment types with matching
- * names will be treated as the same type.
+ * 装备类型：玩家不只有一个通用的设置。现在，不用的职业可以通过简单的标签
+ * 来添加不同的设置。还有，之前名字一样的装备类型视为不同的类型，现在，名
+ * 义一样的装备类型归为一类
  *
  * 3. Equipment Rulings
- * Now, certain equipment types can or cannot be removed. For example, this
- * plugin can set it so that the Weapon slot must always have something
- * equipped and that the player cannot manually leave it empty (the game, on
- * the other hand, can achieve this through events). In addition to that,
- * optimizing equipment can be restricted for certain equipment types, which
- * are better off being decided manually (such as accessories).
+ * 装备规则：现在，装备类型可以被选择能不能移除。例如，这个插件设置了了武
+ * 器必须装备，所以玩家武器栏不可以为空。除此之外，可选择装备被确定类型限
+ * 制，最好关闭自动决定。
  *
  * 4. Parameter Control
- * Equipment parameters can now to be adjusted through notetags to have a large
- * value or customized value (through code). This allows for equipment to no
- * longer be static items, but instead, equipment can now be dynamic and may
- * change over the course of the game.
+ * 参数控制：装备参数可以同标签设置，来自设置一个较大的值或者自定义值。这
+ * 将允许装备不再是静态物品而是可以通过游戏改变的
  *
  * Note: Item Core Users
  * For users using the Item Core plugin and the new Item Scene layout option,
@@ -129,7 +99,7 @@ Yanfly.Equip.version = 1.18;
  * Notetags
  * ============================================================================
  *
- * You can use the following notetags to change a class's equipment setup.
+ * 你可以用下面的标签改变职业装备设置
  *
  * Class Notetags:
  *   <Equip Slot: x>      Example: <Equip Slot: 1, 2, 3, 4, 5, 5, 5, 5>
@@ -137,10 +107,9 @@ Yanfly.Equip.version = 1.18;
  *   Changes this class's equipment slots to x. Using repeating numbers makes
  *   it so that equipment type is duplicated and that the class can equip
  *   multiple equipment of that type. To find the Equipment Type ID, go to your
- *   database's Types tab and look for the ID type.
+ *   例如：改变角色可以装备的类型ID
  *
- *   If you don't like the above method for setting equipment slots, you can
- *   use the following notetags instead:
+ *   如果你不喜欢这个方法，你可以用下面方法替代:
  *
  *   <Equip Slot>         Example: <Equip Slot>
  *    string                        Weapon
@@ -152,16 +121,14 @@ Yanfly.Equip.version = 1.18;
  *   sensitive so if the string does not match a name entry perfectly, the slot
  *   will not be granted to the class. Multiple copies of a name entry would
  *   mean the class can equip multiple equipment of that type. Everything works
- *   the same as the previous notetag.
+ *   用特定的物品类型放入代码即可。
  *
  * Weapon and Armor Notetags:
  *   <stat: +x>
  *   <stat: -x>
- *   Allows the piece of weapon or armor to gain or lose x amount of stat.
- *   Replace "stat" with "hp", "mp", "atk", "def", "mat", "mdf", "agi", or
- *   "luk" to alter that specific stat. This allows the piece of equipment
- *   to go past the editor's default limitation so long as the maximum value
- *   allows for it. Changes made here alter the base parameters.
+ *   允许武器装备或者或者失去某些值。你可以用血量、魔法值、攻击力、防御力、
+ *   魔法攻击力、魔法防御力、速度或者幸运值来代替。这将允许装备可以突破默认
+ *   编辑器的限制。
  *
  * ============================================================================
  * Lunatic Mode - Custom Parameters
@@ -177,18 +144,11 @@ Yanfly.Equip.version = 1.18;
  *   parameters are defined: 'maxhp', 'maxmp', 'atk', 'def', 'mat', 'mdf',
  *   'agi', 'luk', and 'all'. The 'all' parameter will affect all parameters.
  *   Changes made here do not alter the base parameters, but instead, are added
- *   onto the base parameters.
+ *   onto the base parameters.允许玩家自定义参数。
  *
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.18:
- * - Bypass the isDevToolsOpen() error when bad code is inserted into a script
- * call or custom Lunatic Mode code segment due to updating to MV 1.6.1.
- *
- * Version 1.17:
- * - Updated for RPG Maker MV version 1.5.0.
  *
  * Version 1.16:
  * - Lunatic Mode fail safes added.
@@ -1145,7 +1105,6 @@ Yanfly.Util.displayError = function(e, code, message) {
   console.log(message);
   console.log(code || 'NON-EXISTENT');
   console.error(e);
-  if (Utils.RPGMAKER_VERSION && Utils.RPGMAKER_VERSION >= "1.6.0") return;
   if (Utils.isNwjs() && Utils.isOptionValid('test')) {
     if (!require('nw.gui').Window.get().isDevToolsOpen()) {
       require('nw.gui').Window.get().showDevTools();

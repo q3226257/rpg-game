@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Hit Accuracy
 // YEP_HitAccuracy.js
 //=============================================================================
@@ -8,25 +8,22 @@ Imported.YEP_HitAccuracy = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.HA = Yanfly.HA || {};
-Yanfly.HA.version = 1.04;
+Yanfly.HA.version = 1.02;
 
 //=============================================================================
  /*:
- * @plugindesc v1.04 This plugin alters the nature of hit accuracy for
- * RPG Maker MV by giving control to its formula.
+ * @plugindesc v1.02 命中率
  * @author Yanfly Engine Plugins
  *
  * @param ---Formula---
  * @default
  *
  * @param Accuracy Formula
- * @parent ---Formula---
  * @desc The formula used to determine the skill's accuracy.
  * Variables: skillHitRate, userHitRate, targetEvadeRate
  * @default skillHitRate * (userHitRate - targetEvadeRate)
  *
  * @param Evade Formula
- * @parent ---Formula---
  * @desc The formula used to determine if the skill is evaded.
  * Variables: skillHitRate, userHitRate, targetEvadeRate
  * @default 0
@@ -35,19 +32,16 @@ Yanfly.HA.version = 1.04;
  * @default
  *
  * @param User Physical Hit
- * @parent ---User Hit Rate---
  * @desc The formula used to determine the user's hit rate
  * for physical actions.
  * @default user.hit
  *
  * @param User Magical Hit
- * @parent ---User Hit Rate---
  * @desc The formula used to determine the user's hit rate
  * for magical actions.
  * @default 1.00
  *
  * @param User Certain Hit
- * @parent ---User Hit Rate---
  * @desc The formula used to determine the user's hit rate
  * for certain hit actions.
  * @default 1.00
@@ -56,19 +50,16 @@ Yanfly.HA.version = 1.04;
  * @default
  *
  * @param Target Physical Evade
- * @parent ---Target Evade Rate---
  * @desc The formula used to determine the target's evade rate
  * for physical actions.
  * @default target.eva
  *
  * @param Target Magical Evade
- * @parent ---Target Evade Rate---
  * @desc The formula used to determine the target's evade rate
  * for magical actions.
  * @default target.mev
  *
  * @param Target Certain Evade
- * @parent ---Target Evade Rate---
  * @desc The formula used to determine the target's evade rate
  * for certain hit actions.
  * @default 0.00
@@ -78,44 +69,30 @@ Yanfly.HA.version = 1.04;
  * Introduction
  * ============================================================================
  *
- * By default, RPG Maker MV's action accuracy formula is unintuitive. For what
- * it matters, the accuracy of the skill is determined first, then the evasion
- * of the target is determined second regardless of the accuracy of the first
- * check. This means that even if an attacker has 1000% HIT accuracy, the skill
- * can still be evaded by the enemy's 5% EVA stat. So instead, this plugin will
- * provide control over an action's accuracy formula and evasion formula. By
- * this plugin's default settings, accuracy will now be calculated where the
- * attacker's HIT and the enemy's EVA are set against one another for a more
- * intuitive accuracy formula.
+ * 默认来说，MC的行动公式是繁杂的，我们将先验证技能精准性，在验证目标躲避率
+ * 。这意味着即使玩家拥有1000%的伤害精准，技能仍然有可能被5%的躲避率躲避。
+ * 这个插件提供了行动精准公式的调整。在插件默认设置里面，精准性将会被更简便
+ * 的公式计算
  *
  * ============================================================================
  * Instructions
  * ============================================================================
  *
- * This plugin can be plug-and-play. But, if you wish to modify the accuracy
- * formulas to your liking, adjust the plugin parameters that alter each of the
- * individual aspects.
+ * 这个插件是即插即用。但是，如果你想调整你想要的公式，可以调整插件参数
  *
- * skillHitRate - This is the inherent success rate of the skill/item.
+ * skillHitRate - 技能成功率.
  *
  * userHitRate - This is the accuracy rate of the user. If it's a physical
  * action, by default, HIT is used. If it's a magical action, by default, there
- * will be a 100% modifier from it, meaning it doesn't alter the success rate.
+ * will be a 100% modifier from it, meaning it doesn't行动成功率
  *
  * targetEvadeRate - This is the evasion rate of the target. If it's a physical
  * action, the EVA stat is used by default. If it's a magical action, the MEV
- * stat is used by default.
+ * stat is 目标躲避率
  *
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.04:
- * - Bypass the isDevToolsOpen() error when bad code is inserted into a script
- * call or custom Lunatic Mode code segment due to updating to MV 1.6.1.
- *
- * Version 1.03:
- * - Updated for RPG Maker MV version 1.5.0.
  *
  * Version 1.02:
  * - Lunatic Mode fail safes added.
@@ -251,7 +228,6 @@ Yanfly.Util.displayError = function(e, code, message) {
   console.log(message);
   console.log(code || 'NON-EXISTENT');
   console.error(e);
-  if (Utils.RPGMAKER_VERSION && Utils.RPGMAKER_VERSION >= "1.6.0") return;
   if (Utils.isNwjs() && Utils.isOptionValid('test')) {
     if (!require('nw.gui').Window.get().isDevToolsOpen()) {
       require('nw.gui').Window.get().showDevTools();

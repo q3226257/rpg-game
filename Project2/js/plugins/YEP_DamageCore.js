@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Damage Core
 // YEP_DamageCore.js
 //=============================================================================
@@ -8,37 +8,26 @@ Imported.YEP_DamageCore = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.DMG = Yanfly.DMG || {};
-Yanfly.DMG.version = 1.08;
+Yanfly.DMG.version = 1.06;
 
 //=============================================================================
  /*:
- * @plugindesc v1.08 Expand the control you have over the game's damage
- * calculation with more features and effects.
+ * @plugindesc v1.06 伤害核心
  * @author Yanfly Engine Plugins
  *
  * @param ---Damage Cap---
  * @default
  *
  * @param Enable Cap
- * @parent ---Damage Cap---
- * @type boolean
- * @on Damage Cap
- * @off No Damage Cap
  * @desc Do you wish to put a cap on your damage?
  * NO - false     YES - true     Default: false
  * @default true
  *
  * @param Maximum Damage
- * @parent ---Damage Cap---
- * @type number
- * @min 0
  * @desc If enabled, what is the default maximum damage?
  * @default 9999
  *
  * @param Maximum Healing
- * @parent ---Damage Cap---
- * @type number
- * @min 0
  * @desc If enabled, what is the default maximum healing?
  * @default 9999
  *
@@ -46,503 +35,403 @@ Yanfly.DMG.version = 1.08;
  * @default
  *
  * @param Damage Step 1
- * @parent ---Damage Steps---
  * @desc This is the step after the base value has been calculated.
  * Previous line: baseDamage = this.evalDamageFormula(target);
  * @default baseDamage = this.modifyBaseDamage(value, baseDamage, target);
  *
  * @param Damage Step 2
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default baseDamage *= this.calcElementRate(target);
  *
  * @param Damage Step 3
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default 
  *
  * @param Damage Step 4
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default 
  *
  * @param Damage Step 5
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default 
  *
  * @param Damage Step 6
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default critical = this.modifyCritical(critical, baseDamage, target);
  *
  * @param Damage Step 7
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default target.result().critical = critical;
  *
  * @param Damage Step 8
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default value = baseDamage;
  *
  * @param Damage Step 9
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default 
  *
  * @param Damage Step 10
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default if (baseDamage > 0) {
  *
  * @param Damage Step 11
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default value = this.applyDamageRate(value, baseDamage, target);
  *
  * @param Damage Step 12
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 13
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 14
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 15
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 16
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 17
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 18
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default }
  *
  * @param Damage Step 19
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 20
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default if (baseDamage < 0) {
  *
  * @param Damage Step 21
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default value = this.applyHealRate(value, baseDamage, target);
  *
  * @param Damage Step 22
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 23
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 24
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 25
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 26
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 27
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 28
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default }
  *
  * @param Damage Step 29
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 30
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default if (critical) {
  *
  * @param Damage Step 31
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default value = this.applyCriticalRate(value, baseDamage, target);
  *
  * @param Damage Step 32
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 33
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 34
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 35
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 36
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 37
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 38
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default }
  *
  * @param Damage Step 39
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 40
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default if (this.isPhysical()) {
  *
  * @param Damage Step 41
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default value = this.applyPhysicalRate(value, baseDamage, target);
  *
  * @param Damage Step 42
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 43
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 44
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 45
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 46
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 47
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default value = this.applyFlatPhysical(value, baseDamage, target);
  *
  * @param Damage Step 48
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default }
  *
  * @param Damage Step 49
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 50
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default if (this.isMagical()) {
  *
  * @param Damage Step 51
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default value = this.applyMagicalRate(value, baseDamage, target);
  *
  * @param Damage Step 52
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 53
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 54
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 55
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 56
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 57
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default value = this.applyFlatMagical(value, baseDamage, target);
  *
  * @param Damage Step 58
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default }
  *
  * @param Damage Step 59
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 60
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default if (baseDamage > 0) {
  *
  * @param Damage Step 61
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default value = this.applyFlatDamage(value, baseDamage, target);
  *
  * @param Damage Step 62
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 63
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 64
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 65
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 66
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 67
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 68
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default }
  *
  * @param Damage Step 69
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 70
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default if (baseDamage < 0) {
  *
  * @param Damage Step 71
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default value = this.applyFlatHeal(value, baseDamage, target);
  *
  * @param Damage Step 72
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 73
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 74
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 75
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 76
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 77
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 78
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default }
  *
  * @param Damage Step 79
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 80
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default if (critical) {
  *
  * @param Damage Step 81
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default value = this.applyFlatCritical(value, baseDamage, target);
  *
  * @param Damage Step 82
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 83
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 84
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 85
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 86
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 87
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 88
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default }
  *
  * @param Damage Step 89
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 90
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default value = this.applyVariance(value, item.damage.variance);
  *
  * @param Damage Step 91
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 92
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 93
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 94
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 95
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default value = this.applyGuard(value, target);
  *
  * @param Damage Step 96
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 97
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 98
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default
  *
  * @param Damage Step 99
- * @parent ---Damage Steps---
  * @desc This is the next step in the damage flow.
  * @default value = this.applyFlatGlobal(value, baseDamage, target);
  *
  * @param Damage Step 100
- * @parent ---Damage Steps---
  * @desc This is the final step in the damage flow.
  * Following line: return Math.round(value);
  * @default value = this.applyMinimumDamage(value, baseDamage, target);
@@ -552,30 +441,26 @@ Yanfly.DMG.version = 1.08;
  * Introduction
  * ============================================================================
  *
- * The game gives a lot of control over the damage formula, but it doesn't give
- * much control for everything else after calculating it. This plugin will give
- * you control over the order the damage formula is calculated in addition to
- * letting you insert your own changes to it at whatever you wish.
+ * 游戏中可以设置关于造成伤害的公式，但是并没有与计算伤害公式后的相关设置
+ * 。利用这个插件，你可以插入你自己的调整进入伤害公式。
  *
- * If you have YEP_BattleEngineCore.js installed, place this plugin under
- * YEP_BattleEngineCore.js if you wish to make use of the extra features this
- * plugin has to offer.
+ * 如果你使用了YEP_BattleEngineCore.js，把它放在YEP_BattleEngineCore.js下面
  *
  * ============================================================================
  * Notetags
  * ============================================================================
  *
- * The following are some notetags you can use to modify the damage caps.
+ * 下面的标签你可以用来调整
  *
  * Skill and Item Notetag:
  *   <Bypass Damage Cap>
  *   This causes the skill/item to ignore the damage cap and go with the
  *   regular value of the calculated damage. This will cancel out any damage
  *   cap effects otherwise. This will take priority over any damage cap
- *   breaking effects.
+ *   breaking effects.忽略伤害限制
  *
  * Actor, Class, Enemy, Weapon, Armor, and State Notetags:
- *   <Bypass Damage Cap>
+ *   <Bypass Damage Cap>  忽略伤害限制
  *   This will cause the related battler to bypass any damage capping effects
  *   and its skills/items will go with the uncapped calculated value.
  *
@@ -586,21 +471,20 @@ Yanfly.DMG.version = 1.08;
  *   damage cap, it will go with the highest value. This means if an actor that
  *   has a weapon that brings the damage cap to 99,999 and an accessory that
  *   brings the damage cap to 999,999, then the battler's damage cap will be
- *   the highest value of 999,999.
+ *   the highest value of 999,999.设置伤害限制和治疗限制
  *
  * ============================================================================
  * Plugin Commands
  * ============================================================================
  *
- * The following are plugins you can use to set the damage cap rulings for your
- * game. Keep in mind that individual aspects such as equipment traits, skill
- * properties, etc. will take priority over these default caps.
+ * 你可以用下面的插件命令来设置伤害限制规则。请注意，装备特性，技能特性将
+ * 不会受影响
  *
  * Plugin Command:
- *   SetDamageCap 9999     Sets the default damage cap to 9999.
- *   SetHealingCap 9999    Sets the default healing cap to 9999.
- *   EnableDamageCap       Enables default cap for both damage and healing.
- *   DisableDamageCap      Disables default cap for both damage and healing.
+ *   SetDamageCap 9999     伤害上限为9999
+ *   SetHealingCap 9999    治疗上限为9999
+ *   EnableDamageCap       开启伤害上限
+ *   DisableDamageCap      关闭伤害上限
  *
  * ============================================================================
  * Lunatic Mode - Damage Formula
@@ -807,13 +691,6 @@ Yanfly.DMG.version = 1.08;
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.08:
- * - Bypass the isDevToolsOpen() error when bad code is inserted into a script
- * call or custom Lunatic Mode code segment due to updating to MV 1.6.1.
- *
- * Version 1.07:
- * - Updated for RPG Maker MV version 1.5.0.
  *
  * Version 1.06:
  * - Lunatic Mode fail safes added.
@@ -1519,7 +1396,6 @@ Yanfly.Util.displayError = function(e, code, message) {
   console.log(message);
   console.log(code || 'NON-EXISTENT');
   console.error(e);
-  if (Utils.RPGMAKER_VERSION && Utils.RPGMAKER_VERSION >= "1.6.0") return;
   if (Utils.isNwjs() && Utils.isOptionValid('test')) {
     if (!require('nw.gui').Window.get().isDevToolsOpen()) {
       require('nw.gui').Window.get().showDevTools();

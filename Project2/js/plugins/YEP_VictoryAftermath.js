@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Victory Aftermath
 // YEP_VictoryAftermath.js
 //=============================================================================
@@ -8,19 +8,16 @@ Imported.YEP_VictoryAftermath = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.VA = Yanfly.VA || {};
-Yanfly.VA.version = 1.07
 
 //=============================================================================
  /*:
- * @plugindesc v1.07 Display an informative window after a battle is over
- * instead of message box text stating what the party earned.
+ * @plugindesc v1.06 胜利计算
  * @author Yanfly Engine Plugins
  *
  * @param ---General---
  * @default
  *
  * @param Victory Order
- * @parent ---General---
  * @desc This is the order the victory sequence will play out.
  * Separate each part with a space.
  * @default exp custom drops
@@ -29,25 +26,18 @@ Yanfly.VA.version = 1.07
  * @default
  *
  * @param Victory BGM
- * @parent ---BGM---
- * @type file
- * @dir audio/bgm/
- * @require 1
  * @desc This will be the BGM used when the battle is over.
  * @default Ship3
  *
  * @param BGM Volume
- * @parent ---BGM---
  * @desc This will be the volume of the BGM played.
  * @default 90
  *
  * @param BGM Pitch
- * @parent ---BGM---
  * @desc This will be the pitch of the BGM played.
  * @default 100
  *
  * @param BGM Pan
- * @parent ---BGM---
  * @desc This will be the pan of the BGM played.
  * @default 0
  *
@@ -55,20 +45,15 @@ Yanfly.VA.version = 1.07
  * @default
  *
  * @param Cheer Wait
- * @parent ---Battle Results---
- * @type number
- * @min 0
  * @desc This will be how many frames the actors will cheer for
  * before the Victory Aftermath windows appear.
  * @default 90
  *
  * @param Battle Results Text
- * @parent ---Battle Results---
  * @desc This is the text used for the battle results text.
  * @default Battle Results
  *
  * @param Battle Drops Text
- * @parent ---Battle Results---
  * @desc This is the text used for the drops gained in battle.
  * @default Battle Spoils
  *
@@ -76,106 +61,69 @@ Yanfly.VA.version = 1.07
  * @default
  *
  * @param Font Size
- * @parent ---EXP Window---
- * @type number
- * @min 1
  * @desc This is the font size used for the EXP Window.
  * Default: 28
  * @default 28
  *
  * @param Level Up Text
- * @parent ---EXP Window---
  * @desc The text to be used when leveling up.
  * @default LEVEL UP!
  *
  * @param Max Level Text
- * @parent ---EXP Window---
  * @desc The text to be used when the actor is Max Level.
  * @default MAX LEVEL
  *
  * @param Show Skills Learned
- * @parent ---EXP Window---
- * @type boolean
- * @on Display Skills
- * @off Don't Display
  * @desc Display skills learned at level up?
  * NO - false     YES - true
  * @default false
  *
  * @param Gained EXP Text
- * @parent ---EXP Window---
  * @desc The text to label how much EXP was gained in battle.
  * @default Gained EXP
  *
  * @param Gained EXP Format
- * @parent ---EXP Window---
  * @desc The text to display how much EXP was gained in battle.
  * @default +%1
  *
  * @param EXP Gauge Color 1
- * @parent ---EXP Window---
- * @type number
- * @min 0
- * @max 31
  * @desc The skin color used in EXP Gauge Color 1 shown in the
  * Victory Aftermath Window.
  * @default 30
  *
  * @param EXP Gauge Color 2
- * @parent ---EXP Window---
- * @type number
- * @min 0
- * @max 31
  * @desc The skin color used in EXP Gauge Color 2 shown in the
  * Victory Aftermath Window.
  * @default 31
  *
  * @param Level Gauge Color 1
- * @parent ---EXP Window---
- * @type number
- * @min 0
- * @max 31
  * @desc The skin color used for the EXP Gauge Color 1 if the actor
  * has leveled up.
  * @default 14
  *
  * @param Level Gauge Color 2
- * @parent ---EXP Window---
- * @type number
- * @min 0
- * @max 31
  * @desc The skin color used for the EXP Gauge Color 2 if the actor
  * has leveled up.
  * @default 6
  *
  * @param Gauge Ticks
- * @parent ---EXP Window---
- * @type number
- * @min 0
  * @desc This is how many ticks will occur before the gained EXP
  * gauge is full. Each tick is 4 frames.
  * @default 15
  *
  * @param Tick SE
- * @parent ---EXP Window---
- * @type file
- * @dir audio/se/
- * @require 1
  * @desc This will be the sound used while the EXP gauge fills up.
  * @default Absorb2
  *
  * @param Tick Volume
- * @parent ---EXP Window---
  * @desc This will be the volume of the BGM played.
  * @default 90
  *
  * @param Tick Pitch
- * @parent ---EXP Window---
  * @desc This will be the pitch of the BGM played.
  * @default 150
  *
  * @param Tick Pan
- * @parent ---EXP Window---
  * @desc This will be the pan of the BGM played.
  * @default 0
  *
@@ -184,49 +132,37 @@ Yanfly.VA.version = 1.07
  * Introduction
  * ============================================================================
  *
- * This plugin swaps out the victory messages from the default battle system in
- * favor of more informative windows to display. Adjust the parameters to
- * change the settings to fit your game.
+ * 替代了默认的胜利窗口，提供更精准和实用的数据
+ * 插件替代了默认的胜利窗口，展示了更多有用的信息。你可以调整参数来设置游戏。
  *
  * ============================================================================
  * Victory Aftermath
  * ============================================================================
  *
- * In the parameters, there's a 'Victory Order' parameter. This parameter lets
- * you choose the order of the steps in the Victory Aftermath.
+ * 在参数里面，这里有个“胜利顺序”参数，这个参数可以让你定制胜利后的步骤
  *
  * The default order is as follows:
- *           exp         Displays the EXP window.
- *           custom      Displays any custom plugin extensions.
- *           drops       Displays the drops window.
+ *           exp         展示经验窗口
+ *           custom      展示自定义拓展
+ *           drops       展示掉落物品
  *
- * If you switch the order of these steps, add steps, or remove steps from the
- * 'Victory Order' plugin, the Victory Aftermath will correspond to any changes
- * you have made.
+ * 你可以通过关闭顺序，添加或者移除步骤，来改变你的游戏
  *
  * ============================================================================
  * Plugin Commands
  * ============================================================================
  *
- * If you wish to alter the Victory Aftermath sequence a bit, you can use the
- * following Plugin Commands.
+ * 如果你希望微调胜利序列，你可以使用下面命令
  *
  * Plugin Commands:
- *   DisableVictoryAftermath   - Disables the Victory Aftermath sequence and
- *                               bypasses the Victory Aftermath music, too.
- *   EnableVictoryAftermath    - Enables the Victory Aftermath sequence if
- *                               it has been previously disabled.
- *   DisableVictoryMusic       - Disables the Victory Aftermath music to just
- *                               continue playing whatever was playing.
- *   EnableVictoryMusic        - Enables the Victory Aftermath music if it has
- *                               been previously disabled.
+ *   DisableVictoryAftermath   - 关闭序列
+ *   EnableVictoryAftermath    - 开启序列 
+ *   DisableVictoryMusic       - 关闭声音
+ *   EnableVictoryMusic        - 开启声音
  *
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.07:
- * - Updated for RPG Maker MV version 1.5.0.
  *
  * Version 1.06:
  * - Updated for RPG Maker MV version 1.3.2.

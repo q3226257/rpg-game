@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Absorption Barrier
 // YEP_AbsorptionBarrier.js
 //=============================================================================
@@ -8,42 +8,32 @@ Imported.YEP_AbsorptionBarrier = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.ABR = Yanfly.ABR || {};
-Yanfly.ABR.version = 1.08;
+Yanfly.ABR.version = 1.05;
 
 //=============================================================================
  /*:
- * @plugindesc v1.08 Battlers can be surrounded by an absorption barrier
- * that would mitigate damage dealt to HP.
+ * @plugindesc v1.05 吸收屏障
  * @author Yanfly Engine Plugins
  *
  * @param Barrier State
- * @type state
  * @desc If a battler has even 1 Barrier Point, the battler will
  * be affected by this state. Leave at 0 for no state.
  * @default 0
  *
  * @param Barrier Color 1
- * @type number
- * @min 0
- * @max 31
  * @desc The text code color 1 used for the barriers.
  * @default 13
  *
  * @param Barrier Color 2
- * @type number
- * @min 0
- * @max 31
  * @desc The text code color 2 used for the barriers.
  * @default 5
  *
  * @param Barrier Animation
- * @type animation
  * @desc Animation played when barrier points are lost.
  * Leave at 0 for no animation.
  * @default 0
  *
  * @param Break Animation
- * @type animation
  * @desc Animation played when barrier points are emptied.
  * Leave at 0 for no animation.
  * @default 0
@@ -54,25 +44,16 @@ Yanfly.ABR.version = 1.08;
  * @default 255, 0, 255, 160
  *
  * @param Display 0 HP Damage
- * @type boolean
- * @on Show
- * @off Hide
  * @desc Display 0 HP Damage if 0 Damage is dealt to HP?
  * NO - false     YES - true
  * @default false
  *
  * @param Clear Per Battle
- * @type boolean
- * @on YES
- * @off NO
  * @desc Clear barrier points at the start and end of battle?
  * NO - false     YES - true
  * @default true
  *
  * @param Clear on Death
- * @type boolean
- * @on YES
- * @off NO
  * @desc Clear barrier points if the battler dies?
  * NO - false     YES - true
  * @default true
@@ -92,76 +73,54 @@ Yanfly.ABR.version = 1.08;
  * Introduction
  * ============================================================================
  *
- * The Absorption Barrier is a new mechanic added for battle. Barrier Points, a
- * new type of stat, provide a layer of protection for battlers. Any direct 
- * damage that would normally be done to HP would be dealt to the battler's
- * Barrier Points first, mitigating any real damage dealt to the battler.
- * Any remaining damage is then dealt to the battler.
+ * 屏障吸收是一个新的战斗技巧。屏障值是一个新的状态，为玩家提供一层保护。
+ * 直接攻击将不会作用在血量上，而是先消减屏障值，剩余的在作用给玩家
  *
- * There are various mechanics to exploit via this mechanic such as unexpiring
- * barriers, expiring barriers, barrier penetration, barrier bypassing, etc.
- * Read about it more in the next section~
+ * 借助这个可以开发很多功能，更多请看下一部分
  *
  * ============================================================================
  * Barrier Points - Explanation
  * ============================================================================
  *
- * Barrier Points are a buffer placed on top of a battler's HP. Any direct form
- * of damage from skills or items will be dealt to the battler's Barrier Points
- * first before being dealt to the battler's HP. Let's see how the mechanics
- * work in the following examples:
+ * 屏障值是一个血量增益状态。任何来自技能或者物品的攻击将会先削减屏障值
+ * 让我们看看它是怎么工作的
  *
  * --- Example 1 ----
  *
- * For example, let's assume the target has 100 Barrier Points. 150 damage is
- * to be dealt to the target's HP through a skill or item.
+ * 例如，这里有100屏障值，150伤害
  *
  *          150 DMG vs 100 Barrier Points: 50 DMG goes through
  *
- * As a result, the target's Barrier Points are reduced to 0 and the target's
- * HP will suffer only 50 DMG.
+ * 屏障值最后为0，受到50伤害
  *
  * --- Example 2---
  *
- * The target has 100 Barrier Points. 50 damage is to be dealt to the target's
- * HP through a skill or item.
+ * 这里有100屏障值，50伤害
  *
  *          50 DMG vs 100 Barrier Points: 0 DMG goes through
  *
- * As a result, the target's Barrier Points are reduced to 50 and no damage
- * goes through to the user's HP.
+ * 屏障值最后为50，受到0伤害
  *
  * ============================================================================
  * Barrier Penetration - Explanation
  * ============================================================================
  *
- * Some skills and items can possess a unique trait called Barrier Penetration.
- * Barrier Penetration allows a percentile or flat amount of the damage to go
- * through and ignore the target's absorption barrier. The more Barrier
- * Penetration on an action, the more of the target's Barrier Points are
- * ignored.
+ * 技能或者物品有个独特的特性叫做穿透屏障。这个允许部分伤害忽略屏障直接造
+ * 成伤害
  *
  * --- Example ---
  *
- * The target has 500 Barrier Points. 100 damage is to be dealt to the target's
- * HP through a skill or item. The attacker has 75% Barrier Penetration.
+ * 这里有500屏障值，100伤害，75%穿透
  *
  *          100 DMG vs 500 Barrier Points: 75 DMG goes through
  *
- * As a result, 75% of the damage will go through, meaning exactly 75 damage is
- * dealt to the target's HP. However, 25% of it gets absorbed by the target's
- * Barrier Points reducing the Barrier Points to 475 total.
+ * 屏障值最后为475，受到75伤害
  *
  * ============================================================================
  * Unexpiring Barriers vs Timed Barriers - Explanation
  * ============================================================================
  *
- * There are two types of Absorption Barriers: Unexpiring Barriers and Timed
- * Barriers. Unexpiring Barriers do not expire during the course of battle. The
- * Barrier Points they acquire, if left untouched, will remain that value. On
- * the other hand, Timed Barriers will last a certain amount of turns. When the
- * turns reach 0 during the Regeneration Phase for the user, the Barrier Points
- * are then stripped away.
+ * 这里有2种类型的屏障：永久屏障和临时屏障。
  *
  * --- Example ---
  *
@@ -179,10 +138,7 @@ Yanfly.ABR.version = 1.08;
  *
  * ---
  *
- * So, when damage is dealt, how do the Barrier Points absorb it? Damage is
- * always dealt to the lowest turn, then the next lowest, etc. until it reaches
- * the highest. After the highest, damage will then be dealt to Unexpiring
- * Barrier Points. For example:
+ * 伤害优先给与最低回合数，然后慢慢变高，最后是永久屏障:
  *
  * --- Example ---
  *
@@ -200,7 +156,7 @@ Yanfly.ABR.version = 1.08;
  * Notetags
  * ============================================================================
  *
- * Use the following notetags to alter the various mechanics of Barrier Points.
+ * 使用下面标签来设置
  *
  * Skill and Item Notetags:
  *
@@ -208,7 +164,7 @@ Yanfly.ABR.version = 1.08;
  *   <Target Barrier: +x>
  *   This adjusts the Barrier Points for user or the target respectively by +x.
  *   The Barrier Points altered for this notetag are unexpiring Barrier Points
- *   that do not remove themselves as time passes.
+ *   that do not remove themselves as time passes.设置永久屏障值
  *
  *   <User Barrier: -x>
  *   <Target Barrier: -x>
@@ -219,7 +175,7 @@ Yanfly.ABR.version = 1.08;
  *   <Target Barrier x Turns: +y>
  *   This adjusts the Barrier Points for the user or target respectively at x
  *   turns by +y amount. These Barrier Points will expire after x turns. Each
- *   turn goes by during the battler's regeneration timing.
+ *   turn goes by during the battler's regeneration timing.设置临时屏障值
  *
  *   <User Barrier x Turns: -y>
  *   <Target Barrier x Turns: -y>
@@ -227,17 +183,17 @@ Yanfly.ABR.version = 1.08;
  *
  *   <Bypass Barrier>
  *   This causes this skill to be able to bypass Barrier Points to directly
- *   deal damage to the target.
+ *   deal damage to the target.忽略屏障
  *
  *   <Barrier Penetration: x%>
  *   Causes x% of this skill or item's damage to bypass the action target's
  *   Barrier Points. If the target does not have enough Barrier Points, more
- *   damage will be dealt. This is a percentile value.
+ *   damage will be dealt. This is a percentile value.屏障穿透百分比
  *
  *   <Barrier Penetration: x>
  *   Causes x value of this skill or item's damage to bypass action target's
  *   Barrier Points. If the target does not have enough Barrier Points, more
- *   damage will be dealt. This is a flat value.
+ *   damage will be dealt. This is a flat value.屏障穿透值
  *
  * Actor, Class, Enemy, Weapon, Armor, State Notetags:
  *
@@ -245,33 +201,33 @@ Yanfly.ABR.version = 1.08;
  *   <Barrier Penetration: -x%>
  *   This makes any damaging action by the attacker to have +x% or -x% bonus
  *   Barrier Penetration. This is a multiplicative bonus and applied before
- *   flat bonuses have been made.
+ *   flat bonuses have been made.屏障穿透百分比
  *
  *   <Barrier Penetration: +x>
  *   <Barrier Penetration: -x>
  *   This makes any damaging action by the attacker to have +x or -x bonus
  *   Barrier Penetration. This is a flat bonus and applied after multiplicative
- *   changes have been made.
+ *   changes have been made.屏障穿透值
  *
  *   <Barrier Points: +x>
  *   <Barrier Points: -x>
  *   The amount of unexpiring Barrier Points are gained at the start of a new
- *   battle for the affected user.
+ *   battle for the affected user.设置永久屏障值
  *
  *   <Barrier Points x Turns: +y>
  *   <Barrier Points x Turns: -y>
  *   The amount of Barrier Points are gained at the start of a new battle for
- *   the affected user that will last x turns.
+ *   the affected user that will last x turns.设置临时屏障值
  *
  *   <Barrier Regen: +x>
  *   <Barrier Regen: -x>
  *   During the regeneration phase, the user will regenerate +x/-x unexpiring
- *   Barrier Points.
+ *   Barrier Points.屏障更新值
  *
  *   <Barrier Regen x Turns: +y>
  *   <Barrier Regen x Turns: -y>
  *   During the regeneration phase, the user will regenerate Barrier Points
- *   that last x turns with a +y/-y value.
+ *   that last x turns with a +y/-y value.屏障每回合更新值
  *
  * ============================================================================
  * Lunatic Mode - Custom Barrier Points
@@ -426,16 +382,6 @@ Yanfly.ABR.version = 1.08;
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.08:
- * - Bypass the isDevToolsOpen() error when bad code is inserted into a script
- * call or custom Lunatic Mode code segment due to updating to MV 1.6.1.
- *
- * Version 1.07:
- * - Updated for RPG Maker MV version 1.5.0.
- *
- * Version 1.06:
- * - Fixed a bug that caused shields to regenerate outside of battle.
  *
  * Version 1.05:
  * - Lunatic Mode fail safes added.
@@ -882,7 +828,6 @@ Game_Battler.prototype.startBarrierAnimation = function() {
 Yanfly.ABR.Game_Battler_regenerateAll = Game_Battler.prototype.regenerateAll;
 Game_Battler.prototype.regenerateAll = function() {
     Yanfly.ABR.Game_Battler_regenerateAll.call(this);
-    if (!$gameParty.inBattle()) return;
     if (this.isAlive()) {
       this.updateBarrierTurns();
       this.regenBarriers();
@@ -1466,7 +1411,6 @@ Yanfly.Util.displayError = function(e, code, message) {
   console.log(message);
   console.log(code || 'NON-EXISTENT');
   console.error(e);
-  if (Utils.RPGMAKER_VERSION && Utils.RPGMAKER_VERSION >= "1.6.0") return;
   if (Utils.isNwjs() && Utils.isOptionValid('test')) {
     if (!require('nw.gui').Window.get().isDevToolsOpen()) {
       require('nw.gui').Window.get().showDevTools();

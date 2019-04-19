@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Message Core Extension - Extended Message Pack 1
 // YEP_X_ExtMesPack1.js
 //=============================================================================
@@ -8,76 +8,50 @@ Imported.YEP_X_ExtMesPack1 = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.EMP1 = Yanfly.EMP1 || {};
-Yanfly.EMP1.version = 1.11;
 
 //=============================================================================
  /*:
- * @plugindesc v1.12 (Requires YEP_MessageCore.js) Letter Sounds, NameBox
- * Background Types, Choice Control, and more!
+ * @plugindesc v1.10 拓展信息包
  * @author Yanfly Engine Plugins
  *
  * @param ---Letter Sounds---
  * @default
  *
  * @param Enable Sound
- * @parent ---Letter Sounds---
- * @type boolean
- * @on Enable
- * @off Disable
  * @desc Enable letter by letter sounds by default?
  * NO - false     YES - true
  * @default true
  *
  * @param Sound Name
- * @parent ---Letter Sounds---
- * @type file
- * @dir audio/se/
- * @require 1
  * @desc The filename of the SE file. This is case sensitive.
  * Do not include file extension.
  * @default Cursor1
  *
  * @param Sound Volume
- * @parent ---Letter Sounds---
- * @type number
- * @min 0
  * @desc The sound volume of the sound effect.
  * @default 50
  *
  * @param Sound Pitch
- * @parent ---Letter Sounds---
  * @desc The pitch of the sound effect.
  * @default 100
  *
  * @param Pitch Variance
- * @parent ---Letter Sounds---
  * @desc The amount of pitch variance the sound will have.
  * @default 10
  *
  * @param Sound Pan
- * @parent ---Letter Sounds---
  * @desc The pan of the sound effect.
  * @default 0
  *
  * @param Pan Variance
- * @parent ---Letter Sounds---
- * @type number
- * @min 0
  * @desc The amount of pan variance the sound will have.
  * @default 10
  *
  * @param Sound Interval
- * @parent ---Letter Sounds---
- * @type number
- * @min 0
  * @desc How many letters should be skipped in between sounds?
  * @default 2
  *
  * @param Reset Sounds
- * @parent ---Letter Sounds---
- * @type boolean
- * @on Reset
- * @off Don't Reset
  * @desc Reset the letter sound at the start of each message?
  * NO - false     YES - true
  * @default false
@@ -86,30 +60,16 @@ Yanfly.EMP1.version = 1.11;
  * @default
  *
  * @param Default X
- * @parent ---Message Anchor---
- * @type combo
- * @option left
- * @option center
- * @option right
  * @desc When using the Message Position X mods, anchor X to
  * left     center     right
  * @default center
  *
  * @param Default Y
- * @parent ---Message Anchor---
- * @type combo
- * @option top
- * @option center
- * @option bottom
  * @desc When using the Message Position Y mods, anchor Y to
  * top     center     bottom
  * @default bottom
  *
  * @param Auto Row Full Face
- * @parent ---Message Anchor---
- * @type boolean
- * @on Show
- * @off Hide
  * @desc If using auto rows, show the full face art?
  * NO - false     YES - true
  * @default false
@@ -118,289 +78,206 @@ Yanfly.EMP1.version = 1.11;
  * @default
  *
  * @param Max Rows
- * @parent ---Message Choices---
- * @type number
- * @min 1
  * @desc The maximum amount of rows to display for your choices.
  * Default: 6
  * @default 6
  *
  * @param Choice 1 Show Switch
- * @parent ---Message Choices---
- * @type switch
  * @desc You can tie whether or not a choice is visible to a switch.
  * Use the switch ID you wish for this choice. 0 to not use.
  * @default 0
  *
  * @param Choice 2 Show Switch
- * @parent ---Message Choices---
- * @type switch
  * @desc You can tie whether or not a choice is visible to a switch.
  * Use the switch ID you wish for this choice. 0 to not use.
  * @default 0
  *
  * @param Choice 3 Show Switch
- * @parent ---Message Choices---
- * @type switch
  * @desc You can tie whether or not a choice is visible to a switch.
  * Use the switch ID you wish for this choice. 0 to not use.
  * @default 0
  *
  * @param Choice 4 Show Switch
- * @parent ---Message Choices---
- * @type switch
  * @desc You can tie whether or not a choice is visible to a switch.
  * Use the switch ID you wish for this choice. 0 to not use.
  * @default 0
  *
  * @param Choice 5 Show Switch
- * @parent ---Message Choices---
- * @type switch
  * @desc You can tie whether or not a choice is visible to a switch.
  * Use the switch ID you wish for this choice. 0 to not use.
  * @default 0
  *
  * @param Choice 6 Show Switch
- * @parent ---Message Choices---
- * @type switch
  * @desc You can tie whether or not a choice is visible to a switch.
  * Use the switch ID you wish for this choice. 0 to not use.
  * @default 0
  *
  * @param Choice 7 Show Switch
- * @parent ---Message Choices---
- * @type switch
  * @desc You can tie whether or not a choice is visible to a switch.
  * Use the switch ID you wish for this choice. 0 to not use.
  * @default 0
  *
  * @param Choice 8 Show Switch
- * @parent ---Message Choices---
- * @type switch
  * @desc You can tie whether or not a choice is visible to a switch.
  * Use the switch ID you wish for this choice. 0 to not use.
  * @default 0
  *
  * @param Choice 9 Show Switch
- * @parent ---Message Choices---
- * @type switch
  * @desc You can tie whether or not a choice is visible to a switch.
  * Use the switch ID you wish for this choice. 0 to not use.
  * @default 0
  *
  * @param Choice 10 Show Switch
- * @parent ---Message Choices---
- * @type switch
  * @desc You can tie whether or not a choice is visible to a switch.
  * Use the switch ID you wish for this choice. 0 to not use.
  * @default 0
  *
  * @param Choice 11 Show Switch
- * @parent ---Message Choices---
- * @type switch
  * @desc You can tie whether or not a choice is visible to a switch.
  * Use the switch ID you wish for this choice. 0 to not use.
  * @default 0
  *
  * @param Choice 12 Show Switch
- * @parent ---Message Choices---
- * @type switch
  * @desc You can tie whether or not a choice is visible to a switch.
  * Use the switch ID you wish for this choice. 0 to not use.
  * @default 0
  *
  * @param Choice 13 Show Switch
- * @parent ---Message Choices---
- * @type switch
  * @desc You can tie whether or not a choice is visible to a switch.
  * Use the switch ID you wish for this choice. 0 to not use.
  * @default 0
  *
  * @param Choice 14 Show Switch
- * @parent ---Message Choices---
- * @type switch
  * @desc You can tie whether or not a choice is visible to a switch.
  * Use the switch ID you wish for this choice. 0 to not use.
  * @default 0
  *
  * @param Choice 15 Show Switch
- * @parent ---Message Choices---
- * @type switch
  * @desc You can tie whether or not a choice is visible to a switch.
  * Use the switch ID you wish for this choice. 0 to not use.
  * @default 0
  *
  * @param Choice 16 Show Switch
- * @parent ---Message Choices---
- * @type switch
  * @desc You can tie whether or not a choice is visible to a switch.
  * Use the switch ID you wish for this choice. 0 to not use.
  * @default 0
  *
  * @param Choice 17 Show Switch
- * @parent ---Message Choices---
- * @type switch
  * @desc You can tie whether or not a choice is visible to a switch.
  * Use the switch ID you wish for this choice. 0 to not use.
  * @default 0
  *
  * @param Choice 18 Show Switch
- * @parent ---Message Choices---
- * @type switch
  * @desc You can tie whether or not a choice is visible to a switch.
  * Use the switch ID you wish for this choice. 0 to not use.
  * @default 0
  *
  * @param Choice 19 Show Switch
- * @parent ---Message Choices---
- * @type switch
  * @desc You can tie whether or not a choice is visible to a switch.
  * Use the switch ID you wish for this choice. 0 to not use.
  * @default 0
  *
  * @param Choice 20 Show Switch
- * @parent ---Message Choices---
- * @type switch
  * @desc You can tie whether or not a choice is visible to a switch.
  * Use the switch ID you wish for this choice. 0 to not use.
  * @default 0
  *
  * @param Choice 1 On Switch
- * @parent ---Message Choices---
- * @type switch
  * @desc You can tie whether or not a choice is enabled to a switch.
  * Use the switch ID you wish for this choice. 0 to not use.
  * @default 0
  *
  * @param Choice 2 On Switch
- * @parent ---Message Choices---
- * @type switch
  * @desc You can tie whether or not a choice is enabled to a switch.
  * Use the switch ID you wish for this choice. 0 to not use.
  * @default 0
  *
  * @param Choice 3 On Switch
- * @parent ---Message Choices---
- * @type switch
  * @desc You can tie whether or not a choice is enabled to a switch.
  * Use the switch ID you wish for this choice. 0 to not use.
  * @default 0
  *
  * @param Choice 4 On Switch
- * @parent ---Message Choices---
- * @type switch
  * @desc You can tie whether or not a choice is enabled to a switch.
  * Use the switch ID you wish for this choice. 0 to not use.
  * @default 0
  *
  * @param Choice 5 On Switch
- * @parent ---Message Choices---
- * @type switch
  * @desc You can tie whether or not a choice is enabled to a switch.
  * Use the switch ID you wish for this choice. 0 to not use.
  * @default 0
  *
  * @param Choice 6 On Switch
- * @parent ---Message Choices---
- * @type switch
  * @desc You can tie whether or not a choice is enabled to a switch.
  * Use the switch ID you wish for this choice. 0 to not use.
  * @default 0
  *
  * @param Choice 7 On Switch
- * @parent ---Message Choices---
- * @type switch
  * @desc You can tie whether or not a choice is enabled to a switch.
  * Use the switch ID you wish for this choice. 0 to not use.
  * @default 0
  *
  * @param Choice 8 On Switch
- * @parent ---Message Choices---
- * @type switch
  * @desc You can tie whether or not a choice is enabled to a switch.
  * Use the switch ID you wish for this choice. 0 to not use.
  * @default 0
  *
  * @param Choice 9 On Switch
- * @parent ---Message Choices---
- * @type switch
  * @desc You can tie whether or not a choice is enabled to a switch.
  * Use the switch ID you wish for this choice. 0 to not use.
  * @default 0
  *
  * @param Choice 10 On Switch
- * @parent ---Message Choices---
- * @type switch
  * @desc You can tie whether or not a choice is enabled to a switch.
  * Use the switch ID you wish for this choice. 0 to not use.
  * @default 0
  *
  * @param Choice 11 On Switch
- * @parent ---Message Choices---
- * @type switch
  * @desc You can tie whether or not a choice is enabled to a switch.
  * Use the switch ID you wish for this choice. 0 to not use.
  * @default 0
  *
  * @param Choice 12 On Switch
- * @parent ---Message Choices---
- * @type switch
  * @desc You can tie whether or not a choice is enabled to a switch.
  * Use the switch ID you wish for this choice. 0 to not use.
  * @default 0
  *
  * @param Choice 13 On Switch
- * @parent ---Message Choices---
- * @type switch
  * @desc You can tie whether or not a choice is enabled to a switch.
  * Use the switch ID you wish for this choice. 0 to not use.
  * @default 0
  *
  * @param Choice 14 On Switch
- * @parent ---Message Choices---
- * @type switch
  * @desc You can tie whether or not a choice is enabled to a switch.
  * Use the switch ID you wish for this choice. 0 to not use.
  * @default 0
  *
  * @param Choice 15 On Switch
- * @parent ---Message Choices---
- * @type switch
  * @desc You can tie whether or not a choice is enabled to a switch.
  * Use the switch ID you wish for this choice. 0 to not use.
  * @default 0
  *
  * @param Choice 16 On Switch
- * @parent ---Message Choices---
- * @type switch
  * @desc You can tie whether or not a choice is enabled to a switch.
  * Use the switch ID you wish for this choice. 0 to not use.
  * @default 0
  *
  * @param Choice 17 On Switch
- * @parent ---Message Choices---
- * @type switch
  * @desc You can tie whether or not a choice is enabled to a switch.
  * Use the switch ID you wish for this choice. 0 to not use.
  * @default 0
  *
  * @param Choice 18 On Switch
- * @parent ---Message Choices---
- * @type switch
  * @desc You can tie whether or not a choice is enabled to a switch.
  * Use the switch ID you wish for this choice. 0 to not use.
  * @default 0
  *
  * @param Choice 19 On Switch
- * @parent ---Message Choices---
- * @type switch
  * @desc You can tie whether or not a choice is enabled to a switch.
  * Use the switch ID you wish for this choice. 0 to not use.
  * @default 0
  *
  * @param Choice 20 On Switch
- * @parent ---Message Choices---
- * @type switch
  * @desc You can tie whether or not a choice is enabled to a switch.
  * Use the switch ID you wish for this choice. 0 to not use.
  * @default 0
@@ -410,21 +287,16 @@ Yanfly.EMP1.version = 1.11;
  * Introduction
  * ============================================================================
  *
- * This plugin requires YEP_MessageCore.js to run.
- * Place this plugin under YEP_MessageCore.js in the plugin list.
+ * 这个插件需要YEP_MessageCore.js，确保它放在YEP_MessageCore.js下面
  *
- * This plugin extends the amount of things the Message system can do in RPG
- * Maker MV. These features range from text sounds, more name window options,
- * face index control, hex colors, extended choice controls, and more precise
- * window positioning control. New text codes are also added to further ease
- * the usage of the message window.
+ * 这个插件拓展了信息系统的很多功能。从文本声音，到更多的名字窗口选项，脸
+ * 图，索引，文本样式，选项控制，窗口位置设置等。新的文本代码也被添加进来
  *
  * ============================================================================
  * Text Codes
  * ============================================================================
  *
- * By using certain text codes in your messages, you can have the game replace
- * them with the following:
+ * 你可以使用下面的文本代码:
  *
  * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  *
@@ -574,8 +446,7 @@ Yanfly.EMP1.version = 1.11;
  * Plugin Commands
  * ============================================================================
  *
- * You can use the following plugin commands to adjust a few of the settings
- * regarding the Message Window.
+ * 你可以使用下面的插件命令来调整
  *
  * Plugin Commands
  *
@@ -583,38 +454,36 @@ Yanfly.EMP1.version = 1.11;
  *
  *   EnableLetterSound
  *   DisableLetterSound
- *   - These commands will enable or disable the letter sounds respectively.
+ *   - 开启或关闭文本声音
  *
  *   LetterSoundName Cursor2
- *   - This will replace the current letter sound with the written filename.
- *   The filename is case sensitive. Do not use the file extension.
+ *   - 设置文本声音
  *
  *   LetterSoundVolume 100
- *   - This will change the letter sound volume to 100.
+ *   - 设置文本声音音量
  *
  *   LetterSoundPitch 125
- *   - This will change the letter sound pitch to 125.
+ *   - 设置文本声音音调
  *
  *   LetterSoundPitchVariance 10
- *   - This will cause the letter sound's pitch to fluctuate between -10 & 10.
+ *   - 设置文本声音音域 -10 & 10.
  *
  *   LetterSoundPan 0
- *   - This will change the letter sound's pan to 0.
+ *   - 设置文本声音音调浮动0.
  *
  *   LetterSoundPanVariance 10
- *   - This will cause the letter sound's pan to fluctuate between -10 and 10.
+ *   - 设置文本声音音域 -10 and 10.
  *
  *   LetterSoundInterval 2
- *   - This will change the interval at which the letter sounds are played to
- *   2 letters. Change it to 0 to play on every letter written out.
+ *   - 设置文本声音间隔
  *
  *   LetterSoundReset
- *   - This will reset the letter sounds to their default settings.
+ *   - 重置文本声音
  *
  *   --- Choice Settings ---
  *
  *   ChoiceRowMax 4
- *   - This will set the maximum amount of visible choices to 4.
+ *   - 最大可选择排为4排.
  *
  *   HideChoice 5
  *   - This will cause choice 5 to be hidden.
@@ -640,41 +509,41 @@ Yanfly.EMP1.version = 1.11;
  *   --- Message Window Positions ---
  *
  *   MessageRows 6
- *   - Changes the Message Rows displayed to 6. If you are using continuous
+ *   - 信息框可显示6排. If you are using continuous
  *   Show Text events, this will continue displaying the following lines's
  *   texts until it hits the row limit. Anything after that is cut off until
  *   the next message starts to avoid accidental overlap.
  *
  *   MessageWidth 400
- *   - Changes the Message Window Width to 400 pixels. This will cut off any
+ *   - 信息框宽度400 pixels. This will cut off any
  *   words that are shown too far to the right so adjust accordingly!
  *
  *   MessagePositionX 300
- *   - Sets the Message Window's X Position to 300. This position will be
+ *   - 信息框x位置为300. This position will be
  *   relative to its horizontal anchor point.
  *
  *   MessagePositionY 400
- *   - Sets the Message Window's Y Position to 400. This position will be
+ *   - 信息框Y位置为400. This position will be
  *   relative to its vertical anchor point.
  *
  *   MessagePositionXAuto
- *   - Sets the Message Window's X Position to be automatically fitted and not
- *   set relative to its horizontal anchor point.
+ *   - 信息框自动调整x位置Position to be automatically fitted and not
+ *   set relative to its vertical anchor point.
  *
  *   MessagePositionYAuto
- *   - Sets the Message Window's Y Position to be automatically fitted and not
+ *   - 信息框自动调整y位置Position to be automatically fitted and not
  *   set relative to its vertical anchor point.
  *
  *   MessageAnchorX left
- *   - Sets the Message Window's x anchor to 'left', 'center', or 'right' if
+ *   - 信息框基准点靠左, 'center', or 'right' if
  *   you are using specified coordinates.
  *
  *   MessageAnchorY bottom
- *   - Sets the Message Window's y anchor to 'top', 'center', or 'bottom' if
+ *   - 信息框基准点在底部 'center', or 'right' if
  *   you are using specified coordinates.
  *
  *   MessagePositionReset
- *   - Resets both the Message Window's X and Y Positions to its automatic
+ *   - 信息框位置重置Window's X and Y Positions to its automatic
  *   positions and not adjusted to its anchor points. The Message Width and the
  *   Message Rows.
  *
@@ -710,17 +579,9 @@ Yanfly.EMP1.version = 1.11;
  * Changelog
  * ============================================================================
  *
- * Version 1.12:
- * - Updated message choices to properly show the correct number of rows if an
- * inadequate number of rows are visible.
- *
- * Version 1.11:
- * - Updated for RPG Maker MV version 1.5.0.
- *
- * Version 1.10a:
+ * Version 1.10:
  * - Fixed a bug that made auto-messages to not position themselves properly on
  * events that are using tiles for their images.
- * - Documentation update to fix documentation errors.
  *
  * Version 1.09:
  * - Fixed a bug with the pitch and pan variance doubling its value.
@@ -1303,39 +1164,35 @@ Window_Base.prototype.getTextExHeight = function(text, x, y) {
 Yanfly.EMP1.Window_ChoiceList_numVisibleRows =
     Window_ChoiceList.prototype.numVisibleRows;
 Window_ChoiceList.prototype.numVisibleRows = function() {
-  var messageY = this._messageWindow.y;
-  var messageHeight = this._messageWindow.height;
-  var centerY = Graphics.boxHeight / 2;
-  // var choices = $gameMessage.choices();
-  // var numLines = choices.length;
-  this.makeCommandList();
-  var numLines = this._maxChoices;
-  var maxLines = $gameSystem.getMessageChoiceRows();
-  if (messageY < centerY && messageY + messageHeight > centerY) {
-    maxLines = 4;
-  }
-  if (numLines > maxLines) {
-    numLines = maxLines;
-  }
-  return Math.max(1, numLines);
+    var messageY = this._messageWindow.y;
+    var messageHeight = this._messageWindow.height;
+    var centerY = Graphics.boxHeight / 2;
+    var choices = $gameMessage.choices();
+    var numLines = choices.length;
+    var maxLines = $gameSystem.getMessageChoiceRows();
+    if (messageY < centerY && messageY + messageHeight > centerY) {
+      maxLines = 4;
+    }
+    if (numLines > maxLines) {
+      numLines = maxLines;
+    }
+    return Math.max(1, numLines);
 };
 
 Window_ChoiceList.prototype.makeCommandList = function() {
-  this._maxChoices = 0;
-  this._cancelAllowed = true;
-  var choices = $gameMessage.choices();
-  for (var i = 0; i < choices.length; i++) {
-    if (!$gameSystem.isChoiceShown(i)) {
-      if ($gameMessage.choiceCancelType() === i) this._cancelAllowed = false;
-      continue;
+    this._cancelAllowed = true;
+    var choices = $gameMessage.choices();
+    for (var i = 0; i < choices.length; i++) {
+      if (!$gameSystem.isChoiceShown(i)) {
+        if ($gameMessage.choiceCancelType() === i) this._cancelAllowed = false;
+        continue;
+      }
+      var enabled = $gameSystem.isChoiceEnabled(i);
+      this.addCommand(choices[i], 'choice', enabled, i);
+      if (!enabled) {
+        if ($gameMessage.choiceCancelType() === i) this._cancelAllowed = false;
+      }
     }
-    this._maxChoices += 1;
-    var enabled = $gameSystem.isChoiceEnabled(i);
-    this.addCommand(choices[i], 'choice', enabled, i);
-    if (!enabled) {
-      if ($gameMessage.choiceCancelType() === i) this._cancelAllowed = false;
-    }
-  }
 };
 
 Yanfly.EMP1.Window_ChoiceList_drawItem = Window_ChoiceList.prototype.drawItem;

@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Status Menu Core
 // YEP_StatusMenuCore.js
 //=============================================================================
@@ -8,43 +8,29 @@ Imported.YEP_StatusMenuCore = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.Status = Yanfly.Status || {};
-Yanfly.Status.version = 1.04;
 
 //=============================================================================
  /*:
- * @plugindesc v1.04 Changes the Status menu for your characters into
- * a hub that displays more character information.
+ * @plugindesc v1.01a 身份状态菜单核心
  * @author Yanfly Engine Plugins
  *
  * @param ---Settings---
  * @default
  *
  * @param Command Order
- * @parent ---Settings---
  * @desc This is the order in which the command menu will appear. Use
  * a space to separate the individual commands.
  * @default General Parameters Elements States Attributes Custom Cancel
  *
  * @param Command Window Width
- * @parent ---Settings---
- * @type number
- * @min 1
  * @desc This is the window width for the Command Window.
  * @default 240
  *
  * @param Command Window Rows
- * @parent ---Settings---
- * @type number
- * @min 1
  * @desc This is the number of rows for the Command Window.
  * @default 4
  *
  * @param Command Alignment
- * @parent ---Settings---
- * @type combo
- * @option left
- * @option center
- * @option right
  * @desc This is the text alignment for the Command Window.
  * left     center     right
  * @default center
@@ -53,39 +39,27 @@ Yanfly.Status.version = 1.04;
  * @default
  *
  * @param General Command
- * @parent ---General---
  * @desc This is how the command for 'General' will appear.
  * @default General
  *
  * @param Parameters Text
- * @parent ---General---
  * @desc This is how the word 'Parameters' will appear.
  * @default Parameters
  *
  * @param Experience Text
- * @parent ---General---
  * @desc This is how the word 'Experience' will appear.
  * @default Experience
  *
  * @param Total Format
- * @parent ---General---
  * @desc This is the word total experience.
  * @default Total %1 for Next %2
  *
  * @param EXP Gauge Color 1
- * @parent ---General---
- * @type number
- * @min 0
- * @max 31
  * @desc The skin color used in EXP Gauge Color 1 shown in the
  * status window.
  * @default 30
  *
  * @param EXP Gauge Color 2
- * @parent ---General---
- * @type number
- * @min 0
- * @max 31
  * @desc The skin color used in EXP Gauge Color 2 shown in the
  * status window.
  * @default 31
@@ -94,47 +68,39 @@ Yanfly.Status.version = 1.04;
  * @default
  *
  * @param Parameters Command
- * @parent ---Parameters---
  * @desc This is how the command for 'Parameters' will appear.
  * @default Parameters
  *
  * @param Graph Text
- * @parent ---Parameters---
  * @desc This is how the words for 'Parameter Graph' appear.
  * @default Parameter Graph
  *
  * @param ATK Color
- * @parent ---Parameters---
  * @desc This is the gauge color for ATK.
  * #Color1 #Color2
  * @default #ed1c24 #f26c4f
  *
  * @param DEF Color
- * @parent ---Parameters---
  * @desc This is the gauge color for DEF.
  * #Color1 #Color2
  * @default #f7941d #fdc689
  *
  * @param MAT Color
- * @parent ---Parameters---
  * @desc This is the gauge color for MAT.
  * #Color1 #Color2
  * @default #605ca8 #bd8cbf
  *
  * @param MDF Color
- * @parent ---Parameters---
  * @desc This is the gauge color for MDF.
  * #Color1 #Color2
  * @default #448ccb #a6caf4
  *
  * @param AGI Color
- * @parent ---Parameters---
  * @desc This is the gauge color for AGI.
  * #Color1 #Color2
  * @default #39b54a #82ca9c
  *
  * @param LUK Color
- * @parent ---Parameters---
  * @desc This is the gauge color for LUK.
  * #Color1 #Color2
  * @default #fff568 #fffac3
@@ -143,82 +109,42 @@ Yanfly.Status.version = 1.04;
  * @default
  *
  * @param Above 300%
- * @parent ---Resist Colors---
- * @type number
- * @min 0
- * @max 31
  * @desc This is the text color for rates over 300%.
  * @default 10
  *
  * @param 200% to 300%
- * @parent ---Resist Colors---
- * @type number
- * @min 0
- * @max 31
  * @desc This is the text color for rates over 200%.
  * @default 20
  *
  * @param 150% to 200%
- * @parent ---Resist Colors---
- * @type number
- * @min 0
- * @max 31
  * @desc This is the text color for rates over 150%.
  * @default 14
  *
  * @param 120% to 150%
- * @parent ---Resist Colors---
- * @type number
- * @min 0
- * @max 31
  * @desc This is the text color for rates over 120%.
  * @default 6
  *
  * @param 100% to 120%
- * @parent ---Resist Colors---
- * @type number
- * @min 0
- * @max 31
  * @desc This is the text color for rates over 100%.
  * @default 0
  *
  * @param 80% to 100%
- * @parent ---Resist Colors---
- * @type number
- * @min 0
- * @max 31
  * @desc This is the text color for rates over 80%.
  * @default 24
  *
  * @param 50% to 80%
- * @parent ---Resist Colors---
- * @type number
- * @min 0
- * @max 31
  * @desc This is the text color for rates over 50%.
  * @default 29
  *
  * @param 1% to 50%
- * @parent ---Resist Colors---
- * @type number
- * @min 0
- * @max 31
  * @desc This is the text color for rates over 1%.
  * @default 23
  *
  * @param Exactly 0%
- * @parent ---Resist Colors---
- * @type number
- * @min 0
- * @max 31
  * @desc This is the text color for rates exactly 0%.
  * @default 31
  *
  * @param Below 0%
- * @parent ---Resist Colors---
- * @type number
- * @min 0
- * @max 31
  * @desc This is the text color for rates below 0%.
  * @default 27
  *
@@ -226,76 +152,60 @@ Yanfly.Status.version = 1.04;
  * @default
  *
  * @param Elements Command
- * @parent ---Elements---
  * @desc This is how the command for 'Elements' will appear.
  * @default Elements
  *
  * @param Elements Decimal
- * @parent ---Elements---
- * @type number
- * @min 0
  * @desc How many decimal places to display for rates.
  * @default 2
  *
  * @param Element Column 1
- * @parent ---Elements---
  * @desc These are the element ID's drawn in column 1.
  * Separate these element ID's with a space.
  * @default 1
  *
  * @param Element Column 2
- * @parent ---Elements---
  * @desc These are the element ID's drawn in column 2.
  * Separate these element ID's with a space.
  * @default 2 3 4 5 6 7 8 9
  *
  * @param Element Column 3
- * @parent ---Elements---
  * @desc These are the element ID's drawn in column 3.
  * Separate these element ID's with a space.
  * @default
  *
  * @param Element Column 4
- * @parent ---Elements---
  * @desc These are the element ID's drawn in column 4.
  * Separate these element ID's with a space.
  * @default
  *
- * @param ---States---
+ * @param ---State---
  * @default
  *
  * @param States Command
- * @parent ---States---
  * @desc This is how the command for 'States' will appear.
  * @default States
  *
  * @param States Decimal
- * @parent ---States---
- * @type number
- * @min 0
  * @desc How many decimal places to display for rates.
  * @default 2
  *
  * @param States Column 1
- * @parent ---States---
  * @desc These are the state ID's drawn in column 1.
  * Separate these state ID's with a space.
  * @default 1 4 5 6
  *
  * @param States Column 2
- * @parent ---States---
  * @desc These are the state ID's drawn in column 2.
  * Separate these state ID's with a space.
  * @default 7 8 9 10
  *
  * @param States Column 3
- * @parent ---States---
  * @desc These are the state ID's drawn in column 3.
  * Separate these state ID's with a space.
  * @default
  *
  * @param States Column 4
- * @parent ---States---
  * @desc These are the state ID's drawn in column 4.
  * Separate these state ID's with a space.
  * @default
@@ -304,151 +214,115 @@ Yanfly.Status.version = 1.04;
  * @default
  *
  * @param Attributes Command
- * @parent ---Attributes---
  * @desc This is how the command for 'Attributes' will appear.
  * @default Attributes
  *
  * @param Attribute Font Size
- * @text Attributes Font Size
- * @parent ---Attributes---
- * @type number
- * @min 1
  * @desc The font size used to display attributes.
  * Default: 28
  * @default 20
  *
  * @param Attribute Decimal
- * @text Attributes Decimal
- * @parent ---Attributes---
- * @type number
- * @min 0
  * @desc How many decimal places to display for rates.
  * @default 0
  *
  * @param Attributes Column 1
- * @parent ---Attributes---
  * @desc These are the attributes drawn in column 1.
  * Separate these attributes with a space.
  * @default exr hit eva cri cev mev mrf cnt
  *
  * @param Attributes Column 2
- * @parent ---Attributes---
  * @desc These are the attributes drawn in column 2.
  * Separate these attributes with a space.
  * @default mcr tcr pdr mdr fdr grd rec pha
  *
  * @param Attributes Column 3
- * @parent ---Attributes---
  * @desc These are the attributes drawn in column 3.
  * Separate these attributes with a space.
  * @default hrg mrg trg tgr
  *
  * @param Attributes Column 4
- * @parent ---Attributes---
  * @desc These are the attributes drawn in column 4.
  * Separate these attributes with a space.
  * @default
  *
- * @param ---XParam Names---
- * @default
- *
  * @param hit Name
- * @parent ---XParam Names---
  * @desc The text name used for this attribute.
  * @default Hit Rate
  *
  * @param eva Name
- * @parent ---XParam Names---
  * @desc The text name used for this attribute.
  * @default Evasion Rate
  *
  * @param cri Name
- * @parent ---XParam Names---
  * @desc The text name used for this attribute.
  * @default Critical Hit Rate
  *
  * @param cev Name
- * @parent ---XParam Names---
  * @desc The text name used for this attribute.
  * @default Critical Evasion Rate
  *
  * @param mev Name
- * @parent ---XParam Names---
  * @desc The text name used for this attribute.
  * @default Magic Evasion Rate
  *
  * @param mrf Name
- * @parent ---XParam Names---
  * @desc The text name used for this attribute.
  * @default Magic Reflect Rate
  *
  * @param cnt Name
- * @parent ---XParam Names---
  * @desc The text name used for this attribute.
  * @default Counter Rate
  *
  * @param hrg Name
- * @parent ---XParam Names---
  * @desc The text name used for this attribute.
  * @default HP Regen Rate
  *
  * @param mrg Name
- * @parent ---XParam Names---
  * @desc The text name used for this attribute.
  * @default MP Regen Rate
  *
  * @param trg Name
- * @parent ---XParam Names---
  * @desc The text name used for this attribute.
  * @default TP Regen Rate
  *
  * @param tgr Name
- * @parent ---XParam Names---
  * @desc The text name used for this attribute.
  * @default Aggro Rate
  *
  * @param grd Name
- * @parent ---XParam Names---
  * @desc The text name used for this attribute.
  * @default Guard Effect
  *
  * @param rec Name
- * @parent ---XParam Names---
  * @desc The text name used for this attribute.
  * @default Recovery Effect
  *
  * @param pha Name
- * @parent ---XParam Names---
  * @desc The text name used for this attribute.
  * @default Pharmacology Effect
  *
  * @param mcr Name
- * @parent ---XParam Names---
  * @desc The text name used for this attribute.
  * @default MP Cost Rate
  *
  * @param tcr Name
- * @parent ---XParam Names---
  * @desc The text name used for this attribute.
  * @default TP Charge Rate
  *
  * @param pdr Name
- * @parent ---XParam Names---
  * @desc The text name used for this attribute.
  * @default Physical Damage Rate
  *
  * @param mdr Name
- * @parent ---XParam Names---
  * @desc The text name used for this attribute.
  * @default Magical Damage Rate
  *
  * @param fdr Name
- * @parent ---XParam Names---
  * @desc The text name used for this attribute.
  * @default Floor Damage Rate
  *
  * @param exr Name
- * @parent ---XParam Names---
  * @desc The text name used for this attribute.
  * @default Experience Rate
  *
@@ -457,79 +331,63 @@ Yanfly.Status.version = 1.04;
  * Introduction
  * ============================================================================
  *
- * This plugin replaces the Status menu with a whole new layout. Including the
- * function to display more information regarding the actor. You can change the
- * order commands appear in game with the Command Order parameter.
+ * 这个插件用完整的新层代替了原有的身份菜单。包括可以展示更多角色信息的功能
+ * 这个插件用完整的新层代替了原有的身份菜单。包括可以展示更多角色信息的功能
+ * 。你可以用命令参数改变命令显示顺序。
  *
  * To add more commands, insert extension plugins under this plugin in the
  * Plugin Manager. Then, it will appear automatically in the Command Order
  * where you placed the 'Custom' string or elsewhere if you've placed the
- * extension plugin's keyword elsewhere.
+ * 为了添加更多的命令，在这个底下可以插入拓展插件。
  *
  * ============================================================================
  * Instructions
  * ============================================================================
  *
- * You can add and remove commands from the Command Window by changing the
- * 'Command Order' parameter. Here is a list of commands you may use:
+ * 你可以添加和移除命令，通过命令顺序参数，这里有一个列表：
  *
  *    General
- *    - Displays the current current stats and EXP for the actor.
+ *    - 显示角色原始状态和经验
  *
  *    Parameters
- *    - Displays a parameter gauge of the actor relative to other stats.
+ *    - 显示和状态有关的参数槽，例如攻击力，防御力等
  *
  *    Elements
- *    - Displays the listed elements and their elemental rates.
+ *    - 显示角色基本属性类型
  *
  *    States
- *    - Displays the listed states and their status infliction rates.
+ *    - 显示状态列表和状态概率
  *
  *    Attributes
- *    - Displays the listed attributes and their rates.
+ *    - 显示属性标志
  *
  *    Custom
- *    - If you have any custom status window items to display, they will
- *    appear here.
+ *    - 自定义显示
  *
  *    Cancel
- *    - Adds a cancel command for leaving the Status Menu.
+ *    - 取消菜单
  *
  * ============================================================================
  * Adding Icons to Elements and Attributes
  * ============================================================================
  *
- * You can use icons for elements and attributes by using text codes.
+ * 你可以使用文字代码来为基本介绍和属性使用图标
  *
- * In the RPG Maker MV editor's database, types tab, for the elements, name
- * them as such:
+ * 在MV默认数据库里，在基本类型里，可以这么写
  *
  * \i[64]Fire
  *
- * This will enable you to give the element an icon. You can also change the
- * text color and such using any of the available text codes.
+ * 这将让你给基本部分一个图标。你可以改变文字颜色，或者使用可运行的文字代码
  *
- * The same is applied for Attributes except you modify it within this plugin's
- * parameters. If you wish to display 'HP Regen Rate' with an icon, name it:
+ * 对于属性来说也是一样的，你也可以通过插件参数来设置。
  *
  * \i[72]HP Regen Rate
  *
- * The icons will be drawn for the said attributes in addition to any other
- * text code modifications used.
+ * 这个图标将会绘出属性
  *
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.04:
- * - Added a function to split the icon and text for Attribute names so that
- * icons will be centered properly if icons are used for the Attribute names.
- *
- * Version 1.03:
- * - Updated for RPG Maker MV version 1.5.0.
- *
- * Version 1.02:
- * - Compatibility update made for other plugins.
  *
  * Version 1.01a:
  * - Converted Window_StatusInfo to Window_Selectable for those who would like
@@ -1026,16 +884,6 @@ Window_StatusInfo.prototype.setRateColor = function(rate) {
     this.changeTextColor(this.textColor(colorId));
 };
 
-Window_StatusInfo.prototype.drawSplitIcon = function(name, dx, dy) {
-  if (name.match(/\\I\[(\d+)\]/i)) {
-    var icon = parseInt(RegExp.$1) || 0;
-    this.drawIcon(icon, dx, dy + 2);
-    return true;
-  } else {
-    return false;
-  }
-};
-
 Window_StatusInfo.prototype.drawElements = function() {
     this.drawElementColumnRects();
     this.drawElementInfo();
@@ -1320,11 +1168,6 @@ Window_StatusInfo.prototype.drawAttributeName = function(name, dx, dy, dw) {
     this.changeTextColor(this.systemColor());
     dx += this.textPadding();
     dw -= this.textPadding() * 2;
-    if (this.drawSplitIcon(name, dx, dy, dw)) {
-      dx += Window_Base._iconWidth + 4;
-      dw -= Window_Base._iconWidth + 4;
-      name = name.replace(/\\I\[(\d+)\]/i, '');
-    }
     dy += Math.floor((this.standardFontSize() - this.contents.fontSize) / 2);
     this._bypassResetText = true;
     this.changeTextColor(this.systemColor());
@@ -1382,7 +1225,6 @@ Scene_Status.prototype.create = function() {
 Scene_Status.prototype.refreshActor = function() {
 		var actor = this.actor();
 		this._statusWindow.setActor(actor);
-    this._commandWindow.setActor(actor);
 		this._helpWindow.setText(actor.profile());
 		this._infoWindow.setActor(actor);
 };

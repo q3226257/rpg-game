@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Grid-Free Doodads Extension - Extended Doodad Pack 1
 // YEP_X_ExtDoodadPack1.js
 //=============================================================================
@@ -8,12 +8,11 @@ Imported.YEP_X_ExtDoodadPack1 = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.EDP1 = Yanfly.EDP1 || {};
-Yanfly.EDP1.version = 1.01;
+Yanfly.EDP1.version = 1.00;
 
 //=============================================================================
  /*:
- * @plugindesc v1.01 (Requires YEP_GridFreeDoodads.js) Adds extra options
- * to the Grid-Free Doodads plugin's doodad settings.
+ * @plugindesc v1.00 摆件放置拓展包1
  * @author Yanfly Engine Plugins
  *
  * @help
@@ -21,57 +20,42 @@ Yanfly.EDP1.version = 1.01;
  * Introduction
  * ============================================================================
  *
- * This plugin requires YEP_GridFreeDoodads. Make sure this plugin is located
- * under YEP_GridFreeDoodads in the plugin list.
+ * 这个插件需要YEP_GridFreeDoodads，确保这个插件在YEP_GridFreeDoodads下面
  *
- * This plugin allows you to add more options to the settings menu in the
- * doodads editor. This allows you to set the tone for doodads to change them
- * into colors that hues will not allow, the option for doodads to appear under
- * certain switch conditions, whether or not party members have joined.
+ * 这个插件可以让你在摆件放置编辑器里面设置更多细节。你可以设置摆件的
+ * 色调，出现
  * 
  * ============================================================================
  * Doodad Settings - Tone
  * ============================================================================
  *
- * The tone is the doodad sprite's tone after all hues are applied. This can be
- * used to provide a different shade of colors that hues won't be able to
- * support, thus giving you more options on how to make your doodads appear in
- * the game without the need to create a bunch of resources. This is also very
- * light on memory usage compared to hues, too, which may make it potentially
- * more favorable to use.
+ * 这个色调是摆件图片的色调，可以用来展示不同颜色等，这就意味着你不需要制
+ * 作很多资源就可以设置更多摆件，而且相对于系统色调来说内存占用会更小。
  *
  * ============================================================================
  * Doodad Settings - Party
  * ============================================================================
  *
- * If you would like for certain doodads to appear or disappear if a certain
- * actor has joined the party or is missing from the party, you can use this
- * setting to do so. This way, you can add doodads to a vacant room (if a party
- * member has joined) and remove doodads from their original room. This will
- * count for if the party member is in the active party or the reserve party.
- * There is no differentiation for it.
+ * 如果你希望摆件可以根据成员是否在队伍内来出现或隐藏，你可以通过设置来做
+ * 到。你可以设置当某个成员加入时，摆件出现或者消失在房间内。这个条件针对
+ * 的是队伍成员是否在活动队伍或者轮换列表里，他们在这里没有区别。
  *
  * ============================================================================
  * Doodad Settings - Switches
  * ============================================================================
  *
- * For those who would like for some doodads to appear while certain switches
- * are on/off, you can make use of this option. Here, you can set conditions
- * for multiple switches per doodad. All the conditions must be met for the
- * doodad to appear visibly. If a doodad requires a switch to be ON and that
- * switch is OFF, the doodad will be invisible until it is on. The same will
- * apply if reversed. If a doodad requires a switch to be OFF, it will remain
- * visible until the switch turns on, which will cause the doodad to disappear.
+ * 如果你希望摆件可以根据开关情况来出现或隐藏，你也可以通过设置来做到。你
+ * 可以为每一个摆件设置多个开关。当所有开关匹配时才会触发。如果某个摆件需
+ * 要开关是打开，而目前是关闭状态，那么他会持续隐藏直到开关打开。反之亦
+ * 然。。如果某个摆件需要开关是关闭，而目前是开启状态，那么他会持续显示
+ * 直到开关关闭
  *
  * ============================================================================
  * Changelog
  * ============================================================================
  *
- * Version 1.01:
- * - Updated for RPG Maker MV version 1.5.0.
- *
- * Version 1.00:
- * - Finished Plugin!
+ * Version BETA:
+ * - Started Plugin!
  */
 //=============================================================================
 

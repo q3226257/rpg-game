@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Picture Common Events
 // YEP_PictureCommonEvents.js
 //=============================================================================
@@ -8,31 +8,22 @@ Imported.YEP_PictureCommonEvents = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.PCE = Yanfly.PCE || {};
-Yanfly.PCE.version = 1.06;
+Yanfly.PCE.version = 1.05;
 
 //=============================================================================
  /*:
- * @plugindesc v1.06 Causes common events to run when certain pictures
- * are clicked while on the map.
+ * @plugindesc v1.05 图片公共事件
  * @author Yanfly Engine Plugins
  *
  * @param ---General---
  * @default
  *
  * @param Enable Touch Move
- * @parent ---General---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Is touch movement enabled by default?
  * NO - false   YES - true   Default: true
  * @default true
  *
  * @param Hide Message
- * @parent ---General---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Hide Pictures with common events during messages?
  * NO - false   YES - true   Default: true
  * @default true
@@ -41,29 +32,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 1 Click
- * @parent ---Picture 1---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 1 Repeat
- * @parent ---Picture 1---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 1 Hold
- * @parent ---Picture 1---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 1 Release
- * @parent ---Picture 1---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -72,29 +55,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 2 Click
- * @parent ---Picture 2---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 2 Repeat
- * @parent ---Picture 2---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 2 Hold
- * @parent ---Picture 2---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 2 Release
- * @parent ---Picture 2---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -103,29 +78,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 3 Click
- * @parent ---Picture 3---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 3 Repeat
- * @parent ---Picture 3---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 3 Hold
- * @parent ---Picture 3---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 3 Release
- * @parent ---Picture 3---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -134,29 +101,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 4 Click
- * @parent ---Picture 4---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 4 Repeat
- * @parent ---Picture 4---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 4 Hold
- * @parent ---Picture 4---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 4 Release
- * @parent ---Picture 4---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -165,29 +124,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 5 Click
- * @parent ---Picture 5---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 5 Repeat
- * @parent ---Picture 5---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 5 Hold
- * @parent ---Picture 5---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 5 Release
- * @parent ---Picture 5---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -196,29 +147,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 6 Click
- * @parent ---Picture 6---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 6 Repeat
- * @parent ---Picture 6---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 6 Hold
- * @parent ---Picture 6---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 6 Release
- * @parent ---Picture 6---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -227,29 +170,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 7 Click
- * @parent ---Picture 7---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 7 Repeat
- * @parent ---Picture 7---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 7 Hold
- * @parent ---Picture 7---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 7 Release
- * @parent ---Picture 7---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -258,29 +193,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 8 Click
- * @parent ---Picture 8---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 8 Repeat
- * @parent ---Picture 8---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 8 Hold
- * @parent ---Picture 8---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 8 Release
- * @parent ---Picture 8---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -289,29 +216,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 9 Click
- * @parent ---Picture 9---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 9 Repeat
- * @parent ---Picture 9---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 9 Hold
- * @parent ---Picture 9---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 9 Release
- * @parent ---Picture 9---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -320,29 +239,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 10 Click
- * @parent ---Picture 10---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 10 Repeat
- * @parent ---Picture 10---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 10 Hold
- * @parent ---Picture 10---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 10 Release
- * @parent ---Picture 10---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -351,29 +262,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 11 Click
- * @parent ---Picture 11---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 11 Repeat
- * @parent ---Picture 11---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 11 Hold
- * @parent ---Picture 11---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 11 Release
- * @parent ---Picture 11---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -382,29 +285,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 12 Click
- * @parent ---Picture 12---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 12 Repeat
- * @parent ---Picture 12---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 12 Hold
- * @parent ---Picture 12---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 12 Release
- * @parent ---Picture 12---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -413,29 +308,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 13 Click
- * @parent ---Picture 13---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 13 Repeat
- * @parent ---Picture 13---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 13 Hold
- * @parent ---Picture 13---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 13 Release
- * @parent ---Picture 13---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -444,29 +331,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 14 Click
- * @parent ---Picture 14---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 14 Repeat
- * @parent ---Picture 14---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 14 Hold
- * @parent ---Picture 14---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 14 Release
- * @parent ---Picture 14---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -475,29 +354,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 15 Click
- * @parent ---Picture 15---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 15 Repeat
- * @parent ---Picture 15---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 15 Hold
- * @parent ---Picture 15---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 15 Release
- * @parent ---Picture 15---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -506,29 +377,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 16 Click
- * @parent ---Picture 16---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 16 Repeat
- * @parent ---Picture 16---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 16 Hold
- * @parent ---Picture 16---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 16 Release
- * @parent ---Picture 16---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -537,29 +400,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 17 Click
- * @parent ---Picture 17---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 17 Repeat
- * @parent ---Picture 17---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 17 Hold
- * @parent ---Picture 17---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 17 Release
- * @parent ---Picture 17---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -568,29 +423,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 18 Click
- * @parent ---Picture 18---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 18 Repeat
- * @parent ---Picture 18---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 18 Hold
- * @parent ---Picture 18---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 18 Release
- * @parent ---Picture 18---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -599,29 +446,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 19 Click
- * @parent ---Picture 19---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 19 Repeat
- * @parent ---Picture 19---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 19 Hold
- * @parent ---Picture 19---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 19 Release
- * @parent ---Picture 19---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -630,29 +469,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 20 Click
- * @parent ---Picture 20---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 20 Repeat
- * @parent ---Picture 20---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 20 Hold
- * @parent ---Picture 20---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 20 Release
- * @parent ---Picture 20---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -661,29 +492,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 21 Click
- * @parent ---Picture 21---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 21 Repeat
- * @parent ---Picture 21---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 21 Hold
- * @parent ---Picture 21---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 21 Release
- * @parent ---Picture 21---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -692,29 +515,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 22 Click
- * @parent ---Picture 22---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 22 Repeat
- * @parent ---Picture 22---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 22 Hold
- * @parent ---Picture 22---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 22 Release
- * @parent ---Picture 22---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -723,29 +538,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 23 Click
- * @parent ---Picture 23---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 23 Repeat
- * @parent ---Picture 23---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 23 Hold
- * @parent ---Picture 23---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 23 Release
- * @parent ---Picture 23---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -754,29 +561,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 24 Click
- * @parent ---Picture 24---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 24 Repeat
- * @parent ---Picture 24---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 24 Hold
- * @parent ---Picture 24---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 24 Release
- * @parent ---Picture 24---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -785,29 +584,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 25 Click
- * @parent ---Picture 25---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 25 Repeat
- * @parent ---Picture 25---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 25 Hold
- * @parent ---Picture 25---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 25 Release
- * @parent ---Picture 25---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -816,29 +607,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 26 Click
- * @parent ---Picture 26---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 26 Repeat
- * @parent ---Picture 26---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 26 Hold
- * @parent ---Picture 26---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 26 Release
- * @parent ---Picture 26---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -847,29 +630,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 27 Click
- * @parent ---Picture 27---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 27 Repeat
- * @parent ---Picture 27---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 27 Hold
- * @parent ---Picture 27---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 27 Release
- * @parent ---Picture 27---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -878,29 +653,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 28 Click
- * @parent ---Picture 28---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 28 Repeat
- * @parent ---Picture 28---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 28 Hold
- * @parent ---Picture 28---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 28 Release
- * @parent ---Picture 28---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -909,29 +676,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 29 Click
- * @parent ---Picture 29---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 29 Repeat
- * @parent ---Picture 29---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 29 Hold
- * @parent ---Picture 29---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 29 Release
- * @parent ---Picture 29---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -940,29 +699,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 30 Click
- * @parent ---Picture 30---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 30 Repeat
- * @parent ---Picture 30---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 30 Hold
- * @parent ---Picture 30---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 30 Release
- * @parent ---Picture 30---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -971,29 +722,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 31 Click
- * @parent ---Picture 31---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 31 Repeat
- * @parent ---Picture 31---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 31 Hold
- * @parent ---Picture 31---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 31 Release
- * @parent ---Picture 31---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -1002,29 +745,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 32 Click
- * @parent ---Picture 32---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 32 Repeat
- * @parent ---Picture 32---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 32 Hold
- * @parent ---Picture 32---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 32 Release
- * @parent ---Picture 32---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -1033,29 +768,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 33 Click
- * @parent ---Picture 33---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 33 Repeat
- * @parent ---Picture 33---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 33 Hold
- * @parent ---Picture 33---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 33 Release
- * @parent ---Picture 33---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -1064,29 +791,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 34 Click
- * @parent ---Picture 34---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 34 Repeat
- * @parent ---Picture 34---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 34 Hold
- * @parent ---Picture 34---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 34 Release
- * @parent ---Picture 34---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -1095,29 +814,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 35 Click
- * @parent ---Picture 35---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 35 Repeat
- * @parent ---Picture 35---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 35 Hold
- * @parent ---Picture 35---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 35 Release
- * @parent ---Picture 35---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -1126,29 +837,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 36 Click
- * @parent ---Picture 36---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 36 Repeat
- * @parent ---Picture 36---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 36 Hold
- * @parent ---Picture 36---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 36 Release
- * @parent ---Picture 36---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -1157,29 +860,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 37 Click
- * @parent ---Picture 37---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 37 Repeat
- * @parent ---Picture 37---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 37 Hold
- * @parent ---Picture 37---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 37 Release
- * @parent ---Picture 37---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -1188,29 +883,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 38 Click
- * @parent ---Picture 38---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 38 Repeat
- * @parent ---Picture 38---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 38 Hold
- * @parent ---Picture 38---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 38 Release
- * @parent ---Picture 38---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -1219,29 +906,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 39 Click
- * @parent ---Picture 39---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 39 Repeat
- * @parent ---Picture 39---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 39 Hold
- * @parent ---Picture 39---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 39 Release
- * @parent ---Picture 39---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -1250,29 +929,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 40 Click
- * @parent ---Picture 40---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 40 Repeat
- * @parent ---Picture 40---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 40 Hold
- * @parent ---Picture 40---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 40 Release
- * @parent ---Picture 40---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -1281,29 +952,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 41 Click
- * @parent ---Picture 41---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 41 Repeat
- * @parent ---Picture 41---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 41 Hold
- * @parent ---Picture 41---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 41 Release
- * @parent ---Picture 41---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -1312,29 +975,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 42 Click
- * @parent ---Picture 42---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 42 Repeat
- * @parent ---Picture 42---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 42 Hold
- * @parent ---Picture 42---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 42 Release
- * @parent ---Picture 42---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -1343,29 +998,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 43 Click
- * @parent ---Picture 43---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 43 Repeat
- * @parent ---Picture 43---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 43 Hold
- * @parent ---Picture 43---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 43 Release
- * @parent ---Picture 43---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -1374,29 +1021,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 44 Click
- * @parent ---Picture 44---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 44 Repeat
- * @parent ---Picture 44---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 44 Hold
- * @parent ---Picture 44---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 44 Release
- * @parent ---Picture 44---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -1405,29 +1044,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 45 Click
- * @parent ---Picture 45---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 45 Repeat
- * @parent ---Picture 45---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 45 Hold
- * @parent ---Picture 45---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 45 Release
- * @parent ---Picture 45---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -1436,29 +1067,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 46 Click
- * @parent ---Picture 46---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 46 Repeat
- * @parent ---Picture 46---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 46 Hold
- * @parent ---Picture 46---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 46 Release
- * @parent ---Picture 46---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -1467,29 +1090,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 47 Click
- * @parent ---Picture 47---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 47 Repeat
- * @parent ---Picture 47---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 47 Hold
- * @parent ---Picture 47---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 47 Release
- * @parent ---Picture 47---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -1498,29 +1113,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 48 Click
- * @parent ---Picture 48---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 48 Repeat
- * @parent ---Picture 48---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 48 Hold
- * @parent ---Picture 48---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 48 Release
- * @parent ---Picture 48---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -1529,29 +1136,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 49 Click
- * @parent ---Picture 49---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 49 Repeat
- * @parent ---Picture 49---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 49 Hold
- * @parent ---Picture 49---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 49 Release
- * @parent ---Picture 49---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -1560,29 +1159,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 50 Click
- * @parent ---Picture 50---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 50 Repeat
- * @parent ---Picture 50---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 50 Hold
- * @parent ---Picture 50---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 50 Release
- * @parent ---Picture 50---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -1591,29 +1182,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 51 Click
- * @parent ---Picture 51---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 51 Repeat
- * @parent ---Picture 51---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 51 Hold
- * @parent ---Picture 51---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 51 Release
- * @parent ---Picture 51---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -1622,29 +1205,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 52 Click
- * @parent ---Picture 52---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 52 Repeat
- * @parent ---Picture 52---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 52 Hold
- * @parent ---Picture 52---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 52 Release
- * @parent ---Picture 52---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -1653,29 +1228,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 53 Click
- * @parent ---Picture 53---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 53 Repeat
- * @parent ---Picture 53---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 53 Hold
- * @parent ---Picture 53---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 53 Release
- * @parent ---Picture 53---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -1684,29 +1251,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 54 Click
- * @parent ---Picture 54---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 54 Repeat
- * @parent ---Picture 54---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 54 Hold
- * @parent ---Picture 54---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 54 Release
- * @parent ---Picture 54---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -1715,29 +1274,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 55 Click
- * @parent ---Picture 55---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 55 Repeat
- * @parent ---Picture 55---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 55 Hold
- * @parent ---Picture 55---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 55 Release
- * @parent ---Picture 55---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -1746,29 +1297,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 56 Click
- * @parent ---Picture 56---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 56 Repeat
- * @parent ---Picture 56---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 56 Hold
- * @parent ---Picture 56---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 56 Release
- * @parent ---Picture 56---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -1777,29 +1320,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 57 Click
- * @parent ---Picture 57---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 57 Repeat
- * @parent ---Picture 57---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 57 Hold
- * @parent ---Picture 57---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 57 Release
- * @parent ---Picture 57---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -1808,29 +1343,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 58 Click
- * @parent ---Picture 58---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 58 Repeat
- * @parent ---Picture 58---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 58 Hold
- * @parent ---Picture 58---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 58 Release
- * @parent ---Picture 58---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -1839,29 +1366,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 59 Click
- * @parent ---Picture 59---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 59 Repeat
- * @parent ---Picture 59---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 59 Hold
- * @parent ---Picture 59---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 59 Release
- * @parent ---Picture 59---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -1870,29 +1389,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 60 Click
- * @parent ---Picture 60---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 60 Repeat
- * @parent ---Picture 60---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 60 Hold
- * @parent ---Picture 60---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 60 Release
- * @parent ---Picture 60---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -1901,29 +1412,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 61 Click
- * @parent ---Picture 61---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 61 Repeat
- * @parent ---Picture 61---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 61 Hold
- * @parent ---Picture 61---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 61 Release
- * @parent ---Picture 61---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -1932,29 +1435,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 62 Click
- * @parent ---Picture 62---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 62 Repeat
- * @parent ---Picture 62---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 62 Hold
- * @parent ---Picture 62---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 62 Release
- * @parent ---Picture 62---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -1963,29 +1458,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 63 Click
- * @parent ---Picture 63---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 63 Repeat
- * @parent ---Picture 63---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 63 Hold
- * @parent ---Picture 63---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 63 Release
- * @parent ---Picture 63---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -1994,29 +1481,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 64 Click
- * @parent ---Picture 64---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 64 Repeat
- * @parent ---Picture 64---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 64 Hold
- * @parent ---Picture 64---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 64 Release
- * @parent ---Picture 64---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -2025,29 +1504,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 65 Click
- * @parent ---Picture 65---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 65 Repeat
- * @parent ---Picture 65---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 65 Hold
- * @parent ---Picture 65---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 65 Release
- * @parent ---Picture 65---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -2056,29 +1527,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 66 Click
- * @parent ---Picture 66---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 66 Repeat
- * @parent ---Picture 66---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 66 Hold
- * @parent ---Picture 66---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 66 Release
- * @parent ---Picture 66---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -2087,29 +1550,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 67 Click
- * @parent ---Picture 67---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 67 Repeat
- * @parent ---Picture 67---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 67 Hold
- * @parent ---Picture 67---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 67 Release
- * @parent ---Picture 67---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -2118,29 +1573,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 68 Click
- * @parent ---Picture 68---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 68 Repeat
- * @parent ---Picture 68---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 68 Hold
- * @parent ---Picture 68---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 68 Release
- * @parent ---Picture 68---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -2149,29 +1596,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 69 Click
- * @parent ---Picture 69---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 69 Repeat
- * @parent ---Picture 69---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 69 Hold
- * @parent ---Picture 69---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 69 Release
- * @parent ---Picture 69---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -2180,29 +1619,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 70 Click
- * @parent ---Picture 70---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 70 Repeat
- * @parent ---Picture 70---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 70 Hold
- * @parent ---Picture 70---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 70 Release
- * @parent ---Picture 70---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -2211,29 +1642,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 71 Click
- * @parent ---Picture 71---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 71 Repeat
- * @parent ---Picture 71---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 71 Hold
- * @parent ---Picture 71---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 71 Release
- * @parent ---Picture 71---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -2242,29 +1665,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 72 Click
- * @parent ---Picture 72---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 72 Repeat
- * @parent ---Picture 72---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 72 Hold
- * @parent ---Picture 72---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 72 Release
- * @parent ---Picture 72---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -2273,29 +1688,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 73 Click
- * @parent ---Picture 73---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 73 Repeat
- * @parent ---Picture 73---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 73 Hold
- * @parent ---Picture 73---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 73 Release
- * @parent ---Picture 73---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -2304,29 +1711,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 74 Click
- * @parent ---Picture 74---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 74 Repeat
- * @parent ---Picture 74---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 74 Hold
- * @parent ---Picture 74---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 74 Release
- * @parent ---Picture 74---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -2335,29 +1734,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 75 Click
- * @parent ---Picture 75---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 75 Repeat
- * @parent ---Picture 75---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 75 Hold
- * @parent ---Picture 75---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 75 Release
- * @parent ---Picture 75---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -2366,29 +1757,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 76 Click
- * @parent ---Picture 76---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 76 Repeat
- * @parent ---Picture 76---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 76 Hold
- * @parent ---Picture 76---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 76 Release
- * @parent ---Picture 76---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -2397,29 +1780,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 77 Click
- * @parent ---Picture 77---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 77 Repeat
- * @parent ---Picture 77---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 77 Hold
- * @parent ---Picture 77---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 77 Release
- * @parent ---Picture 77---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -2428,29 +1803,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 78 Click
- * @parent ---Picture 78---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 78 Repeat
- * @parent ---Picture 78---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 78 Hold
- * @parent ---Picture 78---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 78 Release
- * @parent ---Picture 78---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -2459,29 +1826,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 79 Click
- * @parent ---Picture 79---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 79 Repeat
- * @parent ---Picture 79---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 79 Hold
- * @parent ---Picture 79---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 79 Release
- * @parent ---Picture 79---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -2490,29 +1849,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 80 Click
- * @parent ---Picture 80---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 80 Repeat
- * @parent ---Picture 80---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 80 Hold
- * @parent ---Picture 80---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 80 Release
- * @parent ---Picture 80---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -2521,29 +1872,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 81 Click
- * @parent ---Picture 81---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 81 Repeat
- * @parent ---Picture 81---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 81 Hold
- * @parent ---Picture 81---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 81 Release
- * @parent ---Picture 81---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -2552,29 +1895,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 82 Click
- * @parent ---Picture 82---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 82 Repeat
- * @parent ---Picture 82---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 82 Hold
- * @parent ---Picture 82---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 82 Release
- * @parent ---Picture 82---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -2583,29 +1918,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 83 Click
- * @parent ---Picture 83---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 83 Repeat
- * @parent ---Picture 83---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 83 Hold
- * @parent ---Picture 83---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 83 Release
- * @parent ---Picture 83---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -2614,29 +1941,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 84 Click
- * @parent ---Picture 84---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 84 Repeat
- * @parent ---Picture 84---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 84 Hold
- * @parent ---Picture 84---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 84 Release
- * @parent ---Picture 84---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -2645,29 +1964,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 85 Click
- * @parent ---Picture 85---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 85 Repeat
- * @parent ---Picture 85---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 85 Hold
- * @parent ---Picture 85---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 85 Release
- * @parent ---Picture 85---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -2676,29 +1987,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 86 Click
- * @parent ---Picture 86---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 86 Repeat
- * @parent ---Picture 86---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 86 Hold
- * @parent ---Picture 86---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 86 Release
- * @parent ---Picture 86---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -2707,29 +2010,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 87 Click
- * @parent ---Picture 87---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 87 Repeat
- * @parent ---Picture 87---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 87 Hold
- * @parent ---Picture 87---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 87 Release
- * @parent ---Picture 87---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -2738,29 +2033,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 88 Click
- * @parent ---Picture 88---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 88 Repeat
- * @parent ---Picture 88---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 88 Hold
- * @parent ---Picture 88---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 88 Release
- * @parent ---Picture 88---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -2769,29 +2056,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 89 Click
- * @parent ---Picture 89---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 89 Repeat
- * @parent ---Picture 89---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 89 Hold
- * @parent ---Picture 89---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 89 Release
- * @parent ---Picture 89---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -2800,29 +2079,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 90 Click
- * @parent ---Picture 90---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 90 Repeat
- * @parent ---Picture 90---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 90 Hold
- * @parent ---Picture 90---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 90 Release
- * @parent ---Picture 90---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -2831,29 +2102,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 91 Click
- * @parent ---Picture 91---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 91 Repeat
- * @parent ---Picture 91---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 91 Hold
- * @parent ---Picture 91---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 91 Release
- * @parent ---Picture 91---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -2862,29 +2125,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 92 Click
- * @parent ---Picture 92---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 92 Repeat
- * @parent ---Picture 92---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 92 Hold
- * @parent ---Picture 92---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 92 Release
- * @parent ---Picture 92---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -2893,29 +2148,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 93 Click
- * @parent ---Picture 93---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 93 Repeat
- * @parent ---Picture 93---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 93 Hold
- * @parent ---Picture 93---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 93 Release
- * @parent ---Picture 93---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -2924,29 +2171,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 94 Click
- * @parent ---Picture 94---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 94 Repeat
- * @parent ---Picture 94---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 94 Hold
- * @parent ---Picture 94---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 94 Release
- * @parent ---Picture 94---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -2955,29 +2194,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 95 Click
- * @parent ---Picture 95---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 95 Repeat
- * @parent ---Picture 95---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 95 Hold
- * @parent ---Picture 95---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 95 Release
- * @parent ---Picture 95---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -2986,29 +2217,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 96 Click
- * @parent ---Picture 96---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 96 Repeat
- * @parent ---Picture 96---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 96 Hold
- * @parent ---Picture 96---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 96 Release
- * @parent ---Picture 96---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -3017,29 +2240,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 97 Click
- * @parent ---Picture 97---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 97 Repeat
- * @parent ---Picture 97---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 97 Hold
- * @parent ---Picture 97---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 97 Release
- * @parent ---Picture 97---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -3048,29 +2263,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 98 Click
- * @parent ---Picture 98---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 98 Repeat
- * @parent ---Picture 98---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 98 Hold
- * @parent ---Picture 98---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 98 Release
- * @parent ---Picture 98---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -3079,29 +2286,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 99 Click
- * @parent ---Picture 99---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 99 Repeat
- * @parent ---Picture 99---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 99 Hold
- * @parent ---Picture 99---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 99 Release
- * @parent ---Picture 99---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -3110,29 +2309,21 @@ Yanfly.PCE.version = 1.06;
  * @default
  *
  * @param Picture 100 Click
- * @parent ---Picture 100---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 100 Repeat
- * @parent ---Picture 100---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is held
  * every 6 frames. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 100 Hold
- * @parent ---Picture 100---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * clicked and held. Leave this value at 0 for no common event.
  * @default 0
  *
  * @param Picture 100 Release
- * @parent ---Picture 100---
- * @type common_event
  * @desc Runs this common event when a picture with this ID is
  * released. Leave this value at 0 for no common event.
  * @default 0
@@ -3142,75 +2333,64 @@ Yanfly.PCE.version = 1.06;
  * Introduction
  * ============================================================================
  *
- * Pictures can function as something other than just a visual for your game.
- * They can sometimes serve as UI elements or more! However, what they don't
- * have the ability to inherently do is to call upon common events when clicked
- * on by the mouse. With this plugin, the pictures bound to a common event will
- * become usable when clicked or touched!
+ * 图片不仅仅可以作为图像存在你的游戏，还可以实现很多功能。他们可以用来做界
+ * 面元素。可可目前他们还不能在鼠标点击时作为公共事件执行。使用这个插件，图
+ * 片可以绑定公共事件，当鼠标点击或者触摸时执行
  *
  * ============================================================================
  * Instructions
  * ============================================================================
  *
- * In the plugin's parameters, you can set common event ID's to each picture ID
- * listed from 1 to 100 (max number of pictures used in RPG Maker MV is 100).
- * If the picture is has even a value of 1 opacity, that picture can be used
- * for a common event. There are four condition types that can be bound with
- * the common events:
+ * 在插件参数里，你可以绑定图片的事件ID，总共图片上限100张。只要图片有值，他
+ * 就会用于事件。这里有4种触发情况:
  *
  * ---
  *
- * - CLICK -
+ * - CLICK - 点击：当图片被单击时触发。事件需要玩家点击鼠标并释放后才触发
  * If the picture is clicked upon, this will prompt the common event to trigger
  * if the common event value listed is above 0. This will trigger only once
  * until the player releases the mouse (or stops touching the screen).
  *
- * - REPEAT -
+ * - REPEAT - 重复：如果鼠标按下并不放松，在释放之前，每6帧就会执行一次
  * If the mouse is clicked and then held (or if the touch screen is pushed and
  * held), as long as the mouse is above the picture area and the common event
  * value listed is above 0, then this will trigger once every 6 frames until
  * the player releases the mouse (or stops touching the screen) or moves the
  * mouse outside of the picture boundaries.
  *
- * - HOLD -
+ * - HOLD - 按住：如果鼠标按下并且不放松。在释放之前，每帧都会执行一次
  * If the mouse is clicked and then held (or if the touch screen is pushed and
  * held), as long as the mouse is above the picture area and the common event
  * value listed is above 0, then this will trigger every frame until the player
  * releases the mouse (or stops touching the screen) or moves the mouse outside
  * of the picture boundaries.
  *
- * - RELEASE -
+ * - RELEASE - 释放：鼠标放松时触发
  * Upon releasing the clicked mouse (or the moment the player stops touching
  * the screen) and releases the mouse above this picture and if the picture's
  * common event value listed is above 0, then this will trigger upon release.
  *
  * ---
  * 
- * Note that there are some behavioral changes in regards to pictures bound to
- * that of common events. Any picture that's bound to a common event will be
- * separate from the map's spriteset, and instead, bound to the scene. This is
- * so that in the event the screen is scrolled, zoomed in, shakes, etc., it
- * will NOT affect the bound pictures.
+ * 注意地图的放大，移动，震动等不会影响绑定图片
  *
- * This is because the pictures are generally to be used as UI elements and UI
- * elements best work under the practice that they do not change position.
+ * 因为图片已经作为界面元素产生，不会改变位置
  *
  * ============================================================================
  * Plugin Commands
  * ============================================================================
  *
- * The following are some plugin commands you can use should you want to add a
- * bit of control with the Picture Common Events.
+ * 下面插件命令可以用来控制图片事件
  *
  * Plugin Command
  *
  *   EnableTouchMove
- *   DisableTouchMove
+ *   DisableTouchMove  允许玩家触碰来移动
  *   - Allows the player to press a destination on the screen and move there or
  *   disables the player from using touch movement.
  *   
  *   HidePictureCommonEvents
- *   ShowPictureCommonEvents
+ *   ShowPictureCommonEvents  显示和隐藏图片事件
  *   - Manually hide all pictures bound to common events or show them. If shown
  *   then pictures will return to their previous opacity value. Hidden pictures
  *   cannot be triggered to activate common events.
@@ -3218,7 +2398,7 @@ Yanfly.PCE.version = 1.06;
  *   MovePlayer Down
  *   MovePlayer Left
  *   MovePlayer Right
- *   MovePlayer Up
+ *   MovePlayer Up  使玩家移动
  *   - Will cause the player character to move as if moving by using a 4-dir
  *   input (either via keyboard or controller). This is best used with 'Press'.
  *
@@ -3230,7 +2410,7 @@ Yanfly.PCE.version = 1.06;
  *   TriggerButton Left
  *   TriggerButton Up
  *   TriggerButton Right
- *   TriggerButton Down
+ *   TriggerButton Down  绑定按钮按键
  *   - This will cause the game to simulate triggering the button command of
  *   one of those original functions even if there is a common event bound to
  *   all of the keys of that original function.
@@ -3238,9 +2418,6 @@ Yanfly.PCE.version = 1.06;
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.06:
- * - Updated for RPG Maker MV version 1.5.0.
  *
  * Version 1.05:
  * - Added bug fixes found by Splendith:

@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Shop Menu Core
 // YEP_ShopMenuCore.js
 //=============================================================================
@@ -8,35 +8,26 @@ Imported.YEP_ShopMenuCore = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.Shop = Yanfly.Shop || {};
-Yanfly.Shop.version = 1.05
 
 //=============================================================================
  /*:
- * @plugindesc v1.05 Revamps the shop menu appearance and provides the
- * framework for many new shop options.
+ * @plugindesc v1.03 商店菜单核心
  * @author Yanfly Engine Plugins
  *
  * @param ---General---
  * @default
  *
  * @param Command Order
- * @parent ---General---
  * @desc This is the order in which the command menu will appear. Use
  * a space to separate the individual commands.
  * @default Buy Sell Equip Custom Cancel
  *
  * @param Shop List Width
- * @parent ---General---
  * @desc This allows you to adjust the formula to determine the window width
  * for the main shop list windows.
  * @default Graphics.boxWidth / 2 + Graphics.boxWidth / 10
  *
  * @param Command Alignment
- * @parent ---General---
- * @type combo
- * @option left
- * @option center
- * @option right
  * @desc Text alignment used for the command windows.
  * left     center     right
  * @default center
@@ -45,38 +36,25 @@ Yanfly.Shop.version = 1.05
  * @default
  *
  * @param Default Mode
- * @parent ---Status Window---
- * @type combo
- * @option default
- * @option actor
  * @desc Display a comparison for all actors per stat or per actor?
  * default - All Actors     actor - Individual Actors
  * @default actor
  *
  * @param Stat Switching
- * @parent ---Status Window---
- * @type boolean
- * @on Enable
- * @off Disable
  * @desc Enable stat comparison switching by pressing left/right?
  * NO - false     YES - true
  * @default true
  *
  * @param Cannot Equip
- * @parent ---Status Window---
  * @desc If an actor cannot equip an item, this text is shown.
  * @default Can't Equip
  *
  * @param Stat Font Size
- * @parent ---Status Window---
  * @desc The font size used for stat comparisons.
  * Default: 28
  * @default 20
  *
  * @param Cannot Equip Font Size
- * @parent ---Status Window---
- * @type number
- * @min 1
  * @desc The font size used for cannot equip text.
  * Default: 28
  * @default 20
@@ -85,59 +63,41 @@ Yanfly.Shop.version = 1.05
  * @default
  *
  * @param Show Icon
- * @parent ---Info Window---
- * @type boolean
- * @on Show
- * @off Hide
  * @desc Show the icon in the info window?
  * NO - false     YES - true
  * @default true
  *
  * @param Icon Size
- * @parent ---Info Window---
- * @type number
- * @min 0
  * @desc This will be the width and height of the icon to be drawn.
  * This is normally 4x the default Icon Width and Icon Height.
  * @default 128
  *
  * @param Font Size
- * @parent ---Info Window---
- * @type number
- * @min 1
  * @desc This changes the font size for description items.
  * Default: 28
  * @default 20
  *
  * @param Recovery Format
- * @parent ---Info Window---
  * @desc This is the text format for HP/MP Recovery.
  * @default %1 Heal
  *
  * @param Add State
- * @parent ---Info Window---
  * @desc This is the text for adding states.
  * @default +State
  *
  * @param Add Buff
- * @parent ---Info Window---
  * @desc This is the text for adding buffs.
  * @default +Buff
  *
  * @param Remove State
- * @parent ---Info Window---
  * @desc This is the text for remove states.
  * @default -State
  *
  * @param Remove Buff
- * @parent ---Info Window---
  * @desc This is the text for remove buffs.
  * @default -Buff
  *
  * @param Maximum Icons
- * @parent ---Info Window---
- * @type number
- * @min 0
  * @desc Maximum number of icons drawn for states and buffs.
  * @default 4
  *
@@ -146,71 +106,57 @@ Yanfly.Shop.version = 1.05
  * Introduction
  * ============================================================================
  *
- * The shop menu in RPG Maker MV is the same as it was in RPG Maker VX and RPG
- * Maker VX Ace. It's relatively basic and provides adequate information, but
- * not really enough to let the player know what they're actually buying or
- * even selling. This plugin enables shops to show more than just the basic
- * information displayed in RPG Maker MV and even allows for custom commands to
- * be inserted into the command window.
+ * 商店菜单在MV里面和VX、 VX ACE里面相同。它提供基础的信息，但是不足以让玩家
+ * 知道他们真正想买或者卖什么。这个插件可以让商店显示更多信息，甚至允许自定
+ * 义命令来插入命令窗口
  *
- * This plugin also gives the player the option to tab between a parameter
- * comparison mode with the whole party displaying individual stats at a time
- * or individual actors displaying all stats at a time. The player can switch
- * between the two modes by pressing the 'tab' button on the keyboard or with
- * touch input on the name of the actor or parameter.
+ * 这个插件允许玩家开启一个窗口，可以让队伍成员显示单独的状态或者显示整个队
+ * 伍的所有人的某个状态。玩家通过tab键开关这个模式或者点击玩家名字
  *
  * ============================================================================
  * Instructions
  * ============================================================================
  *
- * You can add and remove commands from the Command Window by changing the
- * 'Command Order' parameter. Here is a list of commands you may use:
+ * 你可以添加或者移除命令，通过命令顺序参数。这里是你可以使用的命令列表:
  *
  *   Buy
- *   - This is the buy item command.
+ *   - 购买命令
  *
  *   Sell
- *   - This is the sell item command.
+ *   - 卖出命令
  *
  *   Equip
- *   - This is the equip command to directly access an actor's equipment.
+ *   - 装备命令
  *
  *   Custom
- *   - If you have any custom shop menu items, they will be displayed here.
+ *   - 自定义命令
  *
  *   Cancel
- *   - This exits the shop.
+ *   - 退出商店
  *
  * ============================================================================
  * Notetags
  * ============================================================================
  *
- * You can use the following notetag to alter various shop aspects
+ * 你可以使用下面的标签来改变很多方面
  *
  * Item, Weapon, and Armor Notetag:
  *
  *   <Price: x>
- *   This notetag allows you to exceed the default editor limit for item prices
- *   of 999,999 gold.
+ *   设置价格，不再受999，999的金钱限制
  *
  *   <Sell Price: x>
- *   This sets the selling price of the item to x.
+ *   设置卖出价格
  *
  *   <Cannot Sell>
- *   This makes it so that the item cannot be sold.
+ *   物品不可以出售
  *
  *   <Can Sell>
- *   This makes it so that the item can be sold even if it is at 0 gold.
+ *   即便价格为0，仍然可以卖出
  *
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.05:
- * - Updated for RPG Maker MV version 1.5.0.
- *
- * Version 1.04:
- * - Compatibility Update with YEP_X_ItemPictureImg.js
  *
  * Version 1.03:
  * - Updated for RPG Maker MV version 1.1.0.
@@ -445,58 +391,6 @@ Window_ShopInfo.prototype.drawItemEntry = function() {
 Window_ShopInfo.prototype.drawItemIcon = function() {
     this.drawLargeIcon();
 };
-
-if (Imported.YEP_X_ItemPictureImg) {
-
-Yanfly.IPI.Window_ShopInfo_drawItemIcon =
-  Window_ShopInfo.prototype.drawItemIcon;
-Window_ShopInfo.prototype.drawItemIcon = function() {
-  if (this.itemHasPictureImage()) {
-    this.readyItemPictureImage(this._item);
-  } else {
-    Yanfly.IPI.Window_ShopInfo_drawItemIcon.call(this);
-  }
-};
-
-Window_ShopInfo.prototype.itemHasPictureImage = function() {
-  if (!this._item) return false;
-  var filename = ItemManager.getItemPictureImageFilename(this._item);
-  return filename !== '';
-};
-
-Window_ShopInfo.prototype.readyItemPictureImage = function(item) {
-  if (item !== this._item) return;
-  var bitmap = ItemManager.getItemPictureImage(item);
-  if (bitmap.width <= 0) {
-    return setTimeout(this.readyItemPictureImage.bind(this, item), 250);
-  } else {
-    this.drawItemPictureImage(bitmap);
-  }
-};
-
-Window_ShopInfo.prototype.drawItemPictureImage = function(bitmap) {
-  var pw = bitmap.width;
-  var ph = bitmap.height;
-  var sx = 0;
-  var sy = 0;
-  var dw = pw;
-  var dh = ph;
-  if (dw > Yanfly.Param.ItemImageMaxWidth) {
-    var rate = Yanfly.Param.ItemImageMaxWidth / dw;
-    dw = Math.floor(dw * rate);
-    dh = Math.floor(dh * rate);
-  }
-  if (dh > Yanfly.Param.ItemImageMaxHeight) {
-    var rate = Yanfly.Param.ItemImageMaxHeight / dh;
-    dw = Math.floor(dw * rate);
-    dh = Math.floor(dh * rate);
-  }
-  var dx = (Window_Base._faceWidth - dw) / 2;
-  var dy = (Window_Base._faceHeight - dh) / 2;
-  this.contents.blt(bitmap, sx, sy, pw, ph, dx, dy, dw, dh);
-};
-
-}; // Imported.YEP_X_ItemPictureImg
 
 Window_ShopInfo.prototype.drawLargeIcon = function() {
     var iconIndex = this._item.iconIndex;

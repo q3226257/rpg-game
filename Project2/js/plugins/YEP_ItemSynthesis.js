@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Item Synthesis
 // YEP_ItemSynthesis.js
 //=============================================================================
@@ -8,45 +8,31 @@ Imported.YEP_ItemSynthesis = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.IS = Yanfly.IS || {};
-Yanfly.IS.version = 1.11;
+Yanfly.IS.version = 1.08;
 
 //=============================================================================
  /*:
- * @plugindesc v1.11 Players can now craft their own items in-game
- * through an item synthesis system.
+ * @plugindesc v1.08 物品合成系统
  * @author Yanfly Engine Plugins
  *
  * @param ---General---
  * @default
  *
  * @param Synthesis Command
- * @parent ---General---
  * @desc This is the text used for going to the item synthesis menu.
  * @default Synthesis
  *
  * @param Show Command
- * @parent ---General---
- * @type boolean
- * @on Show
- * @off Hide
  * @desc Show the Synthesis command in the main menu by default?
  * NO - false     YES - true
  * @default true
  *
  * @param Enable Command
- * @parent ---General---
- * @type boolean
- * @on Enable
- * @off Disable
  * @desc Enable the Synthesis command in the main menu by default?
  * NO - false     YES - true
  * @default true
  *
  * @param Auto Place Command
- * @parent ---General---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Allow this plugin to decide the menu placement position?
  * NO - false     YES - true
  * @default true
@@ -55,31 +41,22 @@ Yanfly.IS.version = 1.11;
  * @default
  *
  * @param Item Command
- * @parent ---Command Window---
  * @desc The command text used for synthesizing items.
  * @default Craft Item
  *
  * @param Weapon Command
- * @parent ---Command Window---
  * @desc The command text used for synthesizing weapons.
  * @default Craft Weapon
  *
  * @param Armor Command
- * @parent ---Command Window---
  * @desc The command text used for synthesizing armors.
  * @default Craft Armor
  *
  * @param Finish Command
- * @parent ---Command Window---
  * @desc The command text used for exiting the synthesis scene.
  * @default Finish
  *
  * @param Text Alignment
- * @parent ---Command Window---
- * @type combo
- * @option left
- * @option center
- * @option right
  * @desc How to align the text for the command window.
  * left     center     right
  * @default center
@@ -88,25 +65,21 @@ Yanfly.IS.version = 1.11;
  * @default
  *
  * @param Collected Recipes
- * @parent ---Status Window---
  * @desc Text used to represent total recipes collected.
  * Leave this blank if you don't wish to show this.
  * @default Collected Recipes
  *
  * @param Crafted Items
- * @parent ---Status Window---
  * @desc Text used to represent total items crafted.
  * Leave this blank if you don't wish to show this.
  * @default Crafted Items
  *
  * @param Crafted Weapons
- * @parent ---Status Window---
  * @desc Text used to represent total weapons crafted.
  * Leave this blank if you don't wish to show this.
  * @default Crafted Weapons
  *
  * @param Crafted Armors
- * @parent ---Status Window---
  * @desc Text used to represent total armors crafted.
  * Leave this blank if you don't wish to show this.
  * @default Crafted Armors
@@ -115,66 +88,38 @@ Yanfly.IS.version = 1.11;
  * @default
  *
  * @param Equipped Recipes
- * @parent ---List Window---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Check recipes from equipped items?
  * NO - false     YES - true
  * @default true
  *
  * @param Mask Unknown
- * @parent ---List Window---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Mask the names of items that haven't been created yet?
  * NO - false     YES - true
  * @default true
  *
  * @param Mask Text
- * @parent ---List Window---
  * @desc This will be used to mask over each letter for unknown item
  * names that are to be synthesized.
  * @default ?
  *
  * @param Mask Italic
- * @parent ---List Window---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Causes the name for unknown items to appear in italic.
  * @default true
  *
  * @param Mask Help Text
- * @parent ---List Window---
  * @desc This is the text that will be displayed in the help window
  * if the item is masked.
  * @default This item has not been synthesized yet.
  *
  * @param Ingredients Text
- * @parent ---List Window---
  * @desc This is the text used to describe the Ingredients list.
  * @default Ingredients
  *
  * @param Amount Text
- * @parent ---List Window---
  * @desc This is the text used for the amount to synthesize.
  * @default Quantity
  *
- * @param Amount Format
- * @parent ---List Window---
- * @type boolean
- * @on Need/Own
- * @off Own/Need
- * @desc Show the number of ingredients needed over owned?
- * true - Need/Own     false - Own/Need
- * @default false
- *
  * @param Quantity Text Size
- * @parent ---List Window---
- * @type number
- * @min 1
  * @desc This is the text size used for the item quantity.
  * Default: 28
  * @default 20
@@ -183,30 +128,19 @@ Yanfly.IS.version = 1.11;
  * @default
  *
  * @param Default SE
- * @parent ---Sound---
- * @type file
- * @dir audio/se/
- * @require 1
  * @desc This is the default SE played when synthesizing an item.
  * This is case sensitive. Do not include the extension.
  * @default Twine
  *
  * @param Default Volume
- * @parent ---Sound---
- * @type number
- * @min 0
  * @desc This is the default volume when synthesizing an item.
  * @default 100
  *
  * @param Default Pitch
- * @parent ---Sound---
- * @type number
  * @desc This is the default pitch when synthesizing an item.
  * @default 100
  *
  * @param Default Pan
- * @parent ---Sound---
- * @type number
  * @desc This is the default pan when synthesizing an item.
  * @default 0
  *
@@ -215,54 +149,42 @@ Yanfly.IS.version = 1.11;
  * Introduction
  * ============================================================================
  *
- * Item synthesis is now a pretty common aspect of most RPG's where the player
- * can craft their own items after acquiring recipes. This plugin enables your
- * players to be able to do that after acquiring the said recipes. Recipes can
- * come in the form of items, weapons, and/or armors and transcribed in them
- * are what items, weapons, and/or armors they can make. These items can be
- * made from the main menu and/or synthesis locations!
+ * 物品合成系统是大多数角色扮演游戏常见的方面，玩家可以通过制作书合成他们自
+ * 己的物品。这个插件让玩家实现这个功能。制作书可以涉及物品，武器或者装备，
+ * 并且可以合成物品，武器或者装备。这些物品可以从主菜单或者合成菜单制作。
  *
  * ============================================================================
  * Notetags
  * ============================================================================
  *
- * To allow the player the ability to craft a certain item, that item must be
- * included in a recipe notetag in an item that the player possesses.
+ * 为了让玩家打造出某个物品，这些物品必须拥有制作书的标签
  *
  * Item, Weapon, and Armor Notetags:
  *   <Item Recipe: x>
  *   <Item Recipe: x, x, x>
  *   <Item Recipe: x to y>
- *   This will change this item into a recipe for x item(s). As long as this
- *   item is in possession by the party as a whole, item(s) x can be
- *   synthesized by the player provided that the player has the proper quantity
- *   of ingredients.
- *   * Note: Entries without names will not be included. Entries without both a
- *   synthesis cost and without an ingredient list will not be included.
+ *   在数据库建立名为制作书的物品，备注放入这些标签，例如：
+ *   <Item Recipe: 41, 42, 43> 表示ID为41、42、43的物品可以合成。
+ *   前提是你必须在游戏中得到这个制作书。武器和防具例同。
+ *   注意：没有名字的条目，以及没有合成消耗和合成原料列表的条目都不会参与合成
  *
  *   <Weapon Recipe: x>
  *   <Weapon Recipe: x, x, x>
  *   <Weapon Recipe: x to y>
- *   This will change this item into a recipe for x weapon(s). As long as this
- *   item is in possession by the party as a whole, weapon(s) x can be
- *   synthesized by the player provided that the player has the proper quantity
- *   of ingredients.
- *   * Note: Entries without names will not be included. Entries without both a
- *   synthesis cost and without an ingredient list will not be included.
+ *   可以把这些武器放入制作书，只要队伍拥有这个武器，他就可以被玩家和其他原料
+ *   一起合成
+ *   注意：没有名字的条目，以及没有合成消耗和合成原料列表的条目都不会参与合成
  *
  *   <Armor Recipe: x>
  *   <Armor Recipe: x, x, x>
  *   <Armor Recipe: x to y>
- *   This will change this item into a recipe for x armor(s). As long as this
- *   item is in possession by the party as a whole, armor(s) x can be
- *   synthesized by the player provided that the player has the proper quantity
- *   of ingredients.
- *   * Note: Entries without names will not be included. Entries without both a
- *   synthesis cost and without an ingredient list will not be included.
+ *   可以把这些装备放入制作书，只要队伍拥有这个装备，他就可以被玩家和其他原料
+ *   一起合成
+ *   注意：没有名字的条目，以及没有合成消耗和合成原料列表的条目都不会参与合成
  *
  *   <Synthesis Ingredients>
- *     item id
- *     item id: x
+ *     item id         物品ID例如：item 40 表示需要ID为40的物品1个。
+ *     item id: x      需要的数量例如：item 40: 3 表示ID为40的物品需要3个。
  *     weapon id
  *     weapon id: x
  *     armor id
@@ -271,24 +193,18 @@ Yanfly.IS.version = 1.11;
  *     named item
  *     named item: x
  *   </Synthesis Ingredients>
- *   Using the above tag in an item will set those items as the ingredients
- *   required for the player to synthesize. Replace "id" with the proper item,
- *   weapon, or armor ID's. If no ":x" is used, the database will register that
- *   as only needing 1 of that item as an ingredient. If "gold: x" is used,
- *   that will be the cost required to synthesize the item.
+ *   使用这个标签，可以让物品通过这些原料合成。替代ID即可。如果没有指定ID，数
+ *   据库认为只需要任何一件物品作为原料即可。如果金钱被指定，则需要消耗如此数
+ *   量金钱来合成物品
  *
- *   If you are using named entries, priority will be given to the highest ID
- *   in the order of items, weapons, then armors.
+ *   如果你使用名字，则会优先使用ID最高的
  *
- *   * Note: If you are using Item Core, Independent Items cannot become an
- *   ingredient for a recipe and will therefore be automatically omitted.
+ *   注意：如果你使用了物品核心插件。独立物品不能成为合成原料，将会自动被漏掉
  *
  *   <Mask Name: x>
- *   If you are masking unknown items' names, you can change the text shown for
- *   the unknown item with x. This will cause the game to use the mask name
- *   instead of the usual ??? (if that's what you're using) to mask the item.
- *   This can give a player a general idea of what they may be synthesizing
- *   such as "Strange Liquid" or "Weird Crystal".
+ *   如果你伪装了物品名字，你可以改变物品显示的文本。这将造成游戏采用伪装名代
+ *   替平时使用的。这可以让玩家生成他们想要的合成品例如“奇异水”或者“特殊水
+ *   晶”等
  *
  * ============================================================================
  * Lunatic Mode - Custom Synthesis Effects
@@ -318,14 +234,14 @@ Yanfly.IS.version = 1.11;
  * Plugin Commands
  * ============================================================================
  *
- * The following are Plugin Commands you may use with events.
+ * 下面的插件命令可以使用在事件里面
  *
  * Plugin Command:
- *   OpenSynthesis          Opens up the Synthesis Scene from the field.
- *   ShowSynthesis          Shows the Synthesis command from the main menu.
- *   HideSynthesis          Hides the Synthesis command from the main menu.
- *   EnableSynthesis        Enables the Synthesis command from the main menu.
- *   DisableSynthesis       Disables the Synthesis command from the main menu.
+ *   OpenSynthesis          打开合成界面
+ *   ShowSynthesis          主菜单显示合成命令
+ *   HideSynthesis          主菜单隐藏合成命令
+ *   EnableSynthesis        开启主菜单合成命令
+ *   DisableSynthesis       关闭主菜单合成命令
  *
  * For those who wish to make the player synthesize only specific recipes, you
  * can use the following command.
@@ -343,17 +259,6 @@ Yanfly.IS.version = 1.11;
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.11:
- * - Bypass the isDevToolsOpen() error when bad code is inserted into a script
- * call or custom Lunatic Mode code segment due to updating to MV 1.6.1.
- *
- * Version 1.10:
- * - Added 'Amount Format' plugin parameter. Now you can switch the way the
- * needed ingredients are shown between Need/Own and Own/Need.
- *
- * Version 1.09:
- * - Updated for RPG Maker MV version 1.5.0.
  *
  * Version 1.08:
  * - Lunatic Mode fail safes added.
@@ -424,7 +329,6 @@ Yanfly.Param.ISMaskItalic = eval(Yanfly.Param.ISMaskItalic);
 Yanfly.Param.ISMaskHelpText = String(Yanfly.Parameters['Mask Help Text']);
 Yanfly.Param.ISIngredientsList = String(Yanfly.Parameters['Ingredients Text']);
 Yanfly.Param.ISAmountText = String(Yanfly.Parameters['Amount Text']);
-Yanfly.Param.ISAmountFmt = eval(Yanfly.Parameters['Amount Format'] || 'false');
 Yanfly.Param.ISQuantitySize = Number(Yanfly.Parameters['Quantity Text Size']);
 
 Yanfly.Param.ISDefSEName = String(Yanfly.Parameters['Default SE']);
@@ -1187,12 +1091,7 @@ Window_SynthesisIngredients.prototype.drawItemDetails = function(index, wy) {
     if (!ingredient) return wy;
     this.resetFontSettings();
     this.drawItemName.call(this, ingredient, 0, wy, ww);
-    if (Yanfly.Param.ISAmountFmt) {
-      this.drawItemQuantity(index, wy);
-    } else {
-      this.drawItemQuantity2(index, wy);
-    }
-    
+    this.drawItemQuantity(index, wy);
     return wy + this.lineHeight();
 };
 
@@ -1211,25 +1110,6 @@ Window_SynthesisIngredients.prototype.drawItemQuantity = function(index, wy) {
       this.changeTextColor(this.powerDownColor());
     }
     var text = String(Yanfly.Util.toGroup(quantity));
-    this.drawText(text, 0, wy, ww, 'right');
-}
-
-Window_SynthesisIngredients.prototype.drawItemQuantity2 = function(index, wy) {
-    var ingredient = DataManager.getSynthesisIngredient(this._item, index);
-    var quantity = DataManager.getSynthesisQuantity(this._item, index);
-    var owned = $gameParty.numItems(ingredient);
-    var ww = this.contents.width;
-    this.contents.fontSize = Yanfly.Param.ISQuantitySize;
-    this.changeTextColor(this.normalColor());
-    var num = '/' + Yanfly.Util.toGroup(quantity);
-    this.drawText(num, 0, wy, ww, 'right');
-    ww -= this.textWidth(num);
-    if ($gameParty.numItems(ingredient) >= quantity) {
-      this.changeTextColor(this.powerUpColor());
-    } else {
-      this.changeTextColor(this.powerDownColor());
-    }
-    var text = String(Yanfly.Util.toGroup(owned));
     this.drawText(text, 0, wy, ww, 'right');
 }
 
@@ -1838,7 +1718,6 @@ Yanfly.Util.displayError = function(e, code, message) {
   console.log(message);
   console.log(code || 'NON-EXISTENT');
   console.error(e);
-  if (Utils.RPGMAKER_VERSION && Utils.RPGMAKER_VERSION >= "1.6.0") return;
   if (Utils.isNwjs() && Utils.isOptionValid('test')) {
     if (!require('nw.gui').Window.get().isDevToolsOpen()) {
       require('nw.gui').Window.get().showDevTools();

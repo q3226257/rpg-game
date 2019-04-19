@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Battle Engine Extension - Battle Equip Change
 // YEP_X_ChangeBattleEquip.js
 //=============================================================================
@@ -8,12 +8,10 @@ Imported.YEP_X_ChangeBattleEquip = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.CBE = Yanfly.CBE || {};
-Yanfly.CBE.version = 1.04;
 
 //=============================================================================
  /*:
- * @plugindesc v1.05 (Requires YEP_BattleEngineCore & YEP_EquipCore)
- * Allow your actors to change equipment mid-battle.
+ * @plugindesc v1.01a 战斗装备切换
  * @author Yanfly Engine Plugins
  *
  * @param Command Name
@@ -21,8 +19,6 @@ Yanfly.CBE.version = 1.04;
  * @default Equip
  *
  * @param Equip Cooldown
- * @type number
- * @min 0
  * @desc This is the default number of turns selecting the command
  * will place the command on cooldown for.
  * @default 1
@@ -32,29 +28,26 @@ Yanfly.CBE.version = 1.04;
  * Introduction
  * ============================================================================
  *
- * This plugin requires YEP_BattleEngineCore and YEP_EquipCore. Make sure this
- * plugin is located under YEP_BattleEngineCore and YEP_EquipCore in the Plugin
- * Manager's plugin list.
+ * 这个插件需要 YEP_BattleEngineCore和YEP_EquipCore。确保放在这两个底下
  *
  * This plugin enables your player to be able to switch out an actor's equips
  * mid-battle. This will take the player to the Equip menu rather than leave
- * the player inside the battle scene.
+ * 这个插件可以让你在战斗中切换装备。
  *
  * ============================================================================
  * Notetags
  * ============================================================================
  *
- * Use the following notetags to alter how the Change Battle Equip command
- * functions for your actors in battle.
+ * 使用下面标签来设置
  *
  * Actor, Class, Weapons, Armors, and State Notetags:
  *
  *   <Change Battle Equip Cooldown: +x>
- *   <Change Battle Equip Cooldown: -x>
+ *   <Change Battle Equip Cooldown: -x> 改变战斗装备冷却
  *   Increases or decreases the number of turns an actor has to wait in battle
  *   before the actor can change equips again by x amount.
  *
- *   <Disable Change Battle Equip>
+ *   <Disable Change Battle Equip> 关闭改变战斗装备能力
  *   This will disable the ability to change equipment mid-battle for the
  *   related actor.
  *
@@ -62,17 +55,7 @@ Yanfly.CBE.version = 1.04;
  * Changelog
  * ============================================================================
  *
- * Version 1.04:
- * - Updated for RPG Maker MV version 1.6.1.
- *
- * Version 1.03:
- * - Updated for RPG Maker MV version 1.5.0.
- *
- * Version 1.02:
- * - Game now refreshes all battlers upon reentry into the battle after
- * entering and leaving the equipment change menu mid-battle.
- *
- * Version 1.01a:
+ * Version 1.01:
  * - Fixed a bug that made <Disable Change Battle Equip> not work.
  * - Optimization update.
  *
@@ -143,16 +126,6 @@ BattleManager.startBattle = function() {
     }
     $gameTemp._cbeBattle = false;
     this._bypassMoveToStartLocation = false;
-    BattleManager.refreshAllBattlers();
-};
-
-BattleManager.refreshAllBattlers = function() {
-  var members = $gameParty.members().concat($gameTroop.members());
-  var length = members.length;
-  for (var i = 0; i < length; ++i) {
-    var member = members[i];
-    if (member) member.refresh();
-  }
 };
 
 Yanfly.CBE.BattleManager_playBattleBgm = BattleManager.playBattleBgm;
@@ -169,26 +142,6 @@ BattleManager.playBattleBgm = function() {
       restartBgm = false;
     }
     if (restartBgm) Yanfly.CBE.BattleManager_playBattleBgm.call(this);
-};
-
-//=============================================================================
-// Game_Temp
-//=============================================================================
-
-Game_Temp.prototype.hasStoredBattleSpriteset = function() {
-  return this._battleSpriteset;
-};
-
-Game_Temp.prototype.storeBattleSpriteset = function() {
-  this._battleSpriteset = SceneManager._scene._spriteset;
-};
-
-Game_Temp.prototype.restoreBattleSpriteset = function() {
-  if (this._battleSpriteset) {
-    SceneManager._scene._spriteset = this._battleSpriteset;
-    SceneManager._scene.addChild(SceneManager._scene._spriteset);
-    this._battleSpriteset = undefined;
-  }
 };
 
 //=============================================================================
@@ -210,7 +163,6 @@ Game_Battler.prototype.onBattleEnd = function() {
 Yanfly.CBE.Game_Battler_regenerateAll = Game_Battler.prototype.regenerateAll;
 Game_Battler.prototype.regenerateAll = function() {
     Yanfly.CBE.Game_Battler_regenerateAll.call(this);
-    if (!$gameParty.inBattle()) return;
     if (this.isActor()) this.updateBattleEquipChangeCooldown();
 };
 
@@ -365,16 +317,6 @@ Scene_Battle.prototype.createActorCommandWindow = function() {
     win.setHandler('equip change', this.commandChangeBattleEquip.bind(this));
 };
 
-Yanfly.CBE.Scene_Battle_createSpriteset =
-    Scene_Battle.prototype.createSpriteset;
-Scene_Battle.prototype.createSpriteset = function() {
-  if ($gameTemp.hasStoredBattleSpriteset()) {
-    $gameTemp.restoreBattleSpriteset();
-  } else {
-    Yanfly.CBE.Scene_Battle_createSpriteset.call(this);
-  }
-};
-
 Scene_Battle.prototype.commandChangeBattleEquip = function() {
     BattleManager._bypassMoveToStartLocation = true;
     $gameParty.loadActorImages();
@@ -384,7 +326,6 @@ Scene_Battle.prototype.commandChangeBattleEquip = function() {
     BattleManager.actor().setBattleEquipChange(true);
     Yanfly.CBE.SavedBattleBgm = AudioManager.saveBgm();
     Yanfly.CBE.SavedBattleBgs = AudioManager.saveBgs();
-    $gameTemp.storeBattleSpriteset();
     SceneManager.push(Scene_Equip);
     BattleManager._phase = 'input';
     $gameTemp._cbeBattle = true;

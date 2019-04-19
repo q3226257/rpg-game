@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Map Select Skill
 // YEP_MapSelectSkill.js
 //=============================================================================
@@ -8,63 +8,42 @@ Imported.YEP_MapSelectSkill = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.MSS = Yanfly.MSS || {};
-Yanfly.MSS.version = 1.03;
+Yanfly.MSS.version = 1.02;
 
 //=============================================================================
  /*:
- * @plugindesc v1.03 Open up a window similar to the Select Item Window,
- * but instead, returns Skill ID's to a variable.
+ * @plugindesc v1.02 地图上技能选择
  * @author Yanfly Engine Plugins
  *
  * @param Default Columns
- * @type number
- * @min 1
  * @desc Default number of columns for the window.
  * @default 2
  *
  * @param Default Rows
- * @type number
- * @min 1
  * @desc Default number of rows for the window.
  * @default 4
  *
  * @param Default X Position
- * @type combo
- * @option left
- * @option center
- * @option right
  * @desc Default X Position of the window.
  * left     center     right
  * @default right
  *
  * @param Default Y Position
- * @type combo
- * @option top
- * @option middle
- * @option bottom
  * @desc Default Y Position of the window.
  * top     middle     bottom
  * @default bottom
  *
  * @param Default Width
- * @type number
- * @min 0
  * @desc Default width of the window.
  * If set to 0, window width will be the screen width.
  * @default 0
  *
  * @param Default Enable
- * @type boolean
- * @on Enable
- * @off Disable
  * @desc Enable all skills by default?
  * NO - false     YES - true
  * @default true
  *
  * @param Default Cost
- * @type boolean
- * @on Show
- * @off Hide
  * @desc Show the costs of the skills by default?
  * NO - false     YES - true
  * @default true
@@ -74,10 +53,7 @@ Yanfly.MSS.version = 1.03;
  * Introduction
  * ============================================================================
  *
- * This plugin produces a window similar to that of the Select Item Window, but
- * instead, it displays a list of skills from a designated actor and the skill
- * type selected. When a skill is selected, it set the chosen variable's value
- * to become that of the picked skill's ID.
+ * 这个插件提供了简便的窗口来选择技能，当你选择技能时，变量值将会变成技能ID
  *
  * ============================================================================
  * Plugin Commands
@@ -88,54 +64,46 @@ Yanfly.MSS.version = 1.03;
  * --- Plugin Commands ---
  *
  * MapSelectSkill v a s
- * - This will open up the Map Select Skill window. Replace 'v' with the ID of
- * the variable you wish to set to the selected skill. Replace 'a' with the ID
- * of the actor whose skill list you want to see. 's' is optional, but if used,
- * it will display the skills from skill type 's' only. Replace 's' with the
- * skill type's ID number.
+ * -v是变量ID，a是玩家ID，s是技能类型
  *
  * MapSelectSkillColumns x
- * - Sets the number of columns for the Map Select Skill Window to x.
+ * - 选择技能框的列数
  *
  * MapSelectSkillRows x
- * - Sets the number of rows for the Map Select Skill Window to x.
+ * - 选择技能框的行数
  *
  * MapSelectSkillWidth x
- * - Sets the width for the Map Select Skill Window to x. If 0 is used, then
- * the window width will be the screen width.
+ * - 选择技能框的宽度
  *
  * MapSelectSkillX left
  * MapSelectSkillX center
- * MapSelectSkillX right
+ * MapSelectSkillX right  选择技能框的横向位置
  * - Sets the Map Select Skill Window to be aligned to the left side of the
  * screen, center of the screen, or right side of the screen.
  *
  * MapSelectSkillY top
  * MapSelectSkillY middle
- * MapSelectSkillY bottom
+ * MapSelectSkillY bottom  选择技能框的竖向位置
  * - Sets the Map Select Skill Window to be aligned to the top of the screen,
  * middle of the screen, or bottom of the screen.
  *
- * EnableAllMapSelectSkills
+ * EnableAllMapSelectSkills  开启选择技能框的功能
  * - This will cause all of the skills listed to become selectable regardless
  * of whether or not the actor is able to use them at the time.
  *
- * NormalAllMapSelectSkills
+ * NormalAllMapSelectSkills   开启全部技能列表
  * - This will cause all of the skills listed to be enabled or disabled based
  * on whether or not the actor is able to use the skill at the time.
  *
- * ShowMapSelectSkillCost
+ * ShowMapSelectSkillCost   显示技能消耗
  * - Show the cost of the skills in the Map Select Skill Window.
  *
- * HideMapSelectSkillCost
+ * HideMapSelectSkillCost    隐藏技能消耗
  * - Hide the cost of the skills in the Map Select Skill Window.
  *
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.03:
- * - Updated for RPG Maker MV version 1.5.0.
  *
  * Version 1.02:
  * - Optimization update.

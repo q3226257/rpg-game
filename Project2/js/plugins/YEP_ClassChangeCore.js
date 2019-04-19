@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Class Change Core
 // YEP_ClassChangeCore.js
 //=============================================================================
@@ -8,70 +8,50 @@ Imported.YEP_ClassChangeCore = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.CCC = Yanfly.CCC || {};
-Yanfly.CCC.version = 1.13;
+Yanfly.CCC.version = 1.12;
 
 //=============================================================================
  /*:
- * @plugindesc v1.13 This plugin creates a system where your player
- * can change classes through the main menu.
+ * @plugindesc v1.12 职业变更核心
  * @author Yanfly Engine Plugins
  *
  * @param ---General---
  * @default
  *
  * @param Class Command
- * @parent ---General---
  * @desc This is the text used for the menu command.
  * @default Class
  *
  * @param Auto Add Menu
- * @parent ---General---
  * @desc Automatically add the 'Class' command to the main menu?
  * NO - false     YES - true
  * @default true
  *
  * @param Show Command
- * @parent ---General---
- * @type boolean
- * @on Show
- * @off Hide
  * @desc Show the Class command in the main menu by default?
  * NO - false     YES - true
  * @default true
  *
  * @param Enable Command
- * @parent ---General---
- * @type boolean
- * @on Enable
- * @off Disable
  * @desc Enable the Class command in the main menu by default?
  * NO - false     YES - true
  * @default true
  *
  * @param Auto Place Command
- * @parent ---General---
- * @type boolean
- * @on Automatic
- * @off Manual
  * @desc Allow this plugin to decide the menu placement position?
  * NO - false     YES - true
  * @default true
  *
  * @param Default Icon
- * @parent ---General---
  * @desc This is the default icon index used for all classes.
  * @default 78
  *
  * @param Maintain Levels
- * @parent ---General---
- * @type number
- * @min 0
  * @desc Maintain levels throughout all classes?
  * NO - false     YES - true     Default: false
  * @default false
  *
  * @param Unlocked Classes
- * @parent ---General---
  * @desc These are the classes that are unlocked by default. List
  * the ID's of the classes with spaces in between them.
  * @default 1 2 3 4
@@ -80,48 +60,29 @@ Yanfly.CCC.version = 1.13;
  * @default
  *
  * @param Class Change Command
- * @parent ---Command Window---
  * @desc The command text used for changing the primary class.
  * @default Class
  *
  * @param Show Class Change
- * @parent ---Command Window---
- * @type boolean
- * @on Show
- * @off Hide
  * @desc Show the class change command by default?
  * NO - false     YES - true
  * @default true
  *
  * @param Enable Class Change
- * @parent ---Command Window---
- * @type boolean
- * @on Enable
- * @off Disable
  * @desc Enable the class change command by default?
  * NO - false     YES - true
  * @default true
  *
  * @param Show Skill Learn
- * @parent ---Command Window---
- * @type boolean
- * @on Show
- * @off Hide
  * @desc If you have Skill Learn System, show 'Learn Skill'?
  * NO - false     YES - true
  * @default true
  *
  * @param Finish Command
- * @parent ---Command Window---
  * @desc The command text used for exiting the class scene.
  * @default Finish
  *
  * @param Text Alignment
- * @parent ---Command Window---
- * @type combo
- * @option left
- * @option center
- * @option right
  * @desc How to align the text for the command window.
  * left     center     right
  * @default center
@@ -130,22 +91,14 @@ Yanfly.CCC.version = 1.13;
  * @default
  *
  * @param Current Class Color
- * @parent ---Window Settings---
- * @type number
- * @min 0
- * @max 31
  * @desc This is the text color used for the actor's current class.
  * @default 17
  *
  * @param Class Level Format
- * @parent ---Window Settings---
  * @desc This is the text format for the Class Level.
  * @default LV%1
  *
  * @param Class Level Font Size
- * @parent ---Window Settings---
- * @type number
- * @min 1
  * @desc This is the font size used for the class level.
  * @default 20
  *
@@ -154,64 +107,55 @@ Yanfly.CCC.version = 1.13;
  * Introduction
  * ============================================================================
  *
- * This plugin adds the ability for your player to freely change the classes of
- * actors outside of battle from a menu. When changing classes, this script
- * gives the option for the developer to choose whether or not classes have
- * their own levels (causing the actor’s level to reset back to the class’s
- * level) or to maintain the current level.
+ * 这个插件可以让你通过主菜单改变角色职业或级别来实现用户定制需求，进而创
+ * 造一个伟大的游戏系统
+ * 这个插件将赋予你的游戏角色在战斗之外，通过菜单更改职业的能力。当改变职
+ * 业的时候，这个脚本可以让游戏开发者选择是否为他们的职业设定自己专属的等
+ * 级（这将造成角色等级重置为职业等级）或者保持现有的等级
  *
  * ============================================================================
  * Notetags
  * ============================================================================
  *
- * The following are some notetags you can use with the Class Change Core
- * plugin.
+ * 下面是一些你可以利用这个插件使用的标签
  *
  * Actor Notetags:
  *   <Unlock Class: x>
  *   <Unlock Class: x, x, x>
  *   <Unlock Class: x to y>
- *   This actor will have class(es) x unlocked at the start of the game in
- *   addition to its current class and access to any of the global classes.
+ *   这个角色将会在游戏开始或者进行当中的时候解锁这些职业
  *
  *   <Cannot Change Class>
  *   This prevents this actor from being able to change primary classes. This
  *   could be reversed from plugin commands, however.
  *
  *   <Class x Character: filename y>
- *   When this actor's class is x, the actor's character sprite will become
- *   'filename' and index y on the fieldmap.
+ *   当游戏角色的职业ID是x的时候，游戏角色画面将成为图片y
  *
  *   <Hero Character: filename y>
  *   <Warrior Character: filename y>
- *   If you prefer to use class names instead of the class ID, use the above
- *   format. When this actor is this class, the actor's character sprite will
- *   become 'filename' and index y on the fieldmap.
+ *   如果不想使用职业ID，而是采用名字，可以使用这段代码。当游戏角色处于设定
+ *   职业的时候，他的游戏角色画面将成为图片y
  *
  *   <Class x Face: filename y>
- *   When this actor's class is x, the actor's face graphic will become
- *   'filename' and index y for menus.
+ *   当角色职业ID为X的时候，他的游戏角色面部图片将成为y
  *
  *   <Hero Face: filename y>
  *   <Warrior Face: filename y>
- *   If you prefer to use class names instead of the class ID, use the above
- *   format. When this actor is this class, the actor's face graphic will
- *   become 'filename' and index y for menus.
+ *   如果不想使用职业ID，而是采用名字，可以使用这段代码。当游戏角色处于设定
+ *   职业的时候，他的游戏角色面部画面将成为图片y
  *
  *   <Class x Battler: filename>
- *   When this actor's class is x, the actor's battler sprite will become
- *   'filename' in battle.
+ *   当角色职业ID为X的时候，他的游戏角色战斗图片将成为y
  *
  *   <Hero Battler: filename>
  *   <Warrior Battler: filename>
- *   If you prefer to use class names instead of the class ID, use the above
- *   format. When this actor is this class, the actor's battler sprite will
- *   become 'filename' in battle.
+ *   如果不想使用职业ID，而是采用名字，可以使用这段代码。当游戏角色处于设定
+ *   职业的时候，他的游戏角色战斗画面将成为图片y
  *
  * Class Notetags:
  *   <Icon: x>
- *   Sets the icon for this class to x. This icon is used in the Class Change
- *   menu listing.
+ *   设置职业图标，这个图标将应用于职业菜单列表中
  *
  *   <Use Nickname>
  *   This will cause the class to use the nickname used by the actor instead
@@ -221,56 +165,52 @@ Yanfly.CCC.version = 1.13;
  *    Text
  *    Text
  *   </Help Description>
- *   Sets the help description for the class to the specified text.
+ *   设置职业的自定义介绍
  *
  *   <Level Unlock Requirements>
  *    Class x: Level y
  *    Class x: Level y
  *   </Level Unlock Requirements>
- *   Sets the requirements for unlocking that particular class. The unlocking
- *   of the class will require classes x to be at level y. Insert multiple of
- *   the strings in between the two opening and closing notetags to require all
- *   of the class levels to be met.
+ *   设置解锁特定职业的等级。职业x将在角色处于等级y的时候开启。可以在开启和
+ *   关闭的标签之内插入这串代码，就可以匹配所以的职业等级
  *
  *   <Level Unlock Requirements>
  *    Hero: Level y
  *    Warrior: Level y
  *   </Level Unlock Requirements>
- *   If you prefer to use class names instead of the class ID, use the above
- *   format. This will set the level requirement for the mentioned class to y.
- *   If there are multiple classes with the same name, the class with the
- *   highest ID value will be taken.
+ *   如果你想要使用职业名字来替代职业ID，可以使用以上这段代码。对于的特定的
+ *   职业，我们可以设置他的等级需求为y。如果存在多个相同名字的职业，将会匹
+ *   配ID最高的
  *
  * ============================================================================
  * Plugin Commands
  * ============================================================================
  *
- * Included in this plugin are multiple Plugin Commands to help assist you with
- * class changing for your game.
+ * 在这个插件里面，我们集成了很多插件命令来帮助你改变游戏设计。
  *
  * Plugin Command
  *   OpenClass
- *   - This opens the class changing scene.
+ *   - 打开职业变更窗口.
  *
  *   ShowClass
  *   HideClass
- *   - This shows/hides the Class option from the main menu.
+ *   - 显示 隐藏主菜单职业选项.
  *
  *   EnableClass
  *   DisableClass
- *   - This makes the Class option enabled/disabled.
+ *   - 打开 关闭职业选项.
  *
  *   UnlockClass 5 6
- *   - This allows Actor 5 to unlock Class 6.
+ *   - 允许角色5解锁职业6.
  *
  *   RemoveClass 5 7
- *   - This causes Actor 5 to no longer access Class 7.
+ *   - 允许角色5不能使用职业7.
  *
  *   UnlockClassAll 8
- *   - This unlocks Class 8 for the global pool.
+ *   - 为所有人解锁职业8.
  *
  *   RemoveClassAll 9
- *   - This removes Class 9 from the global pool.
+ *   - 为所有人移除职业9.
  *
  *   EnablePrimaryClassChange 5
  *   DisablePrimaryClassChange 5
@@ -301,9 +241,6 @@ Yanfly.CCC.version = 1.13;
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.13:
- * - Updated for RPG Maker MV version 1.5.0.
  *
  * Version 1.12:
  * - Optimization update.

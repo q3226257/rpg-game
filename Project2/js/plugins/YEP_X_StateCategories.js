@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Buffs & States Extension - State Categories
 // YEP_X_StateCategories.js
 //=============================================================================
@@ -8,12 +8,11 @@ Imported.YEP_X_StateCategories = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.StC = Yanfly.StC || {};
-Yanfly.StC.version = 1.07;
+Yanfly.StC.version = 1.05;
 
 //=============================================================================
  /*:
- * @plugindesc v1.07 (Requires YEP_BuffsStatesCore.js) Sets up categories
- * for your states to make control over them easier.
+ * @plugindesc v1.05 状态分类
  * @author Yanfly Engine Plugins
  *
  * @help
@@ -21,37 +20,28 @@ Yanfly.StC.version = 1.07;
  * Introduction
  * ============================================================================
  *
- * This plugin requires YEP_BuffsStatesCore. Make sure this plugin is located
- * under YEP_BuffsStatesCore in the plugin list.
+ * 这个插件需要YEP_BuffsStatesCore，请把它放在YEP_BuffsStatesCore下面
  *
- * This plugin allows you to set categories for your states. They can be one
- * category, multiple categories, or no categories. With this in mind, there's
- * a few new features this plugin provides that pertains to this category
- * system such as removal of states under a certain category and the ability to
- * have them bypass certain key removal aspects such as on Death removal or
- * Recover All removal.
+ * 这个插件允许你设置状态的分类，他们可以属于一个分类，也可以是多个
+ * 甚至没有。这样，这个插件就可以提供通过分类来消除状态的功能，或者忽略
+ * 特定状态，例如死亡自动移除或者全体恢复
  *
  * ============================================================================
  * Notetags
  * ============================================================================
  *
- * Use the following notetags to alter various properties revolving around
- * state categories for your database objects.
+ * 使用下面的标签来设置
  *
- * State Notetags:
+ * 状态注释:
  *
  *   <Category: text>
- *   Adds the 'text' category to this state. You can insert multiples of this
- *   notetag to give a state multiple categories.
+ *   设置分类，你可以插入多条此语句来设置多分类
  *
  *   <Category: Bypass Death Removal>
- *   Adds the 'Bypass Death Removal' category to the state. This is a category
- *   utilized by the plugin to bypass removal of it upon death.
+ *   设置状态忽略死亡
  *
  *   <Category: Bypass Recover All Removal>
- *   Adds the 'Bypass Recover All Removal' category to the state. This is a
- *   category utilized by the plugin to bypass removal of it upon using the
- *   Recover All event.
+ *   设置状态忽略全体恢复效果
  *
  *   <Category: Group Defeat>
  *   Adds the 'Group Defeat' category to the state. If all group members are
@@ -60,10 +50,12 @@ Yanfly.StC.version = 1.07;
  * Skill and Item Notetags:
  *
  *   <Remove State Category: text>
+ *   移除分类下的状态
  *   Causes this action to remove all states from category 'text' from the
  *   action's target. This will not attempt to remove passive states.
  *
  *   <Remove x State Category: text>
+ *   移除分类下的状态x个
  *   Causes this action to remove x states from category 'text' from the
  *   action's target. The states removed will be the front x states of highest
  *   to lowest priority with the matching category text. This will not attempt
@@ -79,10 +71,10 @@ Yanfly.StC.version = 1.07;
  *
  * Skill and Item Notetags:
  *
- *   <Custom Remove State Category: text>
+ *   <Custom Remove State: category name>
  *    value += user.level;
  *    value -= target.level;
- *   </Custom Remove State Category: text>
+ *   </Custom Remove State: category name>
  *   The 'value' variable is the amount of states to be removed by the action.
  *   If there was a <Remove x State Category: text> in the skill/item notebox,
  *   then the 'value' variable will start off with that amount. If not, the
@@ -122,16 +114,8 @@ Yanfly.StC.version = 1.07;
  * Changelog
  * ============================================================================
  *
- * Version 1.07:
- * - Bypass the isDevToolsOpen() error when bad code is inserted into a script
- * call or custom Lunatic Mode code segment due to updating to MV 1.6.1.
- *
- * Version 1.06:
- * - Updated for RPG Maker MV version 1.5.0.
- *
- * Version 1.05a:
+ * Version 1.05:
  * - Lunatic Mode fail safes added.
- * - Fixed a documentation error with <Custom Remove State Category: text>.
  *
  * Version 1.04:
  * - Compatibility update with Selection Control to not game over the player
@@ -456,7 +440,6 @@ Yanfly.Util.displayError = function(e, code, message) {
   console.log(message);
   console.log(code || 'NON-EXISTENT');
   console.error(e);
-  if (Utils.RPGMAKER_VERSION && Utils.RPGMAKER_VERSION >= "1.6.0") return;
   if (Utils.isNwjs() && Utils.isOptionValid('test')) {
     if (!require('nw.gui').Window.get().isDevToolsOpen()) {
       require('nw.gui').Window.get().showDevTools();

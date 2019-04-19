@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Status Menu Extension - Battle Statistics
 // YEP_X_BattleStatistics.js
 //=============================================================================
@@ -8,90 +8,67 @@ Imported.YEP_X_BattleStatistics = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.BStats = Yanfly.BStats || {};
-Yanfly.BStats.version = 1.02;
+Yanfly.BStats.version = 1.01;
 
 //=============================================================================
  /*:
- * @plugindesc v1.02 (Requires YEP_StatusMenuCore.js) Logs the battle
- * statistics of actors for your players to view.
+ * @plugindesc v1.01 战斗统计
  * @author Yanfly Engine Plugins
  *
- * @param ---General---
- * @default
- *
  * @param Command Name
- * @parent ---General---
  * @desc This is the text used for the command name in the Status
  * Menu command list.
  * @default Statistics
  *
  * @param Battle Count Text
- * @parent ---General---
  * @desc This is the category text for Battle Count.
  * @default Battles Initiated
  *
  * @param Battle Count Format
- * @parent ---General---
  * @desc This is how the text format will appear.
  * %1 - Actor Battles  %2 - Party Battles  %3 - Percentage
  * @default %1 out of %2 Battles (%3%)
  *
- * @param ---Ratio---
- * @default
- *
  * @param Kill Count Text
- * @parent ---Ratio---
  * @desc This is the category text for Kill Count.
  * @default Kills
  *
  * @param Kill Count Format
- * @parent ---Ratio---
  * @desc This is how the text format will appear.
  * %1 - Kill Ratio
  * @default %1 Kills per Battle
  *
  * @param Death Count Text
- * @parent ---Ratio---
  * @desc This is the category text for Death Count.
  * @default Deaths
  *
  * @param Death Count Format
- * @parent ---Ratio---
  * @desc This is how the text format will appear.
  * %1 - Death Ratio
  * @default %1 Deaths per Battle
  *
  * @param Assist Count Text
- * @parent ---Ratio---
  * @desc This is the category text for Assist Count.
  * @default Assists
  *
  * @param Assist Count Format
- * @parent ---Ratio---
  * @desc This is how the text format will appear.
  * %1 - Assist Ratio
  * @default %1 Assists per Battle
  *
- * @param ---Totals---
- * @default
- *
  * @param Damage Dealt
- * @parent ---Totals---
  * @desc This is the category text for Damage Dealt.
  * @default Damage Dealt
  *
  * @param Damage Taken
- * @parent ---Totals---
  * @desc This is the category text for Damage Taken.
  * @default Damage Taken
  *
  * @param Healing Dealt
- * @parent ---Totals---
  * @desc This is the category text for Healing Dealt.
  * @default Healing Performed
  *
  * @param Healing Taken
- * @parent ---Totals---
  * @desc This is the category text for Healing Taken.
  * @default Healing Received
  *
@@ -100,49 +77,41 @@ Yanfly.BStats.version = 1.02;
  * Introduction
  * ============================================================================
  *
- * This plugin requires YEP_StatusMenuCore.
- * Make sure this plugin is located under YEP_StatusMenuCore in the
- * plugin list.
+ * 想要你玩家战斗记录统计吗？现在你可以了
+ * 这个插件需要身份菜单核心插件
+ * 这个插件需要YEP_StatusMenuCore，确保它在YEP_StatusMenuCore下面。
  *
- * If you wish to place the Battle Statistics tab in the Status Menu in a
- * specific spot, place 'Statistics' without the quotes in the Status Menu
- * Core's Command Order parameter. If it's not present there, it will
- * automatically order itself in the 'Custom' tab.
+ * 如果你想把战斗记录栏放在菜单，请把‘Statistics‘放入身份菜单核心命令顺序
+ * 参数里。如果没有设置，将会自动出现在‘Custom’栏。
  *
  * ============================================================================
  * Instructions
  * ============================================================================
  *
- * This plugin is plug-and-play. All battle information will be recorded in the
- * Battle Statistics tab. The information will be as follows:
+ * 这个插件是即插即用。所以战斗信息将会记录在战斗统计栏。这个信息如下：
  *
  * Battles Initiated
- * How many battles the actor was present in the starting party and what ratio.
+ * 战斗场数记录
  *
  * Kills/Deaths/Assists
- * Displays information about how many kills, deaths, and assists performed by
- * the actor overall. Kills rise when the actor defeats an enemy. Deaths rise
- * if the actor falls in battle. Assists rise if the actor is present during an
- * enemy kill.
+ * 显示杀敌数、死亡数和助攻数。杀敌数是玩家击败敌方个数。死亡数是玩家战斗死
+ * 亡数。助攻数是敌方死亡时玩家在场的个数。
  *
  * Damage Dealt
- * Total amount of damage dealt by the actor over the course of the game.
+ * 造成伤害数
  *
  * Damage Taken
- * Total amount of damage taken by the actor over the course of the game.
+ * 遭受伤害数
  *
  * Healing Dealt
- * Total amount of healing dealt by the actor over the course of the game.
+ * 造成治疗数
  *
  * Healing Taken
- * Total amount of healing taken by the actor over the course of the game.
+ * 受到治疗数
  *
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.02:
- * - Updated for RPG Maker MV version 1.5.0.
  *
  * Version 1.01:
  * - Calculations for recorded HP damage dealt are now calculated based on the

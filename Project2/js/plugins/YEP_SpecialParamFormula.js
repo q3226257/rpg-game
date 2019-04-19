@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Template
 // YEP_SpecialParamFormula.js
 //=============================================================================
@@ -8,11 +8,11 @@ Imported.YEP_SpecialParamFormula = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.SParam = Yanfly.SParam || {};
-Yanfly.SParam.version = 1.06;
+Yanfly.SParam.version = 1.04;
 
 //=============================================================================
  /*:
- * @plugindesc v1.06 Control the formulas of special parameters for
+ * @plugindesc v1.04 特殊参数公式
  * TGR, GRD, REC, PHA, MCR, TCR, PDR, MDR, FDR, EXR.
  * @author Yanfly Engine Plugins
  *
@@ -20,61 +20,51 @@ Yanfly.SParam.version = 1.06;
  * @default
  *
  * @param TGR Formula
- * @parent ---SParam Formula---
  * @desc The formula used to determine TGR: Target Rate
  * This is a formula.
  * @default (base + plus) * rate + flat
  *
  * @param GRD Formula
- * @parent ---SParam Formula---
  * @desc The formula used to determine GRD: Guard Effect
  * This is a formula.
  * @default Math.max((base + plus) * rate + flat, 0.0000000001)
  *
  * @param REC Formula
- * @parent ---SParam Formula---
  * @desc The formula used to determine REC: Recovery Rate
  * This is a formula.
  * @default (base + plus) * rate + flat
  *
  * @param PHA Formula
- * @parent ---SParam Formula---
  * @desc The formula used to determine PHA: Pharmacology
  * This is a formula.
  * @default (base + plus) * rate + flat
  *
  * @param MCR Formula
- * @parent ---SParam Formula---
  * @desc The formula used to determine MCR: MP Cost Rate
  * This is a formula.
  * @default (base + plus) * rate + flat
  *
  * @param TCR Formula
- * @parent ---SParam Formula---
  * @desc The formula used to determine TCR: TP Charge Rate
  * This is a formula.
  * @default (base + plus) * rate + flat
  *
  * @param PDR Formula
- * @parent ---SParam Formula---
  * @desc The formula used to determine PDR: Physical Damage%
  * This is a formula.
  * @default (base + plus) * rate + flat
  *
  * @param MDR Formula
- * @parent ---SParam Formula---
  * @desc The formula used to determine MDR: Magical Damage%
  * This is a formula.
  * @default (base + plus) * rate + flat
  *
  * @param FDR Formula
- * @parent ---SParam Formula---
  * @desc The formula used to determine FDR: Floor Damage%
  * This is a formula.
  * @default (base + plus) * rate + flat
  *
  * @param EXR Formula
- * @parent ---SParam Formula---
  * @desc The formula used to determine EXR: Experience%
  * This is a formula.
  * @default (base + plus) * rate + flat
@@ -83,19 +73,16 @@ Yanfly.SParam.version = 1.06;
  * @default
  *
  * @param Guard Calculation
- * @parent ---Other Formula---
  * @desc The calculation used to determine the guard effect.
  * This is a formula.
  * @default damage / (damage > 0 && target.isGuard() ? 2 * target.grd : 1)
  *
  * @param Basic Floor Damage
- * @parent ---Other Formula---
  * @desc The basic floor damage calculation.
  * This is a formula.
  * @default 10
  *
  * @param Reserve EXP Rate
- * @parent ---Other Formula---
  * @desc The calculation used for reserve party member EXP
  * if enabled in Database > System. This is a formula.
  * @default 1
@@ -105,11 +92,9 @@ Yanfly.SParam.version = 1.06;
  * Introduction
  * ============================================================================
  *
- * The values for Special Parameters: TGR, GRD, REC, PHA, MCR, TCR, PDR, MDR,
- * FDR, and EXR are lesser used and lesser known, but are only modified by
- * database object traits. This plugin enables you to utilize custom formulas
- * for these Special Parameters to alter them in such a way where MAT can alter
- * the MP Cost of skills and whatnot.
+ * 关于特殊能力参数的调整，包括TGR, GRD, REC, PHA, MCR, TCR, PDR, MDR, FDR,
+ * and EXR等是很少人指导的，而且仅仅可以通过数据库特性来调整。这个差距可以让
+ * 你自定义这些的数值。
  *
  * ============================================================================
  * Instructions - Special Parameter Explanation
@@ -119,7 +104,7 @@ Yanfly.SParam.version = 1.06;
  * values are determined multiplicatively while Extra Parameters are determined
  * in an additive form. For those who aren't familiar with what the Special
  * Parameters (sparams) do, this is a list that will explain their standard
- * function in an RPG Maker MV project.
+ * 特殊参数是区分于额外参数。这里有一个列表来介绍特殊参数
  *
  * ---
  *
@@ -131,10 +116,11 @@ Yanfly.SParam.version = 1.06;
  * being targeted.
  * *NOTE: For those using the Battle A.I. Core, any actions that have specific
  * target conditions will bypass the TGR rate.
- *
+ * 目标概率：敌方攻击此目标概率。注意使用Battle A.I. Core插件将会忽略此概率
+ * 
  * ---
  *
- * GRD - Guard Effect
+ * GRD - Guard Effect  防御效果
  * - This is the effectiveness of guarding. This affects the guard divisor
  * value of 2. At 100% GRD, damage will become 'damage / (2 * 1.00)'. At 50%
  * GRD, damage will become 'damage / (2 * 0.50)'. At 200% GRD, damage will
@@ -142,14 +128,14 @@ Yanfly.SParam.version = 1.06;
  *
  * ---
  *
- * REC - Recovery Effect
+ * REC - Recovery Effect   恢复效果
  * - This is how effective heals are towards the user. The higher the REC rate,
  * the more the user is healed. If a spell were to heal for 100 and the user
  * has 300% REC, then the user is healed for 300 instead.
  *
  * ---
  *
- * PHA - Pharmacology
+ * PHA - Pharmacology  药物治疗效果
  * - This is how effective items are when used by the user. The higher the PHA
  * rate, the more effective the item effect. If the user is using a Potion that
  * recovers 100% on a target ally and the user has 300% PHA, then the target
@@ -157,7 +143,7 @@ Yanfly.SParam.version = 1.06;
  *
  * ---
  *
- * MCR - MP Cost Rate
+ * MCR - MP Cost Rate  魔法消耗率
  * - This rate affects how much MP skills with an MP Cost will require to use.
  * If the user has 100% MCR, then the MP Cost will be standard. If the user has
  * 50% MCR, then all skills that cost MP will cost only half the required MP.
@@ -165,14 +151,14 @@ Yanfly.SParam.version = 1.06;
  *
  * ---
  *
- * TCR - TP Charge Rate
+ * TCR - TP Charge Rate  TP值消耗率
  * - This rate affects how much TP skills with an TP will charge when gaining
  * TP through various actions. At 100%, TP will charge normally. At 50%, TP
  * will charge at half speed. At 200%, TP will charge twice as fast.
  *
  * ---
  *
- * PDR - Physical Damage Rate
+ * PDR - Physical Damage Rate  承受物理伤害率
  * - This rate affects how much damage the user will take from physical damage.
  * If the user has 100% PDR, then the user takes the normal amount. If the user
  * has 50% PDR, then all physical damage dealt to the user is halved. If the
@@ -180,7 +166,7 @@ Yanfly.SParam.version = 1.06;
  *
  * ---
  *
- * MDR - Magical Damage Rate
+ * MDR - Magical Damage Rate  承受魔法伤害率
  * - This rate affects how much damage the user will take from magical damage.
  * If the user has 100% MDR, then the user takes the normal amount. If the user
  * has 50% MDR, then all magical damage dealt to the user is halved. If the
@@ -188,7 +174,7 @@ Yanfly.SParam.version = 1.06;
  *
  * ---
  *
- * FDR - Floor Damage Rate
+ * FDR - Floor Damage Rate  承受地面伤害率
  * - On the field map, this alters how much damage the user will take when the
  * player walks over a tile that damages the party. The FDR value only affects
  * the damage dealt to the particular actor and not the whole party. If FDR is
@@ -198,7 +184,7 @@ Yanfly.SParam.version = 1.06;
  *
  * ---
  *
- * EXR - Experience Rate
+ * EXR - Experience Rate  经验获得率
  * - This determines the amount of experience gain the user whenever the user
  * gains any kind of EXP. At 100% EXR, the rate of experience gain is normal.
  * At 50%, the experience gain is halved. At 200%, the experience gain for the
@@ -212,7 +198,7 @@ Yanfly.SParam.version = 1.06;
  *
  * The values calculated by the formulas in the plugin parameters are to come
  * out as float values. If the result value comes out as 0.1 for GRD, it will
- * be 10% GRD. Here is an example:
+ * be 10% GRD. Here is an example:这个值可以通过公式实现浮动计算。这里有一个例子
  *
  *   (base + plus) * rate + flat + user.def / 1000
  *
@@ -226,31 +212,32 @@ Yanfly.SParam.version = 1.06;
  *
  * So, what does the 'base', 'plus', 'rate', and 'flat' mean in the formulas?
  * This section will answer that in detail.
- *
+ * 所以公式里面代表什么呢，这里是详细解答
+ * 
  * Default plugin formula: (base + plus) * rate + flat
  *
- * BASE
+ * BASE  基础值：综合特性所有概率
  * - This value is determined by the default way RPG Maker MV determines the
  * value for that stat, and the way RPG Maker MV determines it for Special
  * Parameters (sparams) is by multiplying them all together with a base value
  * of 1. This means if you have multiple traits with 80%, 50%, and 120%, then
  * the multiplicative value of it comes out to 48%.
  *
- * PLUS
+ * PLUS  增加值：由插件提供的值，用来增加基础值
  * - This is a new variable added by this plugin. Its purpose is to function as
  * an addition to the base value. This addition can be done independently of
  * database items as you can do a user.addSParam to alter the base value of the
  * extra parameter. If using the default formula, this value is added to the
  * base before any rates are multiplied by it and any flats added to the total.
  *
- * RATE
+ * RATE  概率值：由插件提供的值，用来调整基础值和增加值
  * - This is a new variable added by this plugin. Its purpose is to function as
  * a multiplicative modifier for the extra parameter value. This multiplicative
  * value is determined by various database objects through notetags. If using
  * the default formula, this value is multipled to the sum of the base and plus
  * values of the extra parameter before the flat is added to the total.
  *
- * FLAT
+ * FLAT  定值：由插件提供的值，用来调整前面的值
  * - This is a new variable added by this plugin. Its purpose is to function as
  * an additive modifier for the extra parameter value. This additive value is
  * determined by various database objects through notetags. If using the plugin
@@ -262,7 +249,7 @@ Yanfly.SParam.version = 1.06;
  * ============================================================================
  *
  * The following are some sample formulas you can use to make the special
- * parameters a bit more dynamic:
+ * parameters a bit more dynamic:下面是一些例子
  *
  * --- GRD ---
  * Math.max((base + plus) * rate + flat + (user.def / 1000), 0.0000000001)
@@ -284,29 +271,27 @@ Yanfly.SParam.version = 1.06;
  * (base + plus) * rate + flat - (user.mdf / 4000)
  * - This will cause the user to take less magical damage by having more MDF.
  *
- * The above are some examples on how you can make your special parameters to
- * be affected by the other stats from the user.
+ * 上面的例子是借助玩家的状态来改变玩家特殊能力参数
  *
  * ============================================================================
  * Notetags
  * ============================================================================
  *
- * You can use the following notetags to alter the various aspects that modify
- * the special parameter values:
+ * 你可以使用标签来设置
  *
  * Actor, Class, Enemy, Weapon, Armor, and State Notetags:
  *
  *   <stat Plus: +x%>
  *   <stat Plus: -x%>
  *   <stat Plus: +x.y>
- *   <stat Plus: -x.y>
+ *   <stat Plus: -x.y>  状态增加值
  *   Replace 'stat' with 'tgr', 'grd', 'rec', 'pha', 'mcr', 'tcr', 'pdr',
  *   'mdr', 'fdr', or 'exr'. This is the value added to the base parameter
  *   before the rate and flat values contribute to the total parameter value
  *   assuming the plugin's default formula is utilized.
  *
  *   <stat Rate: x%>
- *   <stat Rate: x.y>
+ *   <stat Rate: x.y>  状态概率值
  *   Replace 'stat' with 'tgr', 'grd', 'rec', 'pha', 'mcr', 'tcr', 'pdr',
  *   'mdr', 'fdr', or 'exr'. This is the value multipled to the sum of the base
  *   and plus values of the parameter before added by the flat value assuming
@@ -315,7 +300,7 @@ Yanfly.SParam.version = 1.06;
  *   <stat Flat: +x%>
  *   <stat Flat: -x%>
  *   <stat Flat: +x.y>
- *   <stat Flat: -x.y>
+ *   <stat Flat: -x.y>  状态定值
  *   Replace 'stat' with 'tgr', 'grd', 'rec', 'pha', 'mcr', 'tcr', 'pdr',
  *   'mdr', 'fdr', or 'exr'. This is the value added finally to the sum of the
  *   base and plus values after being multiplied by the rate value assuming the
@@ -395,13 +380,6 @@ Yanfly.SParam.version = 1.06;
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.06:
- * - Bypass the isDevToolsOpen() error when bad code is inserted into a script
- * call or custom Lunatic Mode code segment due to updating to MV 1.6.1.
- *
- * Version 1.05:
- * - Updated for RPG Maker MV version 1.5.0.
  *
  * Version 1.04:
  * - Lunatic Mode fail safes added.
@@ -942,7 +920,6 @@ Yanfly.Util.displayError = function(e, code, message) {
   console.log(message);
   console.log(code || 'NON-EXISTENT');
   console.error(e);
-  if (Utils.RPGMAKER_VERSION && Utils.RPGMAKER_VERSION >= "1.6.0") return;
   if (Utils.isNwjs() && Utils.isOptionValid('test')) {
     if (!require('nw.gui').Window.get().isDevToolsOpen()) {
       require('nw.gui').Window.get().showDevTools();

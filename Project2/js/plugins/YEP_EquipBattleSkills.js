@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Equip Battle Skills
 // YEP_EquipBattleSkills.js
 //=============================================================================
@@ -8,44 +8,32 @@ Imported.YEP_EquipBattleSkills = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.EBS = Yanfly.EBS || {};
-Yanfly.EBS.version = 1.13;
+Yanfly.EBS.version = 1.09;
 
 //=============================================================================
  /*:
- * @plugindesc v1.13 Adds a new system where players can only bring
- * equipped skills to battle.
+ * @plugindesc v1.09 战斗技能装备.
  * @author Yanfly Engine Plugins
  *
  * @param ---General---
  * @default
  *
  * @param Command Name
- * @parent ---General---
  * @desc From the Skill menu, this is the command name to bring the
  * player to the equip skill menu.
  * @default Equip Skills
  *
  * @param Starting Skill Slots
- * @parent ---General---
- * @type number
- * @min 1
  * @desc This is the starting number of skills a player can bring
  * into battle by default.
  * @default 4
  *
  * @param Maximum Skills
- * @parent ---General---
- * @type number
- * @min 1
  * @desc This is the maximum number of skills that a player can equip.
  * No bonuses can go past this point.
  * @default 8
  *
  * @param All Equippable?
- * @parent ---General---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Are all skills equippable? This includes skills outside of
  * the actor's skill types. NO - false     YES - true
  * @default false
@@ -54,31 +42,18 @@ Yanfly.EBS.version = 1.13;
  * @default
  *
  * @param Empty Slot
- * @parent ---Windows---
  * @desc This is how the text an empty slot would appear.
  * @default - Empty -
  *
  * @param Empty Color
- * @parent ---Windows---
- * @type number
- * @min 0
- * @max 31
  * @desc This is the text color used to display the empty text.
  * @default 16
  *
  * @param Empty Icon
- * @parent ---Windows---
- * @type number
- * @min 0
- * @max 31
  * @desc This is the icon used for empty.
  * @default 16
  *
  * @param Equipped Color
- * @parent ---Windows---
- * @type number
- * @min 0
- * @max 31
  * @desc This is the color of an already equipped skill.
  * @default 17
  *
@@ -87,52 +62,49 @@ Yanfly.EBS.version = 1.13;
  * Introduction
  * ============================================================================
  *
- * This plugin creates a new gameplay mechanic where players have to choose
- * which skills to bring into battle. They can select what skills to bring from
- * the skill menu. In addition to being able to do that, equipped skills can
- * also add bonuses such as stats and/or passive states.
+ * 这个插件一种全新的玩法，玩家可以选择带何种技能参与战斗，他们从技能菜单
+ * 里面选择。为了能够实现这些，这些技能将会添加状态或者被动状态
  *
- * Note: During Battle Test, equip skill slots will be disabled for the sake of
- * better battle testing control.
+ * 注意：在战斗测试里面，装备技能入口将不能使用.
  *
  * ============================================================================
  * Notetags
  * ============================================================================
  *
- * The following notetags adjust various aspects about equippable battle skills.
+ * 你可以使用下面的标签
  *
  * Actor Notetag:
- *   <Starting Skill Slots: x>
+ *   <Starting Skill Slots: x>   技能选择数量
  *   This sets the actor's starting skill slots to x amount. This value will
  *   not allow the actor to bypass the Maximum Skills limit.
  *
  * Skill Notetags:
  *   <Equip stat: +x>
- *   <Equip stat: -x>
+ *   <Equip stat: -x>    设置技能增加状态
  *   Replace 'stat' with 'HP', 'MP', 'ATK', 'DEF', 'MAT', 'MDF', 'AGI', or
  *   'LUK' to have that stat increase or decrease by x amount while the skill
  *   is equipped for battle.
  *
  *   <Equip State: x>
  *   <Equip State: x, x, x>
- *   <Equip State: x through x>
+ *   <Equip State: x through x>    设置技能使会携带的状态
  *   This causes the actor to be affected by state x while the skill is
  *   equipped for battle.
  *
- *   <Unequippable>
+ *   <Unequippable>  不能携带
  *   This skill cannot be equipped no matter what.
  *
- *   <All Access Equippable>
+ *   <All Access Equippable>   所有技能类型均可携带
  *   This makes the skill equippable whether the actor has the available skill
  *   type needed for the skill or not.
  *
- *   <Access Only Equippable>
+ *   <Access Only Equippable>   仅可携带开启的技能类型
  *   This makes the skill equippable only for actors with the specific skill
  *   type. Actors without access to the skill type cannot equip it.
  *
  * Class, Skill, Weapon, Armor, and State Notetags:
  *   <Equip Skill Slots: +x>
- *   <Equip Skill Slots: -x>
+ *   <Equip Skill Slots: -x>   增加或者减少技能携带数量
  *   This increases or decreases the amount of skills the actor can equip for
  *   battle by x. This value will not allow the actor to bypass the Maximum
  *   Skills Limit.
@@ -144,16 +116,15 @@ Yanfly.EBS.version = 1.13;
  * You can use the following plugin commands to increase or decrease the amount
  * of battle slots for specific actors.
  *
- * Plugin Command:
+ * 插件命令:
  *
  *   IncreaseActorBattleSlots 3 by 4
  *   - This will increase actor 3's number of battle skill slots by 4. The
  *   total amount of battle skill slots cannot go beyond the 'Maximum Skills'
- *   plugin parameter.
+ *   plugin parameter.增加玩家3的技能数量为4
  *
  *   DecreaseActorBattleSlots 5 by 2
- *   - This will decrease actor 5's number of battle skill slots by 2. The
- *   total amount of battle skill slots cannot go beneath 1.
+ *   - 增加玩家3的技能数量2，不可以低于1
  *
  * ============================================================================
  * Lunatic Mode - New JavaScript Functions
@@ -223,20 +194,6 @@ Yanfly.EBS.version = 1.13;
  * Changelog
  * ============================================================================
  *
- * Version 1.13:
- * - Updated for RPG Maker MV version 1.5.0.
- *
- * Version 1.12:
- * - Fixed a bug that made the help window not update after changing a skill.
- *
- * Version 1.11:
- * - Fixed a bug caused by Plugin Command 'DecreaseActorBattleSlots 5 by 2'
- * that would increase instead of decrease.
- *
- * Version 1.10:
- * - Added a new check to remove equipped battle skills from skills that were
- * manually forgotten, unequipping items, or removing states.
- *
  * Version 1.09:
  * - Fixed a bug that caused equipped skills to not list their applied states.
  *
@@ -304,7 +261,7 @@ DataManager.isDatabaseLoaded = function() {
     if (!Yanfly.EBS.DataManager_isDatabaseLoaded.call(this)) return false;
 
     if (!Yanfly._loaded_YEP_EquipBattleSkills) {
-      this.processEBSNotetags1($dataActors);
+  		this.processEBSNotetags1($dataActors);
       this.processEBSNotetags2($dataSkills);
       this.processEBSNotetags3($dataClasses);
       this.processEBSNotetags3($dataSkills);
@@ -313,36 +270,36 @@ DataManager.isDatabaseLoaded = function() {
       this.processEBSNotetags3($dataStates);
       Yanfly._loaded_YEP_EquipBattleSkills = true;
     };
-    return true;
+		return true;
 };
 
 DataManager.processEBSNotetags1 = function(group) {
-  var note1 = /<(?:STARTING SKILL SLOTS|starting skill slots):[ ](\d+)>/i;
-  for (var n = 1; n < group.length; n++) {
-    var obj = group[n];
-    var notedata = obj.note.split(/[\r\n]+/);
+	var note1 = /<(?:STARTING SKILL SLOTS|starting skill slots):[ ](\d+)>/i;
+	for (var n = 1; n < group.length; n++) {
+		var obj = group[n];
+		var notedata = obj.note.split(/[\r\n]+/);
 
     obj.startingSkillSlots = Yanfly.Param.EBSStartSlots;
 
-    for (var i = 0; i < notedata.length; i++) {
-      var line = notedata[i];
-      if (line.match(note1)) {
-        obj.startingSkillSlots = parseInt(RegExp.$1);
-      }
-    }
-  }
+		for (var i = 0; i < notedata.length; i++) {
+			var line = notedata[i];
+			if (line.match(note1)) {
+				obj.startingSkillSlots = parseInt(RegExp.$1);
+			}
+		}
+	}
 };
 
 DataManager.processEBSNotetags2 = function(group) {
-  var note1 = /<(?:EQUIP)[ ](.*):[ ]([\+\-]\d+)>/i;
+	var note1 = /<(?:EQUIP)[ ](.*):[ ]([\+\-]\d+)>/i;
   var note2 = /<(?:EQUIP STATE):[ ]*(\d+(?:\s*,\s*\d+)*)>/i;
   var note3 = /<(?:EQUIP STATE):[ ](\d+)[ ](?:THROUGH|to)[ ](\d+)>/i;
   var note4 = /<(?:UNEQUIPPABLE|cannot equip)>/i;
   var note5 = /<(?:ALL ACCESS EQUIPPABLE|ALL CLASS EQUIPPABLE)>/i;
   var note6 = /<(?:ACCESS ONLY EQUIPPABLE|CLASS ONLY EQUIPPABLE)>/i;
-  for (var n = 1; n < group.length; n++) {
-    var obj = group[n];
-    var notedata = obj.note.split(/[\r\n]+/);
+	for (var n = 1; n < group.length; n++) {
+		var obj = group[n];
+		var notedata = obj.note.split(/[\r\n]+/);
 
     obj.equipParamBonus = {
       0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0
@@ -351,55 +308,55 @@ DataManager.processEBSNotetags2 = function(group) {
     obj.equippable = true;
     obj.allEquippable = Yanfly.Param.EBSAllEquip;
 
-    for (var i = 0; i < notedata.length; i++) {
-      var line = notedata[i];
-      if (line.match(note1)) {
-        var stat = String(RegExp.$1).toUpperCase();
+		for (var i = 0; i < notedata.length; i++) {
+			var line = notedata[i];
+			if (line.match(note1)) {
+				var stat = String(RegExp.$1).toUpperCase();
         var value = parseInt(RegExp.$2);
         switch (stat) {
-          case 'HP':
+					case 'HP':
           case 'MAXHP':
           case 'MAX HP':
-            obj.equipParamBonus[0] = value;
-            break;
-          case 'MP':
+						obj.equipParamBonus[0] = value;
+						break;
+					case 'MP':
           case 'MAXMP':
           case 'MAX MP':
           case 'SP':
           case 'MAXSP':
           case 'MAX SP':
-            obj.equipParamBonus[1] = value;
-            break;
-          case 'ATK':
+						obj.equipParamBonus[1] = value;
+						break;
+					case 'ATK':
           case 'STR':
-            obj.equipParamBonus[2] = value;
-            break;
-          case 'DEF':
-            obj.equipParamBonus[3] = value;
-            break;
-          case 'MAT':
+						obj.equipParamBonus[2] = value;
+						break;
+					case 'DEF':
+						obj.equipParamBonus[3] = value;
+						break;
+					case 'MAT':
           case 'INT':
           case 'SPI':
-            obj.equipParamBonus[4] = value;
-            break;
-          case 'MDF':
+						obj.equipParamBonus[4] = value;
+						break;
+					case 'MDF':
           case 'RES':
-            obj.equipParamBonus[5] = value;
-            break;
-          case 'AGI':
+						obj.equipParamBonus[5] = value;
+						break;
+					case 'AGI':
           case 'SPD':
-            obj.equipParamBonus[6] = value;
-            break;
-          case 'LUK':
-            obj.equipParamBonus[7] = value;
-            break;
-        }
-      } else if (line.match(note2)) {
+						obj.equipParamBonus[6] = value;
+						break;
+					case 'LUK':
+						obj.equipParamBonus[7] = value;
+						break;
+				}
+			} else if (line.match(note2)) {
         var array = JSON.parse('[' + RegExp.$1.match(/\d+/g) + ']');
         obj.equipStates = obj.equipStates.concat(array);
       } else if (line.match(note3)) {
         var range = Yanfly.Util.getRange(parseInt(RegExp.$1),
-          parseInt(RegExp.$2));
+					parseInt(RegExp.$2));
         obj.equipStates = obj.equipStates.concat(range);
       } else if (line.match(note4)) {
         obj.equippable = false;
@@ -408,25 +365,25 @@ DataManager.processEBSNotetags2 = function(group) {
       } else if (line.match(note6)) {
         obj.allEquippable = false;
       }
-    }
-  }
+		}
+	}
 };
 
 DataManager.processEBSNotetags3 = function(group) {
-  var note1 = /<(?:EQUIP SKILL SLOTS|equip skill slot):[ ]([\+\-]\d+)>/i;
-  for (var n = 1; n < group.length; n++) {
-    var obj = group[n];
-    var notedata = obj.note.split(/[\r\n]+/);
+	var note1 = /<(?:EQUIP SKILL SLOTS|equip skill slot):[ ]([\+\-]\d+)>/i;
+	for (var n = 1; n < group.length; n++) {
+		var obj = group[n];
+		var notedata = obj.note.split(/[\r\n]+/);
 
     obj.equipSkillSlots = 0;
 
-    for (var i = 0; i < notedata.length; i++) {
-      var line = notedata[i];
-      if (line.match(note1)) {
-        obj.equipSkillSlots = parseInt(RegExp.$1);
-      }
-    }
-  }
+		for (var i = 0; i < notedata.length; i++) {
+			var line = notedata[i];
+			if (line.match(note1)) {
+				obj.equipSkillSlots = parseInt(RegExp.$1);
+			}
+		}
+	}
 };
 
 //=============================================================================
@@ -548,7 +505,7 @@ Game_Actor.prototype.increaseBattleSkillSlots = function(value) {
 };
 
 Game_Actor.prototype.decreaseBattleSkillSlots = function(value) {
-    value = this.getBattleSkillMaxPlus() - value;
+    value -= this.getBattleSkillMaxPlus();
     this.setBattleSkillMaxPlus(value);
 };
 
@@ -603,18 +560,11 @@ Yanfly.EBS.Game_Actor_learnSkill = Game_Actor.prototype.learnSkill;
 Game_Actor.prototype.learnSkill = function(skillId) {
     var hasLearnedSkill = this.isLearnedSkillRaw(skillId);
     Yanfly.EBS.Game_Actor_learnSkill.call(this, skillId);
-    this._cachedEquippableBattleSkills = undefined;
     this.removeHiddenEquippedSkill(skillId);
     if (!hasLearnedSkill) {
       var slotId = this._battleSkills.indexOf(0);
       if (slotId !== -1) this.equipSkill(skillId, slotId);
     }
-};
-
-Yanfly.EBS.Game_Actor_forgetSkill = Game_Actor.prototype.forgetSkill;
-Game_Actor.prototype.forgetSkill = function(skillId) {
-  Yanfly.EBS.Game_Actor_forgetSkill.call(this, skillId);
-  this._cachedEquippableBattleSkills = undefined;
 };
 
 Game_Actor.prototype.isLearnedSkillRaw = function(skillId) {
@@ -674,25 +624,7 @@ Game_Actor.prototype.clearUnequippableSkills = function() {
     }
 };
 
-Game_Actor.prototype.createEquippableBattleSkillsCache = function() {
-  this._cachedEquippableBattleSkills = [];
-  var skills = this.skills();
-  var length = skills.length;
-  for (var i = 0; i < length; ++i) {
-    var skill = skills[i];
-    if (skill) {
-      this._cachedEquippableBattleSkills = 
-        this._cachedEquippableBattleSkills || [];
-      this._cachedEquippableBattleSkills.push(skill.id);
-    }
-  }
-};
-
 Game_Actor.prototype.canEquipSkill = function(skill) {
-  if (this._cachedEquippableBattleSkills === undefined) {
-    this.createEquippableBattleSkillsCache();
-  }
-  if (!this._cachedEquippableBattleSkills.contains(skill.id)) return false;
   if (!skill.equippable) return false;
   if (skill.allEquippable) return true;
   return this.addedSkillTypes().contains(skill.stypeId);
@@ -729,12 +661,12 @@ Game_Actor.prototype.equipSkillStates = function() {
 };
 
 Game_Actor.prototype.sortEquipStates = function(array) {
-    array.sort(function(a, b) {
-      var p1 = a.priority;
-      var p2 = b.priority;
-      if (p1 !== p2) return p2 - p1;
-      return a - b;
-    });
+		array.sort(function(a, b) {
+			var p1 = a.priority;
+			var p2 = b.priority;
+			if (p1 !== p2) return p2 - p1;
+			return a - b;
+		});
 }
 
 Yanfly.EBS.Game_Actor_isStateAffected =
@@ -746,22 +678,14 @@ Game_Actor.prototype.isStateAffected = function(stateId) {
 
 Yanfly.EBS.Game_Actor_isStateAddable = Game_Actor.prototype.isStateAddable;
 Game_Actor.prototype.isStateAddable = function(stateId) {
-    if (this.equipSkillStates().contains($dataStates[stateId])) return false;
+		if (this.equipSkillStates().contains($dataStates[stateId])) return false;
     return Yanfly.EBS.Game_Actor_isStateAddable.call(this, stateId);
 };
 
 Yanfly.EBS.Game_Actor_removeState = Game_Actor.prototype.removeState;
 Game_Actor.prototype.removeState = function(stateId) {
-    if (this.equipSkillStates().contains($dataStates[stateId])) return;
+		if (this.equipSkillStates().contains($dataStates[stateId])) return;
     Yanfly.EBS.Game_Actor_removeState.call(this, stateId);
-    this._cachedEquippableBattleSkills = undefined;
-};
-
-Yanfly.EBS.Game_Actor_changeEquip = Game_Actor.prototype.changeEquip;
-Game_Actor.prototype.changeEquip = function(slotId, item) {
-  Yanfly.EBS.Game_Actor_changeEquip.call(this, slotId, item);
-  this._cachedEquippableBattleSkills = undefined;
-  this.clearUnequippableSkills();
 };
 
 //=============================================================================
@@ -881,15 +805,6 @@ Window_SkillList.prototype.isEnabled = function(item) {
 
 Window_SkillList.prototype.isBattleSkillEnabled = function(item) {
     return true;
-};
-
-Yanfly.EBS.Window_SkillList_selectLast = Window_SkillList.prototype.selectLast;
-Window_SkillList.prototype.selectLast = function() {
-  Yanfly.EBS.Window_SkillList_selectLast.call(this);
-  if ($gameParty.inBattle()) {
-    skill = this._actor.lastBattleSkill();
-    if (!skill) this.select(0);
-  }
 };
 
 //=============================================================================
@@ -1223,10 +1138,10 @@ Scene_Skill.prototype.createSkillEquipWindow = function() {
 Scene_Skill.prototype.createCompareWindow = function() {
     if (this._compareWindow) return;
     var wx = this._skillEquipWindow.width;
-    var wy = this._skillEquipWindow.y;
-    var ww = Graphics.boxWidth - wx;
-    var wh = Graphics.boxHeight - wy;
-    this._compareWindow = new Window_StatCompare(wx, wy, ww, wh);
+		var wy = this._skillEquipWindow.y;
+		var ww = Graphics.boxWidth - wx;
+		var wh = Graphics.boxHeight - wy;
+		this._compareWindow = new Window_StatCompare(wx, wy, ww, wh);
     this._skillEquipWindow.setStatusWindow(this._compareWindow);
     this._compareWindow.hide();
     this.addWindow(this._compareWindow);
@@ -1269,7 +1184,6 @@ Scene_Skill.prototype.onSkillEqOk = function() {
     this.onSkillEqCancel();
     this._statusWindow.refresh();
     this._itemWindow.refresh();
-    this._itemWindow.updateHelp();
 };
 
 Scene_Skill.prototype.onSkillEqCancel = function() {
@@ -1291,9 +1205,9 @@ Scene_Skill.prototype.onSkillEqCancel = function() {
 Yanfly.Util = Yanfly.Util || {};
 
 if (!Yanfly.Util.toGroup) {
-    Yanfly.Util.toGroup = function(inVal) {
-        return inVal;
-    }
+		Yanfly.Util.toGroup = function(inVal) {
+				return inVal;
+		}
 };
 
 Yanfly.Util.getRange = function(n, m) {

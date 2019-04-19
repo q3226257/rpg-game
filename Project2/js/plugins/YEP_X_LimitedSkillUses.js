@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Skill Core Extension - Limited Skill Uses
 // YEP_X_LimitedSkillUses.js
 //=============================================================================
@@ -8,123 +8,78 @@ Imported.YEP_X_LimitedSkillUses = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.LSU = Yanfly.LSU || {};
-Yanfly.LSU.version = 1.06;
+Yanfly.LSU.version = 1.04;
 
 //=============================================================================
  /*:
- * @plugindesc v1.06 (Requires YEP_SkillCore.js) Make certain skills have
- * a limited amount of times they can be used in battle.
+ * @plugindesc v1.04 限制技能使用次数
  * @author Yanfly Engine Plugins
  *
  * @param ---General---
  * @default
  *
  * @param Limited Use Icon
- * @parent ---General---
  * @desc The icon used for limited uses. Set 0 to hide.
  * @default 160
  *
  * @param Font Size
- * @parent ---General---
- * @type number
- * @min 1
  * @desc Font size used for limited uses.
  * Default: 28
  * @default 20
  *
  * @param Text Color
- * @parent ---General---
- * @type number
- * @min 0
- * @max 31
  * @desc The text color used for limited uses.
  * @default 0
  *
  * @param Cost Format
- * @parent ---General---
  * @desc The text format for limited uses. Leave empty to hide.
  * %1 - Current     %2 - Maximum
  * @default %1/%2
  *
  * @param Empty Icon
- * @parent ---General---
- * @type number
- * @min 0
  * @desc The icon used for empty limited uses. Set 0 to hide.
  * @default 168
  *
  * @param Empty Text
- * @parent ---General---
  * @desc The text displayed when a skill's uses are used up.
  * @default Empty
  *
  * @param Absolute Max
- * @parent ---General---
- * @type number
- * @min 1
  * @desc This is the absolute maximum value Limited Uses can
  * go up to and cannot go past.
  * @default 100
  *
  * @param Bypass Limits
- * @parent ---General---
  * @desc This is a list of skills that cannot be limited.
  * Separate each skill ID with a space.
  * @default 1 2 3 4 5 6 7
- *
- * @param Bypass List
- * @parent ---Bypass---
- * @type skill[]
- * @desc This is a list of skills that cannot be limited so that
- * way, skills like Attack, Guard. Requires RPG Maker MV 1.5.0+
- * @default []
  *
  * @param ---Defaults---
  * @default
  *
  * @param Limit All Skills
- * @parent ---Defaults---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Give limits to all skills by default?
  * NO - false     YES - true
  * @default false
  *
  * @param Limit Charges
- * @parent ---Defaults---
- * @type number
- * @min 1
  * @desc The default amount of limit charges for skills.
  * @default 2
  *
  * @param Recover All
- * @parent ---Defaults---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Restore all charges when using Recover All event?
  * NO - false     YES - true
  * @default true
  *
  * @param Victory Recover
- * @parent ---Defaults---
- * @type number
- * @min 0
  * @desc How many uses are recovered after winning a battle.
  * @default 10
  *
  * @param Escape Recover
- * @parent ---Defaults---
- * @type number
- * @min 0
  * @desc How many uses are recovered after escaping a battle.
  * @default 5
  *
  * @param Lose Recover
- * @parent ---Defaults---
- * @type number
- * @min 0
  * @desc How many uses are recovered after losing a battle.
  * @default 5
  *
@@ -133,85 +88,65 @@ Yanfly.LSU.version = 1.06;
  * Introduction
  * ============================================================================
  *
- * This plugin requires YEP_SkillCore.
- * Make sure this plugin is located under YEP_SkillCore in the plugin list.
+ * 这个插件需要YEP_SkillCore，请确保它放在YEP_SkillCore下面
  *
- * This plugin enables you to set a limited amount of times certain skills (or
- * all skills) can be used per battle or ever. This adds a different type of
- * skill currency and balance mechanic in limiting the amount of times a skill
- * can be used without directly having to alter MP, TP, or the like.
+ * 这是技能核心插件拓展插件，能够让你限制一些技能的使用次数。添加了一个不
+ * 同的技能类型，并且平衡了技能使用的限制次数
  *
  * ============================================================================
  * Notetags
  * ============================================================================
  *
- * You can use these notetags to govern the various Limited Uses aspects of
- * your skills.
+ * 你可以使用下面标签来给你的技能设置不同的使用限制
  *
  * Skill Notetags:
  *
  *   <Unlimited Use>
- *   If you've enabled 'Limit All Skills' in the plugin parameters, this will
- *   forcefully make the skill unlimited use. If you use this notetag, it will
- *   override any of the Limited Use settings.
+ *   如果你开启了“限制所有技能”选项，那么这个将会让技能不受限制使用，如果
+ *   你使用了这个标签，它将会重写你的限制设置
  *
  *   <Limit Uses: x>
- *   This will set the number of times the skill can be used to x. If the skill
- *   has 0 charges left, the skill cannot be used.
+ *   设置技能限制使用次数，如果为0，则不能使用
  *
  *   <Recover All Uses>
  *   <Not Recover All Uses>
- *   When using the recover all command, depending on the settings within the
- *   plugin parameters, all limited use charges are recovered or not. These
- *   notetags will enable you to utilize the other setting for the skill.
+ *   当你使用恢复所以的命令，取决插件设置，所有限制将被恢复。这些标签将会让
+ *   你使用技能的其他设置
  *
  *   <Victory Uses Recover: x>
  *   <Escape uses Recover: x>
  *   <Lose Uses Recover: x>
- *   When the player wins a battle, escapes a battle, or loses a battle, the
- *   skill use will recover x amount of uses for the respective outcome. If the
- *   notetags aren't used, the amounts restored will be equal to settings made
- *   in the plugin's parameters.
+ *   当玩家获得胜利，逃跑或者失败的时候，技能恢复使用次数
  *
  *   <After Battle Uses Recover: x>
- *   This will set the recovery rate of victory, escape, or loss of battle to
- *   be equal to x indiscriminately.
+ *   当玩家完成战斗后恢复技能使用次数
  *
  * Skill and Item Notetags:
  *
  *   <Global Limited Uses: +x>
  *   <Global Limited Uses: -x>
- *   This will change the target's limited uses by +x or -x for all skills.
- *   +x will increase the amount of times the skills can be used. -x will
- *   decrease the amount of times the skills can be used.
+ *   对技能改变使用次数。+x将会增加，-x将会减少
  *
  *   <SType x Limited Uses: +y>
  *   <SType x Limited Uses: -y>
- *   This will change the target's limited uses by +y or -y for all skills of
- *   the skill type x. +y will increase the amount of times the skills can be
- *   used. -y will decrease the amount of times the skills can be used.
+ *   改变技能类型x的技能使用次数y。+y将会增加，-y将会减少
  *
  *   <Skill x Limited Uses: +y>
  *   <Skill x Limited Uses: -y>
  *   <Skill name Limited Uses: +y>
  *   <Skill name Limited Uses: -y>
- *   This will change the target's limited uses by +y or -y for skill x. If
- *   you use the named notetag varient and have multiple skills in the database
- *   with the same name, priority will be given to the skill with the highest
- *   ID. +y will increase the amount of times the skills can be used. -y will
- *   decrease the amount of times the skills can be used.
+ *   改变技能x的使用次数y。如果你使用了名字标签，则会优先生效ID最高的。
+ *   +y将会增加，-y将会减少
  *
  * Actor, Class, Enemy, Weapon, Armor, and State Notetags:
  *
  *   <Global Use Max: +x>
  *   <Global Use Max: -x>
- *   A battler affected by this property will have any Limited Use skills alter
- *   the maximum times used by +x or -x.
+ *   改变最大使用次数
  *
  *   <SType x Use Max: +y>
  *   <SType x Use Max: -y>
- *   A battler affected by this property will have Limited Use skills from
- *   skill type x alter the maximum times used by +y or -y.
+ *   改变技能类型x的最大使用次数
  *
  *   <Skill x Use Max: +y>
  *   <Skill x Use Max: -y>
@@ -221,7 +156,7 @@ Yanfly.LSU.version = 1.06;
  *   named if you're using that version of the notetag instead) alter the
  *   maximum times used by +y or -y. If you are using the named version of the
  *   notetag and have multiple skills in the database with the same name, then
- *   priority will be given to the skill with the highest ID.
+ *   priority will be given to the skill with the ID.改变技能x的最大使用次数。
  *
  * ============================================================================
  * Lunatic Mode - Altering Target's Limited Uses
@@ -318,14 +253,6 @@ Yanfly.LSU.version = 1.06;
  * Changelog
  * ============================================================================
  *
- * Version 1.06:
- * - Bypass the isDevToolsOpen() error when bad code is inserted into a script
- * call or custom Lunatic Mode code segment due to updating to MV 1.6.1.
- *
- * Version 1.05:
- * - Updated for RPG Maker MV version 1.5.0.
- * - Added new 'Bypass List' plugin parameter.
- *
  * Version 1.04:
  * - Lunatic Mode fail safes added.
  *
@@ -366,19 +293,9 @@ Yanfly.Param.LSUEmpty = String(Yanfly.Parameters['Empty Text']);
 Yanfly.Param.LimitedAbsMax = Number(Yanfly.Parameters['Absolute Max']);
 Yanfly.Param.LSUBypass = String(Yanfly.Parameters['Bypass Limits']);
 Yanfly.Param.LSUBypass = Yanfly.Param.LSUBypass.split(' ');
-Yanfly.SetupParameters = function() {
-  for (var i = 0; i < Yanfly.Param.LSUBypass.length; ++i) {
-    Yanfly.Param.LSUBypass[i] = parseInt(Yanfly.Param.LSUBypass[i]);
-  };
-  var data = JSON.parse(Yanfly.Parameters['Bypass List'] || '[]');
-  for (var i = 0; i < data.length; ++i) {
-    var id = parseInt(data[i]);
-    if (id <= 0) continue;
-    if (Yanfly.Param.LSUBypass.contains(id)) continue;
-    Yanfly.Param.LSUBypass.push(id);
-  }
-}
-Yanfly.SetupParameters();
+for (Yanfly.i = 0; Yanfly.i < Yanfly.Param.LSUBypass.length; ++Yanfly.i) {
+  Yanfly.Param.LSUBypass[Yanfly.i] = parseInt(Yanfly.Param.LSUBypass[Yanfly.i]);
+};
 
 Yanfly.Param.LSUDefLimitAll = String(Yanfly.Parameters['Limit All Skills']);
 Yanfly.Param.LSUDefLimitAll = eval(Yanfly.Param.LSUDefLimitAll);
@@ -1013,7 +930,6 @@ Yanfly.Util.displayError = function(e, code, message) {
   console.log(message);
   console.log(code || 'NON-EXISTENT');
   console.error(e);
-  if (Utils.RPGMAKER_VERSION && Utils.RPGMAKER_VERSION >= "1.6.0") return;
   if (Utils.isNwjs() && Utils.isOptionValid('test')) {
     if (!require('nw.gui').Window.get().isDevToolsOpen()) {
       require('nw.gui').Window.get().showDevTools();

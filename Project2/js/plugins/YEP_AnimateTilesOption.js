@@ -1,6 +1,6 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Animate Tiles Option
-// YEP_AnimateTilesOption.js
+// YEP_StaticTilesOption.js
 //=============================================================================
 
 var Imported = Imported || {};
@@ -8,12 +8,10 @@ Imported.YEP_StaticTilesOption = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.AniTile = Yanfly.AniTile || {};
-Yanfly.AniTile.version = 1.03;
 
 //=============================================================================
  /*:
- * @plugindesc v1.03 Because some computers and devices lag with animated
- * tiles on the map, an option is added to disable them.
+ * @plugindesc v1.01 动态图块选项
  * @author Yanfly Engine Plugins
  *
  * @param Command Name
@@ -21,10 +19,6 @@ Yanfly.AniTile.version = 1.03;
  * @default Animated Tiles
  *
  * @param Default Setting
- * @type combo
- * @option true
- * @option false
- * @option auto
  * @desc Default setting for this option.
  * ON - true     OFF - false     AUTO - auto
  * @default auto
@@ -34,99 +28,17 @@ Yanfly.AniTile.version = 1.03;
  * Introduction
  * ============================================================================
  *
- * Some players may experience lag when walking near animated tiles. This is
- * due to the fact that animated tiles constantly draw, delete, and redraw the
- * tiles every few frames. Unfortunately, due to Pixi2's drawing method, there
- * exists some memory leaks when this kind of drawing occurs. On mobile devices
- * or weak computers with little memory to spare, this can potentially cause
- * some games to crash. The option to enable/disable animated tiles is now in
- * the options menu for players to toggle.
+ * 有些玩家在接近动画图块时会感到延迟。这是因为动画图块在不断进行绘画、删
+ * 除、重绘的操作。不幸的是，Pixi2渲染引擎会泄露大量的内存。在移动设备上
+ * 或者配置较弱的电脑上，内存不足会使游戏崩溃。这个选项可以让玩家在设置菜
+ * 单里开启或者关闭动画图块的功能。
  *
- * For those who decide to make the default settings for the plugin to 'auto',
- * any player who is playing on mobile or browser will default to having the
- * setting off while local players will have the setting default to on.
- *
- * ============================================================================
- * Options Core Settings - Adding the New Options
- * ============================================================================
- *
- * If you are using YEP_OptionsCore.js, you can add a new Option using this
- * plugin. Here's the following code/parameter settings you can use with it.
- *
- * ---------
- * Settings:
- * ---------
- * 
- * Name:
- * \i[302]Animated Tiles
- *
- * Help Description:
- * Turns animated tiles ON or OFF.
- *
- * Symbol:
- * animateTiles
- *
- * Show/Hide:
- * show = Imported.YEP_StaticTilesOption;
- *
- * Enable:
- * enabled = true;
- *
- * Ext:
- * ext = 0;
- *
- * ----------
- * Functions:
- * ----------
- * 
- * Make Option Code:
- * this.addCommand(name, symbol, enabled, ext);
- *
- * Draw Option Code:
- * var rect = this.itemRectForText(index);
- * var statusWidth = this.statusWidth();
- * var titleWidth = rect.width - statusWidth;
- * this.resetTextColor();
- * this.changePaintOpacity(this.isCommandEnabled(index));
- * this.drawOptionsName(index);
- * this.drawOptionsOnOff(index);
- *
- * Process OK Code:
- * var index = this.index();
- * var symbol = this.commandSymbol(index);
- * var value = this.getConfigValue(symbol);
- * this.changeValue(symbol, !value);
- *
- * Cursor Right Code:
- * var index = this.index();
- * var symbol = this.commandSymbol(index);
- * var value = this.getConfigValue(symbol);
- * this.changeValue(symbol, true);
- * 
- * Cursor Left Code:
- * var index = this.index();
- * var symbol = this.commandSymbol(index);
- * var value = this.getConfigValue(symbol);
- * this.changeValue(symbol, false);
- *
- * Default Config Code:
- * // Empty. Provided by this plugin.
- *
- * Save Config Code:
- * // Empty. Provided by this plugin.
- *
- * Load Config Code:
- * // Empty. Provided by this plugin.
+ * 对于使用默认的自动设置的人，将会在移动设备和浏览器网站关闭动画图块功能
+ * ，在本地计算机会打开
  *
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.03:
- * - Compatibility update with YEP_OptionsCore.js.
- *
- * Version 1.02:
- * - Updated for RPG Maker MV version 1.5.0.
  *
  * Version 1.01:
  * - Updated for RPG Maker MV version 1.3.0.
@@ -298,9 +210,7 @@ Yanfly.AniTile.Window_Options_addGeneralOptions =
     Window_Options.prototype.addGeneralOptions;
 Window_Options.prototype.addGeneralOptions = function() {
     Yanfly.AniTile.Window_Options_addGeneralOptions.call(this);
-    if (!Imported.YEP_OptionsCore) {
-      this.addCommand(Yanfly.Param.STOCommandName, 'animateTiles');
-    }
+    this.addCommand(Yanfly.Param.STOCommandName, 'animateTiles');
 };
 
 //=============================================================================

@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Base Parameter Extension - Class Base Parameters
 // YEP_X_ClassBaseParam.js
 //=============================================================================
@@ -8,12 +8,11 @@ Imported.YEP_X_ClassBaseParam = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.CBP = Yanfly.CBP || {};
-Yanfly.CBP.version = 1.05;
+Yanfly.CBP.version = 1.03;
 
 //=============================================================================
  /*:
- * @plugindesc v1.05 (Requires YEP_BaseParamControl) Allow you to use
- * formulas for class parameter growth.
+ * @plugindesc v1.03 职业基础参数
  * @author Yanfly Engine Plugins
  *
  * @help
@@ -21,20 +20,18 @@ Yanfly.CBP.version = 1.05;
  * Introduction
  * ============================================================================
  *
- * This plugin requires YEP_BaseParamControl. Make sure this plugin is located
- * under YEP_BaseParamControl in the plugin list.
+ * 这个插件需要YEP_BaseParamControl，确保放在它下面
  *
  * For those who don't like the way base parameters are determined by the
  * editor, you can use your own formulas to determine the parameter growth for
  * each class using this plugin. This plugin also allows you to adjust the exp
- * needed for each level per class.
+ * 你可以设置每个职业的的基础参数公式。你甚至可以调整每个职业的每个等级
  *
  * ============================================================================
  * Lunatic Mode - Custom Class Parameters
  * ============================================================================
  *
- * If your formulas are short and simple, you can use this notetag to cover the
- * entire formula list for all of the base parameters:
+ * 如果你的公式很简单，你可以使用这个标签来覆盖所有基础参数
  *
  * Class Notetag:
  *
@@ -48,20 +45,18 @@ Yanfly.CBP.version = 1.05;
  *    agi = level * 14 + 15;
  *    luk = level * 13 + 12;
  *    exp = level * 100;
- *   </Custom Class Parameters>
+ *   </Custom Class Parameters> 更改相应参数即可
  *   The 'maxhp', 'maxmp', 'atk', 'def', 'mat', 'mdf', 'agi', 'luk', and 'exp'.
  *   variables each refer to their own individual stats. The 'level' variable
  *   refers to the actor's current level. The formula can be made any way you
  *   like as long as it returns a legal number.
- *   * Note: The 'exp' stat here refers to the amount of exp needed to reach
- *   the next level.
+ *   注意：exp这里指的是升级所需经验
  *
  * ============================================================================
  * Lunatic Mode - Detailed Custom Parameter Formulas
  * ============================================================================
  *
- * For those who wish to put a bit more detail in calculating the formula for
- * each stat, you can use the following notetag setup:
+ * 对于想调整更多细节的，你可以采用这个标签。
  *
  * Class Notetags:
  *
@@ -71,25 +66,17 @@ Yanfly.CBP.version = 1.05;
  *    } else {
  *      value = level * 25 + 250;
  *    }
- *   </Custom Param Formula>
+ *   </Custom Param Formula>  更改相应参数即可
  *   Replace 'Param' with 'maxhp', 'maxmp', 'atk', 'def', 'mat', 'mdf', 'agi',
  *   'luk', or 'exp'. The 'value' variable is the final result that's returned
  *   to count as the base class parameter. The 'level' variable refers to the
  *   actor's current level. The formula can be made any way you like as long as
  *   it returns a legal number.
- *   * Note: The 'exp' stat here refers to the amount of exp needed to reach
- *   the next level.
+ *   注意：exp这里指的是升级所需经验
  *
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.05:
- * - Bypass the isDevToolsOpen() error when bad code is inserted into a script
- * call or custom Lunatic Mode code segment due to updating to MV 1.6.1.
- *
- * Version 1.04:
- * - Updated for RPG Maker MV version 1.5.0.
  *
  * Version 1.03:
  * - Lunatic Mode fail safes added.
@@ -297,7 +284,6 @@ Yanfly.Util.displayError = function(e, code, message) {
   console.log(message);
   console.log(code || 'NON-EXISTENT');
   console.error(e);
-  if (Utils.RPGMAKER_VERSION && Utils.RPGMAKER_VERSION >= "1.6.0") return;
   if (Utils.isNwjs() && Utils.isOptionValid('test')) {
     if (!require('nw.gui').Window.get().isDevToolsOpen()) {
       require('nw.gui').Window.get().showDevTools();

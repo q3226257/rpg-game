@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Message Core Extension - Message Macros 1
 // YEP_X_MessageMacros1.js
 //=============================================================================
@@ -8,22 +8,16 @@ Imported.YEP_X_MessageMacros1 = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.MsgMacro = Yanfly.MsgMacro || {};
-Yanfly.MsgMacro.version = 1.01;
 
 //=============================================================================
  /*:
- * @plugindesc v1.01 (Requires YEP_MessageCore.js) Adds macros 1 to 100
- * for your game's message system.
+ * @plugindesc v1.00 信息宏命令
  * @author Yanfly Engine Plugins
  *
  * @param ---Setting---
  * @default
  *
  * @param Enable Quick Macro
- * @parent ---Setting---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Allows you to use \harold in place of \m[harold].
  * NO - false     YES - true
  * @default false
@@ -32,13 +26,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 1 Text
- * @parent ---Macro 1---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default \n<\c[6]\n[1]\c[0]>
  *
  * @param Macro 1 Name
- * @parent ---Macro 1---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default Harold
  *
@@ -46,13 +38,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 2 Text
- * @parent ---Macro 2---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default \n<\c[6]\n[2]\c[0]>
  *
  * @param Macro 2 Name
- * @parent ---Macro 2---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default Therese
  *
@@ -60,13 +50,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 3 Text
- * @parent ---Macro 3---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default \n<\c[6]\n[3]\c[0]>
  *
  * @param Macro 3 Name
- * @parent ---Macro 3---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default Marsha
  *
@@ -74,13 +62,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 4 Text
- * @parent ---Macro 4---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default \n<\c[6]\n[4]\c[0]>
  *
  * @param Macro 4 Name
- * @parent ---Macro 4---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default Lucius
  *
@@ -88,13 +74,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 5 Text
- * @parent ---Macro 5---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 5 Name
- * @parent ---Macro 5---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -102,13 +86,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 6 Text
- * @parent ---Macro 6---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 6 Name
- * @parent ---Macro 6---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -116,13 +98,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 7 Text
- * @parent ---Macro 7---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 7 Name
- * @parent ---Macro 7---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -130,13 +110,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 8 Text
- * @parent ---Macro 8---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 8 Name
- * @parent ---Macro 8---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -144,13 +122,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 9 Text
- * @parent ---Macro 9---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 9 Name
- * @parent ---Macro 9---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -158,13 +134,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 10 Text
- * @parent ---Macro 10---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 10 Name
- * @parent ---Macro 10---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -172,13 +146,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 11 Text
- * @parent ---Macro 11---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 11 Name
- * @parent ---Macro 11---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -186,13 +158,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 12 Text
- * @parent ---Macro 12---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 12 Name
- * @parent ---Macro 12---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -200,13 +170,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 13 Text
- * @parent ---Macro 13---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 13 Name
- * @parent ---Macro 13---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -214,13 +182,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 14 Text
- * @parent ---Macro 14---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 14 Name
- * @parent ---Macro 14---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -228,13 +194,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 15 Text
- * @parent ---Macro 15---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 15 Name
- * @parent ---Macro 15---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -242,13 +206,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 16 Text
- * @parent ---Macro 16---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 16 Name
- * @parent ---Macro 16---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -256,13 +218,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 17 Text
- * @parent ---Macro 17---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 17 Name
- * @parent ---Macro 17---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -270,13 +230,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 18 Text
- * @parent ---Macro 18---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 18 Name
- * @parent ---Macro 18---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -284,13 +242,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 19 Text
- * @parent ---Macro 19---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 19 Name
- * @parent ---Macro 19---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -298,13 +254,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 20 Text
- * @parent ---Macro 20---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 20 Name
- * @parent ---Macro 20---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -312,13 +266,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 21 Text
- * @parent ---Macro 21---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 21 Name
- * @parent ---Macro 21---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -326,13 +278,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 22 Text
- * @parent ---Macro 22---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 22 Name
- * @parent ---Macro 22---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -340,13 +290,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 23 Text
- * @parent ---Macro 23---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 23 Name
- * @parent ---Macro 23---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -354,13 +302,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 24 Text
- * @parent ---Macro 24---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 24 Name
- * @parent ---Macro 24---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -368,13 +314,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 25 Text
- * @parent ---Macro 25---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 25 Name
- * @parent ---Macro 25---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -382,13 +326,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 26 Text
- * @parent ---Macro 26---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 26 Name
- * @parent ---Macro 26---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -396,13 +338,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 27 Text
- * @parent ---Macro 27---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 27 Name
- * @parent ---Macro 27---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -410,13 +350,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 28 Text
- * @parent ---Macro 28---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 28 Name
- * @parent ---Macro 28---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -424,13 +362,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 29 Text
- * @parent ---Macro 29---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 29 Name
- * @parent ---Macro 29---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -438,13 +374,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 30 Text
- * @parent ---Macro 30---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 30 Name
- * @parent ---Macro 30---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -452,13 +386,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 31 Text
- * @parent ---Macro 31---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 31 Name
- * @parent ---Macro 31---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -466,13 +398,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 32 Text
- * @parent ---Macro 32---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 32 Name
- * @parent ---Macro 32---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -480,13 +410,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 33 Text
- * @parent ---Macro 33---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 33 Name
- * @parent ---Macro 33---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -494,13 +422,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 34 Text
- * @parent ---Macro 34---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 34 Name
- * @parent ---Macro 34---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -508,13 +434,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 35 Text
- * @parent ---Macro 35---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 35 Name
- * @parent ---Macro 35---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -522,13 +446,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 36 Text
- * @parent ---Macro 36---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 36 Name
- * @parent ---Macro 36---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -536,13 +458,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 37 Text
- * @parent ---Macro 37---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 37 Name
- * @parent ---Macro 37---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -550,13 +470,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 38 Text
- * @parent ---Macro 38---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 38 Name
- * @parent ---Macro 38---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -564,13 +482,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 39 Text
- * @parent ---Macro 39---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 39 Name
- * @parent ---Macro 39---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -578,13 +494,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 40 Text
- * @parent ---Macro 40---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 40 Name
- * @parent ---Macro 40---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -592,13 +506,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 41 Text
- * @parent ---Macro 41---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 41 Name
- * @parent ---Macro 41---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -606,13 +518,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 42 Text
- * @parent ---Macro 42---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default The Answer to the Ultimate Question of Life, the Universe, and Everything.
  *
  * @param Macro 42 Name
- * @parent ---Macro 42---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default Life
  *
@@ -620,13 +530,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 43 Text
- * @parent ---Macro 43---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 43 Name
- * @parent ---Macro 43---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -634,13 +542,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 44 Text
- * @parent ---Macro 44---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 44 Name
- * @parent ---Macro 44---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -648,13 +554,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 45 Text
- * @parent ---Macro 45---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 45 Name
- * @parent ---Macro 45---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -662,13 +566,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 46 Text
- * @parent ---Macro 46---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 46 Name
- * @parent ---Macro 46---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -676,13 +578,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 47 Text
- * @parent ---Macro 47---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 47 Name
- * @parent ---Macro 47---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -690,13 +590,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 48 Text
- * @parent ---Macro 48---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 48 Name
- * @parent ---Macro 48---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -704,13 +602,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 49 Text
- * @parent ---Macro 49---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 49 Name
- * @parent ---Macro 49---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -718,13 +614,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 50 Text
- * @parent ---Macro 50---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 50 Name
- * @parent ---Macro 50---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -732,13 +626,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 51 Text
- * @parent ---Macro 51---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 51 Name
- * @parent ---Macro 51---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -746,13 +638,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 52 Text
- * @parent ---Macro 52---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 52 Name
- * @parent ---Macro 52---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -760,13 +650,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 53 Text
- * @parent ---Macro 53---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 53 Name
- * @parent ---Macro 53---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -774,13 +662,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 54 Text
- * @parent ---Macro 54---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 54 Name
- * @parent ---Macro 54---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -788,13 +674,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 55 Text
- * @parent ---Macro 55---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 55 Name
- * @parent ---Macro 55---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -802,13 +686,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 56 Text
- * @parent ---Macro 56---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 56 Name
- * @parent ---Macro 56---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -816,13 +698,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 57 Text
- * @parent ---Macro 57---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 57 Name
- * @parent ---Macro 57---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -830,13 +710,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 58 Text
- * @parent ---Macro 58---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 58 Name
- * @parent ---Macro 58---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -844,13 +722,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 59 Text
- * @parent ---Macro 59---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 59 Name
- * @parent ---Macro 59---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -858,13 +734,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 60 Text
- * @parent ---Macro 60---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 60 Name
- * @parent ---Macro 60---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -872,13 +746,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 61 Text
- * @parent ---Macro 61---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 61 Name
- * @parent ---Macro 61---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -886,13 +758,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 62 Text
- * @parent ---Macro 62---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 62 Name
- * @parent ---Macro 62---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -900,13 +770,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 63 Text
- * @parent ---Macro 63---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 63 Name
- * @parent ---Macro 63---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -914,13 +782,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 64 Text
- * @parent ---Macro 64---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 64 Name
- * @parent ---Macro 64---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -928,13 +794,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 65 Text
- * @parent ---Macro 65---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 65 Name
- * @parent ---Macro 65---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -942,13 +806,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 66 Text
- * @parent ---Macro 66---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 66 Name
- * @parent ---Macro 66---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -956,13 +818,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 67 Text
- * @parent ---Macro 67---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 67 Name
- * @parent ---Macro 67---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -970,13 +830,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 68 Text
- * @parent ---Macro 68---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 68 Name
- * @parent ---Macro 68---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -984,13 +842,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 69 Text
- * @parent ---Macro 69---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 69 Name
- * @parent ---Macro 69---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -998,13 +854,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 70 Text
- * @parent ---Macro 70---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 70 Name
- * @parent ---Macro 70---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -1012,13 +866,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 71 Text
- * @parent ---Macro 71---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 71 Name
- * @parent ---Macro 71---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -1026,13 +878,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 72 Text
- * @parent ---Macro 72---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 72 Name
- * @parent ---Macro 72---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -1040,13 +890,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 73 Text
- * @parent ---Macro 73---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 73 Name
- * @parent ---Macro 73---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -1054,13 +902,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 74 Text
- * @parent ---Macro 74---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 74 Name
- * @parent ---Macro 74---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -1068,13 +914,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 75 Text
- * @parent ---Macro 75---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 75 Name
- * @parent ---Macro 75---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -1082,13 +926,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 76 Text
- * @parent ---Macro 76---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 76 Name
- * @parent ---Macro 76---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -1096,13 +938,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 77 Text
- * @parent ---Macro 77---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 77 Name
- * @parent ---Macro 77---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -1110,13 +950,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 78 Text
- * @parent ---Macro 78---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 78 Name
- * @parent ---Macro 78---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -1124,13 +962,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 79 Text
- * @parent ---Macro 79---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 79 Name
- * @parent ---Macro 79---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -1138,13 +974,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 80 Text
- * @parent ---Macro 80---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 80 Name
- * @parent ---Macro 80---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -1152,13 +986,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 81 Text
- * @parent ---Macro 81---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 81 Name
- * @parent ---Macro 81---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -1166,13 +998,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 82 Text
- * @parent ---Macro 82---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 82 Name
- * @parent ---Macro 82---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -1180,13 +1010,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 83 Text
- * @parent ---Macro 83---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 83 Name
- * @parent ---Macro 83---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -1194,13 +1022,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 84 Text
- * @parent ---Macro 84---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 84 Name
- * @parent ---Macro 84---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -1208,13 +1034,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 85 Text
- * @parent ---Macro 85---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 85 Name
- * @parent ---Macro 85---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -1222,13 +1046,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 86 Text
- * @parent ---Macro 86---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 86 Name
- * @parent ---Macro 86---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -1236,13 +1058,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 87 Text
- * @parent ---Macro 87---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 87 Name
- * @parent ---Macro 87---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -1250,13 +1070,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 88 Text
- * @parent ---Macro 88---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 88 Name
- * @parent ---Macro 88---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -1264,13 +1082,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 89 Text
- * @parent ---Macro 89---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 89 Name
- * @parent ---Macro 89---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -1278,13 +1094,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 90 Text
- * @parent ---Macro 90---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 90 Name
- * @parent ---Macro 90---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -1292,13 +1106,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 91 Text
- * @parent ---Macro 91---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 91 Name
- * @parent ---Macro 91---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -1306,13 +1118,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 92 Text
- * @parent ---Macro 92---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 92 Name
- * @parent ---Macro 92---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -1320,13 +1130,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 93 Text
- * @parent ---Macro 93---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 93 Name
- * @parent ---Macro 93---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -1334,13 +1142,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 94 Text
- * @parent ---Macro 94---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 94 Name
- * @parent ---Macro 94---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -1348,13 +1154,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 95 Text
- * @parent ---Macro 95---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 95 Name
- * @parent ---Macro 95---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -1362,13 +1166,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 96 Text
- * @parent ---Macro 96---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 96 Name
- * @parent ---Macro 96---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -1376,13 +1178,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 97 Text
- * @parent ---Macro 97---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 97 Name
- * @parent ---Macro 97---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -1390,13 +1190,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 98 Text
- * @parent ---Macro 98---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 98 Name
- * @parent ---Macro 98---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -1404,13 +1202,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 99 Text
- * @parent ---Macro 99---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 99 Name
- * @parent ---Macro 99---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -1418,13 +1214,11 @@ Yanfly.MsgMacro.version = 1.01;
  * @default
  *
  * @param Macro 100 Text
- * @parent ---Macro 100---
  * @desc When using \m[x], this will appear when using this
  * number. Text codes can be used.
  * @default undefined
  *
  * @param Macro 100 Name
- * @parent ---Macro 100---
  * @desc When using \m[x], you can use the name instead of the ID.
  * @default undefined
  *
@@ -1433,39 +1227,32 @@ Yanfly.MsgMacro.version = 1.01;
  * Introduction
  * ============================================================================
  *
- * This plugin requires YEP_MessageCore.js to run.
- * Place this plugin under YEP_MessageCore.js in the plugin list.
+ * 这个插件需要YEP_MessageCore.js，请放在YEP_MessageCore.js下面
  *
  * Ever get tired of having to do \n<\c[6]\n[1]\c[0]>? With this plugin you can
  * create a macro where you can type \m[1] and it will do just that. This
- * is a utility plugin for RPG Maker MV developers. Using this plugin, you can
- * now develop macros for the message system or anywhere that uses text codes
- * in general. This plugin will allow you to define what macro ID's will change
- * into what text in-game!
+ * 大家都厌倦了使用复杂的文本代码，现在你可以创造宏命令，只需要简单的代码
+ * 即可实现之前的功能。
  *
  * ============================================================================
  * Instructions - Setting Up Your macros
  * ============================================================================
  *
- * In the plugin parameters, you'll see something along the lines of
+ * 在插件参数里，你可以看到这些
  *
  * ---Macro 1---
  * Macro 1 Text   \n<\c[6]\n[1]\c[0]>
  * Macro 1 Name   Harold
  *
- * How this works is, whenever you type out '\m[1]' in the Show Text event,
- * it will convert that to '\n<\c[6]\n[1]\c[0]>', which is then converted to
- * its own text codes. The text written out is assigned by Macro 1 Text's
- * plugin parameter settings.
- *
+ * 当你需要\n<\c[6]\n[1]\c[0]>时，你可以使用\m[1]来代替。
+ * 如果你记不住ID，你可以用\m[Harold]
  * At the same time, if you cannot remember which macro would give yield to
  * '\n<\c[6]\n[1]\c[0]>', you can also type out '\m[Harold]' to give way to
  * the same deal as '\m[1]' to write out '\n<\c[6]\n[1]\c[0]>'.
  *
  * *** WARNING ***
  *
- * If for some reason you have multiple macros with the same name identifier,
- * then priority will be given to the macro with the lower ID. For example:
+ * 如果你有多个重名的，会优先ID最低的
  *
  * ---Macro 10---
  * Macro 10 Text   Macro 10
@@ -1475,17 +1262,13 @@ Yanfly.MsgMacro.version = 1.01;
  * Macro 11 Text   Macro 11
  * Macro 11 Name   abc
  *
- * Here, typing out '\m[abc]' will result in 'Macro 10' instead of 'Macro 11'.
- * This is because the macro name reference 'abc' has a lower ID for 10 than 11
- * does in the macro list.
+ * m[abc]将会执行—Macro 10—
  *
  * ============================================================================
  * Instructions - Quick Macros
  * ============================================================================
  *
- * In YEP_X_MessageMacros1.js, there is the option 'Enable Quick Macro'. If
- * this is set to true, then you can use macros in a quicker fashion. Assuming
- * that this is the setup:
+ * In YEP_X_MessageMacros1.js, 在这个插件里，你可以选择开启快速宏命令。
  *
  * ---Macro 1---
  * Macro 1 Text   \n<\c[6]\n[1]\c[0]>
@@ -1494,19 +1277,14 @@ Yanfly.MsgMacro.version = 1.01;
  * Then '\m[1]' would yield '\n<\c[6]\n[1]\c[0]>'. '\m[Harold]' would also
  * yield '\n<\c[6]\n[1]\c[0]>'. However, with quick macros enabled, then
  * '\Harold' would also yield '\n<\c[6]\n[1]\c[0]>' allowing you to type out
- * the macros even faster.
+ * the macros even faster.开启快速宏命令，使用\Harold即可实现\m[Harold]的效果
  *
  * *** WARNING ***
  *
- * However, there are some things to keep in mind. If you ever set up a macro
- * that will clash with other text codes, then the macro will take priority
- * over the text code. For example, if you made the quick macro '\c', then all
- * of the color text codes will cease to work as priority is given to the quick
- * macro instead.
+ * 这里有些事情需要注意。如果宏命令和文本代码冲突，优先执行文本代码。例如
+ * 如果你使用了快速宏命令\c，将会设置颜色而不是执行宏
  *
- * Furthermore, quick macros will give priority to quick macros with lower ID's
- * than quick macros with higher ID's if there are similar macro name setups.
- * For example:
+ * 如果有相同的名字，快速宏命令优先执行ID低的
  *
  * ---Macro 10---
  * Macro 10 Text   Macro 10
@@ -1516,19 +1294,7 @@ Yanfly.MsgMacro.version = 1.01;
  * Macro 11 Text   Macro 11
  * Macro 11 Name   abc123
  *
- * Typing out '\abc123' will result in 'Macro 10' because Macro 10 has '\abc',
- * which contains the first three letters of '\abc123' and has a higher ID than
- * that of '\abc', which then gets the priority.
- *
- * ============================================================================
- * Changelog
- * ============================================================================
- *
- * Version 1.01:
- * - Updated for RPG Maker MV version 1.5.0.
- *
- * Version 1.00:
- * - Finished Plugin!
+ * \abc123优先执行—Macro 10—
  */
 //=============================================================================
 

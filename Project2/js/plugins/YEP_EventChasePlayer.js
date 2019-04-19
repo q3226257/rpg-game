@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Event Chase Player
 // YEP_EventChasePlayer.js
 //=============================================================================
@@ -8,67 +8,48 @@ Imported.YEP_EventChasePlayer = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.ECP = Yanfly.ECP || {};
-Yanfly.ECP.version = 1.07;
+Yanfly.ECP.version = 1.05;
 
 //=============================================================================
  /*:
- * @plugindesc v1.07 When a player is in the proximity of a certain event,
- * the event will start chasing or fleeing from the player.
+ * @plugindesc v1.05 事件追逐
  * @author Yanfly Engine Plugins
  *
  * @param Sight Lock
- * @type number
- * @min 0
  * @desc This is the number of frames for how long an event chases
  * the player if 'this._seePlayer = true' is used.
  * @default 300
  *
  * @param See Player
- * @type boolean
- * @on YES
- * @off NO
  * @desc Does the event have to be able to see the player by default?
  * NO - false     YES - true
  * @default true
  *
  * @param Alert Timer
- * @type number
- * @min 0
  * @desc This is the number of frames that must occur before the
  * alert balloon will show up on the same event.
  * @default 120
  *
  * @param Alert Balloon
- * @type number
- * @min 0
  * @desc This is the default balloon used when the player is seen.
  * Refer to balloon ID's.
  * @default 1
  *
  * @param Alert Sound
- * @type file
- * @dir audio/se/
- * @require 1
  * @desc This is the default sound played when the player is seen.
  * @default Attack1
  *
  * @param Alert Common Event
- * @type common_event
  * @desc The default common event played when the player is seen.
  * Use 0 if you do not wish to use a Common Event.
  * @default 0
  *
  * @param Return After
- * @type boolean
- * @on YES
- * @off NO
  * @desc After chasing/fleeing from a player, the event returns
  * to its original spot. NO - false   YES - true
  * @default true
  *
  * @param Return Wait
- * @type number
- * @min 0
  * @desc The frames to wait after finishing a chase/flee.
  * @default 180
  *
@@ -77,54 +58,44 @@ Yanfly.ECP.version = 1.07;
  * Introduction
  * ============================================================================
  *
- * This plugin allows you to make events that will chase the player or flee
- * from the player when the player enters within range of the event or when the
- * event sees the player.
+ * 目前事件只拥有传统乏味的移动行为。他们站在一个地方，追寻你，远离你，随
+ * 机移动，或者在一个设定路径行走。这个插件让你的事件可以迅速切换靠近角色
+ * 和远离角色.
+ * 在你靠近事件范围或者事件看到角色时，这个插件可以让你的事件追寻或者逃离
+ * 角色。
  *
  * ============================================================================
  * How to Use
  * ============================================================================
  *
- * Insert these lines into the script call window within the Movement Route
- * event to give an event the chase or flee flag.
+ * 把下面这些脚本语句插入事件移动路线里，让其生效。
  *
- * Note: This doesn’t work with players.
+ * Note: This doesn’t work with players.注意：这些对角色不生效。
  *
  * Script Call lines
- *  this._chaseRange = x       Event will chase player if reaching x range.
- *  this._fleeRange = x        Event will flee from player if reaching x range.
- *  this._chaseSpeed = x       Event's movement speed when chasing.
- *  this._fleeSpeed = x        Event's movement speed when fleeing.
- *  this._sightLock = x        Event will flee/chase player for x frames.
- *  this._seePlayer = true     Requires the event to be able to see player.
- *  this._seePlayer = false    Doesn't require event to be able to see player.
- *  this._alertBalloon = x     This balloon will play when player is seen.
- *  this._alertSound = x       This sound will play when player is seen.
- *  this._alertSoundVol = x    The volume used by the alert sound.
+ *  this._chaseRange = x       如果角色距离事件x，事件追逐角色。
+ *  this._fleeRange = x        如果角色距离事件x，事件逃离角色。
+ *  this._chaseSpeed = x       事件追逐速度
+ *  this._fleeSpeed = x        事件逃离速度
+ *  this._sightLock = x        事件追逐或者逃离角色时间
+ *  this._seePlayer = true     需要事件能够看到角色
+ *  this._seePlayer = false    不需要事件能够看到角色
+ *  this._alertBalloon = x     当看到角色时弹出对白框
+ *  this._alertSound = x       当看到角色时播放音乐
+ *  this._alertSoundVol = x    当看到角色时播放音乐的音量
  *  this._alertSoundPitch = x  The pitch used by the alert sound.
  *  this._alertSoundPan = x    The pan used by the alert sound.
- *  this._alertCommonEvent = x This event will play when player is seen.
+ *  this._alertCommonEvent = x 当看到角色时执行公共事件
  *  this._returnAfter = true   Returns the event back to its original spot.
  *  this._returnAfter = false  Event stays where it is when finished chasing.
  *  this._returnWait = x       How long event waits after finishing chase/flee.
  *
- * It is best to play this inside of a custom move route for the event at a
- * high frequency rate. Keep in mind these effects only occur after the setting
- * is made and ran, which means upon loading a map, if the event with a low
- * frequency hasn't loaded up 'this._chaseRange = x' in its movement queue yet,
- * the event will not chase the player just yet.
+ * 这个最适合用来自定义移动路线的速度。记住这个效果需要事件被设置为移动
+ * 这意味着载入地图时，如果事件没有被载入命令，这个事件永远不会追逐角色。
  *
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.07:
- * - Added a background mechanic to stagger an event if they're chasing the
- * player and get caught behind an object. This will prevent the event from
- * continuously chasing the player and dropping the FPS rate.
- *
- * Version 1.06:
- * - Updated for RPG Maker MV version 1.5.0.
  * 
  * Version 1.05:
  * - Optimization update.
@@ -206,7 +177,6 @@ Game_Event.prototype.clearChaseSettings = function() {
   this._returnWait = Yanfly.Param.ECPReturnWait;
   this._returnPhase = false;
   this._returnFrames = 0;
-  this._staggerCount = 0;
   this._startLocationX = this.x;
   this._startLocationY = this.y;
   this._startLocationDir = this._direction;
@@ -324,17 +294,9 @@ Game_Event.prototype.endEventFlee = function() {
 };
 
 Game_Event.prototype.updateChaseMovement = function() {
-    if (this._staggerCount > 0) {
-      return this._staggerCount--;
-    }
     if (this._stopCount > 0 && this._chasePlayer) {
       var direction = this.findDirectionTo($gamePlayer.x, $gamePlayer.y);
-      if (direction > 0) {
-        var x = this._x;
-        var y = this._y;
-        this.moveStraight(direction);
-        if (x === this._x && y === this._y) this._staggerCount = 20;
-      }
+      if (direction > 0) this.moveStraight(direction);
     } else if (this._stopCount > 0 && this._fleePlayer) {
       this.updateFleeMovement();
     } else if (this._returnPhase) {

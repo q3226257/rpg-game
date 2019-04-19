@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Equip Battle Skills Extension - Allowed Types
 // YEP_X_EBSAllowedTypes.js
 //=============================================================================
@@ -8,24 +8,16 @@ Imported.YEP_X_EBSAllowedTypes = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.EBSAT = Yanfly.EBSAT || {};
-Yanfly.EBSAT.version = 1.01;
 
 //=============================================================================
  /*:
- * @plugindesc v1.01 (Requires YEP_EquipBattleSkills.js) For those who
- * wish to use Equip Battle Skills and still have skill types.
+ * @plugindesc v1.00 战斗技能装备类型限制
  * @author Yanfly Engine Plugins
  *
  * @param Allowed Skill Types
  * @desc List here the skill type ID's you wish to retain in the
  * battle command skill type list.
  * @default 0
- *
- * @param Allowed Skill Types List
- * @type number[]
- * @desc List here the skill type ID's you wish to retain in the
- * battle command skill type list. Requires MV 1.5.0+
- * @default []
  *
  * @help
  * ============================================================================
@@ -35,23 +27,9 @@ Yanfly.EBSAT.version = 1.01;
  * This plugin requires YEP_EquipBattleSkills. Make sure this plugin is located
  * under YEP_EquipBattleSkills in the plugin list.
  *
- * For those who are using the Equip Battle Skills plugin, you may have noticed
- * that the 'Skills' command replaces all skill types in the battle command
- * window. For those who'd like to have certain skill types continue working,
- * you can use this plugin to create an exception for it. The skill types found
- * listed in the plugin parameters will be given an exception and will be shown
- * in battle. Any skill that contains the skill type also cannot be equipped in
- * a battle skill slot.
- *
- * ============================================================================
- * Changelog
- * ============================================================================
- *
- * Version 1.01:
- * - Updated for RPG Maker MV version 1.5.0.
- *
- * Version 1.00:
- * - Finished Plugin!
+ * 对于使用Equip Battle Skills插件的人，你可能注意到‘技能’命令栏替代了战斗
+ * 命令里所有的技能类型。对于那些只想让特定技能类型生效的人，你可以使用这个
+ * 插件。插件参数里可以设置不需要的技能类型。
  */
 //=============================================================================
 
@@ -70,12 +48,6 @@ Yanfly.setupParameters = function() {
   for (var i = 0; i < length; ++i) {
     var value = Yanfly.Param.EBSATTypes[i];
     Yanfly.Param.EBSATTypes[i] = parseInt(value.trim());
-  }
-  var data = JSON.parse(parameters['Allowed Skill Types List'] || '[]');
-  for (var i = 0; i < data.length; ++i) {
-    var type = parseInt(data[i]);
-    if (Yanfly.Param.EBSATTypes.contains(type)) continue;
-    Yanfly.Param.EBSATTypes.push(type);
   }
 };
 

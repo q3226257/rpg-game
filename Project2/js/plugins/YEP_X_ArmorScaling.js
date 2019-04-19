@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Damage Extension - Armor Scaling
 // YEP_X_ArmorScaling.js
 //=============================================================================
@@ -8,31 +8,27 @@ Imported.YEP_X_ArmorScaling = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.ARS = Yanfly.ARS || {};
-Yanfly.ARS.version = 1.05;
+Yanfly.ARS.version = 1.03;
 
 //=============================================================================
  /*:
- * @plugindesc v1.05 (Requires YEP_DamageCore.js) Scale defensive
- * stats relative to a universal scale.
+ * @plugindesc v1.03 护甲分级
  * @author Yanfly Engine Plugins
  * 
  * @param ---Physical---
  * @default
  *
  * @param Positive Physical Rate
- * @parent ---Physical---
  * @desc This is the multiplier rate for physical attacks if the
  * calculated armor is a positive value.
  * @default value *= 100 / (100 + armor)
  *
  * @param Negative Physical Rate
- * @parent ---Physical---
  * @desc This is the multiplier rate for physical attacks if the
  * calculated armor is a negative value.
  * @default value *= 2 - (100 / (100 - armor))
  *
  * @param Physical Base Armor
- * @parent ---Physical---
  * @desc This is the physical base armor calculation.
  * @default target.def / 2
  *
@@ -40,19 +36,16 @@ Yanfly.ARS.version = 1.05;
  * @default
  *
  * @param Positive Magical Rate
- * @parent ---Magical---
  * @desc This is the multiplier rate for magical attacks if the
  * calculated armor is a positive value.
  * @default value *= 100 / (100 + armor)
  *
  * @param Negative Magical Rate
- * @parent ---Magical---
  * @desc This is the multiplier rate for magical attacks if the
  * calculated armor is a negative value.
  * @default value *= 2 - (100 / (100 - armor))
  *
  * @param Magical Base Armor
- * @parent ---Magical---
  * @desc This is the magical base armor calculation.
  * @default target.mdf / 2
  *
@@ -60,19 +53,16 @@ Yanfly.ARS.version = 1.05;
  * @default
  *
  * @param Positive Certain Rate
- * @parent ---Certain---
  * @desc This is the multiplier rate for certain attacks if the
  * calculated armor is a positive value.
  * @default value *= 100 / (100 + armor)
  *
  * @param Negative Certain Rate
- * @parent ---Certain---
  * @desc This is the multiplier rate for certain attacks if the
  * calculated armor is a negative value.
  * @default value *= 2 - (100 / (100 - armor))
  *
  * @param Certain Base Armor
- * @parent ---Certain---
  * @desc This is the certain hit base armor calculation.
  * @default 0
  *
@@ -81,21 +71,18 @@ Yanfly.ARS.version = 1.05;
  * Introduction
  * ============================================================================
  *
- * This plugin requires YEP_DamageCore.
- * Make sure this plugin is located under YEP_DamageCore in the plugin list.
+ * 这个插件需要YEP_DamageCore，确保插件在YEP_DamageCore下面
  *
  * This plugin serves as a damage balancing plugin to make numbers across the
  * battlefield more universal for both actors and enemies alike and gets past
- * the flaws that ATK - DEF formulas have.
+ * the flaws that ATK - DEF formulas have.这个插件用来调整伤害
  *
  * ============================================================================
  * Armor Scaling
  * ============================================================================
  *
- * Armor Scaling allows the damage formula to be rid of "b.def * 2" and similar
- * calculations in favor of scaling the damage relative to the armor values
- * that the attack target has. The following is the armor scaling formula for
- * both positive and negative armor values:
+ * 装备分级允许伤害公式摆脱内置公式，并且帮助为装备伤害值进行分级。下面是装
+ * 备分级公式:
  *
  *            Positive Armor                     Negative Armor
  *
@@ -103,12 +90,7 @@ Yanfly.ARS.version = 1.05;
  *     Rate = -------------                Rate = 2 - -------------
  *             100 + armor                             100 - armor
  *
- * To get an idea of how armor scaling will affect damage, you can visit
- * FlyingDream's Armor Scaling Calculator here:
- *
- *     http://yanfly.moe/tools/armorscalingcalculator/
- *
- * For quick reference, here's a table on how 1,000 base damage is affected.
+ * 为了理解装备分级是如何影响伤害的，这里有一个基于100伤害的列表作为例子
  *
  * Armor Level   Rate%    Damage           Armor Level   Rate%    Damage
  *           1   99.01%   990                       -1   100.99%  1,010
@@ -148,20 +130,15 @@ Yanfly.ARS.version = 1.05;
  *     999,999    0.01%     0                 -999,999   199.99%  2,000
  *   9,999,999    0.00%     0               -9,999,999   200.00%  2,000
  *
- * Using the default base armor formula of 2 defense points is equal to 1
- * armor, this means at 200 defense, a battler will take only 50% damage. At
- * 999 defense, the battler will take a little bit more than 16.67% damage.
- * At those values without armor scaling, damage can be entirely undone for
- * that very matter. This goes to show how effective armor scaling can be to
- * maintain long-term balancing.
- *
+ * 使用默认的装备公式，2点防御等于1点护甲。这意味着200防御，敌方尽可以造成一
+ * 半伤害。在999防御的时候，战斗者将会造成接近16.67%的伤害。如果没有装备分级
+ * ，伤害就会这样造成，现在我们看一下分级后的效果
+ * 
  * ============================================================================
  * Armor Reduction and Armor Penetration
  * ============================================================================
  *
- * There are various modifiers that can alter the armor level before the armor
- * scaling rate is applied to damage. Armor goes through four main steps and
- * they are as follows.
+ * 这里有很多装备等级的可调整项。装备将会按照下面四步进行计算
  *
  * 1. Armor Reduction, Flat
  * 2. Armor Reduction, Percentage
@@ -172,7 +149,7 @@ Yanfly.ARS.version = 1.05;
  * Flat armor reduction stacks additively. Flat armor reduction can reduce a
  * target's armor below zero. For example, if an enemy with 10 armor has their
  * armor reduced by 25, the enemy will have -15 armor. Armor reduction values
- * are provided by target and not the attacker.
+ * are provided by target and not the attacker.护甲减少定值
  *
  * In step 2 (Armor Reduction, Percentage), the target's armor is multiplied by
  * a percentage (100% - the listed value). Percentage armor reduction stacks
@@ -180,7 +157,7 @@ Yanfly.ARS.version = 1.05;
  * Percentage armor reduction makes a bigger difference on targets with higher
  * armor. For instance, with 40% armor reduction, a target with 200 armor will
  * lose 80 while a target with only 50 armor will lose 20. Armor reduction
- * values are provided by the target and not the attacker.
+ * values are provided by the target and not the attacker.护甲减少百分比
  *
  * In step 3 (Armor Penetration, Percentage), the target's armor is multiplied
  * by a percentage (100% - the listed value). Percentage armor penetration
@@ -189,87 +166,86 @@ Yanfly.ARS.version = 1.05;
  * armor. For instance, with 40% armor penetration, a target with 200 armor will
  * be considered as having 80 less while a target with only 50 armor will be
  * considered as having 20 less. Armor penetration values are provided by the
- * attacker and not the target.
+ * attacker and not the target.护甲穿透百分比
  *
  * In step 4 (Armor Penetration, Flat), the target's armor is treated as being
  * reduced by an amount for purposes of damage calculation, but cannot be
  * reduced below 0. Flat armor penetration stacks additively. Armor penetration
- * values are provided by the attacker and not the target.
+ * values are provided by the attacker and not the target.护甲穿透定值
  *
  * ============================================================================
  * Notetags
  * ============================================================================
  *
- * You may use these notetags to adjust various factors for armor scaling rates
- * and calculations.
+ * 你可以使用下面标签来调整装备升级概率
  *
  * Skill and Item Notetags:
- *   <Armor Reduction: x>
+ *   <Armor Reduction: x> 按定值减少护甲等级
  *   Causes the skill/item to reduce the target's armor level by x. This is
  *   calculated first above everything else.
  *
- *   <Armor Reduction: x%>
+ *   <Armor Reduction: x%> 按百分比减少护甲等级
  *   Causes the skill/item to reduce the target's armor level by x%. This is
  *   calculated second but is ignored if the armor level is less than 0.
  *
- *   <Armor Penetration: x%>
+ *   <Armor Penetration: x%> 按百分比进行护甲穿透
  *   Causes the skill/item to reduce the target's armor level by x% (but will
  *   not go past 0). This is calculated third.
  *
- *   <Armor Penetration: x>
+ *   <Armor Penetration: x> 按定值进行护甲穿透
  *   Causes the skill/item to reduce the target's armor level by x (but will
  *   not go past 0). This is calculated last.
  *
- *   <Bypass Armor Scaling>
+ *   <Bypass Armor Scaling> 忽略装备分级
  *   This notetag allows you to bypass the armor scaling process for this
  *   individual skill/item.
  *
  * Actor, Class, Enemy, Weapon, Armor, State Notetags:
- *   <Physical Armor Reduction: x>
+ *   <Physical Armor Reduction: x> 物理护甲减少
  *   Causes this actor to lose x armor when targeted by physical skills/items.
  *   This is calculated first.
  *
- *   <Magical Armor Reduction: x>
+ *   <Magical Armor Reduction: x> 魔法护甲减少
  *   Causes this actor to lose x armor when targeted by magical skills/items.
  *   This is calculated first.
  *
- *   <Certain Armor Reduction: x>
+ *   <Certain Armor Reduction: x> 真实护甲减少
  *   Causes this actor to lose x armor when targeted by certain skills/items.
  *   This is calculated first.
  *
- *   <Physical Armor Reduction: x%>
+ *   <Physical Armor Reduction: x%> 物理护甲减少百分比
  *   Causes this actor to lose x% armor when targeted by physical skills/items.
  *   This is calculated second.
  *
- *   <Magical Armor Reduction: x%>
+ *   <Magical Armor Reduction: x%> 魔法护甲减少百分比
  *   Causes this actor to lose x% armor when targeted by magical skills/items.
  *   This is calculated second.
  *
- *   <Certain Armor Reduction: x%>
+ *   <Certain Armor Reduction: x%> 真实护甲减少百分比
  *   Causes this actor to lose x% armor when targeted by certain skills/items.
  *   This is calculated second.
  *
- *   <Physical Armor Penetration: x%>
+ *   <Physical Armor Penetration: x%> 物理护甲穿透百分比
  *   Causes this actor to cause the target to lose x% armor when using a
  *   physical skills/items. This is calculated third.
  *
- *   <Magical Armor Penetration: x%>
+ *   <Magical Armor Penetration: x%> 魔法护甲穿透百分比
  *   Causes this actor to cause the target to lose x% armor when using a
  *   magical skills/items. This is calculated third.
  *
- *   <Certain Armor Penetration: x%>
+ *   <Certain Armor Penetration: x%> 真实护甲穿透百分比
  *   Causes this actor to cause the target to lose x% armor when using a
  *   physical skills/items. This is calculated third.
  *
- *   <Physical Armor Penetration: x>
+ *   <Physical Armor Penetration: x> 物理护甲穿透
  *   Causes this actor to cause the target to lose x armor but not drop below
  *   0 armor when using a physical skills/items. This is calculated last.
  *
- *   <Magical Armor Penetration: x>
+ *   <Magical Armor Penetration: x> 魔法护甲穿透
  *   Causes this actor to cause the target to lose x armor but not drop below
  *   0 armor when using a magical skills/items. This is calculated last.
  *
- *   <Certain Armor Penetration: x>
+ *   <Certain Armor Penetration: x> 真实护甲穿透
  *   Causes this actor to cause the target to lose x armor but not drop below
  *   0 armor when using a certain skills/items. This is calculated last.
  *
@@ -351,13 +327,6 @@ Yanfly.ARS.version = 1.05;
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.05:
- * - Bypass the isDevToolsOpen() error when bad code is inserted into a script
- * call or custom Lunatic Mode code segment due to updating to MV 1.6.1.
- *
- * Version 1.04:
- * - Updated for RPG Maker MV version 1.5.0.
  *
  * Version 1.03:
  * - Lunatic Mode fail safes added.
@@ -1149,7 +1118,6 @@ Yanfly.Util.displayError = function(e, code, message) {
   console.log(message);
   console.log(code || 'NON-EXISTENT');
   console.error(e);
-  if (Utils.RPGMAKER_VERSION && Utils.RPGMAKER_VERSION >= "1.6.0") return;
   if (Utils.isNwjs() && Utils.isOptionValid('test')) {
     if (!require('nw.gui').Window.get().isDevToolsOpen()) {
       require('nw.gui').Window.get().showDevTools();

@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Equip Battle Skills Extension - Tiers
 // YEP_X_EquipSkillTiers.js
 //=============================================================================
@@ -8,22 +8,16 @@ Imported.YEP_X_EquipSkillTiers = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.ESTier = Yanfly.ESTier || {};
-Yanfly.ESTier.version = 1.03
 
 //=============================================================================
  /*:
- * @plugindesc v1.03 (Requires YEP_EquipBattleSkills.js) Places equippable
- * skills in tiers to limit what players can equip.
+ * @plugindesc v1.02 战斗技能装备分类
  * @author Yanfly Engine Plugins
  *
  * @param ---General---
  * @default
  *
  * @param Sort by Tier?
- * @parent ---General---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Sort equippable skills by tier?
  * NO - false     YES - true
  * @default true
@@ -32,30 +26,19 @@ Yanfly.ESTier.version = 1.03
  * @default
  *
  * @param Tier 1 Enabled
- * @parent ---Tier 1---
- * @type boolean
- * @on Enable
- * @off Disable
  * @desc Is tier 1 enabled?
  * NO - false     YES - true
  * @default true
  *
  * @param Tier 1 Name
- * @parent ---Tier 1---
  * @desc This is the name of tier 1 skills.
  * @default Common
  *
  * @param Tier 1 Icon
- * @parent ---Tier 1---
- * @type number
- * @min 0
  * @desc This is the icon used for tier 1 skills.
  * @default 307
  *
  * @param Tier 1 Maximum
- * @parent ---Tier 1---
- * @type number
- * @min 1
  * @desc The maximum number of equipped skills for tier 1.
  * @default 8
  *
@@ -63,30 +46,19 @@ Yanfly.ESTier.version = 1.03
  * @default
  *
  * @param Tier 2 Enabled
- * @parent ---Tier 2---
- * @type boolean
- * @on Enable
- * @off Disable
  * @desc Is tier 2 enabled?
  * NO - false     YES - true
  * @default true
  *
  * @param Tier 2 Name
- * @parent ---Tier 2---
  * @desc This is the name of tier 2 skills.
  * @default Uncommon
  *
  * @param Tier 2 Icon
- * @parent ---Tier 2---
- * @type number
- * @min 0
  * @desc This is the icon used for tier 2 skills.
  * @default 309
  *
  * @param Tier 2 Maximum
- * @parent ---Tier 2---
- * @type number
- * @min 1
  * @desc The maximum number of equipped skills for tier 2.
  * @default 6
  *
@@ -94,30 +66,19 @@ Yanfly.ESTier.version = 1.03
  * @default
  *
  * @param Tier 3 Enabled
- * @parent ---Tier 3---
- * @type boolean
- * @on Enable
- * @off Disable
  * @desc Is tier 3 enabled?
  * NO - false     YES - true
  * @default true
  *
  * @param Tier 3 Name
- * @parent ---Tier 3---
  * @desc This is the name of tier 3 skills.
  * @default Rare
  *
  * @param Tier 3 Icon
- * @parent ---Tier 3---
- * @type number
- * @min 0
  * @desc This is the icon used for tier 3 skills.
  * @default 310
  *
  * @param Tier 3 Maximum
- * @parent ---Tier 3---
- * @type number
- * @min 1
  * @desc The maximum number of equipped skills for tier 3.
  * @default 4
  *
@@ -125,30 +86,19 @@ Yanfly.ESTier.version = 1.03
  * @default
  *
  * @param Tier 4 Enabled
- * @parent ---Tier 4---
- * @type boolean
- * @on Enable
- * @off Disable
  * @desc Is tier 4 enabled?
  * NO - false     YES - true
  * @default true
  *
  * @param Tier 4 Name
- * @parent ---Tier 4---
  * @desc This is the name of tier 4 skills.
  * @default Epic
  *
  * @param Tier 4 Icon
- * @parent ---Tier 4---
- * @type number
- * @min 0
  * @desc This is the icon used for tier 4 skills.
  * @default 311
  *
  * @param Tier 4 Maximum
- * @parent ---Tier 4---
- * @type number
- * @min 1
  * @desc The maximum number of equipped skills for tier 4.
  * @default 3
  *
@@ -156,30 +106,19 @@ Yanfly.ESTier.version = 1.03
  * @default
  *
  * @param Tier 5 Enabled
- * @parent ---Tier 5---
- * @type boolean
- * @on Enable
- * @off Disable
  * @desc Is tier 5 enabled?
  * NO - false     YES - true
  * @default true
  *
  * @param Tier 5 Name
- * @parent ---Tier 5---
  * @desc This is the name of tier 5 skills.
  * @default Legendary
  *
  * @param Tier 5 Icon
- * @parent ---Tier 5---
- * @type number
- * @min 0
  * @desc This is the icon used for tier 5 skills.
  * @default 312
  *
  * @param Tier 5 Maximum
- * @parent ---Tier 5---
- * @type number
- * @min 1
  * @desc The maximum number of equipped skills for tier 5.
  * @default 2
  *
@@ -187,30 +126,19 @@ Yanfly.ESTier.version = 1.03
  * @default
  *
  * @param Tier 6 Enabled
- * @parent ---Tier 6---
- * @type boolean
- * @on Enable
- * @off Disable
  * @desc Is tier 6 enabled?
  * NO - false     YES - true
  * @default true
  *
  * @param Tier 6 Name
- * @parent ---Tier 6---
  * @desc This is the name of tier 6 skills.
  * @default Ultimate
  *
  * @param Tier 6 Icon
- * @parent ---Tier 6---
- * @type number
- * @min 0
  * @desc This is the icon used for tier 6 skills.
  * @default 308
  *
  * @param Tier 6 Maximum
- * @parent ---Tier 6---
- * @type number
- * @min 1
  * @desc The maximum number of equipped skills for tier 6.
  * @default 1
  *
@@ -219,37 +147,29 @@ Yanfly.ESTier.version = 1.03
  * Introduction
  * ============================================================================
  *
- * This plugin requires YEP_EquipBattleSkills. Make sure this plugin is located
- * under YEP_EquipBattleSkills in the plugin list.
+ * 这个插件需要YEP_EquipBattleSkills，确保放在这个下面
  *
- * This plugin imposes a limit upon actors to limit what skills can be equipped
- * based on tiers. The player must abide by the limits before being able to
- * exit the menu allowing for better control over gameplay balance.
+ * 这个插件给玩家提供了通过分类来限制技能的装备。玩家在退出菜单时必须遵循
+ * 规则，这将更好的平衡游戏
  *
  * ============================================================================
  * Notetags
  * ============================================================================
  *
- * The following are notetags that alter the tier settings of skills.
+ * 修改标签skills.
  *
  * Skill Notetag
  *   <Skill Tier: x>
- *   Sets the skill's tier to x, making it limited by the restrictions applied
- *   by the actor.
+ *   设置技能分类
  *
  * Actor, Class, Skill, Weapon, Armor, and State Notetags
  *   <Skill Tier x Slots: +y>
  *   <Skill Tier x Slots: -y>
- *   Increases or decreases the skill tier for tier x by y slots. The changes
- *   made here do not go under 0 nor do they bypass the maximum battle skills
- *   equip limit.
+ *   增加或减少技能分类数量
  *
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.03:
- * - Updated for RPG Maker MV version 1.5.0.
  *
  * Version 1.02:
  * - Updated for RPG Maker MV version 1.3.2.

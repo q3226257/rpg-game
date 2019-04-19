@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Self Switches & Variables
 // YEP_SelfSwVar.js
 //=============================================================================
@@ -8,12 +8,10 @@ Imported.YEP_SelfSwVar = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.SSV = Yanfly.SSV || {};
-Yanfly.SSV.version = 1.04;
 
 //=============================================================================
  /*:
- * @plugindesc v1.04 Self Switches and Self Variables functionality
- * without the need for plugin commands or script calls.
+ * @plugindesc v1.01 独立开关和变量
  * @author Yanfly Engine Plugins
  *
  * @help
@@ -21,27 +19,23 @@ Yanfly.SSV.version = 1.04;
  * Introduction
  * ============================================================================
  *
- * RPG Maker MV comes with Self Switch functionality. However, the number of
- * Self Switches provided is a mere 4 in total, not enough for some of the more
- * complex events. This plugin will let you extend the number of Self Switches.
- * Self Variables, on the other hand, do not exist in RPG Maker MV, so this
- * plugin will provide functionality for that as well.
+ * RPG Maker MV拥有独立开关功能。可是，独立开关仅仅提供了4个，对于许多复杂的
+ * 事件并不够用。这个插件可以让你拓展独立开关的数量。独立变量实际上并不存在
+ * ，因此这个插件提供了类似的功能
  *
  * ============================================================================
  * Instructions
  * ============================================================================
  *
- * In order to set up your custom Self Switches and Self Variables, you must
- * first do a few things.
+ * 为了设置自定义独立开关和变量，你需要先做下面的几件事
  *
- *   1. Open up your Switches/Variables list in the editor.
- *   2. Name the Switch to have 'Self Sw' in its name.
+ *   1. 打开你的开关和变量编辑器
+ *   2. 在开关前面加‘Self Sw’，在变量前面加 ‘Self Var’
  *      - or -
  *      Name the Variable to have 'Self Var' in its name.
  *
- * Now, any time you use these following event commands, if the Self Switch or
- * Self Variable is the focus, it will be used instead of the actual Switch or
- * actual variable:
+ * 现在你可以使用下面的事件命令了，如果独立开关和变量被强制打开，那么他会替
+ * 代之前的开关和变量
  *
  *   Self Switches:
  *     - Control Switches
@@ -77,21 +71,19 @@ Yanfly.SSV.version = 1.04;
  *     - Move Picture
  *     - Get Location Info
  *
- * Note that not all plugins that use variables will be necessarily compatible
- * with the custom made Self Switches and Self Variables. Of the YEP library,
- * these plugins are compatible with this plugin:
+ * 注意不是所有的插件使用都可以适配自定义开关和变量，下面是YEP插件里面可以适
+ * 配的
  *
  *   - YEP_EventMiniLabel
  *   - YEP_MapSelectSkill
  *
- * Non-Yanfly Engine Plugins may or may not be compatible.
+ * 非Yanfly引擎的插件可能适配也可能不适配
  *
  * ============================================================================
  * Plugin Commands
  * ============================================================================
  *
- * Those who would like to remotely control Self Switches and Self Variables
- * can use the following plugin commands:
+ * 想微调独立开关和变量的可以使用下面的插件命令:
  *
  * Plugin Commands:
  *
@@ -101,7 +93,7 @@ Yanfly.SSV.version = 1.04;
  *   - This will change the Self Switch used for map 'x', event 'y', and
  *   switch 'z' to the value of 'code' value. You can replace 'code' with a
  *   'true' or 'false' value or a piece of code like '$gameSwitches.value(4)'.
- *
+ *   这会改变独立开关z在地图x，事件y里面的值
  *   SelfVariable Map x, Event y, Variable z to 12345
  *   SelfVariable Map x, Event y, Variable z to value + 100
  *   SelfVariable Map x, Event y, Variable z to code
@@ -109,33 +101,34 @@ Yanfly.SSV.version = 1.04;
  *   switch 'z' to the value of 'code' value. You can replace 'code' with a
  *   number like '12345', a calculation using 'value' (the current value of the
  *   Self Variable), or a piece of code like '$gameVariables.value(4)'.
- *
+ *   这会改变独立变量z在地图x，事件y里面的值
  * ============================================================================
  * Lunatic Mode - Script Calls
  * ============================================================================
  *
- * For those who'd rather deal altering self switches and/or self variables
- * inside of the script call event instead, you can use these script calls:
+ * 对于那些想要从代码里改变独立开关和变量值得人，可以使用下面的脚本命令
  *
  * Script Call:
- *
+ *     获得独立开关值
  *   this.getSelfSwitchValue(mapId, eventId, switchId)
  *   - Replace mapId with the map ID the event exists on. Replace eventId with
  *   the ID of the event. And replace the switchId with the ID of the switch.
  *   This will get the true/false value of that event's self switch.
  *
- *   this.getSelfVariableValue(mapId, eventId, varId)
+ *   this.getSelfVariableValue(mapId, eventId, varId)  获得独立变量值
  *   - Replace mapId with the map ID the event exists on. Replace eventId with
  *   the ID of the event. And replace the varId with the ID of the variable.
  *   This will get the value of that event's self variable.
  *
  *   this.setSelfSwitchValue(mapId, eventId, switchId, true)
- *   this.setSelfSwitchValue(mapId, eventId, switchId, false)
+ *   this.setSelfSwitchValue(mapId, eventId, switchId, false)  
+ *   打开或者关闭独立开关
  *   - Replace mapId with the map ID the event exists on. Replace eventId with
  *   the ID of the event. And replace the switchId with the ID of the switch.
  *   This will set that self switch to true or false.
  *
- *   this.setSelfVariableValue(mapId, eventId, varId, value)
+ *   this.getSelfVariableValue(mapId, eventId, varId, value)
+ *   设置独立变量的值
  *   - Replace mapId with the map ID the event exists on. Replace eventId with
  *   the ID of the event. And replace the varId with the ID of the variable.
  *   This will set that self variable to the value inserted.
@@ -143,18 +136,6 @@ Yanfly.SSV.version = 1.04;
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.04:
- * - Bypass the isDevToolsOpen() error when bad code is inserted into a script
- * call or custom Lunatic Mode code segment due to updating to MV 1.6.1.
- *
- * Version 1.03:
- * - Updated for RPG Maker MV version 1.5.0.
- *
- * Version 1.02a:
- * - Lunatic Mode fail safes added.
- * - Documentation updated for the script calls. Previously used incorrect
- * function names. Function names should now be fixed.
  *
  * Version 1.01:
  * - Fixed a conflict that made self variables not work properly with the Input
@@ -531,12 +512,7 @@ Game_Interpreter.prototype.adjustSelfSwitch = function(line) {
   if (!DataManager.isSelfSwitch(switchId)) return;
   var key = [mapId, eventId, 'SELF SWITCH ' + switchId];
   var value = $gameSelfSwitches.value(key);
-  try {
-    value = eval(code);
-  } catch (e) {
-    value = 0;
-    Yanfly.Util.displayError(e, code, 'ADJUST SELF SWITCH SCRIPT ERROR');
-  }
+  value = eval(code);
   $gameSelfSwitches.setValue(key, value);
 };
 
@@ -558,12 +534,7 @@ Game_Interpreter.prototype.adjustSelfVariable = function(line) {
   if (!DataManager.isSelfVariable(varId)) return;
   var key = [mapId, eventId, 'SELF VARIABLE ' + varId];
   var value = $gameSelfSwitches.value(key);
-  try {
-    value = eval(code);
-  } catch (e) {
-    value = 0;
-    Yanfly.Util.displayError(e, code, 'ADJUST SELF VARIABLE SCRIPT ERROR');
-  }
+  value = eval(code);
   $gameSelfSwitches.setValue(key, value);
 };
 
@@ -621,24 +592,6 @@ Window_EventItem.prototype.onOk = function() {
   $gameTemp.clearSelfSwVarEvBridge();
   Yanfly.SSV.Window_EventItem_onOk.call(this);
   $gameTemp.clearSelfSwVarEvent();
-};
-
-//=============================================================================
-// Utilities
-//=============================================================================
-
-Yanfly.Util = Yanfly.Util || {};
-
-Yanfly.Util.displayError = function(e, code, message) {
-  console.log(message);
-  console.log(code || 'NON-EXISTENT');
-  console.error(e);
-  if (Utils.RPGMAKER_VERSION && Utils.RPGMAKER_VERSION >= "1.6.0") return;
-  if (Utils.isNwjs() && Utils.isOptionValid('test')) {
-    if (!require('nw.gui').Window.get().isDevToolsOpen()) {
-      require('nw.gui').Window.get().showDevTools();
-    }
-  }
 };
 
 //=============================================================================

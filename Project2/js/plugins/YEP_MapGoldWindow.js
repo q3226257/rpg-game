@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Map Gold Window
 // YEP_MapGoldWindow.js
 //=============================================================================
@@ -8,33 +8,22 @@ Imported.YEP_MapGoldWindow = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.MGW = Yanfly.MGW || {};
-Yanfly.MGW.version = 1.02
 
 //=============================================================================
  /*:
- * @plugindesc v1.02 Allows you to display the gold window on your map.
- * @author Yanfly Engine Plugins
+ * @plugindesc v1.01 地图上金币显示
  *
  * @param Automatic Open
- * @type boolean
- * @on YES
- * @off NO
  * @desc Automatically open the map window by default?
  * NO - false     YES - true
  * @default true
  *
  * @param Default Position
- * @type number
- * @min 1
- * @max 9
  * @desc The default position of the gold window.
  * Refer to the numbers on the NumPad for screen position.
  * @default 9
  *
  * @param Opacity
- * @type number
- * @min 0
- * @max 255
  * @desc The opacity value used for the gold window.
  * Default: 255
  * @default 255
@@ -44,22 +33,21 @@ Yanfly.MGW.version = 1.02
  * Introduction
  * ============================================================================
  *
- * Ever wanted to display the gold window and leave it on the map screen for a
- * bit? This plugin will allow you to do that with just a few plugin commands.
+ * 你是否想显示金币窗口在地图上呢？这个插件可以让你做到
  *
  * ============================================================================
  * Plugin Commands
  * ============================================================================
  *
- * Use the following plugin commands to control the gold window.
+ * 使用下面的插件命令来控制
  *
  * Plugin Command:
  *
  *   OpenMapGoldWindow
- *   Opens the map gold window.
+ *   Opens the map gold window.  打开地图金币窗口
  *
  *   CloseMapGoldWindow
- *   Closes the map gold window.
+ *   Closes the map gold window.  关闭地图金币窗口
  *
  *   MapGoldWindowPosition x
  *   Changes the screen position of the map gold window to x. Refer to the
@@ -69,16 +57,11 @@ Yanfly.MGW.version = 1.02
  *   4   5   6
  *   1   2   3
  *
- *   If you set the value to 0, it will maintain its current position but will
- *   automatically move itself to a different location if it intrudes on the
- *   message window.
+ *   改变金币窗口位置。如果设置为0，则会保持原有位置不动
  *
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.02:
- * - Updated for RPG Maker MV version 1.5.0.
  *
  * Version 1.01:
  * - Fixed a bug where a finished message in battle would open up the gold

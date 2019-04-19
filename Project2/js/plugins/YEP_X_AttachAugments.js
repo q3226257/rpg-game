@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Item Core Extension - Attachable Augments
 // YEP_X_AttachAugments.js
 //=============================================================================
@@ -8,43 +8,32 @@ Imported.YEP_X_AttachAugments = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.Augment = Yanfly.Augment || {};
-Yanfly.Augment.version = 1.11;
+Yanfly.Augment.version = 1.09;
 
 //=============================================================================
  /*:
- * @plugindesc v1.11 (Requires YEP_ItemCore.js) Players can attach and
- * detach augments to independent equipment.
+ * @plugindesc v1.09 镶嵌强化
  * @author Yanfly Engine Plugins
  *
  * @param ---Default---
  * @default
  *
  * @param Weapon Slots
- * @parent ---Default---
  * @desc The default augment slots your weapon uses.
  * Separate each slot with a comma.
  * @default Glyph, Mark, Orb, Orb
  *
  * @param Armor Slots
- * @parent ---Default---
  * @desc The default augment slots your weapon uses.
  * Separate each slot with a comma.
  * @default Sphere, Orb, Orb, Orb
  *
  * @param Enable Augments
- * @parent ---Default---
- * @type boolean
- * @on Enable
- * @off Disable
  * @desc Enable augments by default at game start in action window?
  * NO - false     YES - true
  * @default true
  *
  * @param Show Augments
- * @parent ---Default---
- * @type boolean
- * @on Show
- * @off Hide
  * @desc Show augments by default at game start in info window?
  * NO - false     YES - true
  * @default true
@@ -53,18 +42,15 @@ Yanfly.Augment.version = 1.11;
  * @default
  *
  * @param Augment Slot Format
- * @parent ---Command Window---
  * @desc This is how the augment slots will appear:
  * %1 - Slot Name     %2 - Equipment Name
  * @default \c[16]%1:\c[0] %2
  *
  * @param No Augment Text
- * @parent ---Command Window---
  * @desc This is how a slot appears if it has no augments.
  * @default \c[7]- None -
  *
  * @param Remove Augment
- * @parent ---Command Window---
  * @desc Text used to remove augments from item.
  * @default \i[16]Detach Augment
  *
@@ -72,25 +58,15 @@ Yanfly.Augment.version = 1.11;
  * @default
  *
  * @param Show Augment Info
- * @parent ---Info Window---
- * @type boolean
- * @on Show
- * @off Hide
  * @desc Show Augments in the info window?
  * NO - false     YES - true
  * @default true
  *
  * @param Info Title
- * @parent ---Info Window---
  * @desc Text used to display augments.
  * @default Augments
  *
  * @param Title Alignment
- * @parent ---Info Window---
- * @type combo
- * @option left
- * @option center
- * @option right
  * @desc What alignment do you want to use for the title?
  * left     center     right
  * @default center
@@ -100,15 +76,11 @@ Yanfly.Augment.version = 1.11;
  * Introduction
  * ============================================================================
  *
- * This plugin requires YEP_ItemCore.
- * Make sure this plugin is located under YEP_ItemCore in the plugin list.
+ * 这个插件需要YEP_ItemCore，确保放在它下面
  *
- * Attachable Augments is an extension plugin made for the Item Core plugin. It
- * allows equipment to be able to attach augment components to various slots,
- * that you can define individually per item. These slots can be of a certain
- * category unique to that item or global across all items. The effects used
- * with the augment can involve parameter changes, adding skills, adjust state
- * resistances, place attack elements, and more!
+ * 附加增强系统是物品核心插件的拓展插件。他可以让你的装备能够镶嵌附加不同的
+ * 能力，你可以自定义每个独立物品。这些镶嵌口可以设置独特的分类，我们可以通
+ * 过这些改变基础参数，增加技能，调整抗性等等
  *
  * ============================================================================
  * Notetags
@@ -120,54 +92,42 @@ Yanfly.Augment.version = 1.11;
  * Weapon and Armor Notetags:
  *
  *   <Augment Slots>
- *    Rune
- *    Glyph
- *    Orb
- *    Mark
- *   </Augment Slots>
+ *    Rune  魔法符号
+ *    Glyph  石雕符号
+ *    Orb   抢夺
+ *    Mark   标志
+ *   </Augment Slots>  设置装备镶嵌槽类别
  *   This allows you to set what kind of augments are used for the item. The
  *   names used for the augment slots are the augment types used for that item.
  *
- *   <No Augment Slots>
+ *   <No Augment Slots>  无法镶嵌附加
  *   This makes the item have no augment slots.
  *
  * Item, Weapon, Armor Notetags
  *
  *   <Augment: type>
- *    augment effect
+ *    augment effect  增大的效果
  *    augment effect
  *   </Augment: type>
- *   This will change the item into a non-Independent item. This item can be
- *   used to augment equipment that contain the appropriate augment 'type'.
- *   This particular notetag will decide the augment effect for attaching the
- *   augment component and the reverse effect for detaching the component.
- *   Insert multiple sets of these notetags to allow different augment effects
- *   when used on different augment slot types.
+ *   将物品改造为非独立物品，这些物品可以用来镶嵌在武器护甲上。这个标签可以用
+ *   来设置镶嵌后的属性并且脱离后也会保留状态。你可以设置多个效果影响
  *
  *   <Augment Attach: type>
  *    augment effect
  *    augment effect
  *   </Augment Attach: type>
- *   This will change the item into a non-Independent item. This item can be
- *   used to augment equipment that contain the appropriate augment 'type'.
- *   This notetag will decide only the augment effects that are applied when
- *   the augment component is attached to the equipment and not when detached.
- *   Insert multiple sets of these notetags to allow different augment effects
- *   when used on different augment slot types.
+ *   将物品改造为非独立物品，这些物品可以用来镶嵌在武器护甲上。这个标签可以用
+ *   来设置镶嵌后的属性但是脱离后不会保留状态。你可以设置多个效果影响
  *
  *   <Augment Detach: type>
  *    augment effect
  *    augment effect
  *   </Augment Detach: type>
- *   This will change the item into a non-Independent item. This item can be
- *   used to augment equipment that contain the appropriate augment 'type'.
- *   This notetag will decide only the augment effects that are applied when
- *   the augment component is detached from the equipment and not attached.
- *   Insert multiple sets of these notetags to allow different augment effects
- *   when used on different augment slot types.
+ *   将物品改造为非独立物品，这些物品可以用来镶嵌在武器护甲上。这个标签可以用
+ *   来设置脱离镶嵌后的属性，注意在镶嵌时不会保留状态。你可以设置多个效果影响
  *
  * ============================================================================
- * Augment Effect List
+ * Augment Effect List  镶嵌后效果列表
  * ============================================================================
  *
  * The following is a list of effects you can use for the <Augment: type>,
@@ -177,14 +137,14 @@ Yanfly.Augment.version = 1.11;
  * --- Effects ---
  *
  * Param: +x
- * Param: -x
+ * Param: -x 改变基础属性参数
  * - Replace 'Param' with 'MaxHP', 'MaxMP', 'ATK', 'DEF', 'MAT', 'MDF', 'AGI',
  * or 'LUK'. This will increase/decrease the parameter for the item by x.
  *
  * ---
  *
  * Param: +x%
- * Param: -x%
+ * Param: -x% 按照百分比改变基础属性参数
  * - Replace 'Param'  with 'MaxHP', 'MaxMP', 'ATK', 'DEF', 'MAT', 'MDF', 'AGI',
  * 'LUK', 'HIT', 'EVA', 'CRI', 'CEV', 'MEV', 'MRF', 'CNT', 'HRG', 'MRG', 'TRG',
  * 'TGR', 'GRD', 'REC', 'PHA', 'MCR', 'TCR', 'PDR', 'MDR', 'FDR', or 'EXR'.
@@ -195,24 +155,24 @@ Yanfly.Augment.version = 1.11;
  * ---
  *
  * Boost: +x
- * Boost: -x
+ * Boost: -x 改变物品数量
  * - This will increase or decrease the boost count of the item by x.
  *
  * ---
  *
  * Price: +x
- * Price: -x
+ * Price: -x  改变物品价格
  * - This will increase or decrease the price of the item by x.
  *
  * ---
  *
- * Cannot Detach
+ * Cannot Detach  不可脱离镶嵌
  * - This makes the augment unable to be detached once applied.
  *
  * ---
  *
  * Add Attack Element: x
- * Remove Attack Element: x
+ * Remove Attack Element: x   改变攻击属性
  * - Add/Remove Attack Element 'x' to item. You can use either the name or the
  * ID of the element. If the name is used and you have multiple elements in
  * your database with the same name, priority will be given to the element with
@@ -223,7 +183,7 @@ Yanfly.Augment.version = 1.11;
  * Add Attack State: x
  * Add Attack State: x, y%
  * Remove Attack State: x
- * Remove Attack State: x, y%
+ * Remove Attack State: x, y%  改变攻击状态
  * - Add/Remove Attack State 'x' to item. You can use either the name of the ID
  * of the state. If the name is used and you have multiple states in your
  * database with the same name, priority will be given to the state with the
@@ -237,7 +197,7 @@ Yanfly.Augment.version = 1.11;
  * Add Debuff Rate: param, -x%
  * Remove Debuff Rate: param, x%
  * Remove Debuff Rate: param, +x%
- * Remove Debuff Rate: param, -x%
+ * Remove Debuff Rate: param, -x%  改变效果概率
  * - Replace 'param' with 'MaxHP', 'MaxMP', 'ATK', 'DEF', 'MAT', 'MDF', 'AGI',
  * or LUK. Add/remove the debuff affliction rate of the parameter for the item
  * to 'x%' rate.
@@ -249,7 +209,7 @@ Yanfly.Augment.version = 1.11;
  * Add Element Rate: x, -y%
  * Remove Element Rate: x, y%
  * Remove Element Rate: x, +y%
- * Remove Element Rate: x, -y%
+ * Remove Element Rate: x, -y%  改变元素概率
  * - Add/Remove element rate 'x' to item. You can use either the name or the
  * ID of the element. If the name is used and you have multiple elements in
  * your database with the same name, priority will be given to the element with
@@ -258,7 +218,7 @@ Yanfly.Augment.version = 1.11;
  * ---
  *
  * Add Passive State: x
- * Remove Passive State: x
+ * Remove Passive State: x  改变被动效果
  * - Requires YEP_AutoPassiveStates.js installed. Add/Remove passive state 'x'
  * to item. You can use either the name or the ID of the state. If the name is
  * used and you have multiple states in your database with the same name,
@@ -267,7 +227,7 @@ Yanfly.Augment.version = 1.11;
  * ---
  *
  * Add Skill: x
- * Remove Skill: x
+ * Remove Skill: x  改变技能
  * - Add/Remove skill 'x' to item. You can use either the name or the ID of the
  * skill. If the name is used and you have multiple skills in your database
  * with the same name, priority will be given to the skill with the highest ID.
@@ -279,7 +239,7 @@ Yanfly.Augment.version = 1.11;
  * Add Skill Type: x
  * Add SType: x
  * Remove Skill Type: x
- * Remove SType: x
+ * Remove SType: x   改变技能类型
  * - Add/Remove skill type 'x' to item. You can use either the name or the ID
  * of the skill type. If the name is used and you have multiple skills in your
  * database with the same name, priority will be given to the skill type with
@@ -293,7 +253,7 @@ Yanfly.Augment.version = 1.11;
  * Add State Rate: x, -y%
  * Remove State Rate: x, y%
  * Remove State Rate: x, +y%
- * Remove State Rate: x, -y%
+ * Remove State Rate: x, -y%  改变状态概率
  * - Add/Remove state rate for state 'x' to item. You can use either the name
  * or the ID of the state. If the name is used and you have multiple states in
  * your database with the same name, priority will be given to the state with
@@ -302,7 +262,7 @@ Yanfly.Augment.version = 1.11;
  * ---
  *
  * Add State Resist: x
- * Remove State Resist: x
+ * Remove State Resist: x  改变状态抵抗率
  * - Add/Remove state resist for state 'x' to item. You can use either the name
  * or the ID of the state. If the name is used and you have multiple states in
  * your database with the same name, priority will be given to the state with
@@ -311,7 +271,7 @@ Yanfly.Augment.version = 1.11;
  * ---
  *
  * Change Base Name: x
- * Cancel Base Name: x
+ * Cancel Base Name: x  改变物品基础名字
  * - Changes/Cancels the base name of the item to 'x' while the augment is on
  * the item. If an item has multiple augments that alter the base name, then
  * priority is given to the first augment that alters the base name.
@@ -319,7 +279,7 @@ Yanfly.Augment.version = 1.11;
  * ---
  *
  * Change Icon: x
- * Cancel Icon: x
+ * Cancel Icon: x  改变图标
  * - Changes/cancels the icon of the item to 'x' while the augment is on the
  * item. If an item has multiple augments that alter the icon, then priority is
  * given to the first augment that alters the icon.
@@ -327,7 +287,7 @@ Yanfly.Augment.version = 1.11;
  * ---
  *
  * Change Picture Hue: x
- * Cancel Picture Hue: x
+ * Cancel Picture Hue: x  
  * - Changes/cancels the picture hue used for the item to 'x' while the
  * augment is on the item. If an item has multiple augments that alter the
  * picture hue, then priority is given to the first augment that alters the
@@ -345,7 +305,7 @@ Yanfly.Augment.version = 1.11;
  * ---
  *
  * Change Prefix: x
- * Cancel Prefix: x
+ * Cancel Prefix: x  改变前缀
  * - Changes/Cancels the prefix of the item to 'x' while the augment is on the
  * item. If an item has multiple augments that alter the prefix, then priority
  * is given to the first augment that alters the priority.
@@ -353,7 +313,7 @@ Yanfly.Augment.version = 1.11;
  * ---
  *
  * Change Priority Name: x
- * Cancel Priority Name: x
+ * Cancel Priority Name: x  改变优先名
  * - Changes/Cancels the priority name of the item to 'x' while the augment is
  * on the item. If an item has multiple augments that alter the priority name,
  * then priority is given to the first augment that alters the priority name.
@@ -361,7 +321,7 @@ Yanfly.Augment.version = 1.11;
  * ---
  *
  * Change Suffix: x
- * Cancel Suffix: x
+ * Cancel Suffix: x  改变后缀
  * - Changes/Cancels the suffix of the item to 'x' while the augment is on the
  * item. If an item has multiple augments that alter the suffix, then priority
  * is given to the first augment that alters the suffix.
@@ -369,7 +329,7 @@ Yanfly.Augment.version = 1.11;
  * ---
  *
  * Change Text Color: x
- * Cancel Text Color: x
+ * Cancel Text Color: x  改变文本颜色
  * - Changes/Cancels the text color used for the item to 'x' while the augment
  * is on the item. If an item has multiple augments that alter the text color,
  * then priority is given to the first augment that alters text color.
@@ -432,13 +392,6 @@ Yanfly.Augment.version = 1.11;
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.11:
- * - Bypass the isDevToolsOpen() error when bad code is inserted into a script
- * call or custom Lunatic Mode code segment due to updating to MV 1.6.1.
- *
- * Version 1.10:
- * - Updated for RPG Maker MV version 1.5.0.
  *
  * Version 1.09:
  * - Lunatic Mode fail safes added.
@@ -1730,7 +1683,6 @@ Yanfly.Util.displayError = function(e, code, message) {
   console.log(message);
   console.log(code || 'NON-EXISTENT');
   console.error(e);
-  if (Utils.RPGMAKER_VERSION && Utils.RPGMAKER_VERSION >= "1.6.0") return;
   if (Utils.isNwjs() && Utils.isOptionValid('test')) {
     if (!require('nw.gui').Window.get().isDevToolsOpen()) {
       require('nw.gui').Window.get().showDevTools();

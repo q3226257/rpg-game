@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Buffs & States Core
 // YEP_BuffsStatesCore.js
 //=============================================================================
@@ -8,75 +8,48 @@ Imported.YEP_BuffsStatesCore = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.BSC = Yanfly.BSC || {};
-Yanfly.BSC.version = 1.16;
+Yanfly.BSC.version = 1.12;
 
 //=============================================================================
  /*:
- * @plugindesc v1.16 Alter the basic mechanics behind buffs and states
- * that aren't adjustable within the RPG Maker editor.
+ * @plugindesc v1.12a 效果状态核心
  * @author Yanfly Engine Plugins
  *
  * @param ---Turn Indicator---
  * @default
  *
  * @param Show Turns
- * @parent ---Turn Indicator---
- * @type boolean
- * @on Show
- * @off Hide
  * @desc Show turns remaining for buffs and states?
  * NO - false     YES - true
  * @default true
  *
  * @param Font Size
- * @parent ---Turn Indicator---
- * @type number
- * @min 1
  * @desc The default font size used for turn count.
  * Default: 28
  * @default 16
  *
  * @param Turn Alignment
- * @parent ---Turn Indicator---
- * @type combo
- * @option left
- * @option center
- * @option right
  * @desc How do you want to align the turns?
  * left     center     right
  * @default right
  *
  * @param Turn Buffer X
- * @parent ---Turn Indicator---
  * @desc Buffer the x position of the turn by this much.
  * @default -3
  *
  * @param Turn Buffer Y
- * @parent ---Turn Indicator---
  * @desc Buffer the y position of the turn by this much.
  * @default -6
  *
  * @param State Color
- * @parent ---Turn Indicator---
- * @type number
- * @min 0
- * @max 31
  * @desc The default text color used for state turns.
  * @default 0
  *
  * @param Buff Color
- * @parent ---Turn Indicator---
- * @type number
- * @min 0
- * @max 31
  * @desc The default text color used for buffs.
  * @default 24
  *
  * @param Debuff Color
- * @parent ---Turn Indicator---
- * @type number
- * @min 0
- * @max 31
  * @desc The default text color used for debuffs.
  * @default 2
  *
@@ -84,37 +57,21 @@ Yanfly.BSC.version = 1.16;
  * @default
  *
  * @param Show Enemy Icons
- * @parent ---Enemy Icons---
- * @type boolean
- * @on Show
- * @off Hide
  * @desc Do you wish to show enemy state icons?
  * NO - false     YES - true
  * @default true
  *
  * @param Enemy Buff Turn
- * @parent ---Enemy Icons---
- * @type boolean
- * @on Show
- * @off Hide
  * @desc Do you wish to show enemy buff turns remaining?
  * NO - false     YES - true
  * @default true
  *
  * @param Enemy State Turn
- * @parent ---Enemy Icons---
- * @type boolean
- * @on Show
- * @off Hide
  * @desc Do you wish to show enemy state turns remaining?
  * NO - false     YES - true
  * @default true
  *
  * @param Enemy State Counter
- * @parent ---Enemy Icons---
- * @type boolean
- * @on Show
- * @off Hide
  * @desc Do you wish to show enemy state counters?
  * NO - false     YES - true
  * @default true
@@ -123,31 +80,20 @@ Yanfly.BSC.version = 1.16;
  * @default
  *
  * @param Default Limit
- * @parent ---Buff Settings---
- * @type number
- * @min 1
  * @desc The default number of times you can stack buff/debuff.
  * Default: 2
  * @default 4
  *
  * @param Maximum Limit
- * @parent ---Buff Settings---
- * @type number
- * @min 1
  * @desc The maximum number of times you can stack buff/debuff.
  * @default 8
  *
  * @param Buff Formula
- * @parent ---Buff Settings---
  * @desc The formula used for buff rate calculation.
  * Default: this._buffs[paramId] * 0.25 + 1.0
  * @default this._buffs[paramId] * 0.25 + 1.0
  *
  * @param Show Buff Rate
- * @parent ---Buff Settings---
- * @type boolean
- * @on Show
- * @off Hide
  * @desc Shows the buff/debuff rate for buffs and debuffs.
  * YES - true     NO - false
  * @default false
@@ -156,23 +102,11 @@ Yanfly.BSC.version = 1.16;
  * @default
  *
  * @param Reapply Rules
- * @parent ---State Settings---
- * @type select
- * @option Ignore
- * @value 0
- * @option Reset
- * @value 1
- * @option Add
- * @value 2
  * @desc The rules when reapplying an already existing state:
  * 0 - Ignore     1 - Reset     2 - Add
  * @default 1
  *
  * @param Show Enemy Turns
- * @parent ---State Settings---
- * @type boolean
- * @on Show
- * @off Hide
  * @desc If using Battle Engine Core, show turns in help window?
  * NO - false     YES - true
  * @default true
@@ -181,38 +115,24 @@ Yanfly.BSC.version = 1.16;
  * @default
  *
  * @param Counter Font Size
- * @parent ---Counter Settings---
- * @type number
- * @min 1
  * @desc The default font size used for state counters.
  * Default: 28
  * @default 16
  *
  * @param Counter Alignment
- * @parent ---Counter Settings---
- * @type combo
- * @option left
- * @option center
- * @option right
  * @desc How do you want to align the counter?
  * left     center     right
  * @default center
  *
  * @param Counter Buffer X
- * @parent ---Counter Settings---
  * @desc Buffer the x position of the counter by this much.
  * @default 0
  *
  * @param Counter Buffer Y
- * @parent ---Counter Settings---
  * @desc Buffer the y position of the counter by this much.
  * @default 8
  *
  * @param Counter Color
- * @parent ---Counter Settings---
- * @type number
- * @min 0
- * @max 31
  * @desc The default text color used for state counters.
  * @default 0
  *
@@ -221,28 +141,24 @@ Yanfly.BSC.version = 1.16;
  * Introduction
  * ============================================================================
  *
- * If you are using YEP_BattleEngineCore.js, please this plugin under
- * YEP_BattleEngineCore in the plugin list for the best effect.
+ * 如果你在使用YEP_BattleEngineCore.js，请放在YEP_BattleEngineCore.js下面
  *
  * Alter the basic mechanics behind buffs and states that aren't adjustable
  * within the RPG Maker editor. Such mechanics include altering the maximum
  * number of times buffs can stack, changing the turns remaining on buffs and
- * states, and the rules involved when reapplying states.
+ * 这可以改变增益效果和状态。这些包括增益效果持续时间，回合等等
  *
- * A turn indicator has been added to show the amount of turns remaining on
- * buffs, debuffs, and states. Buffs and debuffs will operate off the plugin
- * parameter settings while states can operate on individual settings if you
- * choose for them to have unique settings.
+ * 我们为增益效果、减益效果、状态等添加了一个回合指示器。你可以通过插件参
+ * 数来设置增益和减益效果，或者也可以用单独的设置来改变状态
  *
- * Furthermore, a lot of Lunatic Mode options are added with this plugin to
- * allow those with JavaScript proficiency maximum control with states and any
- * unique effects that follow.
+ * 并且，有很多自定义模式可以来设置，你可以用JS语言来更好的设置状态或者其
+ * 他特殊影响
  *
  * ============================================================================
  * Notetags
  * ============================================================================
  *
- * The following are various notetags you can use to modify states and buffs.
+ * 下面这个标签你可以用来调整状态和效果
  *
  * --- Buff Related ---
  *
@@ -254,13 +170,13 @@ Yanfly.BSC.version = 1.16;
  *   Replace 'stat' with 'maxhp', 'maxmp', 'atk', 'def', 'mat', 'mdf', 'agi',
  *   or 'luk' without the quotes. This notetag adjusts the maximum number of
  *   times the stat can be buffed or debuffed to the Maximum Limit cap in the
- *   plugin parameters.
+ *   plugin parameters.设置状态调整数值
  *
  * Skill and Item Notetags:
  *   <stat Buff Turns: +x>
  *   <stat Buff Turns: -x>
  *   <stat Debuff Turns: +x>
- *   <stat Debuff Turns: -x>
+ *   <stat Debuff Turns: -x>    设置持续回合
  *   Modifies already applied buff/debuff turns on target by x value. If this
  *   brings a buff/debuff to 0 or below, the buff/debuff is removed.
  *
@@ -270,36 +186,34 @@ Yanfly.BSC.version = 1.16;
  *   <Show Turns>
  *   <Hide Turns>
  *   Show/hide the turn count remaining for the state. This will override the
- *   default setting.
+ *   default setting.显示回合数
  *
  *   <Turn Font Size: x>
  *   Sets the font size used for this specific state to be x. This will
- *   override the default setting.
+ *   override the default setting.显示回合数文本大小
  *
  *   <Turn Alignment: Left>
  *   <Turn Alignment: Center>
  *   <Turn Alignment: Right>
  *   This sets the text alignment for the turn count indicator. This will
- *   override the default setting.
+ *   override the default setting.显示回合数的位置
  *
  *   <Turn Buffer X: +x>
  *   <Turn Buffer X: -x>
  *   <Turn Buffer Y: +x>
  *   <Turn Buffer Y: -x>
  *   Allows you to adjust the x/y position manually for the turn count for this
- *   particular state. This will override the default settings.
+ *   particular state. This will override the settings.调整显示回合数的位置
  *
  *   <Turn Color: x>
  *   This will set the turn count display color to text color x. This will
- *   override the default setting.
+ *   override the default setting.显示回合数的文本颜色
  *
  *   <Reapply Ignore Turns>
  *   <Reapply Reset Turns>
  *   <Reapply Add Turns>
- *   Changes the rules when this state is reapplied on a battler. When ignored,
- *   the turn count remains unchanged. When reset, the turn count is set back
- *   to the default amount with variance. When added, the turn count is added
- *   upon with variance.
+ *   当状态再次应用时的规则。如果是忽略，则继续计回合数，如果重置，则回合数
+ *   为默认值，如果叠加，则加到原有回合数上
  *
  * Skill and Item Notetags:
  *   <State x Turns: +y>
@@ -309,14 +223,14 @@ Yanfly.BSC.version = 1.16;
  *   Modifies already applied state x turns on target by y value. If this
  *   brings the state to 0 or below turns, the state is removed. If you are
  *   using named states and have multiple states with the same name, priority
- *   will be given to the state with the highest ID.
+ *   改变状态持续时间。如果你使用名字来设置，当重名时，优先考虑ID最高的
  *
  * Enemy Notetags:
  *   <Show State Turns>
  *   <Hide State Turns>
  *   Affected by the Battle Engine Core. When selecting enemies, the state
  *   turns will show up in the help window. You can use this to have certain
- *   enemies show the state turns or hide them.
+ *   enemies show the state turns or hide them.显示状态持续回合
  *
  * ============================================================================
  * Lunatic Mode - Custom Turn Modifiers
@@ -592,7 +506,7 @@ Yanfly.BSC.version = 1.16;
  *
  * There are a couple of notetags you can use for states:
  *
- *   <Counter Font Size: x>
+ *   <Counter Font Size>
  *   This adjusts the font size of the counter.
  *
  *   <Counter Alignment: left>
@@ -638,20 +552,6 @@ Yanfly.BSC.version = 1.16;
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.16:
- * - Bypass the isDevToolsOpen() error when bad code is inserted into a script
- * call or custom Lunatic Mode code segment due to updating to MV 1.6.1.
- *
- * Version 1.15:
- * - Updated for RPG Maker MV version 1.6.1.
- *
- * Version 1.14:
- * - Updated for RPG Maker MV version 1.5.0.
- * - Fixed documentation error.
- *
- * Version 1.13:
- * - Custom Turn End effects will no longer occur outside of battle.
  *
  * Version 1.12a:
  * - Lunatic Mode fail safes added.
@@ -1457,7 +1357,6 @@ Game_Battler.prototype.onTurnEnd = function() {
 };
 
 Game_Battler.prototype.meetTurnEndStateEffectsConditions = function() {
-    if (!$gameParty.inBattle()) return false;
     if (Imported.YEP_BattleEngineCore) {
       if (BattleManager.isTurnBased()) {
         return true;
@@ -1492,8 +1391,8 @@ Game_Battler.prototype.regenerateStateEffects = function(stateId) {
 
 Yanfly.BSC.Game_Battler_regenerateAll = Game_Battler.prototype.regenerateAll;
 Game_Battler.prototype.regenerateAll = function() {
-  if ($gameParty.inBattle()) this.onRegenerateStateEffects();
-  Yanfly.BSC.Game_Battler_regenerateAll.call(this);
+    this.onRegenerateStateEffects();
+    Yanfly.BSC.Game_Battler_regenerateAll.call(this);
 };
 
 if (Imported.YEP_BattleEngineCore) {
@@ -2189,7 +2088,6 @@ Yanfly.Util.displayError = function(e, code, message) {
   console.log(message);
   console.log(code || 'NON-EXISTENT');
   console.error(e);
-  if (Utils.RPGMAKER_VERSION && Utils.RPGMAKER_VERSION >= "1.6.0") return;
   if (Utils.isNwjs() && Utils.isOptionValid('test')) {
     if (!require('nw.gui').Window.get().isDevToolsOpen()) {
       require('nw.gui').Window.get().showDevTools();

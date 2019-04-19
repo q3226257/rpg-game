@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Life Steal
 // YEP_LifeSteal.js
 //=============================================================================
@@ -8,42 +8,29 @@ Imported.YEP_LifeSteal = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.LS = Yanfly.LS || {};
-Yanfly.LS.version = 1.04;
+Yanfly.LS.version = 1.02;
 
 //=============================================================================
  /*:
- * @plugindesc v1.04 Enables passive life steal traits without them being
- * active abilities but instead as passive traits.
+ * @plugindesc v1.02 生命偷取
  * @author Yanfly Engine Plugins
  *
  * @param Enable HP Overheal
- * @type boolean
- * @on Enable
- * @off Disable
  * @desc Allow Life Steal to drain more HP than damage?
  * NO - false     YES - true
  * @default false
  *
  * @param Enable MP Overheal
- * @type boolean
- * @on Enable
- * @off Disable
  * @desc Allow Life Steal to drain more MP than damage?
  * NO - false     YES - true
  * @default false
  *
  * @param Negative HP LifeSteal
- * @type boolean
- * @on Enable
- * @off Disable
  * @desc Allow HP Life Steal values to go negative and damage
  * the attacker? NO - false     YES - true
  * @default false
  *
  * @param Negative MP LifeSteal
- * @type boolean
- * @on Enable
- * @off Disable
  * @desc Allow MP Life Steal values to go negative and damage
  * the attacker? NO - false     YES - true
  * @default false
@@ -53,18 +40,14 @@ Yanfly.LS.version = 1.04;
  * Introduction
  * ============================================================================
  *
- * Life Steal is a mechanic in RPG Maker MV that only exists in the form of
- * specific skills or items. There is no way to passively gain Life Steal from
- * physical, magical, or certain hit attacks. This plugin will allow you to set
- * passive Life Steal traits for physical, magical, and certain hit attacks for
- * both HP and MP values.
+ * 生命偷取在MV里是特殊技能或者物品才可以使用的。无法从物理攻击中获得。这个
+ * 插件可以让你设置主动生命偷取，包括血量和魔法量
  *
  * ============================================================================
  * Notetags
  * ============================================================================
  *
- * You can use the following notetags to alter how Life Stealing works for the
- * various database entries.
+ * 你可以使用下面标签来改变生命偷取的选项.
  *
  * ---
  *
@@ -72,24 +55,18 @@ Yanfly.LS.version = 1.04;
  *
  *   <HP Life Steal: x%>
  *   <MP Life Steal: x%>
- *   This causes this attack to life steal x% of HP or MP back relative to the
- *   amount of damage dealt.
+ *   设置偷取百分比
  *
  *   <HP Life Steal: x>
  *   <MP Life Steal: x>
- *   This causes this attack to life steal exactly x amount of HP or MP back
- *   regardless of damage dealt.
+ *   设置偷取值
  *
  *   <Cancel Life Steal>
- *   Makes this skill or item cancel any Life Steal effects from passively
- *   activating for this action. However, HP Drain and MP Drain will still
- *   still occur.
+ *   取消生命偷取
  *
  *   <Cancel HP Life Steal>
  *   <Cancel MP Life Steal>
- *   Specifically cancels out HP Life Steal or MP Life Steal effects from
- *   passively activating for this action. However, HP Drain and MP Drain will
- *   still occur.
+ *   单独取消血量偷取或者魔法量偷取
  *
  * ---
  *
@@ -128,23 +105,23 @@ Yanfly.LS.version = 1.04;
  *
  *   <MP Life Steal Physical: -x>
  *   <MP Life Steal Magical: -x>
- *   <MP Life Steal Certain: -x>
+ *   <MP Life Steal Certain: -x>  设置相应的生命偷取值
  *   This causes the related battler to additively increase its passive Life
  *   Steal by a flat +x or -x of the damage dealt towards Physical, Magical, or
  *   Certain Hit type of attacks. This effect stacks additively.
  *
- *   <Guard Life Steal>
+ *   <Guard Life Steal>  抵挡生命偷取
  *   The related battler cannot be life stolen from for both HP and MP.
  *
  *   <Guard HP Life Steal>
- *   <Guard MP Life Steal>
+ *   <Guard MP Life Steal>  单独抵挡血量或魔法量偷取
  *   The related battler cannot be life stolen from for either HP or MP.
  *
- *   <Cancel Life Steal>
+ *   <Cancel Life Steal>  取消生命偷取
  *   The related battler cannot passively life steal both HP and MP.
  *
  *   <Cancel HP Life Steal>
- *   <Cancel MP Life Steal>
+ *   <Cancel MP Life Steal>  单独取消血量或魔法量偷取
  *   The related battler cannot passively life steal HP or MP specifically.
  *
  * ---
@@ -243,13 +220,6 @@ Yanfly.LS.version = 1.04;
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.04:
- * - Bypass the isDevToolsOpen() error when bad code is inserted into a script
- * call or custom Lunatic Mode code segment due to updating to MV 1.6.1.
- *
- * Version 1.03:
- * - Updated for RPG Maker MV version 1.5.0.
  *
  * Version 1.02:
  * - Lunatic Mode fail safes added.
@@ -815,7 +785,6 @@ Yanfly.Util.displayError = function(e, code, message) {
   console.log(message);
   console.log(code || 'NON-EXISTENT');
   console.error(e);
-  if (Utils.RPGMAKER_VERSION && Utils.RPGMAKER_VERSION >= "1.6.0") return;
   if (Utils.isNwjs() && Utils.isOptionValid('test')) {
     if (!require('nw.gui').Window.get().isDevToolsOpen()) {
       require('nw.gui').Window.get().showDevTools();

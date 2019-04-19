@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Core Engine
 // YEP_CoreEngine.js
 //=============================================================================
@@ -8,100 +8,62 @@ Imported.YEP_CoreEngine = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.Core = Yanfly.Core || {};
-Yanfly.Core.version = 1.31;
+Yanfly.Core.version = 1.23;
 
 //=============================================================================
 /*:
- * @plugindesc v1.31 Needed for the majority of Yanfly Engine Scripts. Also
- * contains bug fixes found inherently in RPG Maker.
+ * @plugindesc v1.23 核心引擎
  * @author Yanfly Engine Plugins
  *
  * @param ---Screen---
  * @default
  *
  * @param Screen Width
- * @parent ---Screen---
- * @type number
- * @min 0
  * @desc Adjusts the width of the screen.
  * Default: 816
  * @default 816
  *
  * @param Screen Height
- * @parent ---Screen---
- * @type number
- * @min 0
  * @desc Adjusts the height of the screen.
  * Default: 624
  * @default 624
  *
  * @param Scale Battlebacks
- * @parent ---Screen---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Do you wish to scale battlebacks to resolution?
  * NO - false     YES - true
  * @default true
  *
  * @param Scale Title
- * @parent ---Screen---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Do you wish to scale the title screen to resolution?
  * NO - false     YES - true
  * @default true
  *
  * @param Scale Game Over
- * @parent ---Screen---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Do you wish to scale the game over screen to resolution?
  * NO - false     YES - true
  * @default true
  *
  * @param Open Console
- * @parent ---Screen---
- * @type boolean
- * @on Open
- * @off Don't Open
  * @desc For testing and debug purposes, this opens up the console.
  * Don't Open - false     Open - true
  * @default false
  *
  * @param Reposition Battlers
- * @parent ---Screen---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Allow the plugin to reposition battlers to resolution?
  * NO - false     YES - true
  * @default true
  *
  * @param GameFont Load Timer
- * @parent ---Screen---
- * @type number
- * @min 0
  * @desc This allows you to set the timer for loading the GameFont.
  * Set to 0 for unlimited time. Default: 20000
  * @default 0
  *
  * @param Update Real Scale
- * @parent ---Screen---
- * @type boolean
- * @on YES
- * @off NO
  * @desc For now, best left alone, but it will allow real scaling for
  * screen stretching. NO - false   YES - true
  * @default false
  *
  * @param Collection Clear
- * @parent ---Screen---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Clears stored objects within major scenes upon switching
  * scenes to free up memory. NO - false   YES - true
  * @default true
@@ -110,31 +72,21 @@ Yanfly.Core.version = 1.31;
  * @desc
  *
  * @param Gold Max
- * @parent ---Gold---
- * @type number
- * @min 1
  * @desc The maximum amount of gold the player can have.
  * Default: 99999999
  * @default 99999999
  *
  * @param Gold Font Size
- * @parent ---Gold---
- * @type number
- * @min 1
  * @desc The font size used to display gold.
  * Default: 28
  * @default 20
  *
  * @param Gold Icon
- * @parent ---Gold---
- * @type number
- * @min 0
  * @desc This will be the icon used to represent gold in the gold
  * window. If left at 0, no icon will be displayed.
  * @default 313
  *
  * @param Gold Overlap
- * @parent ---Gold---
  * @desc This will be what's displayed when the gold number
  * exceeds the allocated area's content size.
  * @default A lotta
@@ -143,76 +95,49 @@ Yanfly.Core.version = 1.31;
  * @desc
  *
  * @param Default Max
- * @parent ---Items---
- * @type number
- * @min 1
  * @desc This is the maximum number of items a player can hold.
  * Default: 99
  * @default 99
  *
  * @param Quantity Text Size
- * @parent ---Items---
- * @type number
- * @min 1
  * @desc This is the text's font size used for the item quantity.
  * Default: 28
  * @default 20
  *
- * @param ---Parameters---
+ * @param ---Stats---
  * @default
  *
  * @param Max Level
- * @parent ---Parameters---
- * @type number
- * @min 1
  * @desc Adjusts the maximum level limit for actors.
  * Default: 99
  * @default 99
  *
  * @param Actor MaxHP
- * @parent ---Parameters---
- * @type number
- * @min 1
  * @desc Adjusts the maximum HP limit for actors.
  * Default: 9999
  * @default 9999
  *
  * @param Actor MaxMP
- * @parent ---Parameters---
- * @type number
- * @min 0
  * @desc Adjusts the maximum MP limit for actors.
  * Default: 9999
  * @default 9999
  *
  * @param Actor Parameter
- * @parent ---Parameters---
- * @type number
- * @min 1
  * @desc Adjusts the maximum parameter limit for actors.
  * Default: 999
  * @default 999
  *
  * @param Enemy MaxHP
- * @parent ---Parameters---
- * @type number
- * @min 1
  * @desc Adjusts the maximum HP limit for enemies.
  * Default: 999999
  * @default 999999
  *
  * @param Enemy MaxMP
- * @parent ---Parameters---
- * @type number
- * @min 0
  * @desc Adjusts the maximum MP limit for enemies.
  * Default: 9999
  * @default 9999
  *
  * @param Enemy Parameter
- * @parent ---Parameters---
- * @type number
- * @min 1
  * @desc Adjusts the maximum parameter limit for enemies.
  * Default: 999
  * @default 999
@@ -221,105 +146,49 @@ Yanfly.Core.version = 1.31;
  * @desc
  *
  * @param Animation Rate
- * @parent ---Battle---
- * @type number
- * @min 1
  * @desc Adjusts the rate of battle animations. Lower for faster.
  * Default: 4
  * @default 4
  *
  * @param Flash Target
- * @parent ---Battle---
- * @type boolean
- * @on YES
- * @off NO
  * @desc If an enemy is targeted, it flashes or it can whiten.
  * OFF - false     ON - true
  * @default false
  *
  * @param Show Events Transition
- * @parent ---Battle---
- * @type boolean
- * @on Show
- * @off Hide
  * @desc Show events during the battle transition?
  * SHOW - true     HIDE - false     Default: false
  * @default true
  *
  * @param Show Events Snapshot
- * @parent ---Battle---
- * @type boolean
- * @on Show
- * @off Hide
  * @desc Show events for the battle background snapshot?
  * SHOW - true     HIDE - false     Default: false
  * @default true
- *
- * @param ---Map Optimization---
- * @desc
- *
- * @param Refresh Update HP
- * @parent ---Map Optimization---
- * @type boolean
- * @on Show
- * @off Hide
- * @desc Do a full actor refresh when updating HP on map?
- * YES - true     NO - false     Default: true
- * @default true
- *
- * @param Refresh Update MP
- * @parent ---Map Optimization---
- * @type boolean
- * @on Show
- * @off Hide
- * @desc Do a full actor refresh when updating MP on map?
- * YES - true     NO - false     Default: true
- * @default true
- *
- * @param Refresh Update TP
- * @parent ---Map Optimization---
- * @type boolean
- * @on Show
- * @off Hide
- * @desc Do a full actor refresh when updating TP on map?
- * YES - true     NO - false     Default: true
- * @default false
  *
  * @param ---Font---
  * @desc
  *
  * @param Chinese Font
- * @parent ---Font---
  * @desc Default font(s) used for a Chinese RPG.
  * Default: SimHei, Heiti TC, sans-serif
  * @default SimHei, Heiti TC, sans-serif
  *
  * @param Korean Font
- * @parent ---Font---
  * @desc Default font(s) used for a Korean RPG.
  * Default: Dotum, AppleGothic, sans-serif
  * @default Dotum, AppleGothic, sans-serif
  *
  * @param Default Font
- * @parent ---Font---
  * @desc Default font(s) used for everything else.
  * Default: GameFont
  * @default GameFont, Verdana, Arial, Courier New
  *
  * @param Font Size
- * @parent ---Font---
- * @type number
- * @min 1
  * @desc Default font size used for windows.
  * Default: 28
  * @default 28
  *
  * @param Text Align
- * @parent ---Font---
- * @type combo
- * @option left
- * @option center
- * @option right
  * @desc How to align the text for command windows.
  * left     center     right
  * @default left
@@ -328,100 +197,61 @@ Yanfly.Core.version = 1.31;
  * @default
  *
  * @param Digit Grouping
- * @parent ---Windows---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Groups together digits with a comma.
  * false - OFF     true - ON
  * @default true
  *
  * @param Line Height
- * @parent ---Windows---
- * @type number
- * @min 0
  * @desc Adjusts universal line height used in Windows.
  * Default: 36
  * @default 36
  *
  * @param Icon Width
- * @parent ---Windows---
- * @type number
- * @min 0
  * @desc Adjusts the width of your icons.
  * Default: 32
  * @default 32
  *
  * @param Icon Height
- * @parent ---Windows---
- * @type number
- * @min 0
  * @desc Adjusts the height of your icons.
  * Default: 32
  * @default 32
  *
  * @param Face Width
- * @parent ---Windows---
- * @type number
- * @min 0
  * @desc Adjusts the width of actors' faces.
  * Default: 144
  * @default 144
  *
  * @param Face Height
- * @parent ---Windows---
- * @type number
- * @min 0
  * @desc Adjusts the height of actors' faces.
  * Default: 144
  * @default 144
  *
  * @param Window Padding
- * @parent ---Windows---
- * @type number
- * @min 0
  * @desc Adjusts the padding for all standard windows.
  * Default: 18
  * @default 18
  *
  * @param Text Padding
- * @parent ---Windows---
- * @type number
- * @min 0
  * @desc Adjusts the padding for text inside of windows.
  * Default: 6
  * @default 6
  *
  * @param Window Opacity
- * @parent ---Windows---
- * @type number
- * @min 0
  * @desc Adjusts the background opacity for windows.
  * Default: 192
  * @default 192
  *
  * @param Gauge Outline
- * @parent ---Windows---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Enable outlines for gauges.
  * false - OFF     true - ON
  * @default true
  *
  * @param Gauge Height
- * @parent ---Windows---
- * @type number
- * @min 0
  * @desc Sets the height for gauges.
  * Default: 6
  * @default 18
  *
  * @param Menu TP Bar
- * @parent ---Windows---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Draws a TP bar in the menu status for actors.
  * false - OFF     true - ON
  * @default true
@@ -430,136 +260,76 @@ Yanfly.Core.version = 1.31;
  * @default
  *
  * @param Color: Normal
- * @parent ---Window Colors---
- * @type number
- * @min 0
- * @max 31
  * @desc Changes the text color for Windows.
  * Default: 0
  * @default 0
  *
  * @param Color: System
- * @parent ---Window Colors---
- * @type number
- * @min 0
- * @max 31
  * @desc Changes the text color for Windows.
  * Default: 16
  * @default 16
  *
  * @param Color: Crisis
- * @parent ---Window Colors---
- * @type number
- * @min 0
- * @max 31
  * @desc Changes the text color for Windows.
  * Default: 17
  * @default 17
  *
  * @param Color: Death
- * @parent ---Window Colors---
- * @type number
- * @min 0
- * @max 31
  * @desc Changes the text color for Windows.
  * Default: 18
  * @default 18
  *
  * @param Color: Gauge Back
- * @parent ---Window Colors---
- * @type number
- * @min 0
- * @max 31
  * @desc Changes the text color for Windows.
  * Default: 19
  * @default 19
  *
  * @param Color: HP Gauge 1
- * @parent ---Window Colors---
- * @type number
- * @min 0
- * @max 31
  * @desc Changes the text color for Windows.
  * Default: 20
  * @default 20
  *
  * @param Color: HP Gauge 2
- * @parent ---Window Colors---
- * @type number
- * @min 0
- * @max 31
  * @desc Changes the text color for Windows.
  * Default: 21
  * @default 21
  *
  * @param Color: MP Gauge 1
- * @parent ---Window Colors---
- * @type number
- * @min 0
- * @max 31
  * @desc Changes the text color for Windows.
  * Default: 22
  * @default 22
  *
  * @param Color: MP Gauge 2
- * @parent ---Window Colors---
- * @type number
- * @min 0
- * @max 31
  * @desc Changes the text color for Windows.
  * Default: 23
  * @default 23
  *
  * @param Color: MP Cost
- * @parent ---Window Colors---
- * @type number
- * @min 0
- * @max 31
  * @desc Changes the text color for Windows.
  * Default: 23
  * @default 23
  *
  * @param Color: Power Up
- * @parent ---Window Colors---
- * @type number
- * @min 0
- * @max 31
  * @desc Changes the text color for Windows.
  * Default: 24
  * @default 24
  *
  * @param Color: Power Down
- * @parent ---Window Colors---
- * @type number
- * @min 0
- * @max 31
  * @desc Changes the text color for Windows.
  * Default: 25
  * @default 25
  *
  * @param Color: TP Gauge 1
- * @parent ---Window Colors---
- * @type number
- * @min 0
- * @max 31
  * @desc Changes the text color for Windows.
  * Default: 28
  * @default 28
  *
  * @param Color: TP Gauge 2
- * @parent ---Window Colors---
- * @type number
- * @min 0
- * @max 31
  * @desc Changes the text color for Windows.
  * Default: 29
  * @default 29
  *
  * @param Color: TP Cost Color
- * @parent ---Window Colors---
- * @type number
- * @min 0
- * @max 31
  * @desc Changes the text color for Windows.
  * Default: 29
  * @default 29
@@ -569,14 +339,21 @@ Yanfly.Core.version = 1.31;
  * Introduction and Instructions
  * ============================================================================
  *
- * Yanfly Engine Plugins - Core Engine is made for RPG Maker MV. This plugin
- * functions primarily to fix bugs and to allow the user more control over RPG
- * Maker MV's various features, such as the screen resolution, font, window
- * colors, and more.
- *
- * Just place this on top of all the other Yanfly Engine Plugins.
- * Adjust any parameters as you see fit.
- *
+ * Yanfly引擎是一个为PRG Maker MV制作的插件库，它是一个很棒的软件，可以用
+ * 来帮你制作你自己梦想的游戏。你可以在这里找到很多关于RPG Maker MV的东西
+ * 这个引擎插件的核心就是致力于处理游戏项目的核心方面，从提高游戏状态的限
+ * 制到改变你窗口的颜色。同时通过这个插件，我们也会修复一些软件上的错误。
+ * 只要有新的错误出现，这个插件会定期更新来修复
+ * 
+ * Yanfly引擎插件的核心对于插件库来说不是必须的 
+ * 
+ * Yanfly引擎插件的核心引擎是为RPG Maker MV制作的。这个插件的功能主要是修
+ * 复错误和允许用户对于软件特性有更多的控制，例如屏幕显示，字体，窗口颜色
+ * 等等。
+ * 
+ * 把这个引擎放在其他Yanfly插件的上面
+ * 调整你需要更改的参数即可
+ * 
  * ============================================================================
  * Bug Fixes
  * ============================================================================
@@ -589,14 +366,6 @@ Yanfly.Core.version = 1.31;
  *   animation, it will overlay multiple times causing the image to look
  *   distorted by a series of overlayed effects. The plugin fixes this issue by
  *   having only one animation played over the group instead of every one.
- *
- * Audio Volume Stacking
- *   Sometimes when multiple sound effects are played in the same frame with
- *   the exact settings (usually due to animaitons), the volume stacks upon
- *   each other, causing them to not play the intended volume for the effect.
- *   This plugin fixes this issue by preventing sound effects of the same exact
-     settings from playing during the same frame, allowing only the first to
-     go through without stacking the volume higher.
  *
  * Event Movement Speed
  *   The movement speed of events are slightly slower than what they should be
@@ -632,77 +401,66 @@ Yanfly.Core.version = 1.31;
  * Gold
  * ============================================================================
  *
- * You can use the plugin commands to add or remove gold more than the
- * editor's 9,999,999 limit. You can also place notetags into items, weapons,
- * and armors to over the 999,999 cost limit.
+ * 你可以使用这个插件命令来改变游戏内金钱9，999，999的上限。你也可以改变
+ * 其他项目999，999的限制，例如物品，武器，装备等。 
  *
  * Plugin Command:
- *   GainGold 1234567890       # Party gains 1234567890 gold.
- *   LoseGold 9876543210       # Party loses 9876543210 gold.
+ *   GainGold 1234567890       # 队伍获得1234567890金钱.
+ *   LoseGold 9876543210       # 队伍丢失9876543210金钱.
  *
- * Item, Weapon, Armor Notetags
+ * 物品，武器，装备标签
  *   <Price: x>
- *   Changes the price of the item to x. This notetag allows you to bypass the
- *   editor's 999,999 gold cost limit.
+ *   可以改变物品的价格，这个标签允许你超过编辑器999，999的限制。
  *
- * Enemy Notetag
+ * 敌方备注
  *   <Gold: x>
- *   Changes the gold drop value of enemies to x. This notetag allows you to
- *   bypass the editor's 9,999,999 gold drop limit.
+ *   可以改变消灭敌人掉落的奖励，这个标签允许你超过编辑器999，999的限制。
  *
  * ============================================================================
  * Items
  * ============================================================================
  *
- * Change the parameters to reflect the maximum number of items a player can
- * hold per item. If you wish to make individual items have different max
- * values, use the following notetag:
+ * 可以改变一个玩家可以携带物品的最大数量。如果你希望每个物品有不同的最大
+ * 值，你可以使用下面的标签。
  *
- * Item, Weapon, Armor Notetag:
+ * 物品，武器，装备标签:
  *   <Max Item: x>
- *   This changes the maximum amount of the item to x.
+ *   这个可以改变物品的最大数量x.
  *
  * ============================================================================
  * Stats
  * ============================================================================
  *
- * Even with the parameter limits raised, the editor is still confined to RPG
- * Maker MV's default limits. To break past them, use the following notetags
- * to allow further control over the individual aspects for the parameters.
+ * 事件参数的限制的提升，我们可以对编辑器默认的限制操作。为了解除限制，我
+ * 们可以使用下面的标签来获得对参数的更高控制权。
  *
- * Actor Notetag
+ * 角色标签
  *   <Initial Level: x>
- *   Changes the actor's initial level to x. This allows you to bypass the
- *   editor's level 99 limit.
+ *   改变角色的初始等级。这可以让你突破99级的限制。
  *
  *   <Max Level: x>
- *   Changes the actor's max level to x. This allows you to bypass the editor's
- *   level 99 limit.
+ *   改变角色的最大等级。这可以让你突破99级的限制。
  *
- * Class Skill Learn Notetag
+ * 技能学习标签
  *   <Learn at Level: x>
- *   When placed inside a class's "Skills to Learn" notetag, this will cause
- *   the class to learn the skill at level x.
+ *   当这个标签被放入技能标签栏的时候，你可以让玩家在相应等级习得此技能x.
  *
- * Weapon and Armor Notetags
+ * 武器和装备标签
  *   <stat: +x>
  *   <stat: -x>
- *   Allows the piece of weapon or armor to gain or lose x amount of stat.
- *   Replace "stat" with "hp", "mp", "atk", "def", "mat", "mdf", "agi", or
- *   "luk" to alter that specific stat. This allows the piece of equipment
- *   to go past the editor's default limitation so long as the maximum value
- *   allows for it.
+ *   这可以让武器或者装备能够失去或者获得某些状态。例如你可以替换stat状态为
+ *   hp血量，mp蓝量，atk攻击，def防御，mat魔攻，mdf魔防，agi速度，luk幸运等
+ *   。这将允许装备属性超过编辑器的默认值，只要符合最大允许范围
  *
- * Enemy Notetags
+ * 敌方标签
  *   <stat: x>
- *   This changes the enemy's stat to x amount. Replace "stat" with "hp",
- *   "mp", "atk", "def", "mat", "mdf", "agi", or "luk" to alter that
- *   specific stat. This allows the piece of equipment to go past the
- *   editor's default limitation.
+ *   这将改变敌方的状态。例如你可以替换stat状态为hp血量，mp蓝量，atk攻击，
+ *   def防御，mat魔攻，mdf魔防，agi速度，luk幸运等。这将允许装备属性超过编
+ *   辑器的默认值，只要符合最大允许范围
  *
  *   <exp: x>
- *   This changes the enemy's exp given out to x amount. This allows the
- *   enemy give out more exp than the editor's default 9,999,999 limit.
+ *   这将改变消灭敌方的经验值。它允许玩家得打超过编辑器默认9，999，999的更
+ *   高经验值
  *
  * ============================================================================
  * Script Call Fail Safe
@@ -719,55 +477,6 @@ Yanfly.Core.version = 1.31;
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.32:
- * - Reversed the disable for the screen jitter fix from version 1.24. Somehow
- * it came back and I don't know when, but now it needs to go. 
- *
- * Version 1.31:
- * - Added Fallen Angel Olivia's full error message display to the Core Engine
- * (with her permission of course).
- * - Bug fixed regarding blend modes and bush depth making sprites not blend
- * properly in-game.
- * - Tab key no longer requires you to press it twice before triggering Tab-key
- * related inputs.
- *
- * Version 1.30:
- * - Bug fixed for audio Sound Effect stacking.
- * - Optimization update.
- *
- * Version 1.29:
- * - Bypass the isDevToolsOpen() error when bad code is inserted into a script
- * call or custom Lunatic Mode code segment due to updating to MV 1.6.1.
- *
- * Version 1.28:
- * - Upon pressing F5 to reload your game, this will close the DevTools Debug
- * Console if it is opened before reloading. This is because reloading with it
- * closed ends up reloading the game faster.
- * - New plugin parameters added: Refresh Update HP, MP, and TP
- *   - Option to choose to do a full actor refresh upon changing HP, MP, or TP
- *   - This is to reduce overall map lagging.
- *
- * Version 1.27:
- * - Updated for RPG Maker MV version 1.6.0:
- *   - Fixing script call checks made with switches and self switches under
- *   conditional branches due to how ES6 handles === differently.
- *
- * Version 1.26:
- * - Updated for RPG Maker MV version 1.6.0:
- *   - Removal of the destructive code in Scene_Item.update function.
- *   - Open Console parameter now occurs after the map's been loaded or after
- *   the battle has started. This is because after the 1.6.0 changes, loading
- *   the console before anything else will lock up other aspects of RPG Maker
- *   from loading properly.
- *
- * Version 1.25:
- * - Updated for RPG Maker MV version 1.5.0.
- * - Updated Scale Title and Scale GameOver to work with 1.5.0.
- *
- * Version 1.24:
- * - Screen jittering prevention is now prevented for RPG Maker MV 1.3.4 and
- * above since Pixi4 handles that now.
  *
  * Version 1.23:
  * - For RPG Maker MV version 1.3.2 and above, the 'Scale Battlebacks' plugin
@@ -900,8 +609,8 @@ Yanfly.Param.ScreenWidth  = Number(Yanfly.Parameters['Screen Width'] || 816);
 Yanfly.Param.ScreenHeight = Number(Yanfly.Parameters['Screen Height'] || 624);
 Yanfly.Param.ScaleBattleback = String(Yanfly.Parameters['Scale Battlebacks']);
 Yanfly.Param.ScaleBattleback = eval(Yanfly.Param.ScaleBattleback);
-Yanfly.Param.ScaleTitle = eval(String(Yanfly.Parameters['Scale Title']));
-Yanfly.Param.ScaleGameOver = eval(String(Yanfly.Parameters['Scale Game Over']));
+Yanfly.Param.ScaleTitle = String(Yanfly.Parameters['Scale Title']);
+Yanfly.Param.ScaleGameOver = String(Yanfly.Parameters['Scale Game Over']);
 Yanfly.Param.OpenConsole = String(Yanfly.Parameters['Open Console']);
 Yanfly.Param.OpenConsole = eval(Yanfly.Param.OpenConsole);
 Yanfly.Param.ReposBattlers = String(Yanfly.Parameters['Reposition Battlers']);
@@ -935,20 +644,13 @@ Yanfly.Param.ShowEvTrans = eval(Yanfly.Param.ShowEvTrans);
 Yanfly.Param.ShowEvSnap = String(Yanfly.Parameters['Show Events Snapshot']);
 Yanfly.Param.ShowEvSnap = eval(Yanfly.Param.ShowEvSnap);
 
-Yanfly.Param.RefreshUpdateHp = String(Yanfly.Parameters['Refresh Update HP']);
-Yanfly.Param.RefreshUpdateHp = eval(Yanfly.Param.RefreshUpdateHp);
-Yanfly.Param.RefreshUpdateMp = String(Yanfly.Parameters['Refresh Update MP']);
-Yanfly.Param.RefreshUpdateMp = eval(Yanfly.Param.RefreshUpdateMp);
-Yanfly.Param.RefreshUpdateTp = String(Yanfly.Parameters['Refresh Update TP']);
-Yanfly.Param.RefreshUpdateTp = eval(Yanfly.Param.RefreshUpdateTp);
-
 Yanfly.Param.ChineseFont = String(Yanfly.Parameters['Chinese Font']);
 Yanfly.Param.KoreanFont = String(Yanfly.Parameters['Korean Font']);
 Yanfly.Param.DefaultFont = String(Yanfly.Parameters['Default Font']);
 Yanfly.Param.FontSize = Number(Yanfly.Parameters['Font Size']);
 Yanfly.Param.TextAlign = String(Yanfly.Parameters['Text Align']);
 
-Yanfly.Param.DigitGroup = eval(String(Yanfly.Parameters['Digit Grouping']));
+Yanfly.Param.DigitGroup = String(Yanfly.Parameters['Digit Grouping']);
 Yanfly.Param.LineHeight = Number(Yanfly.Parameters['Line Height']);
 Yanfly.Param.IconWidth = Number(Yanfly.Parameters['Icon Width'] || 32);;
 Yanfly.Param.IconHeight = Number(Yanfly.Parameters['Icon Height'] || 32);;
@@ -957,9 +659,9 @@ Yanfly.Param.FaceHeight = Number(Yanfly.Parameters['Face Height'] || 144);
 Yanfly.Param.WindowPadding = Number(Yanfly.Parameters['Window Padding']);
 Yanfly.Param.TextPadding = Number(Yanfly.Parameters['Text Padding']);
 Yanfly.Param.WindowOpacity = Number(Yanfly.Parameters['Window Opacity']);
-Yanfly.Param.GaugeOutline = eval(String(Yanfly.Parameters['Gauge Outline']));
+Yanfly.Param.GaugeOutline = String(Yanfly.Parameters['Gauge Outline']);
 Yanfly.Param.GaugeHeight = Number(Yanfly.Parameters['Gauge Height']);
-Yanfly.Param.MenuTpGauge = eval(String(Yanfly.Parameters['Menu TP Bar']));
+Yanfly.Param.MenuTpGauge = String(Yanfly.Parameters['Menu TP Bar']);
 
 Yanfly.Param.ColorNormal = Number(Yanfly.Parameters['Color: Normal']);
 Yanfly.Param.ColorSystem = Number(Yanfly.Parameters['Color: System']);
@@ -1025,7 +727,6 @@ Yanfly.Core.Bitmap_drawText = Bitmap.prototype.drawText;
 Bitmap.prototype.drawText = function(text, x, y, mW, l, align) {
     x = Math.floor(x);
     y = Math.floor(y);
-    if (mW < 0) mW = 0;
     mW = Math.floor(mW);
     l = Math.floor(l);
     Yanfly.Core.Bitmap_drawText.call(this, text, x, y, mW, l, align);
@@ -1053,65 +754,6 @@ Graphics._updateRealScale = function() {
 };
 
 }; // Yanfly.Param.UpdateRealScale
-
-Graphics.printFullError = function(name, message, stack) {
-  stack = this.processErrorStackMessage(stack);
-  if (this._errorPrinter) {
-    this._errorPrinter.innerHTML =
-      this._makeFullErrorHtml(name, message, stack);
-  }
-  this._applyCanvasFilter();
-  this._clearUpperCanvas();
-};
-
-Graphics._makeFullErrorHtml = function(name, message, stack) {
-  var text = '';
-  for (var i = 2; i < stack.length; ++i) {
-    text += '<font color=white>' + stack[i] + '</font><br>';
-  }
-  return ('<font color="yellow"><b>' + stack[0] + '</b></font><br>' +
-    '<font color="yellow"><b>' + stack[1] + '</b></font><br>' + text);
-};
-
-Graphics.processErrorStackMessage = function(stack)  {
-  var data = stack.split(/(?:\r\n|\r|\n)/);
-  data.unshift('Game has encountered a bug. Please report it.<br>');
-  for (var i = 1; i < data.length; ++i) {
-    data[i] = data[i].replace(/[\(](.*[\/])/, '(');
-  }
-  data.push('<br><font color="yellow"><b>Press F5 to restart the game.' +
-    '</b></font><br>');
-  return data;
-};
-
-Yanfly.Core.Graphics_updateErrorPrinter = Graphics._updateErrorPrinter;
-Graphics._updateErrorPrinter = function() {
-  Yanfly.Core.Graphics_updateErrorPrinter.call(this);
-  this._errorPrinter.height = this._height * 0.5;
-  this._errorPrinter.style.textAlign = 'left';
-  this._centerElement(this._errorPrinter);
-};
-
-SceneManager.catchException = function(e) {
-  if (e instanceof Error) {
-    Graphics.printFullError(e.name, e.message, e.stack);
-    console.error(e.stack);
-  } else {
-    Graphics.printError('UnknownError', e);
-  }
-  AudioManager.stopAll();
-  this.stop();
-};
-
-//=============================================================================
-// Input
-//=============================================================================
-
-Yanfly.Core.Input_shouldPreventDefault = Input._shouldPreventDefault;
-Input._shouldPreventDefault = function(keyCode) {
-  if (keyCode === 9) return true;
-  return Yanfly.Core.Input_shouldPreventDefault.call(this, keyCode);
-};
 
 //=============================================================================
 // Sprite
@@ -1330,34 +972,6 @@ DataManager.processCORENotetags4 = function(group) {
 };
 
 //=============================================================================
-// AudioManager Stacking Volume Bug Fix
-//=============================================================================
-
-Yanfly.Core.AudioManager_playSe = AudioManager.playSe;
-AudioManager.playSe = function(se) {
-    this._frameSe = this._frameSe || [];
-    if (this.uniqueCheckSe(se)) {
-      Yanfly.Core.AudioManager_playSe.call(this, se);
-      this._frameSe.push(se);
-    }
-};
-
-AudioManager.uniqueCheckSe = function(se1) {
-    if (this._frameSe.contains(se1)) return false;
-    return true;
-};
-
-AudioManager.clearUniqueCheckSe = function() {
-    this._frameSe = [];
-};
-
-Yanfly.Core.SceneManager_updateInputData = SceneManager.updateInputData;
-SceneManager.updateInputData = function() {
-    Yanfly.Core.SceneManager_updateInputData.call(this);
-    AudioManager.clearUniqueCheckSe();
-};
-
-//=============================================================================
 // SceneManager
 //=============================================================================
 
@@ -1369,9 +983,8 @@ SceneManager._boxHeight    = Yanfly.Param.ScreenHeight
 Yanfly.Core.SceneManager_run = SceneManager.run;
 SceneManager.run = function(sceneClass) {
   Yanfly.Core.SceneManager_run.call(this, sceneClass);
-  Yanfly.updateResolution();
   if (!Utils.isNwjs()) return;
-  if (Utils.RPGMAKER_VERSION && Utils.RPGMAKER_VERSION >= "1.6.0") return;
+  Yanfly.updateResolution();
   if (Yanfly.Param.OpenConsole) Yanfly.openConsole();
 };
 
@@ -1385,54 +998,12 @@ Yanfly.updateResolution = function() {
 };
 
 Yanfly.openConsole = function() {
-  Yanfly._openedConsole = true;
   if (Utils.isNwjs() && Utils.isOptionValid('test')) {
     var _debugWindow = require('nw.gui').Window.get().showDevTools();
-    if (_debugWindow) _debugWindow.moveTo(0, 0);
+    _debugWindow.moveTo(0, 0);
     window.focus();
   }
 };
-
-Yanfly.Core.SceneManager_onKeyDown = SceneManager.onKeyDown;
-SceneManager.onKeyDown = function(event) {
-  if (!event.ctrlKey && !event.altKey && event.keyCode === 116) {
-    if (Utils.isNwjs() && Utils.isOptionValid('test')) {
-      var win = require('nw.gui').Window.get();
-      win.closeDevTools();
-    }
-  }
-  Yanfly.Core.SceneManager_onKeyDown.call(this, event);
-};
-
-if (Utils.RPGMAKER_VERSION && Utils.RPGMAKER_VERSION >= "1.6.0") {
-
-Yanfly.openConsole = function() {
-  Yanfly._openedConsole = true;
-  if (!Yanfly.Param.OpenConsole) return;
-  if (Utils.isNwjs() && Utils.isOptionValid('test')) {
-    var win = require('nw.gui').Window.get();
-    win.showDevTools();
-    setTimeout(this.focusWindow.bind(this, win), 500);
-  }
-};
-
-Yanfly.focusWindow = function(win) {
-  win.focus();
-};
-
-Yanfly.Core.Scene_Map_update = Scene_Map.prototype.update;
-Scene_Map.prototype.update = function() {
-  Yanfly.Core.Scene_Map_update.call(this);
-  if (!Yanfly._openedConsole) Yanfly.openConsole();
-};
-
-Yanfly.Core.Scene_Battle_update = Scene_Battle.prototype.update;
-Scene_Battle.prototype.update = function() {
-  Yanfly.Core.Scene_Battle_update.call(this);
-  if (!Yanfly._openedConsole) Yanfly.openConsole();
-};
-
-}; // 1.6.0
 
 //=============================================================================
 // BattleManager
@@ -1477,61 +1048,6 @@ Game_BattlerBase.prototype.paramMax = function(paramId) {
     } else {
         return Yanfly.Param.EnemyParam;
     }
-};
-
-Yanfly.Core.Game_BattlerBase_refresh = Game_BattlerBase.prototype.refresh;
-
-Game_BattlerBase.prototype.mapRegenUpdateCheck = function(type) {
-  if ($gameParty.inBattle()) return true;
-  if (type === 'hp') {
-    return Yanfly.Param.RefreshUpdateHp;
-  } else if (type === 'mp') {
-    return Yanfly.Param.RefreshUpdateMp;
-  } else if (type === 'tp') {
-    return Yanfly.Param.RefreshUpdateTp;
-  }
-};
-
-Game_BattlerBase.prototype.setHp = function(hp) {
-  if (this._hp === hp) return;
-  this._hp = hp;
-  if (this.mapRegenUpdateCheck('hp')) {
-    this.refresh();
-  } else {
-    Yanfly.Core.Game_BattlerBase_refresh.call(this);
-  }
-};
-
-Game_BattlerBase.prototype.setMp = function(mp) {
-  if (this._mp === mp) return;
-  this._mp = mp;
-  if (this.mapRegenUpdateCheck('mp')) {
-    this.refresh();
-  } else {
-    Yanfly.Core.Game_BattlerBase_refresh.call(this);
-  }
-};
-
-Game_BattlerBase.prototype.setTp = function(tp) {
-  if (this._tp === tp) return;
-  this._tp = tp;
-  if (this.mapRegenUpdateCheck('tp')) {
-    this.refresh();
-  } else {
-    Yanfly.Core.Game_BattlerBase_refresh.call(this);
-  }
-};
-
-//=============================================================================
-// Game_Battler
-//=============================================================================
-
-Game_Battler.prototype.onTurnEnd = function() {
-  this.clearResult();
-  this.regenerateAll();
-  this.updateStateTurns();
-  this.updateBuffTurns();
-  this.removeStatesAuto(2);
 };
 
 //=============================================================================
@@ -1621,14 +1137,6 @@ Game_Party.prototype.onPlayerWalk = function() {
 // Game_Map
 //=============================================================================
 
-Yanfly.isPreventScreenJittering = function() {
-  if (Utils.RPGMAKER_VERSION && Utils.RPGMAKER_VERSION >= '1.5.0') return true;
-  if (Utils.RPGMAKER_VERSION && Utils.RPGMAKER_VERSION >= '1.3.4') return false;
-  return true;
-};
-
-if (Yanfly.isPreventScreenJittering()) {
-
 Game_Map.prototype.displayX = function() {
     return parseFloat(Math.floor(this._displayX *
       this.tileWidth())) / this.tileWidth();
@@ -1638,8 +1146,6 @@ Game_Map.prototype.displayY = function() {
     return parseFloat(Math.floor(this._displayY *
       this.tileHeight())) / this.tileHeight();
 };
-
-}; // Yanfly.isPreventScreenJittering
 
 Game_Map.prototype.adjustX = function(x) {
     if (this.isLoopHorizontal() && x < this.displayX() -
@@ -1785,29 +1291,6 @@ Yanfly.Core.Game_Interpreter_command111 =
 Game_Interpreter.prototype.command111 = function() {
   var result = false;
   switch (this._params[0]) {
-  case 0: // Switch
-    if (this._params[2] === 0) {
-      result = $gameSwitches.value(this._params[1]);
-    } else {
-      result = !$gameSwitches.value(this._params[1]);
-    }
-    this._branch[this._indent] = result;
-    if (this._branch[this._indent] === false) this.skipBranch();
-    return true
-    break;
-  case 2: // Self Switch
-    if (this._eventId > 0) {
-      var key = [this._mapId, this._eventId, this._params[1]];
-      if (this._params[2] === 0) {
-        result = $gameSelfSwitches.value(key);
-      } else {
-        result = !$gameSelfSwitches.value(key);
-      }
-    }
-    this._branch[this._indent] = result;
-    if (this._branch[this._indent] === false) this.skipBranch();
-    return true
-    break;
   case 12:  // Script
     var code = this._params[1];
     try {
@@ -1956,25 +1439,13 @@ Scene_Boot.prototype.isGameFontLoaded = function() {
 };
 
 //=============================================================================
-// Scene_Item
-//=============================================================================
-
-if (Utils.RPGMAKER_VERSION && Utils.RPGMAKER_VERSION >= "1.6.0") {
-
-Scene_Item.prototype.update = function() {
-  Scene_ItemBase.prototype.update.call(this);
-};
-
-}; // Utils.RPGMAKER_VERSION && Utils.RPGMAKER_VERSION >= "1.6.0"
-
-//=============================================================================
 // Scene_Title
 //=============================================================================
 
 Yanfly.Core.Scene_Title_start = Scene_Title.prototype.start;
 Scene_Title.prototype.start = function() {
   Yanfly.Core.Scene_Title_start.call(this);
-  if (Yanfly.Param.ScaleTitle) this.rescaleTitle();
+  if (eval(Yanfly.Param.ScaleTitle)) this.rescaleTitle();
 };
 
 Scene_Title.prototype.rescaleTitle = function() {
@@ -1983,9 +1454,7 @@ Scene_Title.prototype.rescaleTitle = function() {
 };
 
 Scene_Title.prototype.rescaleTitleSprite = function(sprite) {
-  if (sprite.bitmap.width <= 0 || sprite.bitmap <= 0) {
-    return setTimeout(this.rescaleTitleSprite.bind(this, sprite), 5);
-  }
+  if (sprite.bitmap.width <= 0 || sprite.bitmap <= 0) return;
   var width = Graphics.boxWidth;
   var height = Graphics.boxHeight;
   var ratioX = width / sprite.bitmap.width;
@@ -2022,7 +1491,7 @@ Scene_Map.prototype.snapForBattleBackground = function() {
 Yanfly.Core.Scene_Gameover_start = Scene_Gameover.prototype.start;
 Scene_Gameover.prototype.start = function() {
     Yanfly.Core.Scene_Gameover_start.call(this);
-    if (Yanfly.Param.ScaleGameOver) this.rescaleBackground();
+    if (eval(Yanfly.Param.ScaleGameOver)) this.rescaleBackground();
 };
 
 Scene_Gameover.prototype.rescaleBackground = function() {
@@ -2030,9 +1499,7 @@ Scene_Gameover.prototype.rescaleBackground = function() {
 };
 
 Scene_Gameover.prototype.rescaleImageSprite = function(sprite) {
-    if (sprite.bitmap.width <= 0 || sprite.bitmap <= 0) {
-      return setTimeout(this.rescaleImageSprite.bind(this, sprite), 5);
-    }
+    if (sprite.bitmap.width <= 0 || sprite.bitmap <= 0) return;
     var width = Graphics.boxWidth;
     var height = Graphics.boxHeight;
     var ratioX = width / sprite.bitmap.width;
@@ -2102,7 +1569,7 @@ Yanfly.Core.Sprite_Enemy_setBattler = Sprite_Enemy.prototype.setBattler;
 Sprite_Enemy.prototype.setBattler = function(battler) {
     Yanfly.Core.Sprite_Enemy_setBattler.call(this, battler);
     if (!this._enemy._alteredScreenY) {
-      this._homeY += Math.floor((Graphics.boxHeight - 624) / 2);
+      this._homeY += Graphics.boxHeight - 624;
       this._enemy._screenY = this._homeY;
       this._enemy._alteredScreenY = true;
     }
@@ -2186,20 +1653,6 @@ Sprite_Battleback.prototype.scaleSprite = function() {
 };
 
 //=============================================================================
-// Sprite_Character
-//=============================================================================
-
-Yanfly.Core.Sprite_Character_updateHalfBodySprites =
-  Sprite_Character.prototype.updateHalfBodySprites;
-Sprite_Character.prototype.updateHalfBodySprites = function() {
-  Yanfly.Core.Sprite_Character_updateHalfBodySprites.call(this);
-  if (this._bushDepth > 0) {
-    this._upperBody.blendMode = this.blendMode;
-    this._lowerBody.blendMode = this.blendMode;
-  }
-};
-
-//=============================================================================
 // Spriteset_Map
 //=============================================================================
 
@@ -2256,8 +1709,8 @@ Spriteset_Battle.prototype.locateBattleback = function() {
 };
 
 Spriteset_Battle.prototype.rescaleBattlebacks = function() {
-  this.rescaleBattlebackSprite(this._back1Sprite);
-  this.rescaleBattlebackSprite(this._back2Sprite);
+  this.rescaleBattlebackSprite(this._back1Sprite, 'fnord');
+  this.rescaleBattlebackSprite(this._back2Sprite, 'blah');
 };
 
 Spriteset_Battle.prototype.rescaleBattlebackSprite = function(sprite) {
@@ -2404,7 +1857,7 @@ Window_Base.prototype.drawGauge = function(dx, dy, dw, rate, color1, color2) {
   var fillW = Math.floor(dw * rate).clamp(0, dw);
   var gaugeH = this.gaugeHeight();
   var gaugeY = dy + this.lineHeight() - gaugeH - 2;
-  if (Yanfly.Param.GaugeOutline) {
+  if (eval(Yanfly.Param.GaugeOutline)) {
     color3.paintOpacity = this.translucentOpacity();
     this.contents.fillRect(dx, gaugeY - 1, dw, gaugeH, color3);
     fillW = Math.max(fillW - 2, 0);
@@ -2477,7 +1930,7 @@ Window_Base.prototype.drawActorSimpleStatus = function(actor, x, y, width) {
     this.drawActorClass(actor, x2, y, width2);
     this.drawActorHp(actor, x2, y + lineHeight * 1, width2);
     this.drawActorMp(actor, x2, y + lineHeight * 2, width2);
-    if (Yanfly.Param.MenuTpGauge) {
+    if (eval(Yanfly.Param.MenuTpGauge)) {
       this.drawActorTp(actor, x2, y + lineHeight * 3, width2);
     }
 };
@@ -2509,6 +1962,17 @@ Window_Base.prototype.usingGoldIcon = function(unit) {
     return Yanfly.Icon.Gold > 0;
 };
 
+Window_Base.prototype.drawItemName = function(item, x, y, width) {
+    width = width || 312;
+    if (item) {
+        var iconBoxWidth = this.lineHeight();
+        var padding = (iconBoxWidth - Window_Base._iconWidth) / 2;
+        this.resetTextColor();
+        this.drawIcon(item.iconIndex, x + padding, y + padding);
+        this.drawText(item.name, x + iconBoxWidth, y, width - iconBoxWidth);
+    }
+};
+
 //=============================================================================
 // Window_Command
 //=============================================================================
@@ -2535,10 +1999,10 @@ Window_MenuStatus.prototype.drawItemStatus = function(index) {
     var rect = this.itemRect(index);
     var xpad = Yanfly.Param.WindowPadding + Window_Base._faceWidth;
     var x = rect.x + xpad;
-    if (!Yanfly.Param.MenuTpGauge) {
-      var y = Math.floor(rect.y + rect.height / 2 - this.lineHeight() * 1.5);
+    if (!eval(Yanfly.Param.MenuTpGauge)) {
+      var y = rect.y + rect.height / 2 - this.lineHeight() * 1.5;
     } else {
-      var y = Math.floor(rect.y);
+      var y = rect.y;
     }
     var width = rect.width - x - this.textPadding();
     this.drawActorSimpleStatus(actor, x, y, width);
@@ -2569,7 +2033,7 @@ Window_SkillStatus.prototype.refresh = function() {
     if (this._actor) {
         var w = this.width - this.padding * 2;
         var h = this.height - this.padding * 2;
-        if (!Yanfly.Param.MenuTpGauge) {
+        if (!eval(Yanfly.Param.MenuTpGauge)) {
           var y = h / 2 - this.lineHeight() * 1.5;
         } else {
           var y = 0;
@@ -2735,8 +2199,8 @@ Window_BattleStatus.prototype.drawBasicArea = function(rect, actor) {
 
 Window_BattleStatus.prototype.drawGaugeAreaWithTp = function(rect, actor) {
     var totalArea = this.gaugeAreaWidth() - 30;
-    var hpW = Math.floor(parseInt(totalArea * 108 / 300));
-    var otW = Math.floor(parseInt(totalArea * 96 / 300));
+    var hpW = parseInt(totalArea * 108 / 300);
+    var otW = parseInt(totalArea * 96 / 300);
     this.drawActorHp(actor, rect.x + 0, rect.y, hpW);
     this.drawActorMp(actor, rect.x + hpW + 15, rect.y, otW);
     this.drawActorTp(actor, rect.x + hpW + otW + 30, rect.y, otW);
@@ -2744,8 +2208,8 @@ Window_BattleStatus.prototype.drawGaugeAreaWithTp = function(rect, actor) {
 
 Window_BattleStatus.prototype.drawGaugeAreaWithoutTp = function(rect, actor) {
     var totalArea = this.gaugeAreaWidth() - 15;
-    var hpW = Math.floor(parseInt(totalArea * 201 / 315));
-    var otW = Math.floor(parseInt(totalArea * 114 / 315));
+    var hpW = parseInt(totalArea * 201 / 315);
+    var otW = parseInt(totalArea * 114 / 315);
     this.drawActorHp(actor, rect.x + 0, rect.y, hpW);
     this.drawActorMp(actor, rect.x + hpW + 15,  rect.y, otW);
 };
@@ -2779,37 +2243,18 @@ animationId, mirror) {
 
 Yanfly.Util = Yanfly.Util || {};
 
-if (Utils.RPGMAKER_VERSION && Utils.RPGMAKER_VERSION >= '1.5.0') {
-
-Yanfly.Util.toGroup = function(inVal) {
-  if (typeof inVal === 'string') return inVal;
-  if (!Yanfly.Param.DigitGroup) return inVal;
-  return inVal.toLocaleString('en');
-  return inVal.replace(/(^|[^\w.])(\d{4,})/g, function($0, $1, $2) {
-    return $1 + $2.replace(/\d(?=(?:\d\d\d)+(?!\d))/g, "$&,");
-  });
-};
-
-} else {
-
 Yanfly.Util.toGroup = function(inVal) {
   if (typeof inVal !== 'string') { inVal = String(inVal); }
-  if (!Yanfly.Param.DigitGroup) return inVal;
-  return inVal.toLocaleString('en');
+  if (!eval(Yanfly.Param.DigitGroup)) return inVal;
   return inVal.replace(/(^|[^\w.])(\d{4,})/g, function($0, $1, $2) {
     return $1 + $2.replace(/\d(?=(?:\d\d\d)+(?!\d))/g, "$&,");
   });
 };
-
-} // Utils.RPGMAKER_VERSION && Utils.RPGMAKER_VERSION >= '1.5.0'
-
-
 
 Yanfly.Util.displayError = function(e, code, message) {
   console.log(message);
   console.log(code || 'NON-EXISTENT');
   console.error(e);
-  if (Utils.RPGMAKER_VERSION && Utils.RPGMAKER_VERSION >= "1.6.0") return;
   if (Utils.isNwjs() && Utils.isOptionValid('test')) {
     if (!require('nw.gui').Window.get().isDevToolsOpen()) {
       require('nw.gui').Window.get().showDevTools();

@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Region Battlebacks
 // YEP_RegionBattlebacks.js
 //=============================================================================
@@ -8,296 +8,200 @@ Imported.YEP_RegionBattlebacks = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.RBB = Yanfly.RBB || {};
-Yanfly.RBB.version = 1.01
 
 //=============================================================================
  /*:
- * @plugindesc v1.01 This lets you assign certain battlebacks to specific
- * region ID's when entering battle in that region.
+ * @plugindesc v1.00 战斗背景区域
  * @author Yanfly Engine Plugins
  *
- * @param ---Default---
+ * @param ----------
  * @default
  *
  * @param Default 1
- * @type file
- * @dir img/battlebacks1
- * @require 1
- * @parent ---Default---
  * @desc The filename used by default for battleback1.
  * Default: Grassland
  * @default Grassland
  *
  * @param Default 2
- * @type file
- * @dir img/battlebacks2
- * @require 1
- * @parent ---Default---
  * @desc The filename used by default for battleback2.
  * Default: Grassland
  * @default Grassland
  *
- * @param ---Ship---
+ * @param ----------
  * @default
  *
  * @param Ship 1
- * @type file
- * @dir img/battlebacks1
- * @require 1
- * @parent ---Ship---
  * @desc The filename used by ships for battleback1.
  * Default: Ship
  * @default Ship
  *
  * @param Ship 2
- * @type file
- * @dir img/battlebacks2
- * @require 1
- * @parent ---Ship---
  * @desc The filename used by ships for battleback2.
  * Default: Ship
  * @default Ship
  *
- * @param ---Forest---
+ * @param ----------
  * @default
  *
  * @param Forest 1
- * @type file
- * @dir img/battlebacks1
- * @require 1
- * @parent ---Forest---
  * @desc The filename used by forests for battleback1.
  * Default: There is none.
  * @default There is none.
  *
  * @param Forest 2
- * @type file
- * @dir img/battlebacks2
- * @require 1
- * @parent ---Forest---
  * @desc The filename used by forests for battleback2.
  * Default: Forest
  * @default Forest
  *
- * @param ---Cliff---
+ * @param ----------
  * @default
  *
  * @param Cliff 1
- * @type file
- * @dir img/battlebacks1
- * @require 1
- * @parent ---Cliff---
  * @desc The filename used by cliffs for battleback1.
  * Default: There is none.
  * @default There is none.
  *
  * @param Cliff 2
- * @type file
- * @dir img/battlebacks2
- * @require 1
- * @parent ---Cliff---
  * @desc The filename used by cliffs for battleback2.
  * Default: Cliff
  * @default Cliff
  *
- * @param ---Wasteland---
+ * @param ----------
  * @default
  *
  * @param Wasteland 1
- * @type file
- * @dir img/battlebacks1
- * @require 1
- * @parent ---Wasteland---
  * @desc The filename used by wastelands for battleback1.
  * Default: Wasteland
  * @default Wasteland
  *
  * @param Wasteland 2
- * @type file
- * @dir img/battlebacks2
- * @require 1
- * @parent ---Wasteland---
  * @desc The filename used by wastelands for battleback2.
  * Default: Wasteland
  * @default Wasteland
  *
- * @param ---Dirtfield---
+ * @param ----------
  * @default
  *
  * @param Dirtfield 1
- * @type file
- * @dir img/battlebacks1
- * @require 1
- * @parent ---Dirtfield---
  * @desc The filename used by dirt fields for battleback1.
  * Default: Wasteland
  * @default Wasteland
  *
  * @param Dirtfield 2
- * @type file
- * @dir img/battlebacks2
- * @require 1
- * @parent ---Dirtfield---
  * @desc The filename used by dirt fields for battleback2.
  * Default: There is none.
  * @default There is none.
  *
- * @param ---Desert---
+ * @param ----------
  * @default
  *
  * @param Desert 1
- * @type file
- * @dir img/battlebacks1
- * @require 1
- * @parent ---Desert---
  * @desc The filename used by deserts for battleback1.
  * Default: Desert
  * @default Desert
  *
  * @param Desert 2
- * @type file
- * @dir img/battlebacks2
- * @require 1
- * @parent ---Desert---
  * @desc The filename used by deserts for battleback2.
  * Default: Desert
  * @default Desert
  *
- * @param ---Lava1---
+ * @param ----------
  * @default
  *
  * @param Lava1 1
- * @type file
- * @dir img/battlebacks1
- * @require 1
- * @parent ---Lava1---
  * @desc The filename used by lava type 1 for battleback1.
  * Default: Lava1
  * @default Lava1
  *
  * @param Lava1 2
- * @type file
- * @dir img/battlebacks2
- * @require 1
- * @parent ---Lava1---
  * @desc The filename used by lava type 1 for battleback2.
  * Default: Lava
  * @default Lava
  *
- * @param ---Lava2---
+ * @param ----------
  * @default
  *
  * @param Lava2 1
- * @type file
- * @dir img/battlebacks1
- * @require 1
- * @parent ---Lava2---
  * @desc The filename used by lava type 2 for battleback1.
  * Default: Lava2
  * @default Lava2
  *
  * @param Lava2 2
- * @type file
- * @dir img/battlebacks2
- * @require 1
- * @parent ---Lava2---
  * @desc The filename used by lava type 2 for battleback2.
  * Default: Lava
  * @default Lava
  *
- * @param ---Snowfield---
+ * @param ----------
  * @default
  *
  * @param Snowfield 1
- * @type file
- * @dir img/battlebacks1
- * @require 1
- * @parent ---Snowfield---
  * @desc The filename used by snow fields for battleback1.
  * Default: Snowfield
  * @default Snowfield
  *
  * @param Snowfield 2
- * @type file
- * @dir img/battlebacks2
- * @require 1
- * @parent ---Snowfield---
  * @desc The filename used by snow fields for battleback2.
  * Default: Snowfield
  * @default Snowfield
  *
- * @param ---Clouds---
+ * @param ----------
  * @default
  *
  * @param Clouds 1
- * @type file
- * @dir img/battlebacks1
- * @require 1
- * @parent ---Clouds---
  * @desc The filename used by clouds for battleback1.
  * Default: Clouds
  * @default Clouds
  *
  * @param Clouds 2
- * @type file
- * @dir img/battlebacks2
- * @require 1
- * @parent ---Clouds---
  * @desc The filename used by clouds for battleback2.
  * Default: Clouds
  * @default Clouds
  *
- * @param ---PoisonSwamp---
+ * @param ----------
  * @default
  *
  * @param PoisonSwamp 1
- * @type file
- * @dir img/battlebacks1
- * @require 1
- * @parent ---PoisonSwamp---
  * @desc The filename used by poison swamps for battleback1.
  * Default: PoisonSwamp
  * @default PoisonSwamp
  *
  * @param PoisonSwamp 2
- * @type file
- * @dir img/battlebacks2
- * @require 1
- * @parent ---PoisonSwamp---
  * @desc The filename used by poison swamps for battleback2.
  * Default: PoisonSwamp
  * @default PoisonSwamp
+ *
+ * @param ----------
+ * @default
  *
  * @help
  * ============================================================================
  * Introduction
  * ============================================================================
  *
- * When using an overworld map, you actually have no control over any of the
- * battlebacks used for the region you're in. Although they sometimes make
- * sense if you're using the default RTP graphics, other parts of the terrain
- * do not translate well if you're using custom graphics with different names.
- * As a result, this can result in certain images not loading and promptly
- * crashing the game.
- *
- * This plugin will allow you to alter the battlebacks used by default for the
- * overworld in addition to bind specific battlebacks to specific tiles on the
- * map through usage of regions.
+ * region战斗背景定义工具--可以使用区域图块组控制你遇敌时的战斗背景
+ * 什么叫区域图块组？就是图块组里的R选项卡,里面是1-255的ID标识
+ * 同时这个插件还可以让你修改默认地形的遇敌背景,很方便。
+ * 面parameters配置中,Battleback1表示背景图下层，即img\battlebacks1中的文件
+ * Battleback2表示背景图上层，即img\battlebacks2中的文件，不再单独解释。
+ * paremeters配置主要让你修改默认地图战斗背景使用，
+ * 如果你想使用region区块标记不同的战斗背景,请使用地图配置界面的注释命令。
+ * 使用世界地图时，你会发现自己并不能使用region区块来控制战斗背景。当然，本
+ * 插件还能有效避免因为其他地图上战斗背景名称不匹配和加载失败引起的游戏崩溃。
+ * 本插件可以允许你改变默认地形的默认战斗背景，同时也可以让你用地图注释命令
+ * 定义使用region区块定义的特别战斗背景
  *
  * ============================================================================
  * Notetags
  * ============================================================================
  *
- * To bind specific battlebacks to certain region ID's, you can use these
- * following notetags:
+ * 要绑定背景地图给特殊的region区块，你可以使用下面的的注释命令:
  *
  * Map Notetags:
  *
  *   <Region x Battleback1: filename>
  *   <Region x Battleback2: filename>
- *   This will change the battleback1 or battleback2 for region x to use
- *   the battleback image with the matching filename. When writing out the
- *   filename, it is case sensitive. Do not insert the file extension.
+ *   很简单x为region区块的ID号,filename为背景图片名称。注意这里只需要用文件名
+ *   ，不需要路径，你的所有战斗背景都应该放在游戏工程的原始目录下面。
  *
  *   For example:
  *
@@ -307,15 +211,12 @@ Yanfly.RBB.version = 1.01
  *   <Region 5 Battleback1: Dirt2>
  *   <Region 5 Battleback2: Forest>
  *
- *   Insert these combinations into the noteboxes of the maps you wish to use
- *   specific battlebacks per region for.
+ *   上面的命令实现了如果玩家踏入地图上ID为5的region标记区域触发的战斗都将会使
+ *   用以Dirt2文件为地、Forest文件为天的战斗背景。
  *
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.01:
- * - Updated for RPG Maker MV version 1.5.0.
  *
  * Version 1.00:
  * - Finished Plugin!

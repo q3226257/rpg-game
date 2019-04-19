@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Battle Engine Extension - Animated Sideview Enemies
 // YEP_X_AnimatedSVEnemies.js
 //=============================================================================
@@ -8,76 +8,52 @@ Imported.YEP_X_AnimatedSVEnemies = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.SVE = Yanfly.SVE || {};
-Yanfly.SVE.version = 1.19;
+Yanfly.SVE.version = 1.16;
 
 //=============================================================================
  /*:
- * @plugindesc v1.19 (Requires YEP_BattleEngineCore.js) This plugin lets
- * you use Animated Sideview Actors for enemies!
+ * @plugindesc v1.16 敌群侧视战斗图
  * @author Yanfly Engine Plugins
  *
  * @param ---General---
  * @default
  *
  * @param Anchor X
- * @parent ---General---
- * @type number
- * @decimals 1
  * @desc Sets the default anchor position of the sprite.
  * Default: 0.5
  * @default 0.5
  *
  * @param Anchor Y
- * @parent ---General---
- * @type number
- * @decimals 1
  * @desc Sets the default anchor position of the sprite.
- * Default: 1.0
- * @default 1.0
+ * Default: 1
+ * @default 1
  *
  * @param Sprite Smoothing
- * @parent ---General---
- * @type boolean
- * @on Enable
- * @off Disable
  * @desc Enable Sprite Smoothing? This is a global setting.
  * NO - false     YES - true
  * @default true
  *
  * @param Sprite Width
- * @parent ---General---
  * @desc Sets the minimum width for sideview sprites.
  * Use 'auto' for automatic detection. Default: 64
  * @default auto
  *
  * @param Sprite Height
- * @parent ---General---
  * @desc Sets the minimum height for sideview sprites.
  * Use 'auto' for automatic detection. Default: 64
  * @default auto
  *
  * @param Collapse
- * @parent ---General---
- * @type boolean
- * @on YES
- * @off NO
  * @desc When a sprite dies, have it collapse and vanish?
  * NO - false     YES - true
  * @default false
  *
  * @param Frame Speed
- * @parent ---General---
- * @type number
- * @min 0
  * @desc The default frame speed used in between motions.
  * Default: 12
  * @default 12
  *
  * @param Show State Overlay
- * @parent ---General---
- * @type boolean
- * @on Show
- * @off Hide
  * @desc Show state overlays on sideview enemies?
  * NO - false     YES - true
  * @default true
@@ -86,22 +62,16 @@ Yanfly.SVE.version = 1.19;
  * @default
  *
  * @param Show Shadow
- * @parent ---Shadows---
- * @type boolean
- * @on Show
- * @off Hide
  * @desc Show shadows on sideview enemies?
  * NO - false     YES - true
  * @default false
  *
  * @param Shadow Scale X
- * @parent ---Shadows---
  * @desc Sets the default horizontal shadow scale.
  * Use 'auto' for automatic detection. Default: 1
  * @default auto
  *
  * @param Shadow Scale Y
- * @parent ---Shadows---
  * @desc Sets the default vertical shadow scale.
  * Use 'auto' for automatic detection. Default: 1
  * @default auto
@@ -110,49 +80,26 @@ Yanfly.SVE.version = 1.19;
  * @default
  *
  * @param Enable Breathing
- * @parent ---Breathing---
  * @desc Breathing option for enemies.
- * @type select
- * @option None
- * @value 0
- * @option Static
- * @value 1
- * @option Sideview
- * @value 2
- * @option Both
- * @value 3
  * 0 - None, 1 - Static, 2 - Sideview, 3 - Both
  * @default 1
  *
  * @param Breathing Speed
- * @parent ---Breathing---
- * @type number
- * @min 0
  * @desc The default breathing rate for enemies.
  * Lower - Faster     Larger - Slower
  * @default 20
  *
  * @param Breathing X Rate
- * @parent ---Breathing---
- * @type number
- * @decimals 3
  * @desc The default breathing X rate for enemies.
  * Lower - Static     Larger - Dynamic
  * @default 0.001
  *
  * @param Breathing Y Rate
- * @parent ---Breathing---
- * @type number
- * @decimals 3
  * @desc The default breathing Y rate for enemies.
  * Lower - Static     Larger - Dynamic
- * @default 0.020
+ * @default 0.02
  *
  * @param HP Link Breathing
- * @parent ---Breathing---
- * @type boolean
- * @on Link
- * @off Don't Link
  * @desc Link breathing rate to HP Rate?
  * NO - false     YES - true
  * @default false
@@ -161,34 +108,21 @@ Yanfly.SVE.version = 1.19;
  * @default
  *
  * @param Floating Speed
- * @parent ---Floating---
- * @type number
- * @min 0
  * @desc The default floating speed for enemies.
  * Lower - Faster     Larger - Slower
  * @default 20
  *
  * @param Floating Rate
- * @parent ---Floating---
- * @type number
- * @decimals 1
  * @desc The default floating rate for enemies.
  * Lower - Faster     Larger - Slower
  * @default 0.3
  *
  * @param Floating Height
- * @parent ---Floating---
- * @type number
- * @min 0
  * @desc The default minimum floating height for enemies.
  * Lower - Closer to Ground     Larger - Higher Up
  * @default 50
  *
  * @param Floating Death
- * @parent ---Floating---
- * @type boolean
- * @on Allow
- * @off Disallow
  * @desc Allow enemies to remain floating while dead?
  * NO - false     YES - true
  * @default true
@@ -197,251 +131,56 @@ Yanfly.SVE.version = 1.19;
  * @default
  *
  * @param Attack Motion
- * @parent ---Motions---
- * @type combo
- * @option swing
- * @option thrust
- * @option missile
- * @option walk
- * @option wait
- * @option chant
- * @option guard
- * @option damage
- * @option evade
- * @option skill
- * @option spell
- * @option item
- * @option escape
- * @option victory
- * @option dying
- * @option abnormal
- * @option sleep
- * @option dead
  * @desc Sets the default attack motion for no weapons.
  * Attack Motion Types: swing     thrust     missile
  * @default thrust
  *
+ * @param Weapon Image Index
+ * @desc Sets the default weapon image index for the sprite.
+ * Use 0 for no image.
+ * @default 0
+ *
  * @param Idle Motion
- * @parent ---Motions---
- * @type combo
- * @option swing
- * @option thrust
- * @option missile
- * @option walk
- * @option wait
- * @option chant
- * @option guard
- * @option damage
- * @option evade
- * @option skill
- * @option spell
- * @option item
- * @option escape
- * @option victory
- * @option dying
- * @option abnormal
- * @option sleep
- * @option dead
  * @desc Sets the sprite's idle motion.
  * Default: walk
  * @default walk
  *
  * @param Damage Motion
- * @parent ---Motions---
- * @type combo
- * @option swing
- * @option thrust
- * @option missile
- * @option walk
- * @option wait
- * @option chant
- * @option guard
- * @option damage
- * @option evade
- * @option skill
- * @option spell
- * @option item
- * @option escape
- * @option victory
- * @option dying
- * @option abnormal
- * @option sleep
- * @option dead
  * @desc Sets the sprite's taking damage motion.
  * Default: damage
  * @default damage
  *
  * @param Evade Motion
- * @parent ---Motions---
- * @type combo
- * @option swing
- * @option thrust
- * @option missile
- * @option walk
- * @option wait
- * @option chant
- * @option guard
- * @option damage
- * @option evade
- * @option skill
- * @option spell
- * @option item
- * @option escape
- * @option victory
- * @option dying
- * @option abnormal
- * @option sleep
- * @option dead
  * @desc Sets the sprite's evasion motion.
  * Default: evade
  * @default evade
  *
  * @param Escape Motion
- * @parent ---Motions---
- * @type combo
- * @option swing
- * @option thrust
- * @option missile
- * @option walk
- * @option wait
- * @option chant
- * @option guard
- * @option damage
- * @option evade
- * @option skill
- * @option spell
- * @option item
- * @option escape
- * @option victory
- * @option dying
- * @option abnormal
- * @option sleep
- * @option dead
  * @desc Sets the sprite's escape motion.
  * Default: escape
  * @default escape
  *
  * @param Guard Motion
- * @parent ---Motions---
- * @type combo
- * @option swing
- * @option thrust
- * @option missile
- * @option walk
- * @option wait
- * @option chant
- * @option guard
- * @option damage
- * @option evade
- * @option skill
- * @option spell
- * @option item
- * @option escape
- * @option victory
- * @option dying
- * @option abnormal
- * @option sleep
- * @option dead
  * @desc Sets the sprite's guard motion.
  * Default: guard
  * @default guard
  *
  * @param Abnormal Motion
- * @parent ---Motions---
- * @type combo
- * @option swing
- * @option thrust
- * @option missile
- * @option walk
- * @option wait
- * @option chant
- * @option guard
- * @option damage
- * @option evade
- * @option skill
- * @option spell
- * @option item
- * @option escape
- * @option victory
- * @option dying
- * @option abnormal
- * @option sleep
- * @option dead
  * @desc Sets the sprite's abnormal (status afflicted) motion.
  * Default: abnormal
  * @default abnormal
  *
  * @param Sleep Motion
- * @parent ---Motions---
- * @type combo
- * @option swing
- * @option thrust
- * @option missile
- * @option walk
- * @option wait
- * @option chant
- * @option guard
- * @option damage
- * @option evade
- * @option skill
- * @option spell
- * @option item
- * @option escape
- * @option victory
- * @option dying
- * @option abnormal
- * @option sleep
- * @option dead
  * @desc Sets the sprite's sleeping motion.
  * Default: sleep
  * @default sleep
  *
  * @param Dying Motion
- * @parent ---Motions---
- * @type combo
- * @option swing
- * @option thrust
- * @option missile
- * @option walk
- * @option wait
- * @option chant
- * @option guard
- * @option damage
- * @option evade
- * @option skill
- * @option spell
- * @option item
- * @option escape
- * @option victory
- * @option dying
- * @option abnormal
- * @option sleep
- * @option dead
  * @desc Sets the sprite's dying (crisis) motion.
  * Default: dying
  * @default dying
  *
  * @param Dead Motion
- * @parent ---Motions---
- * @type combo
- * @option swing
- * @option thrust
- * @option missile
- * @option walk
- * @option wait
- * @option chant
- * @option guard
- * @option damage
- * @option evade
- * @option skill
- * @option spell
- * @option item
- * @option escape
- * @option victory
- * @option dying
- * @option abnormal
- * @option sleep
- * @option dead
  * @desc Sets the sprite's dead motion.
  * Default: dead
  * @default dead
@@ -450,987 +189,318 @@ Yanfly.SVE.version = 1.19;
  * @default
  *
  * @param Weapon Image Index
- * @parent ---Weapons---
- * @type number
- * @min 0
  * @desc Sets the default weapon image index for the sprite.
  * Use 0 for no image.
  * @default 0
  *
  * @param Weapon 1 Motion
- * @parent ---Weapons---
- * @type combo
- * @option swing
- * @option thrust
- * @option missile
- * @option walk
- * @option wait
- * @option chant
- * @option guard
- * @option damage
- * @option evade
- * @option skill
- * @option spell
- * @option item
- * @option escape
- * @option victory
- * @option dying
- * @option abnormal
- * @option sleep
- * @option dead
  * @desc Motion used by default for this weapon image.
  * Weapon 1: Dagger     Motion: swing
  * @default swing
  *
  * @param Weapon 1 Animation
- * @parent ---Weapons---
- * @type animation
  * @desc Battle animation used by default for this weapon image.
  * @default 6
  *
  * @param Weapon 2 Motion
- * @parent ---Weapons---
- * @type combo
- * @option swing
- * @option thrust
- * @option missile
- * @option walk
- * @option wait
- * @option chant
- * @option guard
- * @option damage
- * @option evade
- * @option skill
- * @option spell
- * @option item
- * @option escape
- * @option victory
- * @option dying
- * @option abnormal
- * @option sleep
- * @option dead
  * @desc Motion used by default for this weapon image.
  * Weapon 2: Sword     Motion: swing
  * @default swing
  *
  * @param Weapon 2 Animation
- * @parent ---Weapons---
- * @type animation
  * @desc Battle animation used by default for this weapon image.
  * @default 6
  *
  * @param Weapon 3 Motion
- * @parent ---Weapons---
- * @type combo
- * @option swing
- * @option thrust
- * @option missile
- * @option walk
- * @option wait
- * @option chant
- * @option guard
- * @option damage
- * @option evade
- * @option skill
- * @option spell
- * @option item
- * @option escape
- * @option victory
- * @option dying
- * @option abnormal
- * @option sleep
- * @option dead
  * @desc Motion used by default for this weapon image.
  * Weapon 3: Flail     Motion: swing
  * @default swing
  *
  * @param Weapon 3 Animation
- * @parent ---Weapons---
- * @type animation
  * @desc Battle animation used by default for this weapon image.
  * @default 1
  *
  * @param Weapon 4 Motion
- * @parent ---Weapons---
- * @type combo
- * @option swing
- * @option thrust
- * @option missile
- * @option walk
- * @option wait
- * @option chant
- * @option guard
- * @option damage
- * @option evade
- * @option skill
- * @option spell
- * @option item
- * @option escape
- * @option victory
- * @option dying
- * @option abnormal
- * @option sleep
- * @option dead
  * @desc Motion used by default for this weapon image.
  * Weapon 4: Axe     Motion: swing
  * @default swing
  *
  * @param Weapon 4 Animation
- * @parent ---Weapons---
- * @type animation
  * @desc Battle animation used by default for this weapon image.
  * @default 6
  *
  * @param Weapon 5 Motion
- * @parent ---Weapons---
- * @type combo
- * @option swing
- * @option thrust
- * @option missile
- * @option walk
- * @option wait
- * @option chant
- * @option guard
- * @option damage
- * @option evade
- * @option skill
- * @option spell
- * @option item
- * @option escape
- * @option victory
- * @option dying
- * @option abnormal
- * @option sleep
- * @option dead
  * @desc Motion used by default for this weapon image.
  * Weapon 5: Whip     Motion: swing
  * @default swing
  *
  * @param Weapon 5 Animation
- * @parent ---Weapons---
- * @type animation
  * @desc Battle animation used by default for this weapon image.
  * @default 6
  *
  * @param Weapon 6 Motion
- * @parent ---Weapons---
- * @type combo
- * @option swing
- * @option thrust
- * @option missile
- * @option walk
- * @option wait
- * @option chant
- * @option guard
- * @option damage
- * @option evade
- * @option skill
- * @option spell
- * @option item
- * @option escape
- * @option victory
- * @option dying
- * @option abnormal
- * @option sleep
- * @option dead
  * @desc Motion used by default for this weapon image.
  * Weapon 6: Staff     Motion: swing
  * @default swing
  *
  * @param Weapon 6 Animation
- * @parent ---Weapons---
- * @type animation
  * @desc Battle animation used by default for this weapon image.
  * @default 1
  *
  * @param Weapon 7 Motion
- * @parent ---Weapons---
- * @type combo
- * @option swing
- * @option thrust
- * @option missile
- * @option walk
- * @option wait
- * @option chant
- * @option guard
- * @option damage
- * @option evade
- * @option skill
- * @option spell
- * @option item
- * @option escape
- * @option victory
- * @option dying
- * @option abnormal
- * @option sleep
- * @option dead
  * @desc Motion used by default for this weapon image.
  * Weapon 7: Long Bow     Motion: missile
  * @default missile
  *
  * @param Weapon 7 Animation
- * @parent ---Weapons---
- * @type animation
  * @desc Battle animation used by default for this weapon image.
  * @default 11
  *
  * @param Weapon 8 Motion
- * @parent ---Weapons---
- * @type combo
- * @option swing
- * @option thrust
- * @option missile
- * @option walk
- * @option wait
- * @option chant
- * @option guard
- * @option damage
- * @option evade
- * @option skill
- * @option spell
- * @option item
- * @option escape
- * @option victory
- * @option dying
- * @option abnormal
- * @option sleep
- * @option dead
  * @desc Motion used by default for this weapon image.
  * Weapon 8: Crossbow     Motion: missile
  * @default missile
  *
  * @param Weapon 8 Animation
- * @parent ---Weapons---
- * @type animation
  * @desc Battle animation used by default for this weapon image.
  * @default 11
  *
  * @param Weapon 9 Motion
- * @parent ---Weapons---
- * @type combo
- * @option swing
- * @option thrust
- * @option missile
- * @option walk
- * @option wait
- * @option chant
- * @option guard
- * @option damage
- * @option evade
- * @option skill
- * @option spell
- * @option item
- * @option escape
- * @option victory
- * @option dying
- * @option abnormal
- * @option sleep
- * @option dead
  * @desc Motion used by default for this weapon image.
  * Weapon 9: Gun     Motion: missile
  * @default missile
  *
  * @param Weapon 9 Animation
- * @parent ---Weapons---
- * @type animation
  * @desc Battle animation used by default for this weapon image.
  * @default 111
  *
  * @param Weapon 10 Motion
- * @parent ---Weapons---
- * @type combo
- * @option swing
- * @option thrust
- * @option missile
- * @option walk
- * @option wait
- * @option chant
- * @option guard
- * @option damage
- * @option evade
- * @option skill
- * @option spell
- * @option item
- * @option escape
- * @option victory
- * @option dying
- * @option abnormal
- * @option sleep
- * @option dead
  * @desc Motion used by default for this weapon image.
  * Weapon 10: Claw     Motion: thrust
  * @default thrust
  *
  * @param Weapon 10 Animation
- * @parent ---Weapons---
- * @type animation
  * @desc Battle animation used by default for this weapon image.
  * @default 16
  *
  * @param Weapon 11 Motion
- * @parent ---Weapons---
- * @type combo
- * @option swing
- * @option thrust
- * @option missile
- * @option walk
- * @option wait
- * @option chant
- * @option guard
- * @option damage
- * @option evade
- * @option skill
- * @option spell
- * @option item
- * @option escape
- * @option victory
- * @option dying
- * @option abnormal
- * @option sleep
- * @option dead
  * @desc Motion used by default for this weapon image.
  * Weapon 11: Glove     Motion: thrust
  * @default thrust
  *
  * @param Weapon 11 Animation
- * @parent ---Weapons---
- * @type animation
  * @desc Battle animation used by default for this weapon image.
  * @default 1
  *
  * @param Weapon 12 Motion
- * @parent ---Weapons---
- * @type combo
- * @option swing
- * @option thrust
- * @option missile
- * @option walk
- * @option wait
- * @option chant
- * @option guard
- * @option damage
- * @option evade
- * @option skill
- * @option spell
- * @option item
- * @option escape
- * @option victory
- * @option dying
- * @option abnormal
- * @option sleep
- * @option dead
  * @desc Motion used by default for this weapon image.
  * Weapon 12: Spear     Motion: thrust
  * @default thrust
  *
  * @param Weapon 12 Animation
- * @parent ---Weapons---
- * @type animation
  * @desc Battle animation used by default for this weapon image.
  * @default 11
  *
  * @param Weapon 13 Motion
- * @parent ---Weapons---
- * @type combo
- * @option swing
- * @option thrust
- * @option missile
- * @option walk
- * @option wait
- * @option chant
- * @option guard
- * @option damage
- * @option evade
- * @option skill
- * @option spell
- * @option item
- * @option escape
- * @option victory
- * @option dying
- * @option abnormal
- * @option sleep
- * @option dead
  * @desc Motion used by default for this weapon image.
  * Weapon 13: Mace     Motion: swing
  * @default swing
  *
  * @param Weapon 13 Animation
- * @parent ---Weapons---
- * @type animation
  * @desc Battle animation used by default for this weapon image.
  * @default 1
  *
  * @param Weapon 14 Motion
- * @parent ---Weapons---
- * @type combo
- * @option swing
- * @option thrust
- * @option missile
- * @option walk
- * @option wait
- * @option chant
- * @option guard
- * @option damage
- * @option evade
- * @option skill
- * @option spell
- * @option item
- * @option escape
- * @option victory
- * @option dying
- * @option abnormal
- * @option sleep
- * @option dead
  * @desc Motion used by default for this weapon image.
  * Weapon 14: Rod     Motion: swing
  * @default swing
  *
  * @param Weapon 14 Animation
- * @parent ---Weapons---
- * @type animation
  * @desc Battle animation used by default for this weapon image.
  * @default 1
  *
  * @param Weapon 15 Motion
- * @parent ---Weapons---
- * @type combo
- * @option swing
- * @option thrust
- * @option missile
- * @option walk
- * @option wait
- * @option chant
- * @option guard
- * @option damage
- * @option evade
- * @option skill
- * @option spell
- * @option item
- * @option escape
- * @option victory
- * @option dying
- * @option abnormal
- * @option sleep
- * @option dead
  * @desc Motion used by default for this weapon image.
  * Weapon 15: Club     Motion: swing
  * @default swing
  *
  * @param Weapon 15 Animation
- * @parent ---Weapons---
- * @type animation
  * @desc Battle animation used by default for this weapon image.
  * @default 1
  *
  * @param Weapon 16 Motion
- * @parent ---Weapons---
- * @type combo
- * @option swing
- * @option thrust
- * @option missile
- * @option walk
- * @option wait
- * @option chant
- * @option guard
- * @option damage
- * @option evade
- * @option skill
- * @option spell
- * @option item
- * @option escape
- * @option victory
- * @option dying
- * @option abnormal
- * @option sleep
- * @option dead
  * @desc Motion used by default for this weapon image.
  * Weapon 16: Chain     Motion: swing
  * @default swing
  *
  * @param Weapon 16 Animation
- * @parent ---Weapons---
- * @type animation
  * @desc Battle animation used by default for this weapon image.
  * @default 6
  *
  * @param Weapon 17 Motion
- * @parent ---Weapons---
- * @type combo
- * @option swing
- * @option thrust
- * @option missile
- * @option walk
- * @option wait
- * @option chant
- * @option guard
- * @option damage
- * @option evade
- * @option skill
- * @option spell
- * @option item
- * @option escape
- * @option victory
- * @option dying
- * @option abnormal
- * @option sleep
- * @option dead
  * @desc Motion used by default for this weapon image.
  * Weapon 17: Sword#2     Motion: swing
  * @default swing
  *
  * @param Weapon 17 Animation
- * @parent ---Weapons---
- * @type animation
  * @desc Battle animation used by default for this weapon image.
  * @default 7
  *
  * @param Weapon 18 Motion
- * @parent ---Weapons---
- * @type combo
- * @option swing
- * @option thrust
- * @option missile
- * @option walk
- * @option wait
- * @option chant
- * @option guard
- * @option damage
- * @option evade
- * @option skill
- * @option spell
- * @option item
- * @option escape
- * @option victory
- * @option dying
- * @option abnormal
- * @option sleep
- * @option dead
  * @desc Motion used by default for this weapon image.
  * Weapon 18: Iron Pipe     Motion: swing
  * @default swing
  *
  * @param Weapon 18 Animation
- * @parent ---Weapons---
- * @type animation
  * @desc Battle animation used by default for this weapon image.
  * @default 1
  *
  * @param Weapon 19 Motion
- * @parent ---Weapons---
- * @type combo
- * @option swing
- * @option thrust
- * @option missile
- * @option walk
- * @option wait
- * @option chant
- * @option guard
- * @option damage
- * @option evade
- * @option skill
- * @option spell
- * @option item
- * @option escape
- * @option victory
- * @option dying
- * @option abnormal
- * @option sleep
- * @option dead
  * @desc Motion used by default for this weapon image.
  * Weapon 19: Sling Shot     Motion: missile
  * @default missile
  *
  * @param Weapon 19 Animation
- * @parent ---Weapons---
- * @type animation
  * @desc Battle animation used by default for this weapon image.
  * @default 11
  *
  * @param Weapon 20 Motion
- * @parent ---Weapons---
- * @type combo
- * @option swing
- * @option thrust
- * @option missile
- * @option walk
- * @option wait
- * @option chant
- * @option guard
- * @option damage
- * @option evade
- * @option skill
- * @option spell
- * @option item
- * @option escape
- * @option victory
- * @option dying
- * @option abnormal
- * @option sleep
- * @option dead
  * @desc Motion used by default for this weapon image.
  * Weapon 20: Shotgun     Motion: missile
  * @default missile
  *
  * @param Weapon 20 Animation
- * @parent ---Weapons---
- * @type animation
  * @desc Battle animation used by default for this weapon image.
  * @default 111
  *
  * @param Weapon 21 Motion
- * @parent ---Weapons---
- * @type combo
- * @option swing
- * @option thrust
- * @option missile
- * @option walk
- * @option wait
- * @option chant
- * @option guard
- * @option damage
- * @option evade
- * @option skill
- * @option spell
- * @option item
- * @option escape
- * @option victory
- * @option dying
- * @option abnormal
- * @option sleep
- * @option dead
  * @desc Motion used by default for this weapon image.
  * Weapon 21: Rifle     Motion: missile
  * @default missile
  *
  * @param Weapon 21 Animation
- * @parent ---Weapons---
- * @type animation
  * @desc Battle animation used by default for this weapon image.
  * @default 111
  *
  * @param Weapon 22 Motion
- * @parent ---Weapons---
- * @type combo
- * @option swing
- * @option thrust
- * @option missile
- * @option walk
- * @option wait
- * @option chant
- * @option guard
- * @option damage
- * @option evade
- * @option skill
- * @option spell
- * @option item
- * @option escape
- * @option victory
- * @option dying
- * @option abnormal
- * @option sleep
- * @option dead
  * @desc Motion used by default for this weapon image.
  * Weapon 22: Chainsaw     Motion: thrust
  * @default thrust
  *
  * @param Weapon 22 Animation
- * @parent ---Weapons---
- * @type animation
  * @desc Battle animation used by default for this weapon image.
  * @default 7
  *
  * @param Weapon 23 Motion
- * @parent ---Weapons---
- * @type combo
- * @option swing
- * @option thrust
- * @option missile
- * @option walk
- * @option wait
- * @option chant
- * @option guard
- * @option damage
- * @option evade
- * @option skill
- * @option spell
- * @option item
- * @option escape
- * @option victory
- * @option dying
- * @option abnormal
- * @option sleep
- * @option dead
  * @desc Motion used by default for this weapon image.
  * Weapon 23: Railgun     Motion: missile
  * @default missile
  *
  * @param Weapon 23 Animation
- * @parent ---Weapons---
- * @type animation
  * @desc Battle animation used by default for this weapon image.
  * @default 15
  *
  * @param Weapon 24 Motion
- * @parent ---Weapons---
- * @type combo
- * @option swing
- * @option thrust
- * @option missile
- * @option walk
- * @option wait
- * @option chant
- * @option guard
- * @option damage
- * @option evade
- * @option skill
- * @option spell
- * @option item
- * @option escape
- * @option victory
- * @option dying
- * @option abnormal
- * @option sleep
- * @option dead
  * @desc Motion used by default for this weapon image.
  * Weapon 24: Stun Rod     Motion: thrust
  * @default thrust
  *
  * @param Weapon 24 Animation
- * @parent ---Weapons---
- * @type animation
  * @desc Battle animation used by default for this weapon image.
  * @default 15
  *
  * @param Weapon 25 Motion
- * @parent ---Weapons---
- * @type combo
- * @option swing
- * @option thrust
- * @option missile
- * @option walk
- * @option wait
- * @option chant
- * @option guard
- * @option damage
- * @option evade
- * @option skill
- * @option spell
- * @option item
- * @option escape
- * @option victory
- * @option dying
- * @option abnormal
- * @option sleep
- * @option dead
  * @desc Motion used by default for this weapon image.
  * Weapon 25: Spell Book   Motion: swing
  * @default swing
  *
  * @param Weapon 25 Animation
- * @parent ---Weapons---
- * @type animation
  * @desc Battle animation used by default for this weapon image.
  * @default 1
  *
  * @param Weapon 26 Motion
- * @parent ---Weapons---
- * @type combo
- * @option swing
- * @option thrust
- * @option missile
- * @option walk
- * @option wait
- * @option chant
- * @option guard
- * @option damage
- * @option evade
- * @option skill
- * @option spell
- * @option item
- * @option escape
- * @option victory
- * @option dying
- * @option abnormal
- * @option sleep
- * @option dead
  * @desc Motion used by default for this weapon image.
  * Weapon 26: custom     Motion: thrust
  * @default thrust
  *
  * @param Weapon 26 Animation
- * @parent ---Weapons---
- * @type animation
  * @desc Battle animation used by default for this weapon image.
  * @default 1
  *
  * @param Weapon 27 Motion
- * @parent ---Weapons---
- * @type combo
- * @option swing
- * @option thrust
- * @option missile
- * @option walk
- * @option wait
- * @option chant
- * @option guard
- * @option damage
- * @option evade
- * @option skill
- * @option spell
- * @option item
- * @option escape
- * @option victory
- * @option dying
- * @option abnormal
- * @option sleep
- * @option dead
  * @desc Motion used by default for this weapon image.
  * Weapon 27: custom     Motion: thrust
  * @default thrust
  *
  * @param Weapon 27 Animation
- * @parent ---Weapons---
- * @type animation
  * @desc Battle animation used by default for this weapon image.
  * @default 1
  *
  * @param Weapon 28 Motion
- * @parent ---Weapons---
- * @type combo
- * @option swing
- * @option thrust
- * @option missile
- * @option walk
- * @option wait
- * @option chant
- * @option guard
- * @option damage
- * @option evade
- * @option skill
- * @option spell
- * @option item
- * @option escape
- * @option victory
- * @option dying
- * @option abnormal
- * @option sleep
- * @option dead
  * @desc Motion used by default for this weapon image.
  * Weapon 28: custom     Motion: thrust
  * @default thrust
  *
  * @param Weapon 28 Animation
- * @parent ---Weapons---
- * @type animation
  * @desc Battle animation used by default for this weapon image.
  * @default 1
  *
  * @param Weapon 29 Motion
- * @parent ---Weapons---
- * @type combo
- * @option swing
- * @option thrust
- * @option missile
- * @option walk
- * @option wait
- * @option chant
- * @option guard
- * @option damage
- * @option evade
- * @option skill
- * @option spell
- * @option item
- * @option escape
- * @option victory
- * @option dying
- * @option abnormal
- * @option sleep
- * @option dead
  * @desc Motion used by default for this weapon image.
  * Weapon 29: custom     Motion: thrust
  * @default thrust
  *
  * @param Weapon 29 Animation
- * @parent ---Weapons---
- * @type animation
  * @desc Battle animation used by default for this weapon image.
  * @default 1
  *
  * @param Weapon 30 Motion
- * @parent ---Weapons---
- * @type combo
- * @option swing
- * @option thrust
- * @option missile
- * @option walk
- * @option wait
- * @option chant
- * @option guard
- * @option damage
- * @option evade
- * @option skill
- * @option spell
- * @option item
- * @option escape
- * @option victory
- * @option dying
- * @option abnormal
- * @option sleep
- * @option dead
  * @desc Motion used by default for this weapon image.
  * Weapon 30: custom     Motion: thrust
  * @default thrust
  *
  * @param Weapon 30 Animation
- * @parent ---Weapons---
- * @type animation
  * @desc Battle animation used by default for this weapon image.
  * @default 1
  *
  * @help
  * ============================================================================
- * Introduction
+ * Introduction  介绍
  * ============================================================================
  *
- * This plugin requires YEP_BattleEngineCore.
- * Make sure this plugin is located under YEP_BattleEngineCore in the
- * plugin list.
+ * 此插件需要前置插件YEP_BattleEngineCore。请确保此插件在插件列表中位于
+ * YEP_BattleEngineCore的下方。
  *
- * This extension plugin allows you to animate enemies in a number of ways,
- * from giving static enemies breathing, floating, and scaled attributes to
- * utilizing animated sideview actors as potential battlers for your enemies
- * instead of static graphics to help make your enemies appear more lively!
+ * 此个扩展插件可以让敌人变得栩栩如生，其方式可以是让静态的敌人呼吸、飘浮，
+ * 或者赋予敌人可动的侧面战斗图像来代替静态的图片，这会使敌人看上去更活泼！
  *
- * If you are using YEP_X_ActSeqPack2, and would like the ability to add in
- * floating enemies, place this plugin under YEP_X_ActSeqPack2 as well.
+ * 如果你也在使用YEP_X_ActSeqPack2，并且想要把它的功能加入飘浮敌人中，那么也
+ * 需要把此插件放在YEP_X_ActSeqPack2的下面。
  *
- * To use this plugin, insert within the enemy's notebox the notetags you see
- * in the section below:
+ * 使用此插件的方法是在敌人的注释栏中输入下述的注释。
  *
  * ============================================================================
- * Notetags
+ * Notetags  注释
  * ============================================================================
  *
- * Insert these notetags into the enemy noteboxes below to change their
- * sidewview battler aspects.
+ * 在敌人注释栏内输入下面的注释来改变它们的侧面战斗外貌。
  *
- * Enemy Notetags:
+ * 敌人的注释:
  *
- *   --- General ---
+ *   --- General ---  通用
  *
  *   <Breathing>
  *   <No Breathing>
- *   Enables or disables a 'breathing' effect for the enemy sprite.
+ *   对敌怪使用或禁止使用“呼吸”效果。
  *
  *   <Breathing Speed: x>
- *   How many frames does it take to make a full breathing cycle? The lower the
- *   x value, the faster the enemy breathes. The higher the x value, the slower
- *   the enemy breathes.
+ *   需要多少帧来完成一次完整的呼吸动作？x的值越小，敌人呼吸得越快；x的值越大
+ *   ，敌人呼吸得越慢。
  *
  *   <Breathing Rate X: x.y>
  *   <Breathing Rate Y: x.y>
- *   Sets the horizontal and vertical breathing rate to x.y. 1.0 is a 100%
- *   variance change while 0.0 is a 0% variance.
+ *   将呼吸动作的水平及竖直幅度设为x.y。设为1.0将是100%的变化幅度，而0.0是0%的
+ *   变化幅度。
  *
  *   <Enable HP Link Breathing>
  *   <Disable HP Link Breathing>
@@ -1438,19 +508,17 @@ Yanfly.SVE.version = 1.19;
  *   slower the enemy will breathe.
  *
  *   <Floating>
- *   Sets the enemy to be animated as if it was floating.
+ *   使敌人的活动就像在飘浮。
  *
  *   <Floating Speed: x>
- *   How many frames does it take to do a full floating cycle? The lower the x
- *   value, the faster the enemy floats. The higher the x value, the slower the
- *   enemy floats.
+ *   需要多少帧来完成一次完整的飘浮动作？x的值越小，敌人飘浮得越快；x的值越大
+ *   ，敌人飘浮得越慢。
  *
  *   <Floating Rate: x.y>
- *   Sets the floating rate for the enemy to x.y. 1.0 is a 100% variance change
- *   while 0.0 is a 0% variance change.
+ *   将飘浮动作的幅度设为x.y。设为1.0将是100%的变化幅度，而0.0是0%的变化幅度。
  *
  *   <Floating Height: x>
- *   Sets the minimum float height for the enemy to x.
+ *   设置敌人飘浮的最小高度为x。
  *
  *   <Floating Death>
  *   <No Floating Death>
@@ -1459,54 +527,45 @@ Yanfly.SVE.version = 1.19;
  *   plugin parameter for the particular enemy.
  *
  *   <Scale Sprite: x%>
- *   This allows you to scale the sprite larger or smaller by x% of the
- *   original sprite size. If you wish to only scale either the width or the
- *   height, use the notetags below:
+ *   改变怪物的尺寸，将原始尺寸变大（或变小）x%。如果你只想改变宽度或高度，可
+ *   以用下述注释:
  *
  *   <Scale Sprite Width: x%>
  *   <Scale Sprite Height: x%>
- *   This will scale the sprite's width or height by x% amount specifically
- *   rather than the whole sprite itself by the same ratio.
+ *   将怪物的宽度或高度改变x%，而不是按相同比例改变整个怪物的大小。
  *
- *   --- Sideview ---
+ *   --- Sideview --- 侧面视图
  *
  *   <Sideview Battler: filename>
- *   This is the filename used for the sideview battler found within your
- *   project's img/sv_actors/ folder. Doing this will enable the following
- *   notetags to be applied to the battler. This is case-sensitive and used
- *   without the image's file extension.
+ *   此注释指明了在文件夹img/sv_actors/中的用于侧视战斗图的文件名，使用之后才
+ *   能应用下述注释于战斗图。文件名的输入不必包含文件扩展名，但要区分大小写。
  *
  *   *Example: SF_Actor3_8.png would be <Sideview Battler: SF_Actor3_8>
  *
- *   *Note: If more than one of these tags is used, the sideview battler
- *   selected will be picked from a random pool. Their settings, however, will
- *   match all of the other sideview settings set in the notetags for the sake
- *   of simplicity.
+ *   例：SF_Actor3_8.png应输入为<Sideview Battler: SF_Actor3_8> 注意：如果使用
+ *   了多个这样的注释，那么侧视战斗图将会从中随机选取。而它们的设定将同样会满
+ *   足注释栏中其它的侧视设置。
  *
- *   --- Sideview Specific ---
+ *   --- Sideview Specific --- 侧面视图详细设定
  *
  *   <Sideview Anchor X: y.z>
  *   <Sideview Anchor Y: y.z>
- *   This sets the anchor location for the enemy's sideview battler at y.z.
- *   This is used for the event you have an odd-proportioned sideview battler.
+ *   设置敌人x侧视战斗图的原始位置为y.z。可用于侧视战斗图的比例很奇特的情形。
  *
  *   <Sideview Width: x>
  *   <Sideview Height: x>
- *   Sets the width/height of the sideview battler. This is for the event
- *   you're using a battler image that may have different proportions than
- *   normal sideview battlers.
+ *   设置侧视战斗图的宽度/高度。可用于侧视战斗图的比例与正常战斗图的比例不同的
+ *   情形。
  *
  *   <Sideview Collapse>
- *   Sets it so that the enemy when it dies will collapse and vanish.
+ *   使敌人在死亡时瓦解并消失。
  *
  *   <Sideview No Collapse>
- *   Sets it so that the enemy when it dies will leave behind a corpse and
- *   will not vanish.
+ *   使敌人在死亡时留下尸体而不会消失。
  *
  *   <Sideview Frame Speed: x>
- *   Sets the frame speed of this sideview battler to x. The lower the x value,
- *   the faster the sideview battler animates. The higher it is, the slower the
- *   battler animates.
+ *   设置此侧视战斗图的帧速度为x。x的值越小，侧视战斗图动得越快；x的值越大，侧
+ *   视战斗图动得越慢。
  *
  *   --- State Overlays ---
  *
@@ -1520,144 +579,121 @@ Yanfly.SVE.version = 1.19;
  *   <Sideview Attack Motion: swing>
  *   <Sideview Attack Motion: thrust>
  *   <Sideview Attack Motion: missile>
- *   Sets the basic attack motion for your sideview enemy if the sideview
- *   enemy is not using any weapons. You can use any of the following motions:
- *   walk     wait     chant     guard     damage     evade
- *   thrust   swing    missile   skill     spell      item
- *   escape   victory  dying     abnormal  sleep      dead
- *
+ *   为没有武器的敌人的侧视图设置基本的攻击动作。你可以使用下述任意动作：
+ *   行走(walk) 等待(wait) 吟唱(chant) 防御(guard) 伤害(damage) 躲避(evade)
+ *   刺(thrust) 挥舞(swing) 投掷(missile) 技能(skill) 咒语(spell) 物品(item)
+ *   逃跑(escape) 胜利(victory) 濒死(dying) 异常状态(abnormal) 睡眠(sleep) 死
+ *   亡(dead)
  *   <Sideview Weapon: x>
- *   This sets the sprite's weapon image to x. If you haven't modified your
- *   system images of the weapons, they would be as follows:
+ *   设置精灵的武器图像为x。如果你没有修改过系统的原始武器图片，那么对应方式如下：
  *
- *   0 - Nothing
- *   1 - Dagger   7 - Long Bow  13 - Mace       19 - Slingshot  25 - Book
- *   2 - Sword    8 - Crossbow  14 - Rod        20 - Shotgun    26 - Custom
- *   3 - Flail    9 - Gun       15 - Club       21 - Rifle      27 - Custom
- *   4 - Axe     10 - Claw      16 - Chain      22 - Chainsaw   28 - Custom
- *   5 - Whip    11 - Glove     17 - Sword#2    23 - Railgun    29 - Custom
- *   6 - Staff   12 - Spear     18 - Iron Pipe  24 - Stun Rod   30 - Custom
+ *   0 0 - 无
+ *   1 1 - 匕首 7 - 长弓 13 - 杖 19 - 弹弓 25 - 书 2 - 剑 8 - 十字弓 
+ *   2 14 - 棍(rod) 20 - 猎枪 26 - 自定义 3 - 枷(flail) 9 - 火枪 15-也是棍棒(club)
+ *   3 21 - 狙击枪 27 - 自定义 4 - 斧 10 - 爪 16 - 链子 22 - 锯 28 - 自定义
+ *   4 5 - 鞭子 11 - 手套 17 - 剑#2 23 - 轨道炮 29 - 自定义
+ *   5 6 - 棒(staff) 12 - 矛 18 - 钢管 24 - 电击棒 30 - 自定义 
  *
- *   * Note: Inserting multiple of these notetags will put them inside a random
- *   pool of weapons to use. Keep in mind if you use this notetag, it will use
- *   all the default settings found in the plugin's parameters. If you wish to
- *   use more unique settings, use the notetag below:
+ *   请注意：若输入多个这样的注释，那么武器图像将会从中随机选取。需要记住的是
+ *   ，此注释将使用插件参数中的默认设置。如果你想用更独特的设置，使用下面的注
+ *   释：
  *
  *   <Sideview Weapon: x, y, z>
- *   This sets the sprite's weapon image to x, motion to y, and attack
- *   animation to z. An example of how this notetag would be used would be
- *   as such:
+ *   设置精灵的武器图像为x，动作为y，而攻击动画为z。例如：
  *   
  *      <Sideview Weapon: 2, swing, 6>
  *
- *   This will give the battler a sword with the swing motion and playing
- *   battle animation 6 when attacking.
+ *   给战斗图一把挥动的剑，并在战斗时播放战斗动画6。
  *
  *   <Sideview Idle Motion: x>
- *   Sets the idling motion for your sideview enemy. You can use any of the
- *   following motions:
- *   walk     wait     chant     guard     damage     evade
- *   thrust   swing    missile   skill     spell      item
- *   escape   victory  dying     abnormal  sleep      dead
- *   * Note: Inserting multiple of these notetags will put them inside a random
- *   pool of motions to use.
+ *   为侧视敌人设置等待（idling）动作。可以使用下述动作：
+ *   行走(walk) 等待(wait) 吟唱(chant) 防御(guard) 伤害(damage) 躲避(evade)
+ *   刺(thrust) 挥舞(swing) 投掷(missile) 技能(skill) 咒语(spell) 物品(item)
+ *   逃跑(escape) 胜利(victory) 濒死(dying) 异常状态(abnormal) 睡眠(sleep)
+ *   死亡(dead)  
+ *   请注意：若输入多个这样的注释，那么动作将会从中随机选取。
  *
  *   <Sideview Damage Motion: x>
- *   Sets the damaged motion for your sideview enemy. You can use any of the
- *   following motions:
- *   walk     wait     chant     guard     damage     evade
- *   thrust   swing    missile   skill     spell      item
- *   escape   victory  dying     abnormal  sleep      dead
- *
+ *   为侧视敌人设置受伤（damage）动作。可以使用下述动作：
+ *   行走(walk) 等待(wait) 吟唱(chant) 防御(guard) 伤害(damage) 躲避(evade)
+ *   刺(thrust) 挥舞(swing) 投掷(missile) 技能(skill) 咒语(spell) 物品(item)
+ *   逃跑(escape) 胜利(victory) 濒死(dying) 异常状态(abnormal) 睡眠(sleep) 
+ *   死亡(dead) 
+ *   
  *   <Sideview Evade Motion: x>
- *   Sets the evasion motion for your sideview enemy. You can use any of the
- *   following motions:
- *   walk     wait     chant     guard     damage     evade
- *   thrust   swing    missile   skill     spell      item
- *   escape   victory  dying     abnormal  sleep      dead
+ *   为侧视敌人设置躲避（evasion）动作。可以使用下述动作：
+ *   行走(walk) 等待(wait) 吟唱(chant) 防御(guard) 伤害(damage) 躲避(evade)
+ *   刺(thrust) 挥舞(swing) 投掷(missile) 技能(skill) 咒语(spell) 物品(item)
+ *   逃跑(escape) 胜利(victory) 濒死(dying) 异常状态(abnormal) 睡眠(sleep) 
+ *   死亡(dead) 
  *
  *   <Sideview Escape Motion: x>
- *   Sets the escaping motion for your sideview enemy. You can use any of the
- *   following motions:
- *   walk     wait     chant     guard     damage     evade
- *   thrust   swing    missile   skill     spell      item
- *   escape   victory  dying     abnormal  sleep      dead
+ *   为侧视敌人设置逃跑（escaping）动作。可以使用下述动作：
+ *   行走(walk) 等待(wait) 吟唱(chant) 防御(guard) 伤害(damage) 躲避(evade)
+ *   刺(thrust) 挥舞(swing) 投掷(missile) 技能(skill) 咒语(spell) 物品(item)
+ *   逃跑(escape) 胜利(victory) 濒死(dying) 异常状态(abnormal) 睡眠(sleep) 
+ *   死亡(dead)
  *
  *   <Sideview Guard Motion: x>
- *   Sets the guard motion for your sideview enemy. You can use any of the
- *   following motions:
- *   walk     wait     chant     guard     damage     evade
- *   thrust   swing    missile   skill     spell      item
- *   escape   victory  dying     abnormal  sleep      dead
+ *   为侧视敌人设置防御（guard）动作。可以使用下述动作：
+ *   行走(walk) 等待(wait) 吟唱(chant) 防御(guard) 伤害(damage) 躲避(evade)
+ *   刺(thrust) 挥舞(swing) 投掷(missile) 技能(skill) 咒语(spell) 物品(item)
+ *   逃跑(escape) 胜利(victory) 濒死(dying) 异常状态(abnormal) 睡眠(sleep) 
+ *   死亡(dead)
  *
  *   <Sideview Abnormal Motion: x>
- *   Sets the abnormal motion for your sideview enemy. You can use any of the
- *   following motions:
- *   walk     wait     chant     guard     damage     evade
- *   thrust   swing    missile   skill     spell      item
- *   escape   victory  dying     abnormal  sleep      dead
+ *   为侧视敌人设置异常状态（abnormal）动作。可以使用下述动作：
+ *   行走(walk) 等待(wait) 吟唱(chant) 防御(guard) 伤害(damage) 躲避(evade)
+ *   刺(thrust) 挥舞(swing) 投掷(missile) 技能(skill) 咒语(spell) 物品(item)
+ *   逃跑(escape) 胜利(victory) 濒死(dying) 异常状态(abnormal) 睡眠(sleep) 
+ *   死亡(dead)
  *
  *   <Sideview Sleep Motion: x>
- *   Sets the sleep motion for your sideview enemy. You can use any of the
- *   following motions:
- *   walk     wait     chant     guard     damage     evade
- *   thrust   swing    missile   skill     spell      item
- *   escape   victory  dying     abnormal  sleep      dead
+ *   为侧视敌人设置睡眠（sleep）动作。可以使用下述动作：
+ *   行走(walk) 等待(wait) 吟唱(chant) 防御(guard) 伤害(damage) 躲避(evade)
+ *   刺(thrust) 挥舞(swing) 投掷(missile) 技能(skill) 咒语(spell) 物品(item)
+ *   逃跑(escape) 胜利(victory) 濒死(dying) 异常状态(abnormal) 睡眠(sleep) 
+ *   死亡(dead)
  *
  *   <Sideview Dying Motion: x>
- *   Sets the dying (crisis) motion for your sideview enemy. You can use any
- *   of the following motions:
- *   walk     wait     chant     guard     damage     evade
- *   thrust   swing    missile   skill     spell      item
- *   escape   victory  dying     abnormal  sleep      dead
+ *   为侧视敌人设置濒死（dying/crisis）动作。可以使用下述动作：
+ *   行走(walk) 等待(wait) 吟唱(chant) 防御(guard) 伤害(damage) 躲避(evade)
+ *   刺(thrust) 挥舞(swing) 投掷(missile) 技能(skill) 咒语(spell) 物品(item)
+ *   逃跑(escape) 胜利(victory) 濒死(dying) 异常状态(abnormal) 睡眠(sleep) 
+ *   死亡(dead)
  *
  *   <Sideview Dead Motion: x>
- *   Sets the dead motion for your sideview enemy. You can use any of the
- *   following motions:
- *   walk     wait     chant     guard     damage     evade
- *   thrust   swing    missile   skill     spell      item
- *   escape   victory  dying     abnormal  sleep      dead
+ *   为侧视敌人设置死亡（dead）动作。可以使用下述动作：
+ *   行走(walk) 等待(wait) 吟唱(chant) 防御(guard) 伤害(damage) 躲避(evade)
+ *   刺(thrust) 挥舞(swing) 投掷(missile) 技能(skill) 咒语(spell) 物品(item)
+ *   逃跑(escape) 胜利(victory) 濒死(dying) 异常状态(abnormal) 睡眠(sleep) 
+ *   死亡(dead)
  *
- *   --- Shadows ---
+ *   --- Shadows ---  阴影
  *
  *   <Sideview Show Shadow>
- *   Sets it so the enemy will show its shadow for its sideview sprite. The
- *   default setting of this is tied to Battle Engine Core's 'Show Shadows'.
+ *   使敌人的侧视精灵显示阴影。此注释的默认设置依赖于Battle Engine Core
+ *   的“Show Shadows”。
  *
  *   <Sideview Hide Shadow>
- *   Sets it so the enemy will hide its shadow for its sideview sprite. The
- *   default setting of this is tied to Battle Engine Core's 'Show Shadows'.
+ *   使敌人的侧视精灵隐藏阴影。此注释的默认设置依赖于Battle Engine Core
+ *   的“Show Shadows”。
  *
  *   <Sideview Shadow Width: x%>
- *   Sets the shadow width to x% larger/smaller than the default shadow size
- *   found within the img/system folder.
+ *  令阴影宽度与文件夹img/system中的默认阴影尺寸相比增大/减小x%。
  *
  *   <Sideview Shadow Height: x%>
- *   Sets the shadow height to x% larger/smaller than the default shadow size
- *   found within the img/system folder.
+ *   令阴影高度与文件夹img/system中的默认阴影尺寸相比增大/减小x%。
  *
- * State Notetags:
+ * 状态的注释：
  *
  *   <Hide Sideview Weapon>
- *   This will cause the animated sideview enemy battler to hide its sideview
- *   weapon effect. The attack motion will revert back to the barehanded attack
- *   motion set for the enemy and the attack animation will be the enemy's
- *   default attack animation.
+ *   使动态侧视战斗图隐藏侧视武器效果。敌人的攻击动作将会变回空手的攻击动作，
+ *   攻击动画会变成敌人的默认攻击动画。
  *
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.19:
- * - Bugfix provided by SwiftIllusion regarding the animation positioning on
- * animated sideview enemies.
- *
- * Version 1.18:
- * - Updated for RPG Maker MV version 1.5.0.
- *
- * Verison 1.17:
- * - Visual graphic update to sync attack animations properly with how actor
- * animations are now handled in the more updated RPG Maker MV versions.
  *
  * Version 1.16:
  * - Added 'Floating Death' plugin parameter.
@@ -2637,8 +1673,6 @@ Sprite_Enemy.prototype.updateMotionCount = function() {
         this._pattern = (this._pattern + 1) % 4;
       } else if (this._pattern < 2) {
         this._pattern++;
-      } else if (this._pattern >= 2) {
-        this.startMotion(this._enemy.idleMotion());
       } else {
         this.refreshMotion();
       }
@@ -2743,42 +1777,6 @@ Yanfly.SVE.Sprite_Enemy_updateInstantCollapse =
 Sprite_Enemy.prototype.updateInstantCollapse = function() {
     if (!this.isSideviewCollapse()) return;
     Yanfly.SVE.Sprite_Enemy_updateInstantCollapse.call(this);
-};
-
-Sprite_Enemy.prototype.forceMotion = function(motionType) {
-    var newMotion = Sprite_Actor.MOTIONS[motionType];
-    this._motion = newMotion;
-    this._motionCount = 0;
-    this._pattern = 0;
-};
-
-//=============================================================================
-// Sprite_Animation
-// ----------------------------------------------------------------------------
-// Code provided by SwiftIllusion
-//=============================================================================
-
-Yanfly.SVE.Sprite_Animation_updatePosition = 
-  Sprite_Animation.prototype.updatePosition;
-Sprite_Animation.prototype.updatePosition = function() {
-  Yanfly.SVE.Sprite_Animation_updatePosition.call(this);
-  this.updateSvePosition();
-};
-
-Sprite_Animation.prototype.updateSvePosition = function() {
-  if (typeof this._target.parent._battler != 'undefined'){
-    if (this._animation.position !== 3) {
-      if (this._animation.position === 0) {
-        if (this._target.parent._battler.isEnemy()) {
-          this.y -= this._target.parent._texture.height;
-        };
-      } else if (this._animation.position === 1) {
-        if (this._target.parent._battler.isEnemy()) {
-          this.y -= this._target.parent._texture.height / 2;
-        };
-      }
-    }
-  }
 };
 
 //=============================================================================

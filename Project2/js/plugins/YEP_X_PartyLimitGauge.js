@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Skill Core Extension - Party Limit Gauge
 // YEP_X_PartyLimitGauge.js
 //=============================================================================
@@ -8,59 +8,40 @@ Imported.YEP_X_PartyLimitGauge = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.PLG = Yanfly.PLG || {};
-Yanfly.PLG.version = 1.11;
+Yanfly.PLG.version = 1.09;
 
 //=============================================================================
  /*:
- * @plugindesc v1.11 (Requires YEP_SkillCore.js) A party-wide skill
- * resource is accessible across all members of a unit.
+ * @plugindesc v1.09 队伍限制槽
  * @author Yanfly Engine Plugins
  *
  * @param ---General---
  * @default
  *
  * @param Gauge Increments
- * @parent ---General---
- * @type number
- * @min 0
  * @desc How much is each gauge increment?
  * @default 100
  *
  * @param Party Text Size
- * @parent ---General---
- * @type number
- * @min 1
  * @desc Text size used for the Party Gauge.
  * Default: 28
  * @default 28
  *
  * @param Draw Cost Icon
- * @parent ---General---
- * @type boolean
- * @on Show
- * @off Hide
  * @desc Draw the cost icon for Party Limit costs?
  * NO - false     YES - true
  * @default true
  *
  * @param Cost Color
- * @parent ---General---
- * @type number
- * @min 0
- * @max 31
  * @desc The text color used for Party Limit costs.
  * @default 6
  *
  * @param Cost Format
- * @parent ---General---
  * @desc The text format used for Party Limit costs.
  * %1 - Cost     %2 - Current     %3 - Max
  * @default %1
  *
  * @param Cost Font Size
- * @parent ---General---
- * @type number
- * @min 1
  * @desc The text font size used for Party Limit costs.
  * Default: 28
  * @default 20
@@ -69,83 +50,54 @@ Yanfly.PLG.version = 1.11;
  * @default
  *
  * @param Show Party Gauge
- * @parent ---Party---
- * @type boolean
- * @on Show
- * @off Hide
  * @desc Show the player's party gauge in battle?
  * NO - false     YES - true
  * @default true
  *
  * @param Per Party Member
- * @parent ---Party---
  * @desc Amount of Party Limit Gauge Max granted per party member.
  * This is a formula.
  * @default 100
  *
  * @param Party Max Bonus
- * @parent ---Party---
  * @desc This is a maximum bonus added independent of party size.
  * This is a formula.
  * @default 0
  *
  * @param Party Gauge X
- * @parent ---Party---
  * @desc Formula for the gauge x position for the player party.
  * @default Graphics.boxWidth - width - 4
  *
  * @param Party Gauge Y
- * @parent ---Party---
  * @desc Formula for the gauge y position for the player party.
  * @default Graphics.boxHeight - statusHeight - height - 4
  *
  * @param Party Width
- * @parent ---Party---
  * @desc Formula for the gauge width for the player party.
  * @default max.clamp(100, 400)
  *
  * @param Party Gauge Color 1
- * @parent ---Party---
- * @type number
- * @min 0
- * @max 31
  * @desc Color 1 used for the Party Limit Gauge.
  * @default 14
  *
  * @param Party Gauge Color 2
- * @parent ---Party---
- * @type number
- * @min 0
- * @max 31
  * @desc Color 2 used for the Party Limit Gauge.
  * @default 6
  *
  * @param Party Gauge Icon
- * @parent ---Party---
- * @type number
- * @min 0
  * @desc Icon used for the player party.
  * @default 310
  *
  * @param Party Icon Align
- * @parent ---Party---
- * @type combo
- * @option left
- * @option center
- * @option right
  * @desc Where do you want the icon to be aligned?
  * left     center     right
  * @default right
  *
  * @param Party Text Buffer X
- * @parent ---Party---
- * @type number
  * @desc How much do you want to buffer the text X by?
  * @default 0
  *
  * @param Party Text Buffer Y
- * @parent ---Party---
- * @type number
  * @desc How much do you want to buffer the text Y by?
  * @default 8
  *
@@ -153,83 +105,54 @@ Yanfly.PLG.version = 1.11;
  * @default
  *
  * @param Show Troop Gauge
- * @parent ---Troop---
- * @type boolean
- * @on Show
- * @off Hide
  * @desc Show the enemy's party gauge in battle?
  * NO - false     YES - true
  * @default true
  *
  * @param Per Troop Member
- * @parent ---Troop---
  * @desc Amount of Party Limit Gauge Max granted per enemy member.
  * This is a formula.
  * @default 100
  *
  * @param Troop Max Bonus
- * @parent ---Troop---
  * @desc This is a maximum bonus added independent of troop size.
  * This is a formula.
  * @default 0
  *
  * @param Troop Gauge X
- * @parent ---Troop---
  * @desc Formula for the gauge x position for the enemy party.
  * @default 4
  *
  * @param Troop Gauge Y
- * @parent ---Troop---
  * @desc Formula for the gauge y position for the enemy party.
  * @default Graphics.boxHeight - statusHeight - height - 4
  *
  * @param Troop Width
- * @parent ---Troop---
  * @desc Formula for the gauge width for the enemy party.
  * @default max.clamp(100, 400)
  *
  * @param Troop Gauge Color 1
- * @parent ---Troop---
- * @type number
- * @min 0
- * @max 31
  * @desc Color 1 used for the Party Limit Gauge.
  * @default 10
  *
  * @param Troop Gauge Color 2
- * @parent ---Troop---
- * @type number
- * @min 0
- * @max 31
  * @desc Color 2 used for the Party Limit Gauge.
  * @default 2
  *
  * @param Troop Gauge Icon
- * @parent ---Troop---
- * @type number
- * @min 0
  * @desc Icon used for the player party.
  * @default 309
  *
  * @param Troop Icon Align
- * @parent ---Troop---
- * @type combo
- * @option left
- * @option center
- * @option right
  * @desc Where do you want the icon to be aligned?
  * left     center     right
  * @default left
  *
  * @param Troop Text Buffer X
- * @parent ---Troop---
- * @type number
  * @desc How much do you want to buffer the text X by?
  * @default 0
  *
  * @param Troop Text Buffer Y
- * @parent ---Troop---
- * @type number
  * @desc How much do you want to buffer the text Y by?
  * @default 8
  *
@@ -237,94 +160,76 @@ Yanfly.PLG.version = 1.11;
  * @default
  *
  * @param Reset Gauge
- * @parent ---Limit Gain---
- * @type boolean
- * @on Reset
- * @off Don't
  * @desc Reset the Party Limit Gauge each battle?
  * NO - false     YES - true
  * @default false
  *
  * @param Battle Start
- * @parent ---Limit Gain---
  * @desc Formula for how much Party Limit Gauge is gained
  * at the start of each battle.
  * @default 0
  *
  * @param Take HP Damage
- * @parent ---Limit Gain---
  * @desc Formula for how much Party Limit Gauge is gained
  * whenever a party member takes HP damage.
  * @default Math.floor(25 * damage / user.mhp).clamp(10, 25)
  *
  * @param Deal HP Damage
- * @parent ---Limit Gain---
  * @desc Formula for how much Party Limit Gauge is gained
  * whenever a party member deals HP damage.
  * @default Math.floor(10 * damage / target.mhp).clamp(5, 10)
  *
  * @param Heal HP Damage
- * @parent ---Limit Gain---
  * @desc Formula for how much Party Limit Gauge is gained
  * whenever a party member heals HP.
  * @default Math.floor(-5 * damage / target.mhp).clamp(3, 5)
  *
  * @param Take MP Damage
- * @parent ---Limit Gain---
  * @desc Formula for how much Party Limit Gauge is gained
  * whenever a party member takes MP damage.
  * @default Math.floor(25 * damage / user.mmp).clamp(10, 25)
  *
  * @param Deal MP Damage
- * @parent ---Limit Gain---
  * @desc Formula for how much Party Limit Gauge is gained
  * whenever a party member deals MP damage.
  * @default Math.floor(10 * damage / target.mmp).clamp(5, 10)
  *
  * @param Heal MP Damage
- * @parent ---Limit Gain---
  * @desc Formula for how much Party Limit Gauge is gained
  * whenever a party member heals MP.
  * @default Math.floor(-5 * damage / target.mmp).clamp(3, 5)
  *
  * @param Gain State
- * @parent ---Limit Gain---
  * @desc Formula for how much Party Limit Gauge is gained
  * whenever a party member receives a state from a foe.
  * @default 5
  *
  * @param Deal State
- * @parent ---Limit Gain---
  * @desc Formula for how much Party Limit Gauge is gained
  * whenever a party member inflicts a state on a foe.
  * @default 3
  *
  * @param Killed Ally
- * @parent ---Limit Gain---
  * @desc Formula for how much Party Limit Gauge is gained
  * whenever a party member is killed.
  * @default 50
  *
  * @param Killed Foe
- * @parent ---Limit Gain---
  * @desc Formula for how much Party Limit Gauge is gained
  * whenever a foe is killed.
  * @default 5
  *
  * @param Win Battle
- * @parent ---Limit Gain---
  * @desc Formula for how much Party Limit Gauge is gained
  * whenever the player party wins the battle.
  * @default 10
  *
  * @param Flee Battle
- * @parent ---Limit Gain---
  * @desc Formula for how much Party Limit Gauge is gained
  * whenever the player party flees the battle.
  * @default -100
  *
  * @param Lose Battle
- * @parent ---Limit Gain---
  * @desc Formula for how much Party Limit Gauge is gained
  * whenever the player party loses the battle.
  * @default -1000
@@ -334,134 +239,122 @@ Yanfly.PLG.version = 1.11;
  * Introduction
  * ============================================================================
  *
- * This plugin requires YEP_SkillCore.
- * Make sure this plugin is located under YEP_SkillCore in the plugin list.
+ * 这个插件需要YEP_SkillCore。确保它放在YEP_SkillCore下面
  *
- * This plugin enables a Party Limit Gauge for both the player party and the
- * enemy party. These gauges will fill up or decrease depending on what actions
- * take place. The amounts they raise can be adjusted within the plugin's
- * parameters to your liking. Once a party has enough of the Party Limit Gauge,
- * members from that party can use it as a skill resource to unleash powerful
- * actions in battle!
+ * 这个插件开启了队伍限制槽，适用于玩家和敌方。这些槽将会根据行动增加和减
+ * 少。你可以用插件参数更改增长数值。只要队伍充满槽，队伍成员就可以使用更
+ * 加强大的战斗行动
  *
  * ============================================================================
  * Instructions - Limit Gain
  * ============================================================================
  *
- * There are various ways for the Party Limit Gauge to raise. The settings are
- * adjusted in the plugin parameters but here will be a detailed explanation of
- * what each parameter does:
+ * 这里有很多增加队伍限制槽的方式，你可以用插件参数调整，这里有一个详细的
+ * 参数说明
  *
  *   Reset Gauge
- *   - If set to true, then the Party Limit Gauge will empty out at the start
- *   of each battle. If set to false, the Party Limit Gauge will carry to each
- *   battle for the player party. The enemy party will always empty out.
+ *   如果设置为true,队伍限制槽将会在战斗后重置为空。如果是false，队伍限制槽
+ *   将会保留。敌方限制槽将总是为空。
  *
  *   Battle Start
  *   - This determines how much of the Party Limit Gauge will be gained when a
- *   new battle has been started.
+ *   new battle has been started.开始战斗时增加数值
  *
  *   Take HP Damage
  *   - This is how much the Party Limit Gauge will increase when an ally takes
- *   HP damage dealt by the opposing team.
+ *   HP damage dealt by the opposing team.遭受伤害时增加数值
  *
  *   Deal HP Damage
  *   - This is how much the Party Limit Gauge will increase when an ally deals
- *   HP damage to the opposing team.
+ *   HP damage to the opposing team.造成伤害时增加数值
  *
  *   Heal HP Damage
  *   - This is how much the Party Limit Gauge will increase whenever an ally
  *   receives HP healing through actions. Healing done through trait effects
- *   will not apply here.
+ *   will not apply here.治疗血量时增加数值。通过特性影响治疗不在此范围
  *
  *   Take MP Damage
  *   - This is how much the Party Limit Gauge will increase when an ally takes
- *   MP damage dealt by the opposing team.
+ *   MP damage dealt by the opposing team.遭受魔法损失时增加数值
  *
  *   Deal MP Damage
  *   - This is how much the Party Limit Gauge will increase when an ally deals
- *   MP damage to the opposing team.
+ *   MP damage to the opposing team.造成魔法损失时增加数值
  *
  *   Heal MP Damage
  *   - This is how much the Party Limit Gauge will increase whenever an ally
  *   receives MP healing through actions. Healing done through trait effects
- *   will not apply here.
+ *   will not apply here.治疗魔法时增加数值。通过特性影响治疗不在此范围
  *
  *   Gain State
  *   - This is how much the Party Limit Gauge will increase whenever an ally
- *   receives a non-death state from the opposing team.
+ *   receives a non-death state from the opposing team.获得状态时增加数值
  *
  *   Deal State
  *   - This is how much the Party Limit Gauge will increase whenever an ally
- *   inflicts a non-death state to the opposing team.
+ *   inflicts a non-death state to the opposing team.给对方施加状态增加数值
  *
  *   Killed Ally
  *   - This is how much the Party Limit Gauge will increase whenever an ally
- *   dies in battle.
+ *   dies in battle.友军死亡增加数值
  *
  *   Killed Foe
  *   - This is how much the Party Limit Gauge will increase whenever a foe
- *   dies in battle.
+ *   dies in battle.敌军死亡增加数值
  *
  *   Win Battle
  *   - This is how much the Party Limit Gauge will increase for the player's
- *   party when the player wins a battle.
+ *   party when the player wins a battle.战斗胜利增加数值
  *
  *   Flee Battle
  *   - This is how much the Party Limit Gauge will increase for the player's
- *   party when the player escapes a battle.
+ *   party when the player escapes a battle.战斗逃跑增加数值
  *
  *   Lose Battle
  *   - This is how much the Party Limit Gauge will increase for the player's
- *   party when the player loses a battle.
+ *   party when the player loses a battle.战斗失败增加数值
  *
  * ============================================================================
  * Notetags
  * ============================================================================
  *
- * You can use these notetags to adjust the Party Limit Gauge aspects.
+ * 你可以使用下面的标签来调整
  *
  * Skill Notetags:
  *
  *   <Party Limit Cost: x>
  *   Adds a Party Limit Gauge cost to this skill. This skill will require x
- *   increments of the Party Limit Gauge to be able to use it.
+ *   of the Party Limit Gauge to be able to use it.消耗队伍限制槽数值
  *
  *   <Party Limit Cost: x%>
  *   Adds a party Limit Gauge cost to this skill equal to x% of the total max
  *   gauge size of the battler's party max limit gauge size. The cost is always
- *   rounded upward.
+ *   rounded upward.消耗队伍限制槽数值百分比，这个数值是向上取值
  *
  * Skill and Item Notetags:
  *
  *   <Ally Party Limit Gauge: +x>
  *   <Ally Party Limit Gauge: -x>
- *   Using this skill will cause the user's party limit gauge to increase or
- *   decrease by x. This is the point value cost and not the increment value.
+ *   使用技能队伍限制槽增加或减少x
  *
  *   <Foe Party Limit Gauge: +x>
  *   <Foe Party Limit Gauge: -x>
- *   Using this skill will cause the foe's party limit gauge to increase or
- *   decrease by x. This is the point value cost and not the increment value.
+ *   使用技能敌军限制槽增加或减少x
  *
  * Actor and Enemy Notetag:
  *
  *   <Party Limit: x>
- *   Increases the Party Limit Gauge by x when this party member is present in
- *   battle (dead or alive). If this notetag isn't used, the value will default
- *   to the settings in the plugin parameters.
+ *   当角色在战斗队伍时，增加队伍限制槽x，如果没有使用这个标签，则采用插件
+ *   默认设置
  *
  * Actor, Class, Enemy, Weapon, Armor, and State Notetags:
  *
  *   <Party Limit: +x>
  *   <Party Limit: -x>
- *   Increases or decreases the Party Limit Gauge by x if the related unit has
- *   is that actor, class, enemy, or has the weapon or armor equipped, or is
- *   affected by that state.
+ *   如果角色装备有特点武器，装备或者处于特点状态，则增加或者减少队伍限制槽
  *
  *   <Party Limit Cost: x%>
- *   Sets the party limit costs paid by this actor to x%. The modifications are
- *   are multiplicative. The final cost is always rounded upward.
+ *   队伍限制槽通过这个角色花费x%
  *
  * ============================================================================
  * Lunatic Mode - Custom Party Limit Changes
@@ -581,13 +474,6 @@ Yanfly.PLG.version = 1.11;
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.11:
- * - Bypass the isDevToolsOpen() error when bad code is inserted into a script
- * call or custom Lunatic Mode code segment due to updating to MV 1.6.1.
- *
- * Version 1.10:
- * - Updated for RPG Maker MV version 1.5.0.
  *
  * Version 1.09:
  * - Lunatic Mode fail safes added.
@@ -1706,7 +1592,6 @@ Yanfly.Util.displayError = function(e, code, message) {
   console.log(message);
   console.log(code || 'NON-EXISTENT');
   console.error(e);
-  if (Utils.RPGMAKER_VERSION && Utils.RPGMAKER_VERSION >= "1.6.0") return;
   if (Utils.isNwjs() && Utils.isOptionValid('test')) {
     if (!require('nw.gui').Window.get().isDevToolsOpen()) {
       require('nw.gui').Window.get().showDevTools();

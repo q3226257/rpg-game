@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Extra Parameter Formula
 // YEP_ExtraParamFormula.js
 //=============================================================================
@@ -8,11 +8,11 @@ Imported.YEP_ExtraParamFormula = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.XParam = Yanfly.XParam || {};
-Yanfly.XParam.version = 1.04;
+Yanfly.XParam.version = 1.03;
 
 //=============================================================================
  /*:
- * @plugindesc v1.04 Control the formulas of the extra parameters for
+ * @plugindesc v1.03 额外参数公式
  * HIT, EVA, CRI, CEV, MEV, MRF, CNT, HRG, MRG, and TRG.
  * @author Yanfly Engine Plugins
  *
@@ -57,12 +57,12 @@ Yanfly.XParam.version = 1.04;
  * @default (base + plus) * rate + flat
  *
  * @param MRG Formula
- * @desc The formula used to determine MRG: MP% Regen
+ * @desc The formula used to determine HRG: MP% Regen
  * This is a formula.
  * @default (base + plus) * rate + flat
  *
  * @param TRG Formula
- * @desc The formula used to determine TRG: Target Rate
+ * @desc The formula used to determine HRG: TP% Regen
  * This is a formula.
  * @default (base + plus) * rate + flat
  *
@@ -71,24 +71,18 @@ Yanfly.XParam.version = 1.04;
  * Introduction
  * ============================================================================
  *
- * The values for the Extra Parameters: HIT, EVA, CRI, CEV, MEV, MRF, CNT, HRG,
- * MRG, and TRG, in RPG Maker MV are only able to be ever modified by traits by
- * the various database objects. While it is flexible, RPG Maker MV does not
- * enable you to utilize custom formulas to make things such as ATK and AGI
- * influence HIT rate or LUK influence CRItical hits. With this plugin, now you
- * can along with a few more goodies!
+ * 可以设置额外的参数值，以前这些参数只可以用特性来调整。同时MV本身不能让
+ * 你自定义类似参数的公式。现在用这个插件，你可以单独做一些调整。
  *
  * ============================================================================
  * Instructions - Extra Parameter Explanation
  * ============================================================================
  *
- * For those who aren't familiar with what the Extra Parameters (xparams) do,
- * this is a list that will explain their standard functions in an RPG Maker MV
- * project.
+ * 对于那些不熟悉额外参数的人，这里是一个解释列表.
  *
  * ---
  *
- * HIT - Hit Rate%
+ * HIT - Hit Rate%    物理攻击命中命中率。
  * - This determines the physical hit success rate of the any physical action.
  * All physical attacks make a check through the HIT rate to see if the attack
  * will connect. If the HIT value passes the randomizer check, the attack will
@@ -97,7 +91,7 @@ Yanfly.XParam.version = 1.04;
  *
  * ---
  * 
- * EVA - Evasion Rate%
+ * EVA - Evasion Rate%     回避攻击概率
  * - This determines the physical evasion rate against any incoming physical
  * actions. If the HIT value passes, the action is then passed to the EVA check
  * through a randomizer check. If the randomizer check passes, the physical
@@ -106,7 +100,7 @@ Yanfly.XParam.version = 1.04;
  *
  * ---
  *
- * CRI - Critical Hit Rate%
+ * CRI - Critical Hit Rate%    暴击率
  * - Any actions that enable Critical Hits will make a randomizer check with
  * this number. If the randomizer check passes, extra damage will be carried
  * out by the initiated action. If the randomizer check fails, no extra damage
@@ -114,7 +108,7 @@ Yanfly.XParam.version = 1.04;
  *
  * ---
  *
- * CEV - Critical Evasion Rate%
+ * CEV - Critical Evasion Rate%   回避暴击率
  * - This value is put against the Critical Hit Rate% in a multiplicative rate.
  * If the Critical Hit Rate is 90% and the Critical Evasion Rate is
  * 20%, then the randomizer check will make a check against 72% as the values
@@ -123,7 +117,7 @@ Yanfly.XParam.version = 1.04;
  *
  * ---
  *
- * MEV - Magic Evasion Rate%
+ * MEV - Magic Evasion Rate%    魔法回避率
  * - Where EVA is the evasion rate against physical actions, MEV is the evasion
  * rate against magical actions. As there is not magical version of HIT, the
  * MEV value will always be bit against when a magical action is initiated. If
@@ -132,7 +126,7 @@ Yanfly.XParam.version = 1.04;
  *
  * ---
  *
- * MRF - Magic Reflect Rate%
+ * MRF - Magic Reflect Rate%     魔法反击率
  * - If a magical action connects and passes, there is a chance the magical
  * action can be bounced back to the caster. That chance is the Magic Reflect
  * Rate. If the randomizer check for the Magic Reflect Rate passes, then the
@@ -142,7 +136,7 @@ Yanfly.XParam.version = 1.04;
  *
  * ---
  *
- * CNT - Counter Attack Rate%
+ * CNT - Counter Attack Rate%     攻击反击率
  * - If a physical action connects and passes, there is a chance the physical
  * action can be avoided and a counter attack made by the user will land on the
  * attacking unit. This is the Counter Attack Rate. If the randomizer check for
@@ -152,19 +146,19 @@ Yanfly.XParam.version = 1.04;
  *
  * ---
  *
- * HRG - HP% Regeneration
+ * HRG - HP% Regeneration    血量回复率
  * - During a battler's regeneration phase, the battler will regenerate this
  * percentage of its MaxHP as gained HP with a 100% success rate.
  *
  * ---
  *
- * MRG - MP% Regeneration
+ * MRG - MP% Regeneration    魔法量回复率
  * - During a battler's regeneration phase, the battler will regenerate this
  * percentage of its MaxMP as gained MP with a 100% success rate.
  *
  * ---
  *
- * TRG - TP% Regeneration
+ * TRG - TP% Regeneration    时间点数回复率
  * - During a battler's regeneration phase, the battler will regenerate this
  * percentage of its MaxTP as gained TP with a 100% success rate.
  *
@@ -176,7 +170,7 @@ Yanfly.XParam.version = 1.04;
  *
  * The values calculated by the formulas in the plugin parameters are to come
  * out as float values. If the result value comes out as 0.1 for CRI, it will
- * be 10% CRI. Here is an example:
+ * 可以通过浮动的数值，利用公式计算这些值。如果最后结果是GRI=0.1,则概率为10%。
  *
  *   (base + plus) * rate + flat + user.luk / 1000
  *
@@ -188,32 +182,31 @@ Yanfly.XParam.version = 1.04;
  * Instructions - Understanding Formula Variables
  * ============================================================================
  *
- * So, what does the 'base', 'plus', 'rate', and 'flat' mean in the formulas?
- * This section will answer that in detail.
+ * 所以公式里面那些值是代表什么呢。这里会回答这个问题
  *
  * Default plugin formula: (base + plus) * rate + flat
  *
- * BASE
+ * BASE   基础值
  * - This value is determined by the default way RPG Maker MV determines the
  * value for that stat, and the way RPG Maker MV determines it is by adding up
  * the total trait values of that stat. If a battler would have a mixture of
  * +95%, -10%, and +5% HIT traits, then the base stat value would be +90%.
  *
- * PLUS
+ * PLUS   通过插件增加的增量
  * - This is a new variable added by this plugin. Its purpose is to function as
  * an addition to the base value. This addition can be done independently of
  * database items as you can do a user.addXParam to alter the base value of the
  * extra parameter. If using the default formula, this value is added to the
  * base before any rates are multiplied by it and any flats added to the total.
  *
- * RATE
+ * RATE    通过插件增加的概率
  * - This is a new variable added by this plugin. Its purpose is to function as
  * a multiplicative modifier for the extra parameter value. This multiplicative
  * value is determined by various database objects through notetags. If using
  * the default formula, this value is multipled to the sum of the base and plus
  * values of the extra parameter before the flat is added to the total.
  *
- * FLAT
+ * FLAT   通过插件增加的定值
  * - This is a new variable added by this plugin. Its purpose is to function as
  * an additive modifier for the extra parameter value. This additive value is
  * determined by various database objects through notetags. If using the plugin
@@ -254,23 +247,22 @@ Yanfly.XParam.version = 1.04;
  * Notetags
  * ============================================================================
  *
- * You can use the following notetags to alter the various aspects that modify
- * the extra parameter values:
+ * 你可以使用下面的标签来调整:
  *
  * Actor, Class, Enemy, Weapon, Armor, and State Notetags:
  *
  *   <stat Plus: +x%>
  *   <stat Plus: -x%>
  *   <stat Plus: +x.y>
- *   <stat Plus: -x.y>
+ *   <stat Plus: -x.y>   设置增量
  *   Replace 'stat' with 'hit', 'eva', 'cri', 'cev', 'mev', 'mrf', 'cnt',
  *   'hrg', 'mrg', or 'trg'. This is the value added to the base parameter
  *   before the rate and flat values contribute to the total parameter value
  *   assuming the plugin's default formula is utilized.
  *
  *   <stat Rate: x%>
- *   <stat Rate: x.y>
- *   Replace 'stat' with 'hit', 'eva', 'cri', 'cev', 'mev', 'mrf', 'cnt',
+ *   <stat Rate: x.y>   设置概率
+ *   Replace 'stat' with 'hit', 'eva', 'cri', 'cev', 'mev', 'mrf', 'cnt',exr
  *   'hrg', 'mrg', or 'trg'. This is the value multipled to the sum of the base
  *   and plus values of the parameter before added by the flat value assuming
  *   the plugin's default formula is utilized.
@@ -278,7 +270,7 @@ Yanfly.XParam.version = 1.04;
  *   <stat Flat: +x%>
  *   <stat Flat: -x%>
  *   <stat Flat: +x.y>
- *   <stat Flat: -x.y>
+ *   <stat Flat: -x.y>    设置定值
  *   Replace 'stat' with 'hit', 'eva', 'cri', 'cev', 'mev', 'mrf', 'cnt',
  *   'hrg', 'mrg', or 'trg'. This is the value added finally to the sum of the
  *   base and plus values after being multiplied by the rate value assuming the
@@ -359,12 +351,8 @@ Yanfly.XParam.version = 1.04;
  * Changelog
  * ============================================================================
  *
- * Version 1.04:
- * - Updated for RPG Maker MV version 1.5.0.
- *
- * Version 1.03a:
+ * Version 1.03:
  * - Lunatic Mode fail safe added.
- * - Documentation update to fix typos.
  *
  * Version 1.02:
  * - Fixed an issue with the battler.setXParam functions that made them take 

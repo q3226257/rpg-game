@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Battle Artificial Intelligence Core
 // YEP_BattleAICore.js
 //=============================================================================
@@ -8,42 +8,24 @@ Imported.YEP_BattleAICore = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.CoreAI = Yanfly.CoreAI || {};
-Yanfly.CoreAI.version = 1.15;
+Yanfly.CoreAI.version = 1.10;
 
 //=============================================================================
  /*:
- * @plugindesc v1.15 This plugin allows you to structure battle A.I.
- * patterns with more control.
+ * @plugindesc v1.10 战斗智能核心插件
  * @author Yanfly Engine Plugins
  *
  * @param Dynamic Actions
- * @type boolean
- * @on YES
- * @off NO
  * @desc If enabled, enemy actions are decided on the spot instead
  * of at the start of turn.   NO - false     YES - true
  * @default true
  *
- * @param Dynamic Turn Count
- * @type boolean
- * @on YES
- * @off NO
- * @desc Decide if the turn count dynamic is counted for earlier or later.
- * true - Current Turn + 1   false - Current Turn
- * @default false
- *
  * @param Element Testing
- * @type boolean
- * @on YES
- * @off NO
  * @desc If enabled, enemies will test actors on their elements by
  * setting them to match first.   NO - false     YES - true
  * @default true
  *
  * @param Default AI Level
- * @type number
- * @min 0
- * @max 100
  * @desc This is the default AI level of all enemies.
  * Level 0: Very Random     Level 100: Very Strict
  * @default 80
@@ -53,13 +35,13 @@ Yanfly.CoreAI.version = 1.15;
  * Introduction
  * ============================================================================
  *
- * RPG Maker MV's default enemy AI is a bit lackluster even if you managed to
- * have it based completely on the rates and switches. There is no way to
- * control the way the enemy chooses targets by default, nor are the conditions
- * imposed by the default editor enough to satisfy the majority of checks. This
- * plugin enables you to set a priority list of conditions, actions, and the
- * targets selected for the enemy to go through before making a decision on how
- * to participate in battle.
+ * 是否厌倦了在地图上轻松的走动，随意的虐怪。这个插件可以让你调整敌方设置
+ * 
+ * MV默认的敌方智能有些枯燥，即便你想利用概率和开关来改变他们。这里没法控
+ * 制敌方攻击目标。这个插件可以让你设置一个条件优先列表。
+ * 
+ * 这些条件包括默认条件，就像目标的状态参数，或者元素等等。你甚至可以设置
+ * 敌方智能等级，让其战斗更加随机有趣
  *
  * These conditions contain all of the default editor's conditions plus more,
  * such as determining the parameter values of a target, whether or not a state
@@ -77,9 +59,11 @@ Yanfly.CoreAI.version = 1.15;
  * While this works in its own right, enabling Dynamic Actions allow enemies
  * to make a decision when the enemy's turn comes up instead. This prompts
  * enemies to be more flexible and to appear more intelligent in battle, thus,
- * giving your players a bit more of a challenge.
+ * giving your players a bit more of a.伤害行动：开启时，敌方将会更加灵活
  *
  * Element Testing
+ * 元素测试：关闭时，敌方会自动了解我方元素抵抗情况。如果开启，则需要利用
+ * 技能测试。如果敌方掌握了玩家的元素信息，将会用技能作用玩家。
  * If this is disabled, enemies will automatically know the elemental weakness,
  * resistance, etc. about all actors. If enabled, enemies will need to test out
  * the skills on various actors first before making a decision. Until the enemy
@@ -89,6 +73,9 @@ Yanfly.CoreAI.version = 1.15;
  * data is reset at the start of each battle for all enemy parties.
  *
  * Default AI Level
+ * 默认智能等级：不是所有敌方都是智能的。如果等级较低，就意味着敌方行为更
+ * 加随机，而相反则更加固定。如果如果敌方智能等级高于默认值，则行动会检查
+ * 条件状态，如果没有则不会。
  * Not all enemies are intelligent. In fact, some of them are dumb or random.
  * Setting the AI Level of a foe at a low number means the foe is more random
  * while a higher AI Level foe is more consistent. How the AI Level works is,
@@ -103,6 +90,8 @@ Yanfly.CoreAI.version = 1.15;
  * Enemy AI Level
  * ============================================================================
  *
+ * 敌方智能等级：这决定这敌方困难程度。80级的智能意味着将会80%的几率执行
+ * 智能行动。
  * Enemy AI levels do not determine how difficult they are. Instead, they
  * determine how strictly they will follow the <AI Priority> lists. An AI Level
  * of 80 means it has an 80% chance of following the prioritized action on the
@@ -114,7 +103,7 @@ Yanfly.CoreAI.version = 1.15;
  *   <AI Level: x>
  *   Sets the enemy's AI level to x. The lower x, the more random the enemy.
  *   The higher for x, the more strict the enemy is about following the AI
- *   Priority list found in its notebox, too.
+ *   Priority list found in its notebox, too.设置敌方智能等级
  *
  * ============================================================================
  * Enemy AI Priority
@@ -124,10 +113,9 @@ Yanfly.CoreAI.version = 1.15;
  * top to bottom (giving the actions at the top more priority than the ones at
  * the bottom) looking for any actions whose conditions are fulfilled. If that
  * condition is fulfilled, then that action will be the action the enemy will
- * partake in.
+ * partake in.如果设置了敌方智能优先执行列表，将会从上到下检索。
  *
- * To set up a Priority List for the enemy, you must place inside the enemy's
- * notebox notetags that match the following format:
+ * 你需要用下面标签来设置优先列表:
  *
  *   <AI Priority>                      <AI Priority>
  *    condition: SKILL x, target   or    condition: skill name, target
@@ -138,7 +126,7 @@ Yanfly.CoreAI.version = 1.15;
  * <AI Priority> tags. You can choose to use skill ID's or the skill names.
  * However, if you use the skill names, keep in mind that it is not case
  * sensitive and if any skills in your database have matching names, the skill
- * with the larger skill ID will be the action used.
+ * with the larger skill ID will be the action used.你可以在里面放置多个条件。
  *
  * ============================================================================
  * Conditions
@@ -148,13 +136,13 @@ Yanfly.CoreAI.version = 1.15;
  * to choose the right skill. In addition to deciding whether or not the skill
  * will be used, the condition also selects the enemy target. The following
  * list will tell you how the conditions are met and what targets will be
- * selected for battle.
+ * selected for battle.下面这个列表你可以用来参考作为你的条件。
  *
  * =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
  * ALWAYS
  *- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  * This condition will always be fulfilled. The valid target group is all
- * targets within scope.
+ * targets within scope.条件总是满足
  *- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  * Example:   Always: Skill 10, Lowest HP%
  * =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
@@ -168,7 +156,7 @@ Yanfly.CoreAI.version = 1.15;
  * normal element rate (under 110% and above 90%), 'Weakness' for anything
  * above 100% element rate, 'Resistant' for below 100% element rate, 'Null' for
  * 0% element rate, and 'Absorb' for below 0% element rate. Valid targets will
- * be those with the matching element rates.
+ * 允许你设置元素情况，例如中立，虚弱，抵抗，无等
  *- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  * Example:   Element Fire Weakness: Fireball, Lowest HP%
  *            Element Water Resistant: Water Cancel, Highest MAT
@@ -180,6 +168,7 @@ Yanfly.CoreAI.version = 1.15;
  *- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  * This allows you to use any kind of code to check and fulfill a condition.
  * This condition uses all alive members of the skill's scope as valid targets.
+ * 你可以使用代码来设置条件
  *- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
  * Example:   Eval user.name() === 'Bat A': Skill 10, Highest HP%
  * =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
@@ -222,6 +211,7 @@ Yanfly.CoreAI.version = 1.15;
  * Example:   HP% param <= 50%: Heal, Lowest HP%
  *            MP param > 90: Mana Drain, Highest MP
  *            ATK param > user.atk: Power Break, Highest ATK
+ *            LEVEL param > 10 && target.notState(5): Blind, Random
  * =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
  *
  * =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
@@ -306,6 +296,7 @@ Yanfly.CoreAI.version = 1.15;
  * Example:   User HP% param <= 50%: Heal, Lowest HP%
  *            User MP param > 90: Mana Drain, Highest MP
  *            User ATK param > user.atk: Power Break, Highest ATK
+ *            User LEVEL param > 10 && target.notState(5): Blind, Random
  * =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
  *
  * =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
@@ -321,62 +312,21 @@ Yanfly.CoreAI.version = 1.15;
  * =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
  *
  * ============================================================================
- * Multiple Conditions
- * ============================================================================
- *
- * As of the version 1.11 update, the Battle A.I. Core is now able to support
- * multiple conditions. Setting up multiple conditions is relatively simple to
- * do and still follows the 'condition: SKILL x, target' format.
- *
- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
- *
- * To add multiple conditions, simply insert a +++ between each condition like
- * the following examples:
- *
- *     Switch 1 on +++ Switch 2 on: Fire, Lowest HP%
- *     Turn 3 > 1 +++ Variable 5 <= 100 +++ Switch 3 on: Ice, Lowest HP%
- *     Random 50% +++ Highest Party Level > 50: Thunder, Highest HP%
- *
- * In the above examples, all the conditions must be met in order for the
- * selected skills to be considered for use.
- *
- * - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
- *
- * For conditions that have strict targeting groups, the targeting group will
- * end up becoming the combination of all of the strict targeting groups. For
- * example:
- *
- *     STATE === Blind +++ STATE === Fear: Dark, Lowest HP%
- *
- * In this example, the enemy will only use the 'Dark' skill on a target that
- * is both affected by 'Blind' and 'Fear'. If there are multiple targets, then
- * the target with the lowest HP% will become the target the enemy will cast
- * the 'Dark' on.
- *
- *     STATE !== Blind +++ ATK param >= 150: Darkness, Highest ATK
- *
- * In the above example, the enemy will use the 'Darkness' skill against any
- * target that isn't blinded and has an ATK parameter of at least 150. If there
- * are multiple targets, then the enemy will first cast 'Darkness' on the
- * target with the highest ATK before casting it on a target with a lower ATK.
- *
- * ============================================================================
  * Targeting
  * ============================================================================
  *
  * Targeting is optional but can be done via a small change to the condition.
  * All you have to do is add a ',' after the skill to indicate which target in
  * the valid target group you would like to target. For example:
- *
+ * 目标是可选的，你可以用逗号来添加多个目标
  *             Random 50%: Fire, Highest HP%
  *
  * The condition to be met is the 50% random chance, but if it is fulfilled,
  * the target selected will be the member on the targeting scope's team with
  * the highest HP percentage. When that happens, the 'Fire' skill will be used
- * upon that target.
+ * upon that target.50%的概率，用火攻击生命百分比最高的
  *
- * If no target is specified, a random target will be selected amongst the
- * group of valid targets. Otherwise, refer to the following list:
+ * 如果目标没有特殊情况，将会随机选择，其他可参考列表
  *
  * ----------------------------------------------------------------------------
  *      <<nothing>>       Selects a random member of the valid target group.
@@ -443,25 +393,6 @@ Yanfly.CoreAI.version = 1.15;
  * Changelog
  * ============================================================================
  *
- * Version 1.15:
- * - Fixed a bug that caused some TP conditions to not work properly.
- *
- * Version 1.14:
- * - Bypass the isDevToolsOpen() error when bad code is inserted into a script
- * call or custom Lunatic Mode code segment due to updating to MV 1.6.1.
- *
- * Version 1.13:
- * - Updated for RPG Maker MV version 1.5.0.
- *
- * Version 1.12:
- * - Added 'Dynamic Turn Count' plugin parameter for those who wish to push the
- * turn count further by 1 turn in order to adjust for Dynamic Actions. Code
- * provided by Talonos.
- *
- * Version 1.11:
- * - Adding the ability to support multiple conditions. Please Read the
- * 'Multiple Conditions' section in the help file for more details.
- *
  * Version 1.10:
  * - Lunatic Mode fail safes added.
  *
@@ -513,8 +444,6 @@ Yanfly.Param = Yanfly.Param || {};
 
 Yanfly.Param.CoreAIDynamic = String(Yanfly.Parameters['Dynamic Actions']);
 Yanfly.Param.CoreAIDynamic = eval(Yanfly.Param.CoreAIDynamic);
-Yanfly.Param.CoreAIDynTurnCnt = String(Yanfly.Parameters['Dynamic Turn Count']);
-Yanfly.Param.CoreAIDynTurnCnt = eval(Yanfly.Param.CoreAIDynTurnCnt);
 Yanfly.Param.CoreAIElementTest = String(Yanfly.Parameters['Element Testing']);
 Yanfly.Param.CoreAIElementTest = eval(Yanfly.Param.CoreAIElementTest);
 Yanfly.Param.CoreAIDefaultLevel = Number(Yanfly.Parameters['Default AI Level']);
@@ -861,7 +790,7 @@ AIManager.isDecidedActionAI = function(line) {
     if (!this.initialCheck(this._aiSkillId)) return false;
     if (!this.meetCustomAIConditions(this._aiSkillId)) return false;
     this.action().setSkill(this._aiSkillId);
-    if (!this.passAllAIConditions(condition)) return false;
+    if (!this.passAIConditions(condition)) return false;
     return true;
 };
 
@@ -899,41 +828,32 @@ AIManager.meetCustomAIConditions = function(skillId) {
 };
 
 AIManager.getActionGroup = function() {
-  var action = this.action();
-  if (Imported.YEP_X_SelectionControl) action.setSelectionFilter(true);
-  if (!action) return [];
-  if (action.isForUser()) {
-    var group = [this.battler()];
-  } else if (action.isForDeadFriend()) {
-    var group = action.friendsUnit().deadMembers();
-  } else if (action.isForFriend()) {
-    var group = action.friendsUnit().aliveMembers();
-  } else if (action.isForOpponent()) {
-    if (this.battler().aiConsiderTaunt()) {
-      $gameTemp._tauntMode = true;
-      $gameTemp._tauntAction = action;
-      var group = action.opponentsUnit().tauntMembers();
-      $gameTemp._tauntMode = false;
-      $gameTemp._tauntAction = undefined;
+    var action = this.action();
+    if (Imported.YEP_X_SelectionControl) action.setSelectionFilter(true);
+    if (!action) return [];
+    if (action.isForUser()) {
+      var group = [this.battler()];
+    } else if (action.isForDeadFriend()) {
+      var group = action.friendsUnit().deadMembers();
+    } else if (action.isForFriend()) {
+      var group = action.friendsUnit().aliveMembers();
+    } else if (action.isForOpponent()) {
+      if (this.battler().aiConsiderTaunt()) {
+        $gameTemp._tauntMode = true;
+        $gameTemp._tauntAction = action;
+        var group = action.opponentsUnit().tauntMembers();
+        $gameTemp._tauntMode = false;
+        $gameTemp._tauntAction = undefined;
+      } else {
+        var group = action.opponentsUnit().aliveMembers();
+      }
     } else {
-      var group = action.opponentsUnit().aliveMembers();
+      var group = [];
     }
-  } else {
-    var group = [];
-  }
-  if (this._setActionGroup !== undefined) {
-    group = Yanfly.Util.getCommonElements(this._setActionGroup, group);
-  }
-  this._setActionGroup = group;
-  return this._setActionGroup;
-};
-
-AIManager.setActionGroup = function(group) {
-  this._setActionGroup = group;
+    return group;
 };
 
 AIManager.setProperTarget = function(group) {
-    this.setActionGroup(group);
     var action = this.action();
     var randomTarget = group[Math.floor(Math.random() * group.length)];
     if (!randomTarget) return action.setTarget(0);
@@ -1158,7 +1078,7 @@ AIManager.setHighestMaxTpTarget = function(group, id) {
     var maintarget = group[Math.floor(Math.random() * group.length)];
     for (var i = 0; i < group.length; ++i) {
       var target = group[i];
-      if (target.tp > maintarget.maxTp()) maintarget = target;
+      if (target.level > maintarget.maxTp()) maintarget = target;
     }
     this.action().setTarget(maintarget.index())
 };
@@ -1167,7 +1087,7 @@ AIManager.setLowestMaxTpTarget = function(group, id) {
     var maintarget = group[Math.floor(Math.random() * group.length)];
     for (var i = 0; i < group.length; ++i) {
       var target = group[i];
-      if (target.tp < maintarget.maxTp()) maintarget = target;
+      if (target.level < maintarget.maxTp()) maintarget = target;
     }
     this.action().setTarget(maintarget.index())
 };
@@ -1176,7 +1096,7 @@ AIManager.setHighestTpTarget = function(group, id) {
     var maintarget = group[Math.floor(Math.random() * group.length)];
     for (var i = 0; i < group.length; ++i) {
       var target = group[i];
-      if (target.tp > maintarget.tp) maintarget = target;
+      if (target.level > maintarget.tp) maintarget = target;
     }
     this.action().setTarget(maintarget.index())
 };
@@ -1185,7 +1105,7 @@ AIManager.setLowestTpTarget = function(group, id) {
     var maintarget = group[Math.floor(Math.random() * group.length)];
     for (var i = 0; i < group.length; ++i) {
       var target = group[i];
-      if (target.tp < maintarget.tp) maintarget = target;
+      if (target.level < maintarget.tp) maintarget = target;
     }
     this.action().setTarget(maintarget.index())
 };
@@ -1219,17 +1139,6 @@ AIManager.elementRateMatch = function(target, elementId, type) {
       return rate < 0.00;
     }
     return false;
-};
-
-AIManager.passAllAIConditions = function(line) {
-  this._setActionGroup = undefined;
-  var conditions = line.split('+++');
-  if (conditions.length <= 0) return false;
-  while (conditions.length > 0) {
-    var condition = conditions.shift().trim();
-    if (!this.passAIConditions(condition)) return false;
-  }
-  return true;
 };
 
 AIManager.passAIConditions = function(line) {
@@ -1579,8 +1488,6 @@ AIManager.conditionSwitch = function(switchId, value) {
     return true;
 };
 
-if (!Yanfly.Param.CoreAIDynTurnCnt) {
-
 AIManager.conditionTurnCount = function(condition) {
     var action = this.action();
     var item = action.item();
@@ -1602,42 +1509,6 @@ AIManager.conditionTurnCount = function(condition) {
     this.setProperTarget(group);
     return true;
 };
-
-} else {
-// Alternative provided by Talonos
-
-AIManager.conditionTurnCount = function(condition) {
-    var action = this.action();
-    var item = action.item();
-    var user = this.battler();
-    var s = $gameSwitches._data;
-    var v = $gameVariables._data;
-    if (Imported.YEP_BattleEngineCore) {
-      if (BattleManager._phase === "input" && BattleManager.isTurnBased()) {
-        condition = '(user.turnCount() + 1) ' + condition;
-      } else {
-        condition = 'user.turnCount() ' + condition;
-      }
-    } else {
-      if (BattleManager._phase === "input") {
-        condition = '($gameTroop.turnCount() + 1) ' + condition;
-      } else {
-        condition = '$gameTroop.turnCount() ' + condition;
-      }
-    }
-    try {
-      if (!eval(condition)) return false;
-    } catch (e) {
-      Yanfly.Util.displayError(e, condition, 'A.I. TURN COUNT ERROR');
-      return false;
-    }
-    var group = this.getActionGroup();
-    this.setProperTarget(group);
-    return true;
-};
-
-} // Yanfly.Param.CoreAIDynamic
-
 
 AIManager.conditionVariable = function(variableId, condition) {
     var action = this.action();
@@ -1667,22 +1538,11 @@ Yanfly.Util.displayError = function(e, code, message) {
   console.log(message);
   console.log(code || 'NON-EXISTENT');
   console.error(e);
-  if (Utils.RPGMAKER_VERSION && Utils.RPGMAKER_VERSION >= "1.6.0") return;
   if (Utils.isNwjs() && Utils.isOptionValid('test')) {
     if (!require('nw.gui').Window.get().isDevToolsOpen()) {
       require('nw.gui').Window.get().showDevTools();
     }
   }
-};
-
-Yanfly.Util.getCommonElements = function(array1, array2) {
-  var elements = [];
-  var length = array1.length;
-  for (var i = 0; i < length; ++i) {
-    var element = array1[i];
-    if (array2.contains(element)) elements.push(element);
-  }
-  return elements;
 };
 
 //=============================================================================

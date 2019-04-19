@@ -1,7 +1,11 @@
 [
 null,
-{"id":1,"animationId":6,"description":"阿斯达","etypeId":1,"traits":[{"code":31,"dataId":1,"value":0},{"code":22,"dataId":0,"value":0}],"iconIndex":97,"name":"啊啊啊剑","note":"<atk: +1000>","params":[0,0,10,0,0,0,0,0],"price":500,"wtypeId":2},
+{"id":1,"animationId":6,"description":"阿斯达","etypeId":1,"traits":[{"code":31,"dataId":1,"value":0},{"code":22,"dataId":0,"value":0}],"iconIndex":97,"name":"啊啊啊剑","note":"<atk: +1000>\n<exr Rate: 10%>","params":[0,0,10,0,0,0,0,0],"price":500,"wtypeId":2},
 {"id":2,"animationId":6,"description":"","etypeId":1,"traits":[{"code":31,"dataId":1,"value":0},{"code":22,"dataId":0,"value":0}],"iconIndex":99,"name":"斧","note":"","params":[0,0,10,0,0,0,0,0],"price":500,"wtypeId":4},
 {"id":3,"animationId":1,"description":"","etypeId":1,"traits":[{"code":31,"dataId":1,"value":0},{"code":22,"dataId":0,"value":0}],"iconIndex":101,"name":"杖","note":"","params":[0,0,10,0,0,0,0,0],"price":500,"wtypeId":6},
-{"id":4,"animationId":11,"description":"","etypeId":1,"traits":[{"code":31,"dataId":1,"value":0},{"code":22,"dataId":0,"value":0}],"iconIndex":102,"name":"弓","note":"","params":[0,0,10,0,0,0,0,0],"price":500,"wtypeId":7}
+{"id":4,"animationId":11,"description":"","etypeId":1,"traits":[{"code":31,"dataId":1,"value":0},{"code":22,"dataId":0,"value":0}],"iconIndex":102,"name":"弓","note":"","params":[0,0,10,0,0,0,0,0],"price":500,"wtypeId":7},
+{"id":5,"animationId":6,"description":"长长的描述\n超级长超级长超级长超级长超级长超级长超级长超级长超级长超级长超级长超级长超级长超级长超级长","etypeId":1,"traits":[{"code":31,"dataId":1,"value":0},{"code":22,"dataId":0,"value":0}],"iconIndex":97,"name":"剑","note":"<quality:4>","params":[5,0,75,10,0,0,5,5],"price":0,"wtypeId":2},
+{"id":6,"animationId":6,"description":"攻击力超高","etypeId":1,"traits":[{"code":31,"dataId":1,"value":0},{"code":22,"dataId":0,"value":0}],"iconIndex":99,"name":"神の斧","note":"<quality:7>\n<pos=APs text=神器系列 size=18 color=rgba(255,128,255,1) line=true align=0>","params":[100,0,400,50,0,0,5,5],"price":5000,"wtypeId":4},
+{"id":7,"animationId":1,"description":"显示1号图标：\\i[1]\n","etypeId":1,"traits":[{"code":31,"dataId":1,"value":0},{"code":22,"dataId":0,"value":0}],"iconIndex":101,"name":"杖","note":"<quality:5>\n<pos=APs text=啦啦啦这里也可以\\c[4]变色 size=18 color=rgba(255,128,255,1) line=true align=0>","params":[0,50,10,2,35,15,5,10],"price":500,"wtypeId":6},
+{"id":8,"animationId":11,"description":"显示3号角色名称：\\n[3]","etypeId":1,"traits":[{"code":31,"dataId":1,"value":0},{"code":22,"dataId":0,"value":0}],"iconIndex":102,"name":"弓","note":"<quality:4>\n<pos=APs text=啦啦啦这里也可以\\c[4]变色 size=18 color=rgba(255,128,255,1) line=false align=0>","params":[0,0,20,0,0,0,15,0],"price":400,"wtypeId":7}
 ]

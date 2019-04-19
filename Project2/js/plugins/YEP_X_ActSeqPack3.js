@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Battle Engine Extension - Action Sequence Pack 3
 // YEP_X_ActSeqPack3.js
 //=============================================================================
@@ -8,12 +8,10 @@ Imported.YEP_X_ActSeqPack3 = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.ASP3 = Yanfly.ASP3 || {};
-Yanfly.ASP3.version = 1.05;
 
 //=============================================================================
  /*:
- * @plugindesc v1.05 (Requires YEP_BattleEngineCore.js) Camera control is
- * added to the Battle Engine Core's action sequences.
+ * @plugindesc v1.03 动作序列拓展3
  * @author Yanfly Engine Plugins
  *
  * @param Camera Option
@@ -24,7 +22,7 @@ Yanfly.ASP3.version = 1.05;
  * ============================================================================
  * Introduction
  * ============================================================================
- *
+ * 第三个动作序列拓展包，可以控制相机移动和缩放
  * The Action Sequence Pack 3 plugin is an extension plugin for Yanfly Engine
  * Plugins' Battle Engine Core. This extension plugin will not work without the
  * main plugin.
@@ -312,87 +310,8 @@ Yanfly.ASP3.version = 1.05;
  *=============================================================================
  *
  * ============================================================================
- * Options Core Settings - Adding the New Options
- * ============================================================================
- *
- * If you are using YEP_OptionsCore.js, you can add a new Option using this
- * plugin. Here's the following code/parameter settings you can use with it.
- *
- * ---------
- * Settings:
- * ---------
- * 
- * Name:
- * \i[302]Battle Camera
- *
- * Help Description:
- * If ON, the camera in battle will move around.
- * If OFF, the camera in battle will be locked in place.
- *
- * Symbol:
- * battleCamera
- *
- * Show/Hide:
- * show = Imported.YEP_X_ActSeqPack3;
- *
- * Enable:
- * enabled = true;
- *
- * Ext:
- * ext = 0;
- *
- * ----------
- * Functions:
- * ----------
- * 
- * Make Option Code:
- * this.addCommand(name, symbol, enabled, ext);
- *
- * Draw Option Code:
- * var rect = this.itemRectForText(index);
- * var statusWidth = this.statusWidth();
- * var titleWidth = rect.width - statusWidth;
- * this.resetTextColor();
- * this.changePaintOpacity(this.isCommandEnabled(index));
- * this.drawOptionsName(index);
- * this.drawOptionsOnOff(index);
- *
- * Process OK Code:
- * var index = this.index();
- * var symbol = this.commandSymbol(index);
- * var value = this.getConfigValue(symbol);
- * this.changeValue(symbol, !value);
- *
- * Cursor Right Code:
- * var index = this.index();
- * var symbol = this.commandSymbol(index);
- * var value = this.getConfigValue(symbol);
- * this.changeValue(symbol, true);
- * 
- * Cursor Left Code:
- * var index = this.index();
- * var symbol = this.commandSymbol(index);
- * var value = this.getConfigValue(symbol);
- * this.changeValue(symbol, false);
- *
- * Default Config Code:
- * // Empty. Provided by this plugin.
- *
- * Save Config Code:
- * // Empty. Provided by this plugin.
- *
- * Load Config Code:
- * // Empty. Provided by this plugin.
- *
- * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.05:
- * - Compatibility update with YEP_OptionsCore.js.
- *
- * Version 1.04:
- * - Updated for RPG Maker MV version 1.5.0.
  *
  * Version 1.03:
  * - Restriction on Camera and Zoom action sequences lifted from being Sideview
@@ -934,9 +853,7 @@ Yanfly.ASP3.Window_Options_addGeneralOptions =
     Window_Options.prototype.addGeneralOptions;
 Window_Options.prototype.addGeneralOptions = function() {
     Yanfly.ASP3.Window_Options_addGeneralOptions.call(this);
-    if (!Imported.YEP_OptionsCore) {
-      this.addCommand(Yanfly.Param.ASP3CameraOption, 'battleCamera');
-    }
+    this.addCommand(Yanfly.Param.ASP3CameraOption, 'battleCamera');
 };
 
 //=============================================================================

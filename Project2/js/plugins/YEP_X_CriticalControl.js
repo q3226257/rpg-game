@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Damage Extension - Critical Control
 // YEP_X_CriticalControl.js
 //=============================================================================
@@ -8,12 +8,11 @@ Imported.YEP_X_CriticalControl = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.Crit = Yanfly.Crit || {};
-Yanfly.Crit.version = 1.06;
+Yanfly.Crit.version = 1.03;
 
 //=============================================================================
  /*:
- * @plugindesc v1.06 (Requires YEP_DamageCore.js) Control over critical
- * hits have been added.
+ * @plugindesc v1.03 暴击控制
  * @author Yanfly Engine Plugins
  *
  * @param Critical Rate Formula
@@ -36,71 +35,68 @@ Yanfly.Crit.version = 1.06;
  * Introduction
  * ============================================================================
  *
- * This plugin requires YEP_DamageCore.
- * Make sure this plugin is located under YEP_DamageCore in the plugin list.
+ * 这个插件需要YEP_DamageCore，确保放在YEP_DamageCore下面
  *
- * This plugin allows you to modify the critical hit rate formula across a
- * global scale and for an individual skill/item scale.
+ * 这个插件可以让你调整暴击率
  *
  * ============================================================================
  * Notetags
  * ============================================================================
- * You may use these notetags to adjust various factors for critical success
- * rates and critical damage adjustments.
+ * 你可以用这些标签来调整暴击率和暴击值
  *
  * Skill and Item Notetags:
- *   <Critical Rate: x%>
+ *   <Critical Rate: x%> 设置暴击率
  *   This sets the skill/item's critical hit rate to x%, ignoring any critical
  *   hit rate bonuses the user may have and ignoring any critical hit evasion
  *   bonuses the target may have.
  *   *Note: Using this tag sets the skill/item to enable Critical Hits.
  *
- *   <Critical Rate: x.y>
+ *   <Critical Rate: x.y> 设置暴击率
  *   This sets the skill/item's critical hit rate to the float x.y, ignoring
  *   any critical hit rate bonuses the user may have and ignoring any critical
  *   hit evasion bonuses the target may have.
  *   *Note: Using this tag sets the skill/item to enable Critical Hits.
  *
- *   <Critical Multiplier: x%>
+ *   <Critical Multiplier: x%> 设置暴击伤害比率
  *   This sets the skill/item's critical damage multiplier as x% while still
  *   factoring in the user's critical damage multiplier bonuses.
  *   *Note: Using this tag sets the skill/item to enable Critical Hits.
  *
- *   <Critical Multiplier: x.y>
+ *   <Critical Multiplier: x.y> 设置暴击伤害比率
  *   This sets the skill/item's critical damage multiplier as x.y while still
  *   factoring in the user's critical damage multiplier bonuses.
  *   *Note: Using this tag sets the skill/item to enable Critical Hits.
  *
- *   <Flat Critical: x% stat>
+ *   <Flat Critical: x% stat> 暴击对状态的影响
  *   Increases the skill/item's flat critical bonus by x% of 'stat'. Replace
  *   'stat' with 'hp', 'mp', 'atk', 'def', 'mat', 'mdf', 'agi', or 'luk'. Using
  *   multiple instances of this notetag will override the previous.
  *
  * Actor, Class, Enemy, Weapon, Armor, and State Notetags:
  *   <Critical Multiplier: +x%>
- *   <Critical Multiplier: -x%>
+ *   <Critical Multiplier: -x%> 设置暴击比率
  *   Alters the damage of a critical hit by x% for this actor, class, enemy,
  *   weapon, armor, or state. This is an additive trait.
  *
  *   <Flat Critical: +x>
- *   <Flat Critical: -x>
+ *   <Flat Critical: -x> 暴击值
  *   Alters the damage of a critical hit by +x or -x for this actor, class,
  *   enemy, weapon, armor, or state. This is an additive trait.
  *
  *   <Certain Hit Critical Rate: +x%>
- *   <Certain Hit Critical Rate: -x%>
+ *   <Certain Hit Critical Rate: -x%> 真实伤害暴击率
  *   Alters the critical hit rate chance of certain hit skills for the user by
  *   +x% or -x% if this notetag exists in the actor, class, enemy, weapon,
  *   armor, or state notetags. This is an additive trait.
  *
  *   <Physical Critical Rate: +x%>
- *   <Physical Critical Rate: -x%>
+ *   <Physical Critical Rate: -x%> 物理暴击率
  *   Alters the physical critical rate chance of certain hit skills for the user
  *   by +x% or -x% if this notetag exists in the actor, class, enemy, weapon,
  *   armor, or state notetags. This is an additive trait.
  *
  *   <Magical Critical Rate: +x%>
- *   <Magical Critical Rate: -x%>
+ *   <Magical Critical Rate: -x%> 魔法暴击率
  *   Alters the magical critical rate chance of certain hit skills for the user
  *   by +x% or -x% if this notetag exists in the actor, class, enemy, weapon,
  *   armor, or state notetags. This is an additive trait.
@@ -195,17 +191,6 @@ Yanfly.Crit.version = 1.06;
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.06:
- * - Bypass the isDevToolsOpen() error when bad code is inserted into a script
- * call or custom Lunatic Mode code segment due to updating to MV 1.6.1.
- *
- * Version 1.05:
- * - Updated for RPG Maker MV version 1.5.0.
- *
- * Version 1.04:
- * - Bug fixed where the physical critical modifier replaced the magical
- * critical modifier. This should be fixed now.
  *
  * Version 1.03:
  * - Lunatic Mode fail safes added.
@@ -509,7 +494,7 @@ Game_Battler.prototype.magicalCritRateBonus = function() {
     multiplier = 0.0;
     for (var i = 0; i < this.states().length; ++i) {
       var state = this.states()[i];
-      if (state) multiplier += state.magicalCritRateBonus;
+      if (state) multiplier += state.physicalCritRateBonus;
     }
     return Math.max(0, multiplier);
 };
@@ -722,7 +707,6 @@ Yanfly.Util.displayError = function(e, code, message) {
   console.log(message);
   console.log(code || 'NON-EXISTENT');
   console.error(e);
-  if (Utils.RPGMAKER_VERSION && Utils.RPGMAKER_VERSION >= "1.6.0") return;
   if (Utils.isNwjs() && Utils.isOptionValid('test')) {
     if (!require('nw.gui').Window.get().isDevToolsOpen()) {
       require('nw.gui').Window.get().showDevTools();

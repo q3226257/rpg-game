@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Status Menu Extension - Actor Variables
 // YEP_X_ActorVariables.js
 //=============================================================================
@@ -8,146 +8,85 @@ Imported.YEP_X_ActorVariables = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.AVar = Yanfly.AVar || {};
-Yanfly.AVar.version = 1.05;
 
 //=============================================================================
  /*:
- * @plugindesc v1.05 (Requires YEP_StatusMenuCore.js) Allows you to
- * display variables for each actor.
+ * @plugindesc v1.03 角色变量
  * @author Yanfly Engine Plugins
  *
- * @param ---General---
- * @default
- *
  * @param Command Name
- * @parent ---General---
  * @desc This is the text used for the command name in the Status
  * Menu command List
  * @default Variables
  *
- * @param ---Columns---
- * @default
- *
  * @param Global Column 1
- * @parent ---Columns---
  * @desc This is a list of variables that appear for all actors.
  * Separate each variable ID with a space.
  * @default 1 2 3 4
  *
  * @param Global Column 2
- * @parent ---Columns---
  * @desc This is a list of variables that appear for all actors.
  * Separate each variable ID with a space.
  * @default 5 6 7 8
  *
  * @param Global Column 3
- * @parent ---Columns---
  * @desc This is a list of variables that appear for all actors.
  * Separate each variable ID with a space.
  * @default
  *
  * @param Global Column 4
- * @parent ---Columns---
  * @desc This is a list of variables that appear for all actors.
  * Separate each variable ID with a space.
  * @default
  *
  * @param Hidden Variables
- * @parent ---Columns---
  * @desc Hide these variables from the status menu at the start
  * of the game. Separate each variable ID with a space.
  * @default
- *
- * @param ---MV 1.5.0---
- * @default
- *
- * @param Global Column 1 1.5.0
- * @text Global Column 1
- * @parent ---MV 1.5.0---
- * @type variable[]
- * @desc This is a list of variables that appear for all actors.
- * Use with MV 1.5.0+
- * @default ["1","2","3","4"]
- *
- * @param Global Column 2 1.5.0
- * @text Global Column 2
- * @parent ---MV 1.5.0---
- * @type variable[]
- * @desc This is a list of variables that appear for all actors.
- * Use with MV 1.5.0+
- * @default ["5","6","7","8"]
- *
- * @param Global Column 3 1.5.0
- * @text Global Column 3
- * @parent ---MV 1.5.0---
- * @type variable[]
- * @desc This is a list of variables that appear for all actors.
- * Use with MV 1.5.0+
- * @default []
- *
- * @param Global Column 4 1.5.0
- * @text Global Column 4
- * @parent ---MV 1.5.0---
- * @type variable[]
- * @desc This is a list of variables that appear for all actors.
- * Use with MV 1.5.0+
- * @default []
- *
- * @param Hidden Variables 1.5.0
- * @text Hidden Variables
- * @parent ---MV 1.5.0---
- * @type variable[]
- * @desc Hide these variables from the status menu at the start
- * of the game. Use with MV 1.5.0+
- * @default []
  *
  * @help
  * ============================================================================
  * Introduction
  * ============================================================================
  *
- * This plugin requires YEP_StatusMenuCore.js.
- * Place this plugin under YEP_StatusMenuCore.js in the Plugin Manager.
- *
- * This plugin lets you place variables into the Status Menu Core in a unique
- * page for display as actor data. These variables can come from a global or
- * individual source per actor. Variables listed in the Global Columns found in
- * the parameters will be listed for all actors. Variables defined in the actor
- * noteboxes will be listed for that actor when displayed.
- *
- * If you wish to place the Actor Variables tab in the Status Menu in a
- * specific spot, place 'Variables' without the quotes in the Status Menu
- * Core's Command Order parameter. If it's not present there, it will
- * automatically order itself in the 'Custom' tab.
+ * 这个插件需要身份菜单核心插件。你想要展示特有的游戏变量进入你的角色身份菜
+ * 单吗？现在你可以了！这些变量可以来自全局变量或者每个角色的独有变量。在参
+ * 数内找到的全局变量都可以被列举。角色备注框里里设置的变量将会展示在角色栏
+ * 
+ * 这个插件需要YEP_StatusMenuCore，确保它放在YEP_StatusMenuCore下面
+ * 
+ * 插件让你能够把变量放入身份菜单的特殊页显示出来。这些变量可以来自全局变量
+ * 或者每个角色的独有变量。在参数内找到的全局变量都可以被列举。角色备注框里
+ * 里设置的变量将会展示在角色栏
+ * 
+ * 如果你想把角色变量栏放入身份菜单，请把‘Variables’ 放入身份菜单核心插件
+ * 命令参数栏，否则，将会出现在‘Custom’栏
  *
  * ============================================================================
  * Notetags
  * ============================================================================
  *
- * Use the following notetags to display variables in your Status Menu.
+ * 使用下面的标签可以显示变量
  *
  * Actor Notetags:
  *   <Column x Variables: y>
  *   <Column x Variables: y, y, y>
  *   <Column x Variables: y to z>
- *   This will display in column x (1 through 4) the variable(s) y. If using
- *   the y to z notetag, this will display all the variables from y to z.
+ *   这将在x行显示变量y。如果你使用了y到z，则会显示y到z的所有变量
  *
  * ============================================================================
  * Variable Icons and Display
  * ============================================================================
  *
- * To display icons and change the display of your variables, write the name
- * of your variables like text codes in the variable editor.
+ * 如果想要显示图标和改变显示的变量，你可以想文本代码一样写下命令
  *
- * A variable name like this \i[42]Variable Name will show up with an icon.
+ * 这段命令将会显示一个图标 \i[42]Variable Name will show up with an icon.
  *
- * However, if you wish to make notes that do not appear, you can place the
- * notes between << and >>. For example:
+ * 如果你想隐藏名字，你可以用《》来设置:
  *
  * Hello <<You can't see me>>World!
  *
- * will show up as 'Hello World!' because of the << and >> markers.
+ * 例如这段代码，将会显示‘Hello World!’。《》内的不会显示
  *
  * ============================================================================
  * Plugin Commands
@@ -167,12 +106,6 @@ Yanfly.AVar.version = 1.05;
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.05:
- * - Updated for RPG Maker MV version 1.5.0.
- *
- * Version 1.04:
- * - Plugin fixed to be standalone if you wish to use the x to y notetags.
  *
  * Version 1.03:
  * - Fixed a bug that prevented custom positioning with the Status Menu Core's
@@ -205,48 +138,6 @@ Yanfly.Param.AVarColumn2 = String(Yanfly.Parameters['Global Column 2']);
 Yanfly.Param.AVarColumn3 = String(Yanfly.Parameters['Global Column 3']);
 Yanfly.Param.AVarColumn4 = String(Yanfly.Parameters['Global Column 4']);
 Yanfly.Param.AVarHidden = String(Yanfly.Parameters['Hidden Variables']);
-
-if (Utils.RPGMAKER_VERSION && Utils.RPGMAKER_VERSION >= "1.5.0") {
-
-Yanfly.SetupParameters = function() {
-  var data = JSON.parse(Yanfly.Parameters['Global Column 1 1.5.0'] || '[]');
-  for (var i = 0; i < data.length; ++i) {
-    var varId = data[i];
-    Yanfly.Param.AVarColumn1 += ' ' + varId;
-  }
-  Yanfly.Param.AVarColumn1 = Yanfly.Param.AVarColumn1.trim();
-
-  data = JSON.parse(Yanfly.Parameters['Global Column 2 1.5.0'] || '[]');
-  for (var i = 0; i < data.length; ++i) {
-    var varId = data[i];
-    Yanfly.Param.AVarColumn2 += ' ' + varId;
-  }
-  Yanfly.Param.AVarColumn2 = Yanfly.Param.AVarColumn2.trim();
-
-  data = JSON.parse(Yanfly.Parameters['Global Column 3 1.5.0'] || '[]');
-  for (var i = 0; i < data.length; ++i) {
-    var varId = data[i];
-    Yanfly.Param.AVarColumn3 += ' ' + varId;
-  }
-  Yanfly.Param.AVarColumn3 = Yanfly.Param.AVarColumn3.trim();
-
-  var data = JSON.parse(Yanfly.Parameters['Global Column 4 1.5.0'] || '[]');
-  for (var i = 0; i < data.length; ++i) {
-    var varId = data[i];
-    Yanfly.Param.AVarColumn4 += ' ' + varId;
-  }
-  Yanfly.Param.AVarColumn4 = Yanfly.Param.AVarColumn4.trim();
-
-  var data = JSON.parse(Yanfly.Parameters['Hidden Variables 1.5.0'] || '[]');
-  for (var i = 0; i < data.length; ++i) {
-    var varId = data[i];
-    Yanfly.Param.AVarHidden += ' ' + varId;
-  }
-  Yanfly.Param.AVarHidden = Yanfly.Param.AVarHidden.trim();
-};
-Yanfly.SetupParameters();
-
-} // Utils.RPGMAKER_VERSION && Utils.RPGMAKER_VERSION >= "1.5.0"
 
 //=============================================================================
 // DataManager
@@ -487,7 +378,7 @@ Window_StatusInfo.prototype.drawActorVariableInfo = function() {
     var dx = this.getArrayX();
     var dy = this.getArrayY();
     var dw = this.getArrayDW(maxCols);
-    for (var i = 1; i < maxCols; ++i) {
+    for (var i = 0; i < maxCols; ++i) {
       for (var j = 0; j < infoArray[i].length; ++j) {
         var varId = infoArray[i][j];
         if ($gameSystem.isHiddenActorStatusVariable(varId)) continue;
@@ -535,12 +426,6 @@ Yanfly.Util.splitArray = function(string) {
       return string.split(' ');
     }
 }
-
-Yanfly.Util.getRange = function(n, m) {
-  var result = [];
-  for (var i = n; i <= m; ++i) result.push(i);
-  return result;
-};
 
 Yanfly.Param.AVarColumn1 = Yanfly.Util.splitArray(Yanfly.Param.AVarColumn1);
 Yanfly.Param.AVarColumn2 = Yanfly.Util.splitArray(Yanfly.Param.AVarColumn2);

@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Buffs & States Extension - Visual State Effects
 // YEP_X_VisualStateFX.js
 //=============================================================================
@@ -8,40 +8,26 @@ Imported.YEP_X_VisualStateFX = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.VSFX = Yanfly.VSFX || {};
-Yanfly.VSFX.version = 1.03;
 
 //=============================================================================
  /*:
- * @plugindesc v1.02 (Req YEP_BattleEngineCore & YEP_BuffsStatesCore) Adds
- * visual effects to your states.
+ * @plugindesc v1.01 状态视觉效果
  * @author Yanfly Engine Plugins
  *
  * @param ---Actors---
  * @default
  *
  * @param Actor State Overlay
- * @parent ---Actors---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Show state overlay over the head of actors?
  * YES - true     NO - false     Default: true
  * @default true
  *
  * @param Actor State Icons
- * @parent ---Actors---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Show state icons over the head of actors?
  * YES - true     NO - false     Default: false
  * @default true
  *
  * @param Actor State Animation
- * @parent ---Actors---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Show state animations on the actors?
  * YES - true     NO - false
  * @default true
@@ -50,28 +36,16 @@ Yanfly.VSFX.version = 1.03;
  * @default
  *
  * @param Enemy State Overlay
- * @parent ---Enemies---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Show state overlay over the head of enemies?
  * YES - true     NO - false     Default: false
  * @default true
  *
  * @param Enemy State Icons
- * @parent ---Enemies---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Show state icons over the head of enemies?
  * YES - true     NO - false     Default: true
  * @default true
  *
  * @param Enemy State Animation
- * @parent ---Enemies---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Show state animations on the enemies?
  * YES - true     NO - false
  * @default true
@@ -80,37 +54,21 @@ Yanfly.VSFX.version = 1.03;
  * @default
  *
  * @param Allow Target Flash
- * @parent ---Animation Settings---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Allow state animations to use target flash effects?
  * YES - true     NO - false
  * @default true
  *
  * @param Allow Screen Flash
- * @parent ---Animation Settings---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Allow state animations to use screen flash effects?
  * YES - true     NO - false
  * @default false
  *
  * @param Allow Hide Target
- * @parent ---Animation Settings---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Allow state animations to use hide target effects?
  * YES - true     NO - false
  * @default false
  *
  * @param Allow Sound
- * @parent ---Animation Settings---
- * @type boolean
- * @on YES
- * @off NO
  * @desc Allow state animations to use sound effects?
  * YES - true     NO - false
  * @default false
@@ -120,24 +78,20 @@ Yanfly.VSFX.version = 1.03;
  * Introduction
  * ============================================================================
  *
- * This plugin requires YEP_BattleEngineCore and YEP_BuffsStatesCore.
- * Make sure this plugin is located under both plugins in the plugin list.
+ * 这个插件需要YEP_BattleEngineCore和YEP_BuffsStatesCore。确保这个插件在他们下面
  *
- * If you are running YEP_X_AnimatedSVEnemies, place this plugin under
- * YEP_X_AnimatedSVEnemies on the plugin list for extra compatibility.
+ * 如果你正在使用YEP_X_AnimatedSVEnemies，把这个插件放在YEP_X_AnimatedSVEnemies
+ * 下面来提高兼容度
  *
- * States are amongst one of the most important aspects of the battle system.
- * Therefore, relaying proper information to the player is extremely important.
- * RPG Maker MV does relay information to the player about the various states
- * and effects, but it is far from perfect. This plugin allows you to add more
- * detail and visual effects regarding states to relay proper data.
+ * 状态是战斗系统中很重要的因素。因此展示适当的信息给玩家是非常重要
+ * 的。RPG Maker MV 确实对多种状态和影响效果做了信息展示，然而
+ * 远远不够完美。这个插件允许你添加更多细节，和视觉效果。
  *
  * ============================================================================
  * Notetags
  * ============================================================================
  *
- * You can use the following notetags to give different various visual effects
- * for your states.
+ * 你可以使用下面的备注来制作不同的影响效果
  *
  * State Notetags:
  *
@@ -159,12 +113,11 @@ Yanfly.VSFX.version = 1.03;
  *   <State Motion: Abnormal>
  *   <State Motion: Sleep>
  *   <State Motion: Dead>
- *   - This allows you to set a custom motion when the battler is affected by
- *   this state. If a battler has multiple states with custom motions, then
- *   priority will go to the state with the highest priority number (in the
- *   database) with this state motion notetag.
+ *   这个允许你设置钻状态施加时的自定义动作。如果战斗者有多个状态自定
+ *   义动作，将会优先执行状态动作备注里最优先的
  *
  *   <State Animation: x>
+ *   设置自定义动作X
  *   - If a battler is affected by a state with this notetag, then a repeating
  *   animation x will play on the battler while in battle. If a battler is
  *   affected by multiple states with this notetag, then priority will go to
@@ -174,13 +127,6 @@ Yanfly.VSFX.version = 1.03;
  * ============================================================================
  * Changelog
  * ============================================================================
- *
- * Version 1.03:
- * - Updated for RPG Maker MV version 1.5.0.
- *
- * Version 1.02:
- * - Fixed a bug where enemy icon settings would match actor icon settings
- * regardless of the settings made in the plugin parameters.
  *
  * Version 1.01:
  * - State animations are now adjusted to fit the opacity of the battler.
@@ -209,7 +155,7 @@ Yanfly.Param.VSFXActorAni = eval(Yanfly.Param.VSFXActorAni);
 Yanfly.Param.VSFXEnemyOver = String(Yanfly.Parameters['Enemy State Overlay']);
 Yanfly.Param.VSFXEnemyOver = eval(Yanfly.Param.VSFXEnemyOver);
 Yanfly.Param.VSFXEnemyIcons = String(Yanfly.Parameters['Enemy State Icons']);
-Yanfly.Param.VSFXEnemyIcons = eval(Yanfly.Param.VSFXEnemyIcons);
+Yanfly.Param.VSFXEnemyIcons = eval(Yanfly.Param.VSFXActorIcons);
 Yanfly.Param.VSFXEnemyAni = String(Yanfly.Parameters['Enemy State Animation']);
 Yanfly.Param.VSFXEnemyAni = eval(Yanfly.Param.VSFXEnemyAni);
 
@@ -331,7 +277,6 @@ Game_Battler.prototype.stateAnimationId = function() {
 
 Game_Battler.prototype.refreshStateAnimation = function() {
   if (!this.battler()) return;
-  if (!$gameParty.inBattle()) return;
   this.battler().startStateAnimation(this.stateAnimationId());
 };
 

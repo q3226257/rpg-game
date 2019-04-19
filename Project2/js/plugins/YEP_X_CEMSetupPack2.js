@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Common Event Menu Extension - Setup Pack 2
 // YEP_X_CEMSetupPack2.js
 //=============================================================================
@@ -8,12 +8,10 @@ Imported.YEP_X_CEMSetupPack2 = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.CEMSP2 = Yanfly.CEMSP2 || {};
-Yanfly.CEMSP2.version = 1.01;
 
 //=============================================================================
  /*:
- * @plugindesc v1.01 (Requires YEP_CommonEventMenu.js) Adds more setups
- * to use with the Common Event Menu.
+ * @plugindesc v1.00 公共事件菜单拓展包2
  * @author Yanfly Engine Plugins
  *
  * @help
@@ -21,15 +19,11 @@ Yanfly.CEMSP2.version = 1.01;
  * Introduction
  * ============================================================================
  *
- * This plugin requires YEP_CommonEventMenu. Make sure this plugin is located
- * under YEP_CommonEventMenu in the plugin list.
+ * 这个插件需要YEP_CommonEventMenu，确保放在其下面
  *
- * For those using the Common Event Menu and are rearranging windows around,
- * you may have realized that it can take quite a bit of work to do. This
- * extension plugin contains various setups that come easy for you to make
- * quick menu setups for. This is the second Common Event Menu Setup Pack, with
- * more options for you to pick from and give your Common Event Menus a nice
- * fresh look fit for each type of menu.
+ * 对于使用公共事件菜单的人并且想改变窗口位置的人，会意识到这需要花费一些时
+ * 间去做。这个拓展插件包含了窗口位置的快速设置。这是第二个公共事件设置拓展
+ * 包，有更多的选项让你对每种类型的菜单设置一个外观
  *
  * ============================================================================
  * Plugin Commands
@@ -37,7 +31,7 @@ Yanfly.CEMSP2.version = 1.01;
  *
  * Use the following plugin commands to change the menu setup of your common
  * event menu before opening it up. To see what the layouts look like, please
- * refer to the Youtube video link and/or this plugin's page on Yanfly.moe.
+ * 下面是插件具体设置，请观看视频来得到设置后效果
  *
  * Plugin Command:
  *
@@ -138,16 +132,6 @@ Yanfly.CEMSP2.version = 1.01;
  *   - This puts the Help Window, main list, and picture window on the right
  *   half of the screen. Everything is half width. The main list is only four
  *   commands tall.
- *
- * ============================================================================
- * Changelog
- * ============================================================================
- *
- * Version 1.01:
- * - Updated for RPG Maker MV version 1.5.0.
- *
- * Version 1.00:
- * - Finished Plugin!
  */
 //=============================================================================
 

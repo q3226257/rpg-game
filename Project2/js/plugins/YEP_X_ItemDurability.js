@@ -1,4 +1,4 @@
-//=============================================================================
+﻿//=============================================================================
 // Yanfly Engine Plugins - Item Core Extension - Item Durability
 // YEP_X_ItemDurability.js
 //=============================================================================
@@ -8,34 +8,26 @@ Imported.YEP_X_ItemDurability = true;
 
 var Yanfly = Yanfly || {};
 Yanfly.IDur = Yanfly.IDur || {};
-Yanfly.IDur.version = 1.04;
+Yanfly.IDur.version = 1.02;
 
 //=============================================================================
  /*:
- * @plugindesc v1.04 (Requires YEP_ItemCore.js) Independent equipment
- * now have durability, which when runs out, will break.
+ * @plugindesc v1.02 物品耐久度
  * @author Yanfly Engine Plugins
  *
  * @param ---Defaults---
  * @default
  *
  * @param Default Durability
- * @parent ---Defaults---
  * @desc This is the default durability value for independent
  * equipment when made. Set to -1 to bypass durability.
  * @default 100
  *
  * @param Durability Variance
- * @parent ---Defaults---
- * @type number
- * @min 0
  * @desc The random variance value for durability.
  * @default 5
  *
  * @param Durability Maximum
- * @parent ---Defaults---
- * @type number
- * @min 1
  * @desc Default maximum value for durability.
  * @default 200
  *
@@ -43,46 +35,36 @@ Yanfly.IDur.version = 1.04;
  * @default
  *
  * @param Physical Action
- * @parent ---Durability Drop---
- * @desc When performing physical actions, drop all equipped
- * weapons durability by this much.
+ * @desc When performing physical actions, drop all equipped weapons
+ * durability by this much.
  * @default -1
  *
  * @param Magical Action
- * @parent ---Durability Drop---
- * @desc When performing magical actions, drop all equipped
- * weapons durability by this much.
+ * @desc When performing magical actions, drop all equipped weapons
+ * durability by this much.
  * @default 0
  *
  * @param Certain Action
- * @parent ---Durability Drop---
- * @desc When performing certain hit actions, drop all equipped
- * weapons durability by this much.
+ * @desc When performing certain hit actions, drop all equipped weapons
+ * durability by this much.
  * @default 0
  *
  * @param Damage All Armor
- * @parent ---Durability Drop---
- * @type boolean
- * @on Damage All
- * @off Damage Random
  * @desc When receiving damage, damage all armors or 1 random?
  * RANDOM - false     ALL - true
  * @default false
  *
  * @param Physical Damage
- * @parent ---Durability Drop---
  * @desc When performing physical actions, drop all equipped weapons
  * durability by this much.
  * @default -2
  *
  * @param Magical Damage
- * @parent ---Durability Drop---
  * @desc When performing magical actions, drop all equipped weapons
  * durability by this much.
  * @default -1
  *
  * @param Certain Damage
- * @parent ---Durability Drop---
  * @desc When performing certain hit actions, drop all equipped weapons
  * durability by this much.
  * @default -1
@@ -91,38 +73,29 @@ Yanfly.IDur.version = 1.04;
  * @default
  *
  * @param Broken Text
- * @parent ---Breaking---
  * @desc The text shown when an item breaks mid-battle.
  * %1 - User's name     %2 - Item Name     %3 - Item Icon
  * @default %1's %3%2 broke!
  *
  * @param Broken Wait
- * @parent ---Breaking---
  * @desc If using the Battle Engine Core, this is how many frames
  * the message will wait.
  * @default 60
  *
  * @param Break Sound
- * @parent ---Breaking---
- * @type file
- * @dir audio/se/
- * @require 1
  * @desc This is the default break sound filename.
  * This is case-sensitive. Do not include file extension.
  * @default Crash
  *
  * @param Break Volume
- * @parent ---Breaking---
  * @desc This is the default break sound volume.
  * @default 100
  *
  * @param Break Pitch
- * @parent ---Breaking---
  * @desc This is the default break sound pitch.
  * @default 150
  *
  * @param Break Pan
- * @parent ---Breaking---
  * @desc This is the default break sound pan.
  * @default 0
  *
@@ -130,50 +103,34 @@ Yanfly.IDur.version = 1.04;
  * @default
  *
  * @param Show Repair
- * @parent ---Repair---
- * @type boolean
- * @on Show
- * @off Hide
  * @desc Show the repair equipment option when selecting equips?
  * NO - false     YES - true
  * @default true
  *
  * @param Enable Repair
- * @parent ---Repair---
- * @type boolean
- * @on Enable
- * @off Disable
  * @desc Enable the repair equipment option when selecting equips?
  * NO - false     YES - true
  * @default true
  *
  * @param Repair Command
- * @parent ---Repair---
  * @desc Command text for repairing eslected equipment.
  * %1 - Equipment Name
  * @default Repair %1
  *
  * @param Repair Sound
- * @parent ---Repair---
- * @type file
- * @dir audio/se/
- * @require 1
  * @desc This is the default repair sound filename.
  * This is case-sensitive. Do not include file extension.
  * @default Skill2
  *
  * @param Repair Volume
- * @parent ---Repair---
  * @desc This is the default repair sound volume.
  * @default 100
  *
  * @param Repair Pitch
- * @parent ---Repair---
  * @desc This is the default repair sound pitch.
  * @default 150
  *
  * @param Repair Pan
- * @parent ---Repair---
  * @desc This is the default repair sound pan.
  * @default 0
  *
@@ -181,33 +138,25 @@ Yanfly.IDur.version = 1.04;
  * @default
  *
  * @param Show Durability
- * @parent ---Window Info---
  * @desc Show durability values for equipment?
  * NO - false     YES - true
  * @default true
  *
  * @param Durability Text
- * @parent ---Window Info---
  * @desc Text used to display durability:
  * @default Durability
  *
  * @param Durability Format
- * @parent ---Window Info---
  * @desc The format in displaying the durability value.
  * %1 - Current Durability     %2 - Maximum Durability
  * @default %1
  *
  * @param Show Unbreakable
- * @parent ---Window Info---
- * @type boolean
- * @on Show
- * @off Hide
  * @desc Show the durability value if item is unbreakable?
  * NO - false     YES - true
  * @default true
  *
  * @param Unbreakable Text
- * @parent ---Window Info---
  * @desc The text used to indicate an item is unbreakable.
  * @default Unbreakable
  *
@@ -215,106 +164,54 @@ Yanfly.IDur.version = 1.04;
  * @default
  *
  * @param Unbreakable
- * @parent ---Durability Color---
- * @type number
- * @min 0
- * @max 31
  * @desc Text color used for unbreakable items.
  * @default 23
  *
  * @param Max Durability
- * @parent ---Durability Color---
- * @type number
- * @min 0
- * @max 31
  * @desc Text color when durability is equal to its max.
  * @default 29
  *
  * @param 190% Durability
- * @parent ---Durability Color---
- * @type number
- * @min 0
- * @max 31
  * @desc Text color when durability is above 190% default.
  * @default 29
  *
  * @param 175% Durability
- * @parent ---Durability Color---
- * @type number
- * @min 0
- * @max 31
  * @desc Text color when durability is above 175% default.
  * @default 24
  *
  * @param 150% Durability
- * @parent ---Durability Color---
- * @type number
- * @min 0
- * @max 31
  * @desc Text color when durability is above 150% default.
  * @default 24
  *
  * @param 120% Durability
- * @parent ---Durability Color---
- * @type number
- * @min 0
- * @max 31
  * @desc Text color when durability is above 120% default.
  * @default 4
  *
  * @param 110% Durability
- * @parent ---Durability Color---
- * @type number
- * @min 0
- * @max 31
  * @desc Text color when durability is above 110% default.
  * @default 0
  *
  * @param 100% Durability
- * @parent ---Durability Color---
- * @type number
- * @min 0
- * @max 31
  * @desc Text color when durability is above 100% default.
  * @default 0
  *
  * @param 80% Durability
- * @parent ---Durability Color---
- * @type number
- * @min 0
- * @max 31
  * @desc Text color when durability is above 80% default.
  * @default 0
  *
  * @param 50% Durability
- * @parent ---Durability Color---
- * @type number
- * @min 0
- * @max 31
  * @desc Text color when durability is above 80% default.
  * @default 6
  *
  * @param 25% Durability
- * @parent ---Durability Color---
- * @type number
- * @min 0
- * @max 31
  * @desc Text color when durability is above 25% default.
  * @default 17
  *
  * @param 10% Durability
- * @parent ---Durability Color---
- * @type number
- * @min 0
- * @max 31
  * @desc Text color when durability is above 10% default.
  * @default 2
  *
  * @param 1% Durability
- * @parent ---Durability Color---
- * @type number
- * @min 0
- * @max 31
  * @desc Text color when durability is above 1% default.
  * @default 18
  *
@@ -323,163 +220,124 @@ Yanfly.IDur.version = 1.04;
  * Introduction
  * ============================================================================
  *
- * This plugin requires YEP_ItemCore.
- * Make sure this plugin is located under YEP_ItemCore in the plugin list.
+ * 这个插件需要YEP_ItemCore，确保它放在YEP_ItemCore下面
  *
- * Independent Weapons and Armors will now have a Durability value. Over the
- * course of battle, equipment durability will drop based on actions performed,
- * damage taken, and the like. When a piece of equipment's durability value
- * reaches 0, the piece of equipment will break. Durability can be repaired by
- * items and increased by skills, too.
+ * 独立武器和装备现在有了耐久度。通过战斗进程，装备耐久度将会根据战斗行
+ * 动，受到伤害或者类似的降低耐久度。当你件装备耐久度降为0，这个装备会
+ * 破损。耐久度可以被物品修复或被技能提升。
  *
  * ============================================================================
  * Notetags
  * ============================================================================
  *
- * The following notetags can be used to adjust item durability for equipment.
+ * 下面的标签可以被用来调整装备耐久度
  *
  * Weapon and Armor Notetags:
  * 
  *   <Durability: x>
- *   This sets the item's default durability value to x. This is the starting
- *   durability value for the item. If this notetag isn't used, the independent
- *   equipment will refer to the value in the plugin parameters.
+ *   设置物品默认耐久度。这是初始值。如果没有设置，则会使用插件默认设置
  *
  *   <Durability Variance: x>
- *   This alters the starting durability value with a variance of x. This means
- *   there can be a variance of -x to +x for the durability starting value.
+ *   改变物品初始耐久度。你可以用增加或者减少
  *
  *   <Durability Maximum: x>
- *   This is the maximum durability value the independent equipment can have.
- *   When repairing durability, the item's durability value cannot exceed this
- *   amount. This amount is dependent on the base item's durability value.
+ *   物品最大耐久度。当修复耐久度时，物品不能超过值。
  *
  *   <Bypass Durability>
  *   <Unbreakable>
- *   This sets the item to not have bypass the durability system and making the
- *   independent item unbreakable.
+ *   设置物品不消耗耐久度并且不让物品破损
  *
  *   <Break Sound Name: filename>
  *   <Break Sound Volume: x>
  *   <Break Sound Pitch: x>
  *   <Break Sound Pan: +x>
  *   <Break Sound Pan: -x>
- *   This changes the sound effect played when using this piece of equipment is
- *   broken in battle. Filenames are case sensitive and do not include the file
- *   extension into the filename.
+ *   这是物品破损时播放的声音。设置名字不包含拓展名
  *
  * Item, Weapon, Armor Notetags:
  *
  *   <Repair Durability: x>
- *   This will repair any weapon or armor's durability by x. The repair effect
- *   is accessed from the weapon or armor's action menu.
+ *   修复耐久度
  *
  *   <Repair Weapon: x>
  *   <Repair Armor: x>
- *   This will specifically repair only weapons or armors by x amount. The
- *   repair effect is accessed from the weapon or armor's action menu.
+ *   仅仅修复武器或者装备
  *
  *   <Repair WType x: y>
  *   <Repair AType x: y>
- *   This will specifically repair only weapon-type x or armor-type x by y
- *   amount. The repair is accessed from the weapon or armor's action menu.
+ *   修复武器类型x和装备类型x的耐久度
  *
  *   <Repair Sound Name: filename>
  *   <Repair Sound Volume: x>
  *   <Repair Sound Pitch: x>
  *   <Repair Sound Pan: +x>
  *   <Repair Sound Pan: -x>
- *   This changes the sound effect played when using this item to repair the
- *   durability of another item.
+ *   修复播放声音
  *
  *   <Unbreakable Durability>
- *   Removes the equipment's durability and makes it unbreakable.
+ *   移走耐久度并且让装备不再破损
  *
  *   <Unbreakable Weapon>
  *   <Unbreakable Armor>
- *   Removes the weapon or armor's durability and makes it unbreakable.
+ *   移走武器和装备的耐久度并且不再破损
  *
  *   <Unbreakable WType x>
  *   <Unbreakable AType x>
- *   Removes durability for specifically weapon-type x or armor-type x and
- *   makes it unbreakable. Filenames are case sensitive and do not include the
- *   file extension into the filename.
+ *   移走武器类型x和装备类型x的耐久度并且不再破损
  *
  * Skill and Item Notetags:
  *
  *   <User Weapon Durability: +x>
  *   <User Weapon Durability: -x>
- *   Each hit of this skill/item will cause all of the user's weapon(s)
- *   durability to be altered by +x or -x. If it reaches 0 or lower, the weapon
- *   will break.
+ *   使用技能或者物品可以增加或者减少耐久度x，如果到达0，则武器破损
  *
  *   <User All Weapon Durability: +x>
  *   <User All Weapon Durability: -x>
- *   Each hit of this skill/item will cause all of the user's weapon(s)
- *   durability to be altered by +x or -x. If it reaches 0 or lower, the weapon
- *   will break.
+ *   使用技能或者物品可以增加或者减少所有武器的耐久度x，如果到达0，则武器破损
  *
  *   <User Random Weapon Durability: +x>
  *   <User Random Weapon Durability: -x>
- *   Each hit of this skill/item will cause a random weapon equipped by the
- *   user to have its durability altered by +x or -x. If it reaches 0 or lower,
- *   the weapon will break.
+ *   使用技能或者物品可以增加或者减少随机武器的耐久度x，如果到达0，则武器破损
  *
  *   <User Armor Durability: +x>
  *   <User Armor Durability: -x>
- *   Each hit of this skill/item will cause the user's armor(s) durability to
- *   be altered by +x or -x. Depending on the 'Damage All' plugin parameter,
- *   this will affect either all armors or affect a random armor piece. If the
- *   item reaches 0 or lower, the armor will break.
+ *   使用技能或者物品可以增加或者减少装备的耐久度x，如果到达0，则装备破损
  *
  *   <User All Armor Durability: +x>
  *   <User All Armor Durability: -x>
- *   Each hit of this skill/item will cause all of the user's armor(s)
- *   durability to be altered by +x or -x. If it reaches 0 or lower, the armor
- *   will break.
+ *   使用技能或者物品可以增加或者减少所以装备的耐久度x，如果到达0，则装备破损
  *
  *   <User Random Armor Durability: +x>
  *   <User Random Armor Durability: -x>
- *   Each hit of this skill/item will cause a random armor equipped by the
- *   user to have its durability altered by +x or -x. If it reaches 0 or lower,
- *   the armor will break.
+ *   使用技能或者物品可以增加或者减少随机装备的耐久度x，如果到达0，则装备破损
  *
  *   <Target Weapon Durability: +x>
  *   <Target Weapon Durability: -x>
- *   Each hit of this skill/item will cause all of the target's weapon(s)
- *   durability to be altered by +x or -x. If it reaches 0 or lower, the weapon
- *   will break.
+ *   使用技能或者物品可以增加或者减少目标武器的耐久度x，如果到达0，则武器破损
  *
  *   <Target All Weapon Durability: +x>
  *   <Target All Weapon Durability: -x>
- *   Each hit of this skill/item will cause all of the target's weapon(s)
- *   durability to be altered by +x or -x. If it reaches 0 or lower, the weapon
- *   will break.
+ *   使用技能或者物品可以增加或者减少所有目标武器的耐久度x，如果到达0，则武
+ *   器破损
  *
  *   <Target Random Weapon Durability: +x>
  *   <Target Random Weapon Durability: -x>
- *   Each hit of this skill/item will cause a random weapon equipped by the
- *   target to have its durability altered by +x or -x. If it reaches 0 or
- *   lower, the weapon will break.
+ *   使用技能或者物品可以增加或者减少随机目标武器的耐久度x，如果到达0，则武
+ *   器破损
  *
  *   <Target Armor Durability: +x>
  *   <Target Armor Durability: -x>
- *   Each hit of this skill/item will cause the target's armor(s) durability to
- *   be altered by +x or -x. Depending on the 'Damage All' plugin parameter,
- *   this will affect either all armors or affect a random armor piece. If the
- *   item reaches 0 or lower, the armor will break.
+ *   使用技能或者物品可以增加或者减少目标装备的耐久度x，如果到达0，则装备破损
  *
  *   <Target All Armor Durability: +x>
  *   <Target All Armor Durability: -x>
- *   Each hit of this skill/item will cause all of the target's armor(s)
- *   durability to be altered by +x or -x. If it reaches 0 or lower, the armor
- *   will break.
+ *   使用技能或者物品可以增加或者减少所有目标装备的耐久度x，如果到达0，则
+ *   装备破损
  *
  *   <Target Random Armor Durability: +x>
  *   <Target Random Armor Durability: -x>
- *   Each hit of this skill/item will cause a random armor equipped by the
- *   target to have its durability altered by +x or -x. If it reaches 0 or
- *   lower, the armor will break.
+ *   使用技能或者物品可以增加或者减少随机目标装备的耐久度x，如果到达0，则装
+ *   备破损
  *
  * ============================================================================
  * Lunatic Mode - Custom Break Effect
@@ -586,13 +444,6 @@ Yanfly.IDur.version = 1.04;
  * ============================================================================
  * Changelog
  * ============================================================================
- * 
- * Version 1.04:
- * - Bypass the isDevToolsOpen() error when bad code is inserted into a script
- * call or custom Lunatic Mode code segment due to updating to MV 1.6.1.
- *
- * Version 1.03:
- * - Updated for RPG Maker MV version 1.5.0.
  *
  * Version 1.02:
  * - Lunatic Mode fail safes added.

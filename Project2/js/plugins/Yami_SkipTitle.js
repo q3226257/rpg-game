@@ -1,5 +1,5 @@
-﻿/*:
- * @plugindesc 跳过标题场景进行测试.
+/*:
+ * @plugindesc Skip the title scene for testing purpose.
  * @version 1.0
  */
 
