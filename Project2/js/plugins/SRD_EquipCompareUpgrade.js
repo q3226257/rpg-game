@@ -1,5 +1,5 @@
 /*:
- * @plugindesc Allows for developers to customize all the visible parameters that can be seen on the Equip Screen.
+ * @plugindesc 装备对比信息帮助系统
  * @author SumRndmDde
  *
  * @param Default Pos Color

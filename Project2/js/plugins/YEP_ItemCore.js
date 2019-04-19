@@ -474,6 +474,7 @@ DataManager.isDatabaseLoaded = function () {
     return true;
 };
 
+
 DataManager.processItemCoreNotetags = function (group) {
     var note1 = /<(?:RANDOM VARIANCE):[ ](\d+)>/i;
     var note2 = /<(?:NONINDEPENDENT ITEM|not independent item)>/i;
@@ -730,8 +731,23 @@ ItemManager.randomizeInitialItem = function (baseItem, newItem) {
         this.randomizeInitialStats(baseItem, newItem);
     }
 
-    // if(newItem.etype ===0)
-    // newItem.traits.push({"code":22,"dataId":1,"value":3})
+    //武器
+    if (DataManager.isWeapon(baseItem) || DataManager.isArmor(baseItem)) {
+        var ran = Math.randomInt(1001);
+        var quality = 1;
+        if (ran >= 5) {
+            quality = 6;
+        } else if (ran >= 30) {
+            quality = 5;
+        } else if (ran >= 130) {
+            quality = 4;
+        } else if (ran >= 330) {
+            quality = 3;
+        } else if (ran >= 630) {
+            quality = 2;
+        }
+        newItem.meta.quality = 5//quality
+    }
 };
 
 ItemManager.randomizeInitialEffects = function (baseItem, newItem) {

@@ -5,9 +5,9 @@ RJO.HE.version = 1.00;
 
 // HelpExtend
 //
-// 物品帮助拓展
+// 物品详细信息显示帮助
 /*:
- * @plugindesc 物品帮助拓展
+ * @plugindesc 物品详细信息显示帮助
  * @author RJO (804173948)
 
  * @param ----文本设置----
