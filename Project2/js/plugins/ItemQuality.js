@@ -37,23 +37,48 @@ RJO.IQ.QualitiesColor = eval(RJO.IQ.QualitiesColor);
 RJO.IQ.DrawOutline = Number(RJO.Parameters['DrawOutline']);
 
 RJO.IQ.getItemExtraDescParams2 = RJO.HE.getItemExtraDescParams2;
-RJO.HE.normalcolor = function(item){return RJO.IQ.QualitiesColor[item.meta.quality||0];}
-RJO.HE.namecolor = function(item){return RJO.IQ.QualitiesColor[item.meta.quality||0];}
-RJO.HE.getItemExtraDescParams2 = function(item,type){
-    RJO.IQ.getItemExtraDescParams2.call(this,item,type);
-    var text="<pos=AD text=品质："+RJO.IQ.QualitiesName[item.meta.quality||0]+" size=18 color=normalcolor line=false align=0>";
-    this.processExtraDescParams(item,text);
+RJO.HE.normalcolor = function (item) {
+    return RJO.IQ.QualitiesColor[item.meta.quality || 0];
 }
-Window_Base.prototype.drawItemName = function(item, x, y, width) {
+RJO.HE.namecolor = function (item) {
+    return RJO.IQ.QualitiesColor[item.meta.quality || 0];
+}
+RJO.HE.getItemExtraDescParams2 = function (item, type) {
+    RJO.IQ.getItemExtraDescParams2.call(this, item, type);
+    var text = "<pos=AD text=品质：" + RJO.IQ.QualitiesName[item.meta.quality || 0] + " size=18 color=normalcolor line=false align=0>";
+    this.processExtraDescParams(item, text);
+}
+Window_Base.prototype.drawItemName = function (item, x, y, width) {
     width = width || 312;
     if (item) {
         var iconBoxWidth = Window_Base._iconWidth + 4;
-        var color = RJO.IQ.QualitiesColor[item.meta.quality||0];
+        var color = RJO.IQ.QualitiesColor[item.meta.quality || 0];
         this.drawIcon(item.iconIndex, x + 2, y + 2);
         this.changeTextColor(color);
         this.drawText(item.name, x + iconBoxWidth, y, width - iconBoxWidth);
-        if(RJO.IQ.DrawOutline>=0){this.drawOutline(x + 2, y + 2, Window_Base._iconWidth, Window_Base._iconHeight, color, RJO.IQ.DrawOutline);}
+        if (RJO.IQ.DrawOutline >= 0) {
+            this.drawOutline(x + 2, y + 2, Window_Base._iconWidth, Window_Base._iconHeight, color, RJO.IQ.DrawOutline);
+        }
     }
 };
 
-Sprite_ItemHelp.prototype.standardLineColor = function() {return this.item ? RJO.IQ.QualitiesColor[this.item.meta.quality||0] : RJO.HE.ItemDescLineColor;};
+RJO.HE.changeItemQuality = function (item, quality) {
+    try {
+        item.meta.quality = quality
+        for (let i = 0; i < item.descParams.length; i++) {
+            var arr = item.descParams[i];
+            if (arr[0].contains("品质")) {
+                item.descParams[i] = ["品质:"+RJO.IQ.QualitiesName[quality], arr[1], RJO.IQ.QualitiesColor[quality], arr[3]]
+            } else if (item.name.contains(arr[0])) {
+                item.descParams[i] = [item.name, arr[1], RJO.IQ.QualitiesColor[quality], arr[3]]
+            }
+        }
+    }catch (e) {
+
+    }
+
+};
+
+Sprite_ItemHelp.prototype.standardLineColor = function () {
+    return this.item ? RJO.IQ.QualitiesColor[this.item.meta.quality || 0] : RJO.HE.ItemDescLineColor;
+};

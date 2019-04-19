@@ -746,7 +746,9 @@ ItemManager.randomizeInitialItem = function (baseItem, newItem) {
         } else if (ran >= 630) {
             quality = 2;
         }
-        newItem.meta.quality = 5//quality
+        RJO.HE.changeItemQuality(newItem,7);
+        // newItem.meta.quality = 7//quality
+        // newItem.meta.quality = 7//quality
     }
 };
 
