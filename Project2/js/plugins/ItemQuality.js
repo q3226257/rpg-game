@@ -62,23 +62,6 @@ Window_Base.prototype.drawItemName = function (item, x, y, width) {
     }
 };
 
-RJO.HE.changeItemQuality = function (item, quality) {
-    try {
-        item.meta.quality = quality
-        for (let i = 0; i < item.descParams.length; i++) {
-            var arr = item.descParams[i];
-            if (arr[0].contains("品质")) {
-                item.descParams[i] = ["品质:"+RJO.IQ.QualitiesName[quality], arr[1], RJO.IQ.QualitiesColor[quality], arr[3]]
-            } else if (item.name.contains(arr[0])) {
-                item.descParams[i] = [item.name, arr[1], RJO.IQ.QualitiesColor[quality], arr[3]]
-            }
-        }
-    }catch (e) {
-
-    }
-
-};
-
 Sprite_ItemHelp.prototype.standardLineColor = function () {
     return this.item ? RJO.IQ.QualitiesColor[this.item.meta.quality || 0] : RJO.HE.ItemDescLineColor;
 };

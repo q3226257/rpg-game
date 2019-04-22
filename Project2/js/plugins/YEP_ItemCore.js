@@ -730,27 +730,8 @@ ItemManager.randomizeInitialItem = function (baseItem, newItem) {
     } else {
         this.randomizeInitialStats(baseItem, newItem);
     }
-
-    //武器
-    if (DataManager.isWeapon(baseItem) || DataManager.isArmor(baseItem)) {
-        var ran = Math.randomInt(1001);
-        var quality = 1;
-        if (ran >= 5) {
-            quality = 6;
-        } else if (ran >= 30) {
-            quality = 5;
-        } else if (ran >= 130) {
-            quality = 4;
-        } else if (ran >= 330) {
-            quality = 3;
-        } else if (ran >= 630) {
-            quality = 2;
-        }
-        RJO.HE.changeItemQuality(newItem,7);
-        // newItem.meta.quality = 7//quality
-        // newItem.meta.quality = 7//quality
-    }
 };
+
 
 ItemManager.randomizeInitialEffects = function (baseItem, newItem) {
     if (baseItem.randomVariance <= 0) return;

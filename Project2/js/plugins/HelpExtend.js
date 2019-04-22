@@ -152,16 +152,13 @@ RJO.HE.getDescParams = function (item, type) {
     if (type == 0) {
         this.getItemBaseDescParams(item, normalcolor);
         this.getItemPriceDescParams(item, normalcolor);
-    }
-    else if (type == 1) {
+    } else if (type == 1) {
         this.getWeaponBaseDescParams(item, normalcolor);
         this.getItemPriceDescParams(item, normalcolor);
-    }
-    else if (type == 2) {
+    } else if (type == 2) {
         this.getArmorBaseDescParams(item, normalcolor);
         this.getItemPriceDescParams(item, normalcolor);
-    }
-    else if (type == 3) {
+    } else if (type == 3) {
         this.getSkillBaseDescParams(item);
     }
     this.getItemExtraDescParams(item, type);
@@ -203,8 +200,7 @@ RJO.HE.getItemPriceDescParams = function (item, normalcolor) {
         var pt2 = "出售价格：" + Math.round(item.price / 2);
         item.descParams.push([pt1, RJO.HE.ItemDescOtherSize, RJO.HE.ItemDescPriceColor, false]);
         item.descParams.push([pt2, RJO.HE.ItemDescOtherSize, RJO.HE.ItemDescPriceColor, false]);
-    }
-    else {
+    } else {
         item.descParams.push(["无法卖店", RJO.HE.ItemDescOtherSize, RJO.HE.ItemDescPriceColor, false]);
     }
     item.pos[2] = item.descParams.length;
@@ -290,19 +286,20 @@ Sprite_ItemHelp.prototype.getTextHeight = function () {
     return y;
 }
 Sprite_ItemHelp.prototype.drawContents = function () {
-    var desc = this.item.descParams;
-    var y = this.standardPadding();
-    for (var i = 0; i < desc.length; i++) {
-        RJO.SW.changeTextSize(desc[i][1]);
-        RJO.SW.changeTextColor(desc[i][2]);
-        RJO.SW.drawContentText(desc[i][0], this.standardPadding(), y, this.contentsWidth(), desc[i][4]);
-        y += RJO.SW.textHeight;
-        if (desc[i][3]) {
-            this.drawHorzLine(y + RJO.HE.ItemDescLineHeight / 2);
-            y += RJO.HE.ItemDescLineHeight;
-        }
+        var desc = this.item.descParams;
+        var y = this.standardPadding();
+        for (var i = 0; i < desc.length; i++) {
+            RJO.SW.changeTextSize(desc[i][1]);
+            RJO.SW.changeTextColor(desc[i][2]);
+            RJO.SW.drawContentText(desc[i][0], this.standardPadding(), y, this.contentsWidth(), desc[i][4]);
+            y += RJO.SW.textHeight;
+            if (desc[i][3]) {
+                this.drawHorzLine(y + RJO.HE.ItemDescLineHeight / 2);
+                y += RJO.HE.ItemDescLineHeight;
+            }
     }
-}
+
+};
 Sprite_ItemHelp.prototype.clear = function () {
     this.setItem(null);
 };
@@ -358,6 +355,7 @@ Window_ShopBuy.prototype.updateHelp = function () {
     if (this._statusWindow) {
         this._statusWindow.setItem(this.item());
     }
+
 };
 
 
@@ -369,7 +367,6 @@ Scene_Battle.prototype.createHelpWindow = function () {
     this._helpWindow = new Sprite_ItemHelp(RJO.HE.ItemDescWidth);
     this.addChild(this._helpWindow);
 };
-
 // var system_createCategoryWindow = Scene_Item.prototype.createCategoryWindow
 // Scene_Item.prototype.createCategoryWindow = function () {
 //     system_createCategoryWindow.call(this);
@@ -413,6 +410,7 @@ Scene_Equip.prototype.createStatusWindow = function () {
     this._statusWindow = new Window_EquipStatus(0, 0);
     this.addWindow(this._statusWindow);
 };
+
 // Scene_Equip.prototype.createCommandWindow = function () {
 //     var wx = this._statusWindow.width;
 //     var ww = Graphics.boxWidth - this._statusWindow.width;
