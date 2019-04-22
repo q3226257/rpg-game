@@ -1,14 +1,14 @@
 [
 null,
-{"id":1,"expanded":false,"name":"外挂之家","order":1,"parentId":0,"scrollX":810,"scrollY":451},
-{"id":2,"expanded":true,"name":"山村","order":2,"parentId":0,"scrollX":1769.4545454545455,"scrollY":1108.3636363636365},
+{"id":1,"expanded":false,"name":"外挂之家","order":1,"parentId":0,"scrollX":594,"scrollY":395.3333333333333},
+{"id":2,"expanded":true,"name":"山村","order":2,"parentId":0,"scrollX":790,"scrollY":1096.6666666666667},
 {"id":3,"expanded":false,"name":"武器商店","order":3,"parentId":2,"scrollX":1786.909090909091,"scrollY":1003.6363636363636},
 {"id":4,"expanded":false,"name":"护甲商店","order":4,"parentId":2,"scrollX":819,"scrollY":460},
 {"id":5,"expanded":false,"name":"物品商店","order":5,"parentId":2,"scrollX":819,"scrollY":460},
-{"id":6,"expanded":false,"name":"民居 1","order":6,"parentId":2,"scrollX":811,"scrollY":600},
-{"id":7,"expanded":false,"name":"民居 2","order":7,"parentId":2,"scrollX":819,"scrollY":460},
-{"id":8,"expanded":false,"name":"酒店 1F","order":8,"parentId":2,"scrollX":811,"scrollY":800},
+{"id":6,"expanded":false,"name":"民居 1","order":6,"parentId":2,"scrollX":583.3333333333334,"scrollY":404.6666666666667},
+{"id":7,"expanded":false,"name":"民居 2","order":7,"parentId":2,"scrollX":594,"scrollY":395.3333333333333},
+{"id":8,"expanded":false,"name":"酒店 1F","order":8,"parentId":2,"scrollX":811.3333333333334,"scrollY":800.6666666666666},
 {"id":9,"expanded":false,"name":"世界地图 2","order":11,"parentId":0,"scrollX":1218,"scrollY":2518},
-{"id":10,"expanded":false,"name":"实验室","order":9,"parentId":2,"scrollX":811,"scrollY":500},
-{"id":11,"expanded":false,"name":"MAP011","order":10,"parentId":2,"scrollX":819,"scrollY":460}
+{"id":10,"expanded":false,"name":"实验室","order":9,"parentId":2,"scrollX":583.3333333333334,"scrollY":564.6666666666666},
+{"id":11,"expanded":false,"name":"MAP011","order":10,"parentId":2,"scrollX":594,"scrollY":395.3333333333333}
 ]
